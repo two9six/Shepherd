@@ -8,6 +8,10 @@ namespace Shepherd.Model.Models
 
 		public int PersonId { get; set; }
 
+		public string MemberId { get; set; }
+
+		public int StatusId { get; set; }
+
 		public DateTime DateCreated { get; set; }
 
 		public DateTime DateUpdated { get; set; }

@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shepherd.Data.Infrastructure;
+using Shepherd.Data.Infrastructure.Contracts;
+using Shepherd.Data.Repository.Contracts;
+using Shepherd.Model.Models;
 
 namespace Shepherd.Data.Repository
 {
-	public class PersonRepository
+	public class PersonRepository :
+		RepositoryBase<Person>,
+		IPersonRepository
 	{
+		public PersonRepository(IDatabaseFactory databaseFactory)
+			: base(databaseFactory)
+		{
+
+		}
 	}
 }

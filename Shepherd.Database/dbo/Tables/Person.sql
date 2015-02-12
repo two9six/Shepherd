@@ -5,5 +5,7 @@
     [LastName] VARCHAR(100) NOT NULL, 
     [MiddleName] VARCHAR(100) NULL, 
     [BirthDate] DATE NOT NULL, 
+	[DateCreated] DATETIME NULL,
+	[DateUpdated] DATETIME NULL,
     [IsDeleted] BIT NOT NULL DEFAULT 0
 )

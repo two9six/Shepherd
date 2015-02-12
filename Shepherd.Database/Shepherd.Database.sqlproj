@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{424588b0-f30b-4c97-a0f3-89fbe65c6f87}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -66,10 +66,18 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Person.sql" />
     <Build Include="dbo\Tables\Member.sql" />
-    <Build Include="dbo\Tables\DictionaryType.sql" />
-    <Build Include="dbo\Tables\Dictionary.sql" />
-    <Build Include="Scripts\UnitData\Insert_Dictionary.sql" />
-    <Build Include="Scripts\UnitData\Insert_DictionaryType.sql" />
-    <Build Include="Scripts\UnitData\Insert_Member.sql" />
+    <Build Include="dbo\Tables\LookupType.sql" />
+    <Build Include="dbo\Tables\Lookup.sql" />
+    <None Include="Scripts\UnitData\Insert_LookupType.sql" />
+    <None Include="Scripts\UnitData\Insert_Lookup.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\UnitData\Insert_Member.sql" />
+    <None Include="Scripts\UnitData\Insert_Person.sql" />
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+    <None Include="Shepherd.Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Shepherd.Database.refactorlog" />
   </ItemGroup>
 </Project>
