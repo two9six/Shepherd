@@ -56,6 +56,11 @@ namespace Shepherd.Data.Infrastructure
 			return dbSet.Find(id);
 		}
 
+		public virtual T GetById(int id)
+		{
+			return dbSet.Find(id);
+		}
+
 		public virtual T GetById(string id)
 		{
 			return dbSet.Find(id);

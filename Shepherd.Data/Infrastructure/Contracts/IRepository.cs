@@ -13,6 +13,7 @@ namespace Shepherd.Data.Infrastructure.Contracts
 		void Delete(T entity);
 		void Delete(Expression<Func<T, bool>> where);
 		T GetById(long id);
+		T GetById(int id);
 		T GetById(string id);
 		T Get(Expression<Func<T, bool>> where);
 		IEnumerable<T> GetAll();

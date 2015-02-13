@@ -8,7 +8,7 @@ namespace Shepherd.Model.Models
 
 		public int PersonId { get; set; }
 
-		public string MemberId { get; set; }
+		public string GeneratedId { get; set; }
 
 		public int StatusId { get; set; }
 

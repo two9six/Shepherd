@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B9F88252-7083-470A-8125-0846D4C56FF8}</ProjectGuid>
+    <ProjectGuid>{79E9F7F8-5C9E-4FF9-A463-FC7652375081}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shepherd.Service</RootNamespace>
-    <AssemblyName>Shepherd.Service</AssemblyName>
+    <RootNamespace>Shepherd.BusinessLogic</RootNamespace>
+    <AssemblyName>Shepherd.BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,8 +39,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Contracts\IMember.cs" />
+    <Compile Include="Entities\Member.cs" />
+    <Compile Include="Infrastructure\Contracts\IReadOnlyEntity.cs" />
+    <Compile Include="Infrastructure\Contracts\IWriteableEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shepherd.Core\Shepherd.Core.csproj">
+      <Project>{e2118038-9107-446c-97c9-f12c1a7e712d}</Project>
+      <Name>Shepherd.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shepherd.Data\Shepherd.Data.csproj">
+      <Project>{75c43176-bd06-4a87-a40d-80b891da33b5}</Project>
+      <Name>Shepherd.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shepherd.Model\Shepherd.Model.csproj">
+      <Project>{f7585682-fd1f-4afd-8ac1-9ac2506e3f25}</Project>
+      <Name>Shepherd.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

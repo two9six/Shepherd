@@ -1,9 +1,10 @@
-﻿using Shepherd.Model.Models;
+﻿using Shepherd.Data.Infrastructure.Contracts;
+using Shepherd.Model.Models;
 
 namespace Shepherd.Data.Repository.Contracts
 {
-	public interface IMemberRepository
+	public interface IMemberRepository : IRepository<Member>
 	{
-		Member GetByMemberId(string memberId);
+		Member GetByGeneratedId(string generatedId);
 	}
 }

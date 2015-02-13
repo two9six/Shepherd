@@ -17,15 +17,14 @@ namespace Shepherd.Data.Repository
 
 		}
 
-
-		public Member GetByMemberId(string memberId)
+		public Member GetByGeneratedId(string generatedId)
 		{
-			if (string.IsNullOrEmpty(memberId))
+			if (string.IsNullOrEmpty(generatedId))
 			{
 				throw new ArgumentException("Member Id cannot be Null or empty");
 			}
 
-			return this.DataContext.Members.Single(_ => _.MemberId == memberId && !_.IsDeleted);
+			return this.DataContext.Members.Single(_ => _.GeneratedId == generatedId && !_.IsDeleted);
 		}
 	}
 }

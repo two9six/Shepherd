@@ -2,7 +2,7 @@
 GO
 PRINT 'Insert Member'
 
-;WITH Member_CTE (Id, PersonId, MemberId, StatusId, IsDeleted) AS 
+;WITH Member_CTE (Id, PersonId, GeneratedId, StatusId, IsDeleted) AS 
 (
 				  SELECT 1, 1, 'GUA00001', 1, 0
 			UNION SELECT 2, 2, 'GUA00002', 2, 0
@@ -15,12 +15,12 @@ MERGE INTO Member
 	  WHEN MATCHED THEN 
 			UPDATE SET 
 				 Member.PersonId = cte.PersonId
-				,Member.MemberId = cte.MemberId
+				,Member.GeneratedId = cte.GeneratedId
 				,Member.StatusId = cte.StatusId
 				,Member.IsDeleted = cte.IsDeleted
 	  WHEN NOT MATCHED BY TARGET THEN 
-			INSERT (Id, PersonId, MemberId, StatusId, IsDeleted) 
-			VALUES (cte.Id, cte.PersonId, cte.MemberId, cte.StatusId, cte.IsDeleted)
+			INSERT (Id, PersonId, GeneratedId, StatusId, IsDeleted) 
+			VALUES (cte.Id, cte.PersonId, cte.GeneratedId, cte.StatusId, cte.IsDeleted)
 	  WHEN NOT MATCHED BY SOURCE THEN 
 			DELETE;
 

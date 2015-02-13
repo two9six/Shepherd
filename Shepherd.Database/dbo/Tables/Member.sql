@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY, 
 	[PersonId] INT NOT NULL,
-    [MemberId] VARCHAR(20) NOT NULL, 
+    [GeneratedId] VARCHAR(20) NOT NULL, 
 	[StatusId] INT NOT NULL,
 	[DateCreated] DATETIME NULL,
 	[DateUpdated] DATETIME NULL,
