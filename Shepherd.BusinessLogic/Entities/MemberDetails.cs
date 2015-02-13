@@ -1,8 +1,8 @@
 ﻿using Shepherd.BusinessLogic.Entities.Contracts;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
-using System;
 using Shepherd.Model.Models;
+using System;
 
 namespace Shepherd.BusinessLogic.Entities
 {
@@ -23,13 +23,6 @@ namespace Shepherd.BusinessLogic.Entities
 		public string MiddleName { get; set; }
 
 		public DateTime BirthDate { get; set; }
-
-		public MemberDetails()
-		{
-			this.memberRepository = new Shepherd.Data.Repository.MemberRepository(new Shepherd.Data.Infrastructure.DatabaseFactory());
-			this.personRepository = new Shepherd.Data.Repository.PersonRepository(new Shepherd.Data.Infrastructure.DatabaseFactory()); ;
-			this.unitOfWork = new Shepherd.Data.Infrastructure.UnitOfWork(new Shepherd.Data.Infrastructure.DatabaseFactory());
-		}
 
 		public MemberDetails(IMemberRepository memberRepository, IPersonRepository personRepository, IUnitOfWork unitOfWork)
 		{
@@ -58,7 +51,6 @@ namespace Shepherd.BusinessLogic.Entities
 				}
 			}
 		}
-
 
 		public void CreateMember(Member member)
 		{

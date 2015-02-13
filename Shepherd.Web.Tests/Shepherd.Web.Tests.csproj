@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79E9F7F8-5C9E-4FF9-A463-FC7652375081}</ProjectGuid>
+    <ProjectGuid>{70DF89D3-D1EE-491B-8501-20C7CCE6490A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shepherd.BusinessLogic</RootNamespace>
-    <AssemblyName>Shepherd.BusinessLogic</AssemblyName>
+    <RootNamespace>Shepherd.Web.Tests</RootNamespace>
+    <AssemblyName>Shepherd.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,42 +32,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Contracts\IMemberDetails.cs" />
-    <Compile Include="Entities\MemberDetails.cs" />
-    <Compile Include="Infrastructure\Contracts\IReadOnlyEntity.cs" />
-    <Compile Include="Infrastructure\Contracts\IWriteableEntity.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shepherd.Core\Shepherd.Core.csproj">
-      <Project>{e2118038-9107-446c-97c9-f12c1a7e712d}</Project>
-      <Name>Shepherd.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Data\Shepherd.Data.csproj">
-      <Project>{75c43176-bd06-4a87-a40d-80b891da33b5}</Project>
-      <Name>Shepherd.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Model\Shepherd.Model.csproj">
-      <Project>{f7585682-fd1f-4afd-8ac1-9ac2506e3f25}</Project>
-      <Name>Shepherd.Model</Name>
+    <ProjectReference Include="..\Shepherd.Web\Shepherd.Web.csproj">
+      <Project>{6EA4DF75-22F8-498C-BD65-7237C0E2CCDE}</Project>
+      <Name>Shepherd.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="app.config" />
   </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

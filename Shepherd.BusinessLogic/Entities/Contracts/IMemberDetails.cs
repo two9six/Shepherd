@@ -1,5 +1,4 @@
-﻿using Shepherd.BusinessLogic.Infrastructure.Contracts;
-using Shepherd.Model.Models;
+﻿using Shepherd.Model.Models;
 using System;
 
 namespace Shepherd.BusinessLogic.Entities.Contracts
