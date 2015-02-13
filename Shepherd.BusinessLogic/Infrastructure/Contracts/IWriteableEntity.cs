@@ -12,6 +12,6 @@ namespace Shepherd.BusinessLogic.Infrastructure.Contracts
 		void Edit(T entity);
 		void Delete(int id);
 		void Save();
-		T Fetch(int id);
+		void Fetch(int id);
 	}
 }

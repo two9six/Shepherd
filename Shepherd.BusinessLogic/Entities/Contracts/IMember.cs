@@ -5,8 +5,6 @@ namespace Shepherd.BusinessLogic.Entities.Contracts
 {
 	public interface IMember : IWriteableEntity<IMember>
 	{
-		int PersonId { get; }
-
 		int MemberId { get; }
 
 		string GeneratedId { get; set; }

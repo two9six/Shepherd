@@ -1,11 +1,15 @@
 ﻿using Shepherd.BusinessLogic.Entities.Contracts;
+using Shepherd.Data.Infrastructure.Contracts;
+using Shepherd.Data.Repository.Contracts;
 using System;
 
 namespace Shepherd.BusinessLogic.Entities
 {
-	internal sealed class Member : IMember
+	public sealed class Member : IMember
 	{
-		public int PersonId { get; private set; }
+		private readonly IMemberRepository memberRepository;
+		private readonly IPersonRepository personRepository;
+		private readonly IUnitOfWork unitOfWork;
 
 		public int MemberId { get; private set; }
 
@@ -18,6 +22,20 @@ namespace Shepherd.BusinessLogic.Entities
 		public string MiddleName { get; set; }
 
 		public DateTime BirthDate { get; set; }
+
+		public Member()
+		{
+			this.memberRepository = new Shepherd.Data.Repository.MemberRepository(new Shepherd.Data.Infrastructure.DatabaseFactory());
+			this.personRepository = new Shepherd.Data.Repository.PersonRepository(new Shepherd.Data.Infrastructure.DatabaseFactory()); ;
+			this.unitOfWork = new Shepherd.Data.Infrastructure.UnitOfWork(new Shepherd.Data.Infrastructure.DatabaseFactory());
+		}
+
+		public Member(IMemberRepository memberRepository, IPersonRepository personRepository, IUnitOfWork unitOfWork)
+		{
+			this.memberRepository = memberRepository;
+			this.personRepository = personRepository;
+			this.unitOfWork = unitOfWork;
+		}
 
 
 		public void Create(IMember entity)
@@ -40,9 +58,25 @@ namespace Shepherd.BusinessLogic.Entities
 			throw new NotImplementedException();
 		}
 
-		public IMember Fetch(int id)
+		public void Fetch(int id)
 		{
-			throw new NotImplementedException();
+			var member = memberRepository.GetById(id);
+
+			if (member != null)
+			{
+				this.MemberId = member.Id;
+				this.GeneratedId = member.GeneratedId;
+
+				var person = personRepository.GetById(member.PersonId);
+
+				if (person != null)
+				{
+					this.LastName = person.LastName;
+					this.FirstName = person.FirstName;
+					this.MiddleName = person.MiddleName;
+					this.BirthDate = person.BirthDate;
+				}
+			}
 		}
 	}
 }
