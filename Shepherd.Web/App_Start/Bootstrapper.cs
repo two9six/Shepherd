@@ -5,11 +5,8 @@ using Shepherd.BusinessLogic.Entities.Contracts;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Shepherd.Web.Mappings;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Shepherd.Web
@@ -18,7 +15,9 @@ namespace Shepherd.Web
 	{
 		public static void Run()
 		{
-			Bootstrapper.SetAutofacContainer();			
+			Bootstrapper.SetAutofacContainer();
+
+			AutoMapperConfiguration.Configure();
 		}
 
 		private static void SetAutofacContainer()
@@ -35,13 +34,6 @@ namespace Shepherd.Web
 				.Where(_ => _.Name.EndsWith("Repository"))
 				.AsImplementedInterfaces()
 				.InstancePerRequest();
-
-			// builder.RegisterAssemblyTypes(typeof(GoalService).Assembly)
-			//.Where(t => t.Name.EndsWith("Service"))
-			//.AsImplementedInterfaces().InstancePerHttpRequest();
-
-			//builder.Register(c => new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SocialGoalEntities())))
-			//	.As<UserManager<ApplicationUser>>().InstancePerHttpRequest();
 
 			builder.RegisterFilterProvider();
 			IContainer container = builder.Build();
