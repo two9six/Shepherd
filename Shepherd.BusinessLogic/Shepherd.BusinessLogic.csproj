@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Contracts\IMember.cs" />
-    <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\Contracts\IMemberDetails.cs" />
+    <Compile Include="Entities\MemberDetails.cs" />
     <Compile Include="Infrastructure\Contracts\IReadOnlyEntity.cs" />
     <Compile Include="Infrastructure\Contracts\IWriteableEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

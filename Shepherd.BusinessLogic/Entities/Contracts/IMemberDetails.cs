@@ -1,9 +1,10 @@
 ﻿using Shepherd.BusinessLogic.Infrastructure.Contracts;
+using Shepherd.Model.Models;
 using System;
 
 namespace Shepherd.BusinessLogic.Entities.Contracts
 {
-	public interface IMember : IWriteableEntity<IMember>
+	public interface IMemberDetails
 	{
 		int MemberId { get; }
 
@@ -17,5 +18,14 @@ namespace Shepherd.BusinessLogic.Entities.Contracts
 
 		DateTime BirthDate { get; set; }
 
+		void Fetch(int memberId);
+
+		void CreateMember(Member member);
+
+		void EditMember(Member memberToEdit);
+
+		void DeleteMember(int memberId);
+
+		void SaveMember();
 	}
 }

@@ -2,10 +2,11 @@
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
 using System;
+using Shepherd.Model.Models;
 
 namespace Shepherd.BusinessLogic.Entities
 {
-	public sealed class Member : IMember
+	public sealed class MemberDetails : IMemberDetails
 	{
 		private readonly IMemberRepository memberRepository;
 		private readonly IPersonRepository personRepository;
@@ -23,44 +24,23 @@ namespace Shepherd.BusinessLogic.Entities
 
 		public DateTime BirthDate { get; set; }
 
-		public Member()
+		public MemberDetails()
 		{
 			this.memberRepository = new Shepherd.Data.Repository.MemberRepository(new Shepherd.Data.Infrastructure.DatabaseFactory());
 			this.personRepository = new Shepherd.Data.Repository.PersonRepository(new Shepherd.Data.Infrastructure.DatabaseFactory()); ;
 			this.unitOfWork = new Shepherd.Data.Infrastructure.UnitOfWork(new Shepherd.Data.Infrastructure.DatabaseFactory());
 		}
 
-		public Member(IMemberRepository memberRepository, IPersonRepository personRepository, IUnitOfWork unitOfWork)
+		public MemberDetails(IMemberRepository memberRepository, IPersonRepository personRepository, IUnitOfWork unitOfWork)
 		{
 			this.memberRepository = memberRepository;
 			this.personRepository = personRepository;
 			this.unitOfWork = unitOfWork;
 		}
 
-
-		public void Create(IMember entity)
+		public void Fetch(int memberId)
 		{
-			throw new NotImplementedException();
-		}
-
-		public void Edit(IMember entity)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Delete(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Save()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Fetch(int id)
-		{
-			var member = memberRepository.GetById(id);
+			var member = memberRepository.GetById(memberId);
 
 			if (member != null)
 			{
@@ -77,6 +57,36 @@ namespace Shepherd.BusinessLogic.Entities
 					this.BirthDate = person.BirthDate;
 				}
 			}
+		}
+
+
+		public void CreateMember(Member member)
+		{
+			memberRepository.Add(member);
+			this.SaveMember();
+		}
+
+		public void EditMember(Member memberToEdit)
+		{
+			memberRepository.Update(memberToEdit);
+			this.SaveMember();
+		}
+
+		public void DeleteMember(int memberId)
+		{
+			var member = memberRepository.GetById(memberId);
+			if (member != null)
+			{
+				member.IsDeleted = true;
+				memberRepository.Update(member);
+
+				this.SaveMember();
+			}
+		}
+
+		public void SaveMember()
+		{
+			this.unitOfWork.Commit();
 		}
 	}
 }
