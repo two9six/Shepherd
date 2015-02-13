@@ -10,17 +10,8 @@ namespace Shepherd.Web.Controllers
 {
     public class HomeController : Controller
     {
-		private readonly IMemberDetails memberDetails;
-
-		public HomeController(IMemberDetails memberDetails)
-		{
-			this.memberDetails = memberDetails;
-		}
-
         public ActionResult Index()
         {
-			this.memberDetails.Fetch(1);
-			ViewBag.MemberName = this.memberDetails.FirstName + " " + this.memberDetails.LastName;
             return View();
         }
     }
