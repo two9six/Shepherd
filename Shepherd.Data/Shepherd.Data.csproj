@@ -52,7 +52,7 @@
     <Compile Include="Configuration\MemberConfiguration.cs" />
     <Compile Include="Configuration\PersonConfiguration.cs" />
     <Compile Include="Infrastructure\Contracts\IDatabaseFactory.cs" />
-    <Compile Include="Infrastructure\Contracts\IRepository.cs" />
+    <Compile Include="Infrastructure\Contracts\IRepositoryBase.cs" />
     <Compile Include="Infrastructure\Contracts\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\DatabaseFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />

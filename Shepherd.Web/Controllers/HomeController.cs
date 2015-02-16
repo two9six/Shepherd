@@ -1,5 +1,4 @@
 ﻿using Shepherd.BusinessLogic.Entities;
-using Shepherd.BusinessLogic.Entities.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

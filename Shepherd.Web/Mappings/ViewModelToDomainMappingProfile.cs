@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Shepherd.BusinessLogic.Entities;
+using Shepherd.BusinessLogic.Entities.Members;
 using Shepherd.Web.ViewModels;
 
 namespace Shepherd.Web.Mappings

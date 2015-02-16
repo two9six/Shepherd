@@ -1,7 +1,7 @@
 ﻿using Shepherd.Model.Models;
 using System;
 
-namespace Shepherd.BusinessLogic.Entities.Contracts
+namespace Shepherd.BusinessLogic.Entities.Members.Contracts
 {
 	public interface IMemberDetails
 	{
@@ -16,6 +16,8 @@ namespace Shepherd.BusinessLogic.Entities.Contracts
 		string MiddleName { get; set; }
 
 		DateTime BirthDate { get; set; }
+
+		DateTime DateBabtized { get; set; }
 
 		void Fetch(int memberId);
 

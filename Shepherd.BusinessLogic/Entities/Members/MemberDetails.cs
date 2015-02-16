@@ -1,15 +1,14 @@
-﻿using Shepherd.BusinessLogic.Entities.Contracts;
+﻿using Shepherd.BusinessLogic.Entities.Members.Contracts;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
 using Shepherd.Model.Models;
 using System;
 
-namespace Shepherd.BusinessLogic.Entities
+namespace Shepherd.BusinessLogic.Entities.Members
 {
 	public sealed class MemberDetails : IMemberDetails
 	{
 		private readonly IMemberRepository memberRepository;
-		private readonly IPersonRepository personRepository;
 		private readonly IUnitOfWork unitOfWork;
 
 		public int MemberId { get; private set; }
@@ -24,30 +23,30 @@ namespace Shepherd.BusinessLogic.Entities
 
 		public DateTime BirthDate { get; set; }
 
-		public MemberDetails(IMemberRepository memberRepository, IPersonRepository personRepository, IUnitOfWork unitOfWork)
+		public DateTime DateBabtized { get; set; }
+
+		public MemberDetails(IMemberRepository memberRepository, IUnitOfWork unitOfWork)
 		{
 			this.memberRepository = memberRepository;
-			this.personRepository = personRepository;
 			this.unitOfWork = unitOfWork;
 		}
 
 		public void Fetch(int memberId)
 		{
-			var member = memberRepository.GetById(memberId);
-
+			var member = memberRepository.GetByIdWithPerson(memberId);
+			
 			if (member != null)
 			{
 				this.MemberId = member.Id;
 				this.GeneratedId = member.GeneratedId;
+				this.DateBabtized = member.DateBabtized;
 
-				var person = personRepository.GetById(member.PersonId);
-
-				if (person != null)
+				if (member.Person != null)
 				{
-					this.LastName = person.LastName;
-					this.FirstName = person.FirstName;
-					this.MiddleName = person.MiddleName;
-					this.BirthDate = person.BirthDate;
+					this.LastName = member.Person.LastName;
+					this.FirstName = member.Person.FirstName;
+					this.MiddleName = member.Person.MiddleName;
+					this.BirthDate = member.Person.BirthDate;
 				}
 			}
 		}

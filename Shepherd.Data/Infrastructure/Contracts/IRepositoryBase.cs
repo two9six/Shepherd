@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Shepherd.Data.Infrastructure.Contracts
 {
-	public interface IRepository<T> where T : class
+	public interface IRepositoryBase<T> where T : class
 	{
 		void Add(T entity);
 		void Update(T entity);

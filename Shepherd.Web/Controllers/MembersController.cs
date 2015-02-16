@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
-using Shepherd.BusinessLogic.Entities;
-using Shepherd.BusinessLogic.Entities.Contracts;
+using Shepherd.BusinessLogic.Entities.Members;
+using Shepherd.BusinessLogic.Entities.Members.Contracts;
 using Shepherd.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Shepherd.Web.Controllers
@@ -13,15 +9,19 @@ namespace Shepherd.Web.Controllers
 	public class MembersController : Controller
 	{
 		private readonly IMemberDetails memberDetails;
+		private readonly IMemberList memberList;
 
-		public MembersController(IMemberDetails memberDetails)
+		public MembersController(IMemberDetails memberDetails, IMemberList memberList)
 		{
 			this.memberDetails = memberDetails;
+			this.memberList = memberList;
 		}
 
 		public ViewResult Index()
 		{
-			return View();
+			this.memberList.Fetch();
+
+			return View(this.memberList);
 		}
 
 		public ViewResult Details(int id)

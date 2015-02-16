@@ -1,8 +1,14 @@
-﻿
+﻿@using Shepherd.BusinessLogic.Entities.Members
+@model MemberList
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h3>Members List</h3>
 
+@foreach(var member in Model.Items)
+{
+	<div>@Html.ActionLink(member.Name, "Details", new { id = member.MemberId })</div>
+}

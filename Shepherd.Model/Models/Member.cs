@@ -10,6 +10,8 @@ namespace Shepherd.Model.Models
 
 		public string GeneratedId { get; set; }
 
+		public DateTime DateBabtized { get; set; }
+
 		public int StatusId { get; set; }
 
 		public DateTime? DateCreated { get; set; }

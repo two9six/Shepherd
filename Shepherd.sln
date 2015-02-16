@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Web", "Shepherd.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Web.Tests", "Shepherd.Web.Tests\Shepherd.Web.Tests.csproj", "{70DF89D3-D1EE-491B-8501-20C7CCE6490A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.BusinessLogic.Tests", "Shepherd.BusinessLogic.Tests\Shepherd.BusinessLogic.Tests.csproj", "{B146CCAB-EE63-4380-B1CE-1F2B2F5C8632}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{70DF89D3-D1EE-491B-8501-20C7CCE6490A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70DF89D3-D1EE-491B-8501-20C7CCE6490A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70DF89D3-D1EE-491B-8501-20C7CCE6490A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B146CCAB-EE63-4380-B1CE-1F2B2F5C8632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B146CCAB-EE63-4380-B1CE-1F2B2F5C8632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B146CCAB-EE63-4380-B1CE-1F2B2F5C8632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B146CCAB-EE63-4380-B1CE-1F2B2F5C8632}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Shepherd.BusinessLogic.Entities;
-using Shepherd.BusinessLogic.Entities.Contracts;
+using Shepherd.BusinessLogic.Entities.Members;
+using Shepherd.BusinessLogic.Entities.Members.Contracts;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository;
@@ -29,6 +30,7 @@ namespace Shepherd.Web
 			builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerRequest();
 
 			builder.RegisterType<MemberDetails>().As<IMemberDetails>().InstancePerRequest();
+			builder.RegisterType<MemberList>().As<IMemberList>().InstancePerRequest();
 
 			builder.RegisterAssemblyTypes(typeof(PersonRepository).Assembly)
 				.Where(_ => _.Name.EndsWith("Repository"))

@@ -2,12 +2,12 @@
 GO
 PRINT 'Insert Member'
 
-;WITH Member_CTE (Id, PersonId, GeneratedId, StatusId, IsDeleted) AS 
+;WITH Member_CTE (Id, PersonId, GeneratedId, DateBabtized, StatusId, IsDeleted) AS 
 (
-				  SELECT 1, 1, 'GUA00001', 1, 0
-			UNION SELECT 2, 2, 'GUA00002', 2, 0
-			UNION SELECT 3, 3, 'GUA00003', 2, 0
-			UNION SELECT 4, 4, 'GUA00004', 2, 0
+				  SELECT 1, 1, 'GUA00001', GETDATE(), 1, 0
+			UNION SELECT 2, 2, 'GUA00002', GETDATE(), 2, 0
+			UNION SELECT 3, 3, 'GUA00003', GETDATE(), 2, 0
+			UNION SELECT 4, 4, 'GUA00004', GETDATE(), 2, 0
 )
 MERGE INTO Member
 	  USING Member_CTE as cte
@@ -16,11 +16,12 @@ MERGE INTO Member
 			UPDATE SET 
 				 Member.PersonId = cte.PersonId
 				,Member.GeneratedId = cte.GeneratedId
+				,Member.DateBabtized = cte.DateBabtized
 				,Member.StatusId = cte.StatusId
 				,Member.IsDeleted = cte.IsDeleted
 	  WHEN NOT MATCHED BY TARGET THEN 
-			INSERT (Id, PersonId, GeneratedId, StatusId, IsDeleted) 
-			VALUES (cte.Id, cte.PersonId, cte.GeneratedId, cte.StatusId, cte.IsDeleted)
+			INSERT (Id, PersonId, GeneratedId, DateBabtized, StatusId, IsDeleted) 
+			VALUES (cte.Id, cte.PersonId, cte.GeneratedId, cte.DateBabtized, cte.StatusId, cte.IsDeleted)
 	  WHEN NOT MATCHED BY SOURCE THEN 
 			DELETE;
 

@@ -16,6 +16,7 @@ namespace Shepherd.Data
 		public ShepherdEntities()
 			: base("ShepherdEntities")
 		{
+			this.Configuration.LazyLoadingEnabled = false;
 			Database.SetInitializer<ShepherdEntities>(null);
 		}
 

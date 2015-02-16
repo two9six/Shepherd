@@ -3,6 +3,7 @@
 	[Id] INT NOT NULL IDENTITY, 
 	[PersonId] INT NOT NULL,
     [GeneratedId] VARCHAR(20) NOT NULL, 
+	[DateBabtized] DATETIME NOT NULL,
 	[StatusId] INT NOT NULL,
 	[DateCreated] DATETIME NULL,
 	[DateUpdated] DATETIME NULL,

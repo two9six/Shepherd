@@ -10,9 +10,6 @@ namespace Shepherd.Data.Repository
 		IPersonRepository
 	{
 		public PersonRepository(IDatabaseFactory databaseFactory)
-			: base(databaseFactory)
-		{
-
-		}
+			: base(databaseFactory) { }
 	}
 }

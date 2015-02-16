@@ -6,12 +6,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Member Details</h2>
+<h3>Member Details</h3>
 
 @using (Html.BeginForm("Update", "Members", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {	
-	@Html.HiddenFor(_ => _.MemberId);
-	
+	@Html.AntiForgeryToken()
+	<hr />
+	@Html.ValidationSummary("", new { @class = "text-danger" })
+		
 	<div class="form-group">
 		@Html.LabelFor(_ => _.FirstName, new { @class = "col-md-2 control-label" })
 		<div class="col-md-10">
@@ -34,8 +36,20 @@
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-offset-2 col-md-10">
-			<input type="submit" class="btn btn-default" value="Update" />
+		@Html.LabelFor(_ => _.BirthDate, new { @class = "col-md-2 control-label" })
+		<div class="col-md-10">
+			@Html.TextBoxFor(_ => _.BirthDate, new { @class = "form-control ", placeholder = "Select Birth Date" })
 		</div>
 	</div>
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" class="btn btn-default" value="Update" />
+			&nbsp;&nbsp;
+			<a class="btn btn-default" href="@Url.Action("Index","Members")">Return to Members List</a>
+		</div>
+	</div>
+	@Html.HiddenFor(_ => _.MemberId);
 }
+
+
