@@ -1,4 +1,5 @@
-﻿using Shepherd.BusinessLogic.Entities.Members.Contracts;
+﻿using Shepherd.BusinessLogic.Constants;
+using Shepherd.BusinessLogic.Entities.Members.Contracts;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
 using Shepherd.Model.Models;
@@ -33,6 +34,11 @@ namespace Shepherd.BusinessLogic.Entities.Members
 
 		public void Fetch(int memberId)
 		{
+			if (memberId <= 0)
+			{
+				throw new ArgumentException(ValidationMessages.ArgumentExceptionInvalidMemberId);
+			}
+
 			var member = memberRepository.GetByIdWithPerson(memberId);
 			
 			if (member != null)
