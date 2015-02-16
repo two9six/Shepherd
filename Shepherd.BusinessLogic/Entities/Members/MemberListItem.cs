@@ -4,7 +4,7 @@ using System;
 
 namespace Shepherd.BusinessLogic.Entities.Members
 {
-	public sealed class MemberListItem : IMemberListItem
+	public sealed class MemberListItem : IMemberListItem<MemberListItem>
 	{
 		public int MemberId { get; private set; }
 
@@ -12,7 +12,7 @@ namespace Shepherd.BusinessLogic.Entities.Members
 
 		public DateTime DateBabtized { get; set; }
 
-		public void Load(Member member)
+		public MemberListItem LoadChild(Member member)
 		{
 			if (member != null && member.Person != null)
 			{
@@ -20,6 +20,8 @@ namespace Shepherd.BusinessLogic.Entities.Members
 				this.Name = string.Format("{0} {1}", member.Person.FirstName, member.Person.LastName);
 				this.DateBabtized = member.DateBabtized;
 			}
+
+			return this;
 		}
 	}
 }

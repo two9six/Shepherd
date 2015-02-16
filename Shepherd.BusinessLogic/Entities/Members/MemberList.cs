@@ -2,7 +2,6 @@
 using Shepherd.BusinessLogic.Infrastructure;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
-using System.Collections.Generic;
 
 namespace Shepherd.BusinessLogic.Entities.Members
 {
@@ -25,9 +24,7 @@ namespace Shepherd.BusinessLogic.Entities.Members
 
 			foreach (var member in members)
 			{
-				var memberListItem = new MemberListItem();
-				memberListItem.Load(member);
-				this.Items.Add(memberListItem);
+				this.Items.Add(new MemberListItem().LoadChild(member));
 			}
 		}
 	}

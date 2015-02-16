@@ -3,7 +3,7 @@ using System;
 
 namespace Shepherd.BusinessLogic.Entities.Members.Contracts
 {
-	public interface IMemberListItem
+	public interface IMemberListItem<T> where T : class
 	{
 		int MemberId { get; }
 
@@ -11,6 +11,6 @@ namespace Shepherd.BusinessLogic.Entities.Members.Contracts
 
 		DateTime DateBabtized { get; set; }
 
-		void Load(Member member);
+		T LoadChild(Member member);
 	}
 }
