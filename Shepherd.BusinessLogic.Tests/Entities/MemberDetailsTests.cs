@@ -79,31 +79,7 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 			var expectedException = default(ArgumentException);
 
 			var expectedMemberId = -1;
-			var expectedGeneratedId = generator.Generate<string>();
-			var expectedDateBabtized = generator.Generate<DateTime>();
-			var expectedLastName = generator.Generate<string>();
-			var expectedFirstName = generator.Generate<string>();
-			var expectedMiddleName = generator.Generate<string>();
-			var expectedBirthDate = generator.Generate<DateTime>();
 			MemberDetails memberDetails;
-
-			var member = new Member()
-			{
-				Id = expectedMemberId,
-				GeneratedId = expectedGeneratedId,
-				DateBabtized = expectedDateBabtized,
-				Person = new Person()
-				{
-					LastName = expectedLastName,
-					FirstName = expectedFirstName,
-					MiddleName = expectedMiddleName,
-					BirthDate = expectedBirthDate
-				}
-			};
-
-			mockMemberRepository
-				.Setup<Member>(_ => _.GetByIdWithPerson(It.IsAny<int>()))
-				.Returns(member);
 
 			// Act
 			try
