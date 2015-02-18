@@ -8,9 +8,9 @@ namespace Shepherd.Data.Infrastructure.Contracts
 {
 	public interface IRepositoryBase<T> where T : class
 	{
-		void Add(T entity);
-		void Update(T entity);
-		void Delete(T entity);
+		T Add(T entity);
+		T Update(T entity);
+		T Delete(T entity);
 		void Delete(Expression<Func<T, bool>> where);
 		T GetById(long id);
 		T GetById(int id);

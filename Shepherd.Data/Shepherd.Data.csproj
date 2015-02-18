@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Configuration\MemberConfiguration.cs" />
     <Compile Include="Configuration\PersonConfiguration.cs" />
+    <Compile Include="Contracts\IShepherdEntities.cs" />
     <Compile Include="Infrastructure\Contracts\IDatabaseFactory.cs" />
     <Compile Include="Infrastructure\Contracts\IRepositoryBase.cs" />
     <Compile Include="Infrastructure\Contracts\IUnitOfWork.cs" />

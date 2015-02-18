@@ -26,20 +26,22 @@ namespace Shepherd.Data.Infrastructure
 			dbSet = DataContext.Set<T>();
 		}
 
-		public virtual void Add(T entity)
+		public virtual T Add(T entity)
 		{
-			dbSet.Add(entity);
+			return dbSet.Add(entity);
 		}
 
-		public virtual void Update(T entity)
+		public virtual T Update(T entity)
 		{
-			dbSet.Attach(entity);
+			var attachedEntity = dbSet.Attach(entity);
 			dataContext.Entry(entity).State = EntityState.Modified;
+
+			return attachedEntity;
 		}
 
-		public virtual void Delete(T entity)
+		public virtual T Delete(T entity)
 		{
-			dbSet.Remove(entity);
+			return dbSet.Remove(entity);
 		}
 
 		public virtual void Delete(Expression<Func<T, bool>> where)

@@ -2,6 +2,7 @@
 using Moq;
 using Shepherd.BusinessLogic.Constants;
 using Shepherd.BusinessLogic.Entities.Members;
+using Shepherd.Data.Contracts;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
 using Shepherd.Model.Models;
@@ -13,17 +14,12 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 	[TestClass]
 	public class MemberDetailsTests
 	{
-		private readonly RandomObjectGenerator generator;
-
-		public MemberDetailsTests()
-		{
-			generator = new RandomObjectGenerator();
-		}
-
 		[TestMethod]
 		public void PassesWhen_FetchCorrectData()
 		{
 			// Arrange
+			var generator = new RandomObjectGenerator();
+
 			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
 
@@ -74,6 +70,8 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 		public void FailsWhen_FetchInvalidMemberId()
 		{
 			// Arrange
+			var generator = new RandomObjectGenerator();
+
 			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
 			var expectedException = default(ArgumentException);
@@ -87,7 +85,7 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 				memberDetails = new MemberDetails(mockMemberRepository.Object, mockUnitOfWork.Object);
 				memberDetails.Fetch(expectedMemberId);
 			}
-			catch(ArgumentException ex)
+			catch (ArgumentException ex)
 			{
 				expectedException = ex;
 			}
@@ -96,7 +94,21 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 			mockMemberRepository.VerifyAll();
 			mockUnitOfWork.VerifyAll();
 			Assert.IsNotNull(expectedException);
-			Assert.AreEqual(expectedException.Message, ValidationMessages.ArgumentExceptionInvalidMemberId);
+			Assert.IsTrue(expectedException.GetType() == typeof(ArgumentException), "Exception is not ArgumentException type");
+			Assert.AreEqual(expectedException.Message,
+				new ArgumentException(ValidationMessages.ArgumentExceptionInvalidId, MemberDetails.MemberLabels.MemberId).Message);
+		}
+
+		[TestMethod]
+		public void PassesWhen_AddSuccessfully()
+		{
+			// Arrange
+			var context = new Mock<IShepherdEntities>(MockBehavior.Strict);
+			var generator = new RandomObjectGenerator();
+
+
+
+
 		}
 
 	}

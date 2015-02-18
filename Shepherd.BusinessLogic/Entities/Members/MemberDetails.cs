@@ -36,7 +36,7 @@ namespace Shepherd.BusinessLogic.Entities.Members
 		{
 			if (memberId <= 0)
 			{
-				throw new ArgumentException(ValidationMessages.ArgumentExceptionInvalidMemberId);
+				throw new ArgumentException(ValidationMessages.ArgumentExceptionInvalidId, MemberDetails.MemberLabels.MemberId);
 			}
 
 			var member = memberRepository.GetByIdWithPerson(memberId);
@@ -84,6 +84,11 @@ namespace Shepherd.BusinessLogic.Entities.Members
 		public void SaveMember()
 		{
 			this.unitOfWork.Commit();
+		}
+
+		public static class MemberLabels
+		{
+			public const string MemberId = "Member Id";
 		}
 	}
 }

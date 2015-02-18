@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shepherd.Data.Configuration;
+using Shepherd.Data.Contracts;
 using Shepherd.Model.Models;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using Shepherd.Data.Configuration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Shepherd.Data
 {
-	public class ShepherdEntities : DbContext
+	public class ShepherdEntities : DbContext, IShepherdEntities
 	{
 		public ShepherdEntities()
 			: base("ShepherdEntities")
