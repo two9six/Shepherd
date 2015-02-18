@@ -15,8 +15,8 @@ namespace Shepherd.Data
 			Database.SetInitializer<ShepherdEntities>(null);
 		}
 
-		public DbSet<Person> People { get; set; }
-		public DbSet<Member> Members { get; set; }
+		public IDbSet<Person> People { get; set; }
+		public IDbSet<Member> Members { get; set; }
 
 		public virtual void Commit()
 		{
@@ -35,6 +35,11 @@ namespace Shepherd.Data
 
 			modelBuilder.Configurations.Add(new PersonConfiguration());
 			modelBuilder.Configurations.Add(new MemberConfiguration());
+		}
+
+		public void SetState(object entity, EntityState state)
+		{
+			this.Entry(entity).State = state;
 		}
 
 	}

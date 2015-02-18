@@ -1,13 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Autofac;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shepherd.BusinessLogic.Constants;
 using Shepherd.BusinessLogic.Entities.Members;
+using Shepherd.Core;
 using Shepherd.Data.Contracts;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
 using Shepherd.Model.Models;
 using Spackle;
 using System;
+using System.Data.Entity;
 
 namespace Shepherd.BusinessLogic.Tests.Entities
 {
@@ -24,30 +27,24 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
 
 			var expectedMemberId = 1;
-			var expectedGeneratedId = generator.Generate<string>();
-			var expectedDateBabtized = generator.Generate<DateTime>();
-			var expectedLastName = generator.Generate<string>();
-			var expectedFirstName = generator.Generate<string>();
-			var expectedMiddleName = generator.Generate<string>();
-			var expectedBirthDate = generator.Generate<DateTime>();
 
-			var member = new Member()
+			var expectedMember = EntityCreator.Create<Member>(_ =>
 			{
-				Id = expectedMemberId,
-				GeneratedId = expectedGeneratedId,
-				DateBabtized = expectedDateBabtized,
-				Person = new Person()
+				_.Id = expectedMemberId;
+				_.GeneratedId = generator.Generate<string>();
+				_.DateBabtized = generator.Generate<DateTime>();
+				_.Person = EntityCreator.Create<Person>(__ =>
 				{
-					LastName = expectedLastName,
-					FirstName = expectedFirstName,
-					MiddleName = expectedMiddleName,
-					BirthDate = expectedBirthDate
-				}
-			};
+					__.LastName = generator.Generate<string>();
+					__.FirstName = generator.Generate<string>();
+					__.MiddleName = generator.Generate<string>();
+					__.BirthDate = generator.Generate<DateTime>();
+				});
+			});
 
 			mockMemberRepository
 				.Setup<Member>(_ => _.GetByIdWithPerson(It.IsAny<int>()))
-				.Returns(member);
+				.Returns(expectedMember);
 
 			// Act
 			var memberDetails = new MemberDetails(mockMemberRepository.Object, mockUnitOfWork.Object);
@@ -57,13 +54,13 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 			mockMemberRepository.VerifyAll();
 			mockUnitOfWork.VerifyAll();
 
-			Assert.AreEqual(expectedMemberId, memberDetails.MemberId);
-			Assert.AreEqual(expectedGeneratedId, memberDetails.GeneratedId);
-			Assert.AreEqual(expectedDateBabtized, memberDetails.DateBabtized);
-			Assert.AreEqual(expectedLastName, memberDetails.LastName);
-			Assert.AreEqual(expectedFirstName, memberDetails.FirstName);
-			Assert.AreEqual(expectedMiddleName, memberDetails.MiddleName);
-			Assert.AreEqual(expectedBirthDate, memberDetails.BirthDate);
+			Assert.AreEqual(expectedMember.Id, memberDetails.MemberId);
+			Assert.AreEqual(expectedMember.GeneratedId, memberDetails.GeneratedId);
+			Assert.AreEqual(expectedMember.DateBabtized, memberDetails.DateBabtized);
+			Assert.AreEqual(expectedMember.Person.LastName, memberDetails.LastName);
+			Assert.AreEqual(expectedMember.Person.FirstName, memberDetails.FirstName);
+			Assert.AreEqual(expectedMember.Person.MiddleName, memberDetails.MiddleName);
+			Assert.AreEqual(expectedMember.Person.BirthDate, memberDetails.BirthDate);
 		}
 
 		[TestMethod]
@@ -100,15 +97,65 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 		}
 
 		[TestMethod]
-		public void PassesWhen_AddSuccessfully()
+		public void PassesWhen_EditSuccessfully()
 		{
 			// Arrange
-			var context = new Mock<IShepherdEntities>(MockBehavior.Strict);
+			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
+			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
 			var generator = new RandomObjectGenerator();
 
+			var memberId = 1;
+			var memberEntity = EntityCreator.Create<Member>(_ =>
+			{
+				_.Id = memberId;
+				_.GeneratedId = generator.Generate<string>();
+				_.DateBabtized = generator.Generate<DateTime>();
+				_.Person = EntityCreator.Create<Person>(__ =>
+				{
+					__.LastName = generator.Generate<string>();
+					__.FirstName = generator.Generate<string>();
+					__.MiddleName = generator.Generate<string>();
+					__.BirthDate = generator.Generate<DateTime>();
+				});
+			});
 
+			mockMemberRepository
+				.Setup<Member>(_ => _.GetByIdWithPerson(It.IsAny<int>()))
+				.Returns(memberEntity);
 
+			var personEntities = new InMemoryDbSet<Person>() { memberEntity.Person };
+			var memberEntities = new InMemoryDbSet<Member>() { memberEntity };
+			var context = new Mock<IShepherdEntities>(MockBehavior.Strict);
+			context.Setup(_ => _.People).Returns(personEntities);
+			context.Setup(_ => _.Members).Returns(memberEntities);
+			context.Setup(_ => _.SetState(It.IsAny<object>(), EntityState.Modified));
+			context.Setup(_ => _.SaveChanges()).Returns(1);
 
+			var builder = new ContainerBuilder();
+			builder.Register<IShepherdEntities>(_ => context.Object);
+			builder.Build();
+
+			var memberDetails = new MemberDetails(mockMemberRepository.Object, mockUnitOfWork.Object);
+			memberDetails.Fetch(memberId);
+
+			memberDetails.DateBabtized = generator.Generate<DateTime>();
+			//memberDetails.FirstName = 
+
+			Assert.IsTrue(true);
+
+			//var member = DataPortal.Fetch<Lead>(new FetchLeadCriteria(1));
+			//lead.OtherInfo = new RandomObjectGenerator().Generate<string>();
+			//lead.LeadSources.ElementAt(0).Referrals.ElementAt(0).JobSite = new RandomObjectGenerator().Generate<string>();
+			//lead.PrimaryLocation.LocationType = new RandomObjectGenerator().Generate<Identifiers.LocationType?>();
+			//lead.PrimaryLocation.TerritoryId = generator.Generate<int>();
+			//lead.PrimaryLocation.LocationStateId = 1;
+			//lead.PrimaryLocation.Zip = zip;
+			//lead.PrimaryPerson.PreferredContactType = new RandomObjectGenerator().Generate<Identifiers.PreferredContactType?>();
+			//lead.SecondaryPerson.PreferredContactType = new RandomObjectGenerator().Generate<Identifiers.PreferredContactType?>();
+
+			//DataPortal.Update(lead);
+
+			//var savedEntity = leadEntities.Local[1];
 		}
 
 	}

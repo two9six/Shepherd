@@ -6,10 +6,12 @@ namespace Shepherd.Data.Contracts
 {
 	public interface IShepherdEntities
 	{
-		DbSet<Person> People { get; set; }
-		DbSet<Member> Members { get; set; }
+		IDbSet<Person> People { get; set; }
+		IDbSet<Member> Members { get; set; }
 
 		Database Database { get; }
 		DbEntityEntry Entry(object entity);
+		int SaveChanges();
+		void SetState(object entity, EntityState state);
 	}
 }
