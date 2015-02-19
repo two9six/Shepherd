@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Shepherd.BusinessLogic.Entities.Members;
+﻿using Shepherd.BusinessLogic.Entities.Members;
 using Shepherd.BusinessLogic.Entities.Members.Contracts;
 using Shepherd.Web.ViewModels;
 using System.Web.Mvc;
@@ -27,8 +26,8 @@ namespace Shepherd.Web.Controllers
 		public ViewResult Details(int id)
 		{
 			this.memberDetails.Fetch(id);
-
-			var viewModel = Mapper.Map<MemberDetailsViewModel>(memberDetails);
+			var viewModel = new MemberDetailsViewModel();
+			viewModel.MapFromBusinessEntity(this.memberDetails);
 
 			return View(viewModel);
 		}
@@ -36,11 +35,10 @@ namespace Shepherd.Web.Controllers
 		[HttpPost]
 		public ActionResult Update(MemberDetailsViewModel viewModel)
 		{
-			var memberDetails = Mapper.Map<MemberDetails>(viewModel);
-
 			if (ModelState.IsValid)
 			{
-				//this.memberDetails.EditMember()
+				viewModel.MapToBusinessEntity(this.memberDetails);
+				this.memberDetails.Update();
 			}
 
 			return RedirectToAction("Details", new { id = viewModel.MemberId });

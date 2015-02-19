@@ -90,10 +90,11 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 			// Assert
 			mockMemberRepository.VerifyAll();
 			mockUnitOfWork.VerifyAll();
+
 			Assert.IsNotNull(expectedException);
 			Assert.IsTrue(expectedException.GetType() == typeof(ArgumentException), "Exception is not ArgumentException type");
 			Assert.AreEqual(expectedException.Message,
-				new ArgumentException(ValidationMessages.ArgumentExceptionInvalidId, MemberDetails.MemberLabels.MemberId).Message);
+				new ArgumentException(ValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId).Message);
 		}
 
 		[TestMethod]

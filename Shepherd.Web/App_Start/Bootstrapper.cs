@@ -1,12 +1,10 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using Shepherd.BusinessLogic.Entities;
 using Shepherd.BusinessLogic.Entities.Members;
 using Shepherd.BusinessLogic.Entities.Members.Contracts;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository;
-using Shepherd.Web.Mappings;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -17,8 +15,6 @@ namespace Shepherd.Web
 		public static void Run()
 		{
 			Bootstrapper.SetAutofacContainer();
-
-			AutoMapperConfiguration.Configure();
 		}
 
 		private static void SetAutofacContainer()

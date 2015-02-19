@@ -5,7 +5,7 @@ namespace Shepherd.BusinessLogic.Entities.Members.Contracts
 {
 	public interface IMemberDetails
 	{
-		int MemberId { get; }
+		int MemberId { get; set; }
 
 		string GeneratedId { get; set; }
 
@@ -21,12 +21,12 @@ namespace Shepherd.BusinessLogic.Entities.Members.Contracts
 
 		void Fetch(int memberId);
 
-		void CreateMember(Member member);
+		void Create(Member member);
 
-		void EditMember(Member memberToEdit);
+		void Update();
 
-		void DeleteMember(int memberId);
+		void Delete(int memberId);
 
-		void SaveMember();
+		void Save();
 	}
 }

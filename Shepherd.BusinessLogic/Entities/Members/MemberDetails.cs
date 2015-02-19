@@ -12,7 +12,7 @@ namespace Shepherd.BusinessLogic.Entities.Members
 		private readonly IMemberRepository memberRepository;
 		private readonly IUnitOfWork unitOfWork;
 
-		public int MemberId { get; private set; }
+		public int MemberId { get; set; }
 
 		public string GeneratedId { get; set; }
 
@@ -36,7 +36,7 @@ namespace Shepherd.BusinessLogic.Entities.Members
 		{
 			if (memberId <= 0)
 			{
-				throw new ArgumentException(ValidationMessages.ArgumentExceptionInvalidId, MemberDetails.MemberLabels.MemberId);
+				throw new ArgumentException(ValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId);
 			}
 
 			var member = memberRepository.GetByIdWithPerson(memberId);
@@ -57,19 +57,36 @@ namespace Shepherd.BusinessLogic.Entities.Members
 			}
 		}
 
-		public void CreateMember(Member member)
+		public void Create(Member member)
 		{
 			memberRepository.Add(member);
-			this.SaveMember();
+			this.Save();
 		}
 
-		public void EditMember(Member memberToEdit)
+		public void Update()
 		{
-			memberRepository.Update(memberToEdit);
-			this.SaveMember();
+			var member = memberRepository.GetByIdWithPerson(this.MemberId);
+
+			if (member == null || member.Person==null)
+			{
+				throw new NullReferenceException(ValidationMessages.NullReferenceException.UpdateFailed);
+			}
+			else
+			{
+				member.GeneratedId = this.GeneratedId;
+				member.DateBabtized = this.DateBabtized;
+
+				member.Person.FirstName = this.FirstName;
+				member.Person.LastName = this.LastName;
+				member.Person.MiddleName = this.MiddleName;
+				member.Person.BirthDate = this.BirthDate;
+
+				memberRepository.Update(member);
+				this.Save();
+			}
 		}
 
-		public void DeleteMember(int memberId)
+		public void Delete(int memberId)
 		{
 			var member = memberRepository.GetById(memberId);
 			if (member != null)
@@ -77,11 +94,11 @@ namespace Shepherd.BusinessLogic.Entities.Members
 				member.IsDeleted = true;
 				memberRepository.Update(member);
 
-				this.SaveMember();
+				this.Save();
 			}
 		}
 
-		public void SaveMember()
+		public void Save()
 		{
 			this.unitOfWork.Commit();
 		}
