@@ -71,7 +71,7 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 
 			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
-			var expectedException = default(ArgumentException);
+			var actualException = default(ArgumentException);
 
 			var expectedMemberId = -1;
 			MemberDetails memberDetails;
@@ -84,31 +84,32 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 			}
 			catch (ArgumentException ex)
 			{
-				expectedException = ex;
+				actualException = ex;
 			}
 
 			// Assert
 			mockMemberRepository.VerifyAll();
 			mockUnitOfWork.VerifyAll();
 
-			Assert.IsNotNull(expectedException);
-			Assert.IsTrue(expectedException.GetType() == typeof(ArgumentException), "Exception is not ArgumentException type");
-			Assert.AreEqual(expectedException.Message,
-				new ArgumentException(ValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId).Message);
+			Assert.IsNotNull(actualException);
+			Assert.IsTrue(actualException.GetType() == typeof(ArgumentException), "Exception is not ArgumentException type");
+			Assert.AreEqual(new ArgumentException(ValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId).Message,
+				actualException.Message);
 		}
 
 		[TestMethod]
-		public void PassesWhen_EditSuccessfully()
+		public void PassesWhen_UpdateSuccess()
 		{
 			// Arrange
+			var generator = new RandomObjectGenerator();
 			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
-			var generator = new RandomObjectGenerator();
+			var memberHasBeenUpdated = false;
+			var savedMember = new Member();
 
-			var memberId = 1;
 			var memberEntity = EntityCreator.Create<Member>(_ =>
 			{
-				_.Id = memberId;
+				_.Id = generator.Generate<int>();
 				_.GeneratedId = generator.Generate<string>();
 				_.DateBabtized = generator.Generate<DateTime>();
 				_.Person = EntityCreator.Create<Person>(__ =>
@@ -120,43 +121,82 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 				});
 			});
 
+			var memberDetails = new MemberDetails(mockMemberRepository.Object, mockUnitOfWork.Object)
+			{
+				MemberId = memberEntity.Id,
+				GeneratedId = memberEntity.GeneratedId,
+				DateBabtized = memberEntity.DateBabtized,
+				LastName = memberEntity.Person.LastName,
+				FirstName = memberEntity.Person.FirstName,
+				MiddleName = memberEntity.Person.MiddleName,
+				BirthDate = memberEntity.Person.BirthDate
+			};
+
 			mockMemberRepository
 				.Setup<Member>(_ => _.GetByIdWithPerson(It.IsAny<int>()))
 				.Returns(memberEntity);
+			mockMemberRepository
+				.Setup(_ => _.Update(It.IsAny<Member>()))
+				.Callback<Member>((member) =>
+				{
+					savedMember = member;
+				})
+				.Returns(new Member());
 
-			var personEntities = new InMemoryDbSet<Person>() { memberEntity.Person };
-			var memberEntities = new InMemoryDbSet<Member>() { memberEntity };
-			var context = new Mock<IShepherdEntities>(MockBehavior.Strict);
-			context.Setup(_ => _.People).Returns(personEntities);
-			context.Setup(_ => _.Members).Returns(memberEntities);
-			context.Setup(_ => _.SetState(It.IsAny<object>(), EntityState.Modified));
-			context.Setup(_ => _.SaveChanges()).Returns(1);
+			mockUnitOfWork
+				.Setup(_ => _.Commit())
+				.Callback(() =>
+				{
+					memberHasBeenUpdated = true;
+				});
 
-			var builder = new ContainerBuilder();
-			builder.Register<IShepherdEntities>(_ => context.Object);
-			builder.Build();
-
-			var memberDetails = new MemberDetails(mockMemberRepository.Object, mockUnitOfWork.Object);
-			memberDetails.Fetch(memberId);
-
+			// Act
+			memberDetails.FirstName = generator.Generate<string>();
+			memberDetails.GeneratedId = generator.Generate<string>();
 			memberDetails.DateBabtized = generator.Generate<DateTime>();
-			//memberDetails.FirstName = 
+			memberDetails.Update();
 
-			Assert.IsTrue(true);
+			// Assert
+			mockMemberRepository.VerifyAll();
+			mockUnitOfWork.VerifyAll();
 
-			//var member = DataPortal.Fetch<Lead>(new FetchLeadCriteria(1));
-			//lead.OtherInfo = new RandomObjectGenerator().Generate<string>();
-			//lead.LeadSources.ElementAt(0).Referrals.ElementAt(0).JobSite = new RandomObjectGenerator().Generate<string>();
-			//lead.PrimaryLocation.LocationType = new RandomObjectGenerator().Generate<Identifiers.LocationType?>();
-			//lead.PrimaryLocation.TerritoryId = generator.Generate<int>();
-			//lead.PrimaryLocation.LocationStateId = 1;
-			//lead.PrimaryLocation.Zip = zip;
-			//lead.PrimaryPerson.PreferredContactType = new RandomObjectGenerator().Generate<Identifiers.PreferredContactType?>();
-			//lead.SecondaryPerson.PreferredContactType = new RandomObjectGenerator().Generate<Identifiers.PreferredContactType?>();
+			Assert.AreEqual(memberDetails.FirstName, savedMember.Person.FirstName);
+			Assert.AreEqual(memberDetails.GeneratedId, savedMember.GeneratedId);
+			Assert.AreEqual(memberDetails.DateBabtized, savedMember.DateBabtized);
+			Assert.IsTrue(memberHasBeenUpdated);
+		}
 
-			//DataPortal.Update(lead);
+		[TestMethod]
+		public void FailsWhen_MemberIdDoesNotExist()
+		{
+			// Arrange
+			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
+			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
+			MemberDetails memberDetails;
+			var actualException = default(NullReferenceException);
 
-			//var savedEntity = leadEntities.Local[1];
+			mockMemberRepository
+				.Setup<Member>(_ => _.GetByIdWithPerson(It.IsAny<int>()))
+				.Returns<Member>(null);
+
+			// Act
+			try
+			{
+				memberDetails = new MemberDetails(mockMemberRepository.Object, mockUnitOfWork.Object);
+				memberDetails.Update();
+			}
+			catch (NullReferenceException ex)
+			{
+				actualException = ex;
+			}
+
+			// Assert
+			mockMemberRepository.VerifyAll();
+			mockUnitOfWork.VerifyAll();
+
+			Assert.IsNotNull(actualException);
+			Assert.IsTrue(actualException.GetType() == typeof(NullReferenceException));
+			Assert.AreEqual(ValidationMessages.NullReferenceException.UpdateFailed, actualException.Message);
 		}
 
 	}
