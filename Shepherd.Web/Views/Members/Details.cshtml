@@ -1,4 +1,5 @@
 ﻿@using Shepherd.Web.ViewModels
+@using Shepherd.Core.Extensions
 @model MemberDetailsViewModel
 
 @{
@@ -40,7 +41,7 @@
 	<div class="form-group">
 		@Html.LabelFor(_ => _.BirthDate, new { @class = "col-md-2 control-label" })
 		<div class="col-md-10">
-			@Html.TextBoxFor(_ => _.BirthDate, new { @class = "form-control ", placeholder = "Select Birth Date" })
+			@Html.TextBoxFor(_ => _.BirthDate, new { @class = "form-control", placeholder = "Select Birth Date" }) 
 		</div>
 	</div>
 

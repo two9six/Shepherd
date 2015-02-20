@@ -1,6 +1,6 @@
 ﻿using Shepherd.BusinessLogic.Entities.Members.Contracts;
+using Shepherd.Core.Helpers;
 using Shepherd.Model.Models;
-using System;
 
 namespace Shepherd.BusinessLogic.Entities.Members
 {
@@ -10,7 +10,7 @@ namespace Shepherd.BusinessLogic.Entities.Members
 
 		public string Name { get; set; }
 
-		public DateTime DateBabtized { get; set; }
+		public int AgeInSpirit { get; set; }
 
 		public MemberListItem LoadChild(Member member)
 		{
@@ -18,7 +18,7 @@ namespace Shepherd.BusinessLogic.Entities.Members
 			{
 				this.MemberId = member.Id;
 				this.Name = string.Format("{0} {1}", member.Person.FirstName, member.Person.LastName);
-				this.DateBabtized = member.DateBabtized;
+				this.AgeInSpirit = DateTimeHelpers.ComputeAge(member.DateBabtized);
 			}
 
 			return this;

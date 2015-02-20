@@ -93,7 +93,7 @@ namespace Shepherd.BusinessLogic.Tests.Entities
 
 			Assert.IsNotNull(actualException);
 			Assert.IsTrue(actualException.GetType() == typeof(ArgumentException), "Exception is not ArgumentException type");
-			Assert.AreEqual(new ArgumentException(ValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId).Message,
+			Assert.AreEqual(new ArgumentException(ValidationMessages.ArgumentException.InvalidId, MemberDetails.FieldLabels.MemberId).Message,
 				actualException.Message);
 		}
 

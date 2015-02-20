@@ -8,7 +8,27 @@
 
 <h3>Members List</h3>
 
-@foreach(var member in Model.Items)
-{
-	<div>@Html.ActionLink(member.Name, "Details", new { id = member.MemberId })</div>
-}
+<div id="member-list">
+	<table class="grid">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (Model.Items != null)
+			{
+				foreach (var member in Model.Items)
+				{
+					<tr>
+						<td>@Html.ActionLink(member.Name, "Details", new { id = member.MemberId })</td>
+						<td>@member.AgeInSpirit</td>
+						<td></td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>

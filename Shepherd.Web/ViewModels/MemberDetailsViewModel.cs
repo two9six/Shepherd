@@ -20,11 +20,14 @@ namespace Shepherd.Web.ViewModels
 		[Display(Name = "Middle name")]
 		public string MiddleName { get; set; }
 
-		[DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
-		public DateTime BirthDate { get; set; }
-
+		[Display(Name = "Date babtized")]
 		[DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
 		public DateTime DateBabtized { get; set; }
+
+		[Display(Name = "Birth date")]
+		[DataType(DataType.DateTime)] 
+		[DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+		public DateTime BirthDate { get; set; }
 
 		public void MapToBusinessEntity(IMemberDetails entity)
 		{

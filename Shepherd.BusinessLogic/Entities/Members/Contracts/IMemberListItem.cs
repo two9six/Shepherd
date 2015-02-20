@@ -9,7 +9,7 @@ namespace Shepherd.BusinessLogic.Entities.Members.Contracts
 
 		string Name { get; set; }
 
-		DateTime DateBabtized { get; set; }
+		int AgeInSpirit { get; set; }
 
 		T LoadChild(Member member);
 	}
