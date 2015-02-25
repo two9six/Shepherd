@@ -68,8 +68,8 @@
     <Build Include="dbo\Tables\Member.sql" />
     <Build Include="dbo\Tables\LookupType.sql" />
     <Build Include="dbo\Tables\Lookup.sql" />
-    <None Include="Scripts\UnitData\Insert_LookupType.sql" />
-    <None Include="Scripts\UnitData\Insert_Lookup.sql" />
+    <None Include="Scripts\BaselineData\Insert_Lookup.sql" />
+    <None Include="Scripts\BaselineData\Insert_LookupType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\UnitData\Insert_Member.sql" />

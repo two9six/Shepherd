@@ -1,16 +1,12 @@
-﻿using Autofac;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shepherd.BusinessLogic.Constants;
 using Shepherd.BusinessLogic.Entities.Members;
-using Shepherd.Core;
-using Shepherd.Data.Contracts;
 using Shepherd.Data.Infrastructure.Contracts;
 using Shepherd.Data.Repository.Contracts;
 using Shepherd.Model.Models;
 using Spackle;
 using System;
-using System.Data.Entity;
 
 namespace Shepherd.BusinessLogic.Tests.Entities
 {

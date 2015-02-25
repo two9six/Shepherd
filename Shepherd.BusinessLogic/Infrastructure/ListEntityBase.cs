@@ -6,6 +6,8 @@ namespace Shepherd.BusinessLogic.Infrastructure
 	{
 		public List<T> Items { get; set; }
 
+		public virtual void Fetch() { }
+
 		protected ListEntityBase()
 		{
 			this.Items = new List<T>();

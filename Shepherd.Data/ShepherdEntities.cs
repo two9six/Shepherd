@@ -17,6 +17,8 @@ namespace Shepherd.Data
 
 		public IDbSet<Person> People { get; set; }
 		public IDbSet<Member> Members { get; set; }
+		public IDbSet<LookupType> LookupTypes { get; set; }
+		public IDbSet<Lookup> Lookups { get; set; }
 
 		public virtual void Commit()
 		{
@@ -32,9 +34,11 @@ namespace Shepherd.Data
 
 			modelBuilder.Entity<Person>().ToTable("Person");
 			modelBuilder.Entity<Member>().ToTable("Member");
+			modelBuilder.Entity<LookupType>().ToTable("LookupType");
+			modelBuilder.Entity<Lookup>().ToTable("Lookup");
 
-			modelBuilder.Configurations.Add(new PersonConfiguration());
-			modelBuilder.Configurations.Add(new MemberConfiguration());
+			//modelBuilder.Configurations.Add(new PersonConfiguration());
+			//modelBuilder.Configurations.Add(new MemberConfiguration());
 		}
 
 		public void SetState(object entity, EntityState state)

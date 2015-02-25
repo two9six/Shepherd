@@ -9,12 +9,12 @@
 <h3>Members List</h3>
 
 <div id="member-list">
-	<table class="grid">
+	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Age</th>
-				<th>Status</th>
+				<th class="col-name">Name</th>
+				<th class="col-age text-center">Age</th>
+				<th class="col-status">Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,11 +24,18 @@
 				{
 					<tr>
 						<td>@Html.ActionLink(member.Name, "Details", new { id = member.MemberId })</td>
-						<td>@member.AgeInSpirit</td>
-						<td></td>
+						<td class="text-center">@member.AgeInSpirit</td>
+						<td class="text-center"></td>
 					</tr>
 				}
 			}
 		</tbody>
 	</table>
+
+	<p>
+		<a class="btn btn-primary" href="@Url.Action("Create","Members")">Create New Member</a>
+		&nbsp;
+		&nbsp;
+		<a class="btn btn-default" href="@Url.Action("Index","Home")">Back to Home Page</a>
+	</p>
 </div>

@@ -4,8 +4,8 @@ PRINT 'Insert Lookup Type'
 
 ;WITH LookupType_CTE (Id, Name, IsDeleted) AS 
 (
-				  SELECT 1, 'Member Type', 0
-			UNION SELECT 2, 'Gathering Type', 0
+	SELECT 1, 'Member Type', 0
+	UNION SELECT 2, 'Gathering Type', 0
 )
 MERGE INTO LookupType
 	  USING LookupType_CTE as cte
