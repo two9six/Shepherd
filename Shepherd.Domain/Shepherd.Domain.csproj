@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4C0D4DD-5D62-4BA0-B4A6-7FB5BBF7156C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shepherd.Domain</RootNamespace>
+    <AssemblyName>Shepherd.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\ValidationMessages.cs" />
+    <Compile Include="Contracts\ICurrentDate.cs" />
+    <Compile Include="CurrentDate.cs" />
+    <Compile Include="Entities\Lookups\Contracts\ILookup.cs" />
+    <Compile Include="Entities\Lookups\Contracts\ILookupSelectList.cs" />
+    <Compile Include="Entities\Lookups\Contracts\ILookupSelectListItem.cs" />
+    <Compile Include="Entities\Lookups\Contracts\ILookupType.cs" />
+    <Compile Include="Entities\Lookups\Lookup.cs" />
+    <Compile Include="Entities\Lookups\LookupSelectList.cs" />
+    <Compile Include="Entities\Lookups\LookupSelectListItem.cs" />
+    <Compile Include="Entities\Lookups\LookupType.cs" />
+    <Compile Include="Entities\Members\Contracts\IMemberDetails.cs" />
+    <Compile Include="Entities\Members\Contracts\IMemberList.cs" />
+    <Compile Include="Entities\Members\Contracts\IMemberListItem.cs" />
+    <Compile Include="Entities\Members\MemberDetails.cs" />
+    <Compile Include="Entities\Members\MemberList.cs" />
+    <Compile Include="Entities\Members\MemberListItem.cs" />
+    <Compile Include="Infrastructure\Contracts\IListEntityBase.cs" />
+    <Compile Include="Infrastructure\Contracts\IListEntityItemBase.cs" />
+    <Compile Include="Infrastructure\ListEntityBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shepherd.Core\Shepherd.Core.csproj">
+      <Project>{e2118038-9107-446c-97c9-f12c1a7e712d}</Project>
+      <Name>Shepherd.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shepherd.Data\Shepherd.Data.csproj">
+      <Project>{75c43176-bd06-4a87-a40d-80b891da33b5}</Project>
+      <Name>Shepherd.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shepherd.Model\Shepherd.Model.csproj">
+      <Project>{f7585682-fd1f-4afd-8ac1-9ac2506e3f25}</Project>
+      <Name>Shepherd.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

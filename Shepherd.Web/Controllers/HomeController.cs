@@ -1,4 +1,4 @@
-﻿using Shepherd.BusinessLogic.Entities;
+﻿using Shepherd.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
-﻿using Shepherd.BusinessLogic.Entities.Members;
-using Shepherd.BusinessLogic.Entities.Members.Contracts;
+﻿using Shepherd.Domain.Entities.Members;
+using Shepherd.Domain.Entities.Members.Contracts;
 using Shepherd.Web.ViewModels;
 using System.Web.Mvc;
 

@@ -1,5 +1,4 @@
-﻿using Shepherd.Data.Configuration;
-using Shepherd.Data.Contracts;
+﻿using Shepherd.Data.Contracts;
 using Shepherd.Model.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -20,11 +19,6 @@ namespace Shepherd.Data
 		public IDbSet<LookupType> LookupTypes { get; set; }
 		public IDbSet<Lookup> Lookups { get; set; }
 
-		public virtual void Commit()
-		{
-			base.SaveChanges();
-		}
-
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
@@ -36,15 +30,6 @@ namespace Shepherd.Data
 			modelBuilder.Entity<Member>().ToTable("Member");
 			modelBuilder.Entity<LookupType>().ToTable("LookupType");
 			modelBuilder.Entity<Lookup>().ToTable("Lookup");
-
-			//modelBuilder.Configurations.Add(new PersonConfiguration());
-			//modelBuilder.Configurations.Add(new MemberConfiguration());
 		}
-
-		public void SetState(object entity, EntityState state)
-		{
-			this.Entry(entity).State = state;
-		}
-
 	}
 }

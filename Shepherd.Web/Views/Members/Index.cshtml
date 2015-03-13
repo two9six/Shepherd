@@ -1,8 +1,8 @@
-﻿@using Shepherd.BusinessLogic.Entities.Members
+﻿@using Shepherd.Domain.Entities.Members
 @model MemberList
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Members Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
 			<tr>
 				<th class="col-name">Name</th>
 				<th class="col-age text-center">Age</th>
-				<th class="col-status">Status</th>
+				<th class="col-status text-center">Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,7 +25,7 @@
 					<tr>
 						<td>@Html.ActionLink(member.Name, "Details", new { id = member.MemberId })</td>
 						<td class="text-center">@member.AgeInSpirit</td>
-						<td class="text-center"></td>
+						<td class="text-center">@member.Status</td>
 					</tr>
 				}
 			}

@@ -1,5 +1,5 @@
-﻿using Shepherd.BusinessLogic.Entities.Members;
-using Shepherd.BusinessLogic.Entities.Members.Contracts;
+﻿using Shepherd.Domain.Entities.Members;
+using Shepherd.Domain.Entities.Members.Contracts;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -21,12 +21,13 @@ namespace Shepherd.Web.ViewModels
 		public string MiddleName { get; set; }
 
 		[Display(Name = "Date babtized")]
-		[DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+		[DataType(DataType.DateTime)]
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 		public DateTime DateBabtized { get; set; }
 
 		[Display(Name = "Birth date")]
 		[DataType(DataType.DateTime)] 
-		[DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
 		public DateTime BirthDate { get; set; }
 
 		public void MapToBusinessEntity(IMemberDetails entity)

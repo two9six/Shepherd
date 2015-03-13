@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using Shepherd.Data.Contracts;
 using Shepherd.Data.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
@@ -8,86 +9,66 @@ using System.Linq.Expressions;
 
 namespace Shepherd.Data.Infrastructure
 {
-	public abstract class RepositoryBase<T> where T : class
+	public abstract class RepositoryBase<T> 
+		: IRepositoryBase<T> where T : class
 	{
-		private ShepherdEntities dataContext;
-		private readonly IDbSet<T> dbSet;
-
-		protected IDatabaseFactory DatabaseFactory { get; private set; }
-
-		protected ShepherdEntities DataContext
-		{
-			get { return dataContext ?? (dataContext = DatabaseFactory.Get()); }
-		}
-
-		protected RepositoryBase(IDatabaseFactory databaseFactory)
-		{
-			this.DatabaseFactory = databaseFactory;
-			dbSet = DataContext.Set<T>();
-		}
+		public IShepherdEntities Context { get; set; }
 
 		public virtual T Add(T entity)
 		{
-			return dbSet.Add(entity);
+			return this.Context.Set<T>().Add(entity);
 		}
 
-		public virtual T Update(T entity)
+		public virtual T Edit(T entity)
 		{
-			var attachedEntity = dbSet.Attach(entity);
-			dataContext.Entry(entity).State = EntityState.Modified;
+			// TODO: Check which approach is better
+			//var attachedEntity = dbSet.Attach(entity);
+			//databaseContext.Entry(entity).State = EntityState.Modified;
+			//return attachedEntity;
 
-			return attachedEntity;
+			this.Context.Entry(entity).State = EntityState.Modified;
+			return entity;
 		}
 
 		public virtual T Delete(T entity)
 		{
-			return dbSet.Remove(entity);
+			return this.Context.Set<T>().Remove(entity);
 		}
 
-		public virtual void Delete(Expression<Func<T, bool>> where)
+		public void Delete(Expression<Func<T, bool>> where)
 		{
-			IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
+			IEnumerable<T> objects = this.Context.Set<T>().Where<T>(where).AsEnumerable();
 			foreach (T obj in objects)
 			{
-				dbSet.Remove(obj);
+				this.Context.Set<T>().Remove(obj);
 			}
 		}
 
-		public virtual T GetById(long id)
+		public T GetById(int id)
 		{
-			return dbSet.Find(id);
+			return this.Context.Set<T>().Find(id);
 		}
 
-		public virtual T GetById(int id)
+		public IEnumerable<T> GetAll()
 		{
-			return dbSet.Find(id);
+			return this.Context.Set<T>().ToList();
 		}
 
-		public virtual T GetById(string id)
+		public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
 		{
-			return dbSet.Find(id);
+			return this.Context.Set<T>().Where(predicate);
 		}
 
-		public virtual IEnumerable<T> GetAll()
+		public IEnumerable<T> ExecWithStoreProcedure(string query, params object[] parameters)
 		{
-			return dbSet.ToList();
+			return this.Context.Database.SqlQuery<T>(query, parameters);
 		}
 
-		public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
+		public IPagedList<T> GetPage<TOrder>(Page page, Expression<Func<T, bool>> where, Expression<Func<T, TOrder>> order)
 		{
-			return dbSet.Where(where).ToList();
-		}
-
-		public virtual IPagedList<T> GetPage<TOrder>(Page page, Expression<Func<T, bool>> where, Expression<Func<T, TOrder>> order)
-		{
-			var results = dbSet.OrderBy(order).Where(where).GetPage(page).ToList();
-			var total = dbSet.Count(where);
+			var results = this.Context.Set<T>().OrderBy(order).Where(where).GetPage(page).ToList();
+			var total = this.Context.Set<T>().Count(where);
 			return new StaticPagedList<T>(results, page.PageNumber, page.PageSize, total);
-		}
-
-		public T Get(Expression<Func<T, bool>> where)
-		{
-			return dbSet.Where(where).FirstOrDefault<T>();
 		}
 	}
 }
