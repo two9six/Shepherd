@@ -8,6 +8,7 @@ using Shepherd.Model.Models;
 using Shepherd.Testing;
 using Spackle;
 using System;
+using System.Linq;
 
 namespace Shepherd.Domain.Tests.Entities
 {
@@ -166,7 +167,6 @@ namespace Shepherd.Domain.Tests.Entities
 			Assert.IsTrue(isMemberUpdated);
 		}
 
-		[Ignore]
 		[TestMethod]
 		public void Update_Fails_WhenMemberEntityIsNull()
 		{
@@ -183,15 +183,15 @@ namespace Shepherd.Domain.Tests.Entities
 
 			// Act
 			MemberDetails memberDetails = new MemberDetails(mockUnitOfWork.Object);
-			var actualValidationResults = memberDetails.Update();
+			var actualProcessResults = memberDetails.Update();
 
 			// Assert
 			mockMemberRepository.VerifyAll();
 			mockUnitOfWork.VerifyAll();
 
-			//Assert.IsNotNull(actualValidationResults
-			//	.Single(_ => _.MemberName == MemberDetails.MemberLabels.MemberId
-			//		&& _.Message == MemberDetails.ValidationMessages.MemberIdMemberNull));
+			Assert.IsNotNull(actualProcessResults.ValidationResults
+				.Single(_ => _.MemberName == MemberDetails.MemberLabels.MemberId
+					&& _.Message == MemberDetails.ValidationMessages.MemberIdMemberNull));
 		}
 
 		[Ignore]
