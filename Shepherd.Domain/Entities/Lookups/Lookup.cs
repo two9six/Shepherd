@@ -29,7 +29,7 @@ namespace Shepherd.Domain.Entities.Lookups
 		{
 			if (lookupId <= 0)
 			{
-				throw new ArgumentException(ValidationMessages.ArgumentException.InvalidId, Lookup.FieldLabels.LookupId);
+				throw new ArgumentException(GenericValidationMessages.ArgumentException.InvalidId, Lookup.FieldLabels.LookupId);
 			}
 
 			var lookup = unitOfWork.LookupRepository.GetById(lookupId);
@@ -55,7 +55,7 @@ namespace Shepherd.Domain.Entities.Lookups
 
 			if (lookup == null)
 			{
-				throw new NullReferenceException(ValidationMessages.NullReferenceException.UpdateFailed);
+				throw new NullReferenceException(GenericValidationMessages.NullReferenceException.UpdateFailed);
 			}
 			else
 			{

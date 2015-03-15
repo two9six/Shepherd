@@ -1,7 +1,7 @@
 ﻿
 namespace Shepherd.Domain.Constants
 {
-	public static class ValidationMessages
+	public static class GenericValidationMessages
 	{
 		public static class ArgumentException
 		{
@@ -11,6 +11,11 @@ namespace Shepherd.Domain.Constants
 		public static class NullReferenceException
 		{
 			public static readonly string UpdateFailed = "Update operation failed. Object to update is null.";
+		}
+
+		public static class Common
+		{
+			public static readonly string CannotBeNullOrEmpty = "Field cannot be null or empty";
 		}
 	}
 }

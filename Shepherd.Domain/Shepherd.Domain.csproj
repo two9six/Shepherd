@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ValidationMessages.cs" />
+    <Compile Include="Constants\GenericValidationMessages.cs" />
     <Compile Include="Contracts\ICurrentDate.cs" />
     <Compile Include="CurrentDate.cs" />
     <Compile Include="Entities\Lookups\Contracts\ILookup.cs" />

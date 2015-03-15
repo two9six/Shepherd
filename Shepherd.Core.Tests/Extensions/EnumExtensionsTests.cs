@@ -8,7 +8,7 @@ namespace Shepherd.Core.Tests.Extensions
 	public class EnumExtensionsTests
 	{
 		[TestMethod]
-		public void Passes_WhenCorrectIntHasBeenGenerated()
+		public void ToInt_Passes_WhenCorrectIntHasBeenGenerated()
 		{
 			// Arrange
 			TestEnum testEnum = TestEnum.Enum1;
@@ -22,7 +22,7 @@ namespace Shepherd.Core.Tests.Extensions
 		}
 
 		[TestMethod]
-		public void Passes_WhenCorrectValuesHasBeenGenerated()
+		public void GetValues_Passes_WhenCorrectValuesHasBeenGenerated()
 		{
 			// Arrange
 			TestEnum testEnum = TestEnum.Enum1;
@@ -32,7 +32,7 @@ namespace Shepherd.Core.Tests.Extensions
 			var values = testEnum.GetValues();
 
 			//Assert
-			Assert.AreEqual(expectedCount,values.ToList().Count);
+			Assert.AreEqual(expectedCount, values.ToList().Count);
 		}
 
 		public enum TestEnum

@@ -24,7 +24,7 @@ namespace Shepherd.Domain.Entities.Members.Contracts
 
 		void Add();
 
-		IEnumerable<ValidationResult> Update();
+		ProcessResult Update();
 
 		void Delete(int memberId);
 	}

@@ -1,11 +1,10 @@
-﻿using Shepherd.Domain.Constants;
-using Shepherd.Domain.Entities.Members.Contracts;
-using Shepherd.Core;
+﻿using Shepherd.Core;
 using Shepherd.Data.Contracts;
-using Shepherd.Data.Infrastructure.Contracts;
-using Shepherd.Data.Repository.Contracts;
+using Shepherd.Domain.Constants;
+using Shepherd.Domain.Entities.Members.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Shepherd.Domain.Entities.Members
 {
@@ -36,11 +35,11 @@ namespace Shepherd.Domain.Entities.Members
 		{
 			if (memberId <= 0)
 			{
-				throw new ArgumentException(Constants.ValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId);
+				throw new ArgumentException(Constants.GenericValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId);
 			}
 
 			var member = unitOfWork.MemberRepository.GetByIdWithPerson(memberId);
-			
+
 			if (member != null)
 			{
 				this.MemberId = member.Id;
@@ -62,22 +61,27 @@ namespace Shepherd.Domain.Entities.Members
 			//memberRepository.Add();
 		}
 
-		public IEnumerable<ValidationResult> Update()
+		public ProcessResult Update()
 		{
-			var validationResults = new List<ValidationResult>();
+			var processResult = new ProcessResult();
+			processResult.ValidationResults = this.ValidateUpdate();
+
+			if (processResult.ValidationResults.Count() > 0)
+			{
+				return processResult;
+			}
 
 			var member = unitOfWork.MemberRepository.GetByIdWithPerson(this.MemberId);
 
 			if (member == null)
 			{
-				validationResults.Add(new ValidationResult(MemberLabels.MemberId, ValidationMessages.MemberIdMemberNull));
+				processResult.ValidationResults.Add(new ValidationResult(MemberLabels.MemberId, ValidationMessages.MemberIdMemberNull));
 			}
 			else if (member.Person == null)
 			{
-				validationResults.Add(new ValidationResult(MemberLabels.MemberId, ValidationMessages.MemberIdPersonNull));
+				processResult.ValidationResults.Add(new ValidationResult(MemberLabels.MemberId, ValidationMessages.MemberIdPersonNull));
 			}
-
-			if (validationResults.Count == 0)
+			else
 			{
 				member.GeneratedId = this.GeneratedId;
 				member.DateBabtized = this.DateBabtized;
@@ -91,7 +95,7 @@ namespace Shepherd.Domain.Entities.Members
 				unitOfWork.Save();
 			}
 
-			return validationResults;
+			return processResult;
 		}
 
 		public void Delete(int memberId)
@@ -105,9 +109,25 @@ namespace Shepherd.Domain.Entities.Members
 			}
 		}
 
+		private List<ValidationResult> ValidateUpdate()
+		{
+			var validationResults = new List<ValidationResult>();
+
+			// TODO: Implement auto validation with reflection
+			if (string.IsNullOrEmpty(this.GeneratedId))
+			{
+				validationResults.Add(
+					new ValidationResult(MemberDetails.MemberLabels.GeneratedId,
+						GenericValidationMessages.Common.CannotBeNullOrEmpty));
+			}
+
+			return validationResults;
+		}
+
 		public static class MemberLabels
 		{
 			public const string MemberId = "Member Id";
+			public const string GeneratedId = "Generated Id";
 		}
 
 		public static class ValidationMessages

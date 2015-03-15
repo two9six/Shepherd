@@ -96,10 +96,10 @@ namespace Shepherd.Data
 			}
 		}
 
-		public void Save()
+		public int Save()
 		{
 			// TODO: Provide exception handling
-			this.Context.SaveChanges();
+			return this.Context.SaveChanges();
 		}
 
 		private bool disposed = false;

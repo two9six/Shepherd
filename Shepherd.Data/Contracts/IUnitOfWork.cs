@@ -15,6 +15,6 @@ namespace Shepherd.Data.Contracts
 
 		IPersonRepository PersonRepository { get; set; }
 
-		void Save();
+		int Save();
 	}
 }
