@@ -10,7 +10,7 @@ namespace Shepherd.Data.Tests
 	public class UnitOfWorkTests
 	{
 		[TestMethod]
-		public void Context_Passes_WhenIsNotNull()
+		public void Context_DefaultValue_IsNotNull()
 		{
 			//Arrange
 
@@ -23,7 +23,7 @@ namespace Shepherd.Data.Tests
 		}
 
 		[TestMethod]
-		public void Context_Passes_WhenTypeIsShepherdEntities()
+		public void Context_DefaultValue_IsTypeShepherdEntities()
 		{
 			//Arrange
 
@@ -31,11 +31,11 @@ namespace Shepherd.Data.Tests
 			var unitOfWork = new UnitOfWork();
 
 			//Assert
-			Assert.AreEqual(typeof(ShepherdEntities), unitOfWork.Context.GetType());
+			Assert.IsInstanceOfType(unitOfWork.Context, typeof(ShepherdEntities));
 		}
 
 		[TestMethod]
-		public void Repositories_Passes_WhenNotNull()
+		public void Repositories_DefaultValue_IsNotNull()
 		{
 			//Arrange
 
@@ -50,7 +50,7 @@ namespace Shepherd.Data.Tests
 		}
 
 		[TestMethod]
-		public void Save_Passes_WhenInvoked()
+		public void Save_ContextSaveChanges_IsInvoked()
 		{
 			//Arrange
 			var generator = new RandomObjectGenerator();

@@ -43,5 +43,11 @@ namespace Shepherd.Web.Controllers
 
 			return RedirectToAction("Details", new { id = viewModel.MemberId });
 		}
+
+		[HttpGet]
+		public ViewResult Add()
+		{
+			return View(new MemberDetailsViewModel());
+		}
 	}
 }

@@ -8,7 +8,7 @@ namespace Shepherd.Core.Tests.Extensions
 	public class EnumExtensionsTests
 	{
 		[TestMethod]
-		public void ToInt_Passes_WhenCorrectIntHasBeenGenerated()
+		public void ToInt_UsingEnum1_ReturnsInt1()
 		{
 			// Arrange
 			TestEnum testEnum = TestEnum.Enum1;
@@ -22,7 +22,7 @@ namespace Shepherd.Core.Tests.Extensions
 		}
 
 		[TestMethod]
-		public void GetValues_Passes_WhenCorrectValuesHasBeenGenerated()
+		public void GetValues_WithTwoEnumValues_ReturnsTwoValues()
 		{
 			// Arrange
 			TestEnum testEnum = TestEnum.Enum1;

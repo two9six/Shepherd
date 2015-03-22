@@ -56,9 +56,10 @@ namespace Shepherd.Domain.Entities.Members
 			}
 		}
 
-		public void Add()
+		public ProcessResult Add()
 		{
 			//memberRepository.Add();
+			return new ProcessResult();
 		}
 
 		public ProcessResult Update()
@@ -121,6 +122,22 @@ namespace Shepherd.Domain.Entities.Members
 						GenericValidationMessages.Common.CannotBeNullOrEmpty));
 			}
 
+			if (string.IsNullOrEmpty(this.FirstName))
+			{
+				validationResults.Add(
+					new ValidationResult(MemberDetails.MemberLabels.FirstName,
+						GenericValidationMessages.Common.CannotBeNullOrEmpty));
+			}
+
+			if (string.IsNullOrEmpty(this.LastName))
+			{
+				validationResults.Add(
+					new ValidationResult(MemberDetails.MemberLabels.LastName,
+						GenericValidationMessages.Common.CannotBeNullOrEmpty));
+			}
+
+
+
 			return validationResults;
 		}
 
@@ -128,6 +145,8 @@ namespace Shepherd.Domain.Entities.Members
 		{
 			public const string MemberId = "Member Id";
 			public const string GeneratedId = "Generated Id";
+			public const string FirstName = "First Name";
+			public const string LastName = "Last Name";
 		}
 
 		public static class ValidationMessages

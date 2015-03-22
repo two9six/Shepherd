@@ -1,7 +1,6 @@
-﻿using Shepherd.Domain.Entities.Members.Contracts;
+﻿using Shepherd.Data.Contracts;
+using Shepherd.Domain.Entities.Members.Contracts;
 using Shepherd.Domain.Infrastructure;
-using Shepherd.Data.Contracts;
-using Shepherd.Data.Repository.Contracts;
 
 namespace Shepherd.Domain.Entities.Members
 {

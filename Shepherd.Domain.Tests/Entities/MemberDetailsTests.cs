@@ -16,7 +16,7 @@ namespace Shepherd.Domain.Tests.Entities
 	public class MemberDetailsTests
 	{
 		[TestMethod]
-		public void Fetch_Passes_WhenCorrectData()
+		public void Fetch_UsingValidMemberId_GeneratesCorrectData()
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
@@ -47,6 +47,7 @@ namespace Shepherd.Domain.Tests.Entities
 
 			// Act
 			var memberDetails = new MemberDetails(mockUnitOfWork.Object);
+			memberDetails.GeneratedId = generator.Generate<string>();
 			memberDetails.Fetch(expectedMember.Id);
 
 			// Assert
@@ -63,14 +64,14 @@ namespace Shepherd.Domain.Tests.Entities
 		}
 
 		[TestMethod]
-		public void Fetch_Fails_WhenInvalidMemberId()
+		public void Fetch_UsingNegativeMemberId_ThrowsArgumentException()
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
 			var actualException = default(ArgumentException);
 			var invalidMemberId = -1;
-			
+
 			// Act
 			try
 			{
@@ -87,13 +88,13 @@ namespace Shepherd.Domain.Tests.Entities
 			mockUnitOfWork.VerifyAll();
 
 			Assert.IsNotNull(actualException);
-			Assert.IsTrue(actualException.GetType() == typeof(ArgumentException), "Exception is not ArgumentException type");
+			Assert.IsInstanceOfType(actualException, typeof(ArgumentException), "Exception is not ArgumentException type");
 			Assert.AreEqual(new ArgumentException(GenericValidationMessages.ArgumentException.InvalidId, MemberDetails.MemberLabels.MemberId).Message,
 				actualException.Message);
 		}
 
 		[TestMethod]
-		public void Update_Passes_WhenCorrectData()
+		public void Update_UsingValidData_ExecuteUnitOfWorkSaveMethod()
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
@@ -139,7 +140,7 @@ namespace Shepherd.Domain.Tests.Entities
 				MiddleName = expectedMember.Person.MiddleName,
 				BirthDate = expectedMember.Person.BirthDate
 			};
-	
+
 			var isMemberUpdated = false;
 			var expectedSaveValues = generator.Generate<int>();
 
@@ -168,9 +169,10 @@ namespace Shepherd.Domain.Tests.Entities
 		}
 
 		[TestMethod]
-		public void Update_Fails_WhenMemberEntityIsNull()
+		public void Update_UsingNonExistingMember_ReturnsValidationError()
 		{
 			// Arrange
+			var generator = new RandomObjectGenerator();
 			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
 			mockMemberRepository
 				.Setup<Member>(_ => _.GetByIdWithPerson(It.IsAny<int>()))
@@ -183,6 +185,9 @@ namespace Shepherd.Domain.Tests.Entities
 
 			// Act
 			MemberDetails memberDetails = new MemberDetails(mockUnitOfWork.Object);
+			memberDetails.GeneratedId = generator.Generate<string>();
+			memberDetails.FirstName = generator.Generate<string>();
+			memberDetails.LastName = generator.Generate<string>();
 			var actualProcessResults = memberDetails.Update();
 
 			// Assert
@@ -194,9 +199,8 @@ namespace Shepherd.Domain.Tests.Entities
 					&& _.Message == MemberDetails.ValidationMessages.MemberIdMemberNull));
 		}
 
-		[Ignore]
 		[TestMethod]
-		public void Update_Fails_WhenPersonEntityIsNull()
+		public void Update_UsingNonExistingPerson_ReturnsValidationError()
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
@@ -221,15 +225,18 @@ namespace Shepherd.Domain.Tests.Entities
 
 			// Act
 			MemberDetails memberDetails = new MemberDetails(mockUnitOfWork.Object);
-			var actualValidationResults = memberDetails.Update();
+			memberDetails.GeneratedId = generator.Generate<string>();
+			memberDetails.FirstName = generator.Generate<string>();
+			memberDetails.LastName = generator.Generate<string>();
+			var actualProcessResult = memberDetails.Update();
 
 			// Assert
 			mockMemberRepository.VerifyAll();
 			mockUnitOfWork.VerifyAll();
 
-			//Assert.IsNotNull(actualValidationResults
-			//	.Single(_ => _.MemberName == MemberDetails.MemberLabels.MemberId
-			//		&& _.Message == MemberDetails.ValidationMessages.MemberIdPersonNull));
+			Assert.IsNotNull(actualProcessResult.ValidationResults
+				.Single(_ => _.MemberName == MemberDetails.MemberLabels.MemberId
+					&& _.Message == MemberDetails.ValidationMessages.MemberIdPersonNull));
 		}
 	}
 }

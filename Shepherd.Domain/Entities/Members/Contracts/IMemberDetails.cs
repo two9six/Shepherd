@@ -22,7 +22,7 @@ namespace Shepherd.Domain.Entities.Members.Contracts
 
 		void Fetch(int memberId);
 
-		void Add();
+		ProcessResult Add();
 
 		ProcessResult Update();
 

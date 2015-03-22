@@ -4,12 +4,12 @@ namespace Shepherd.Core.Helpers
 {
 	public static class DateTimeHelpers
 	{
-		public static int ComputeAge(DateTime birthday)
+		public static int ComputeAge(DateTime dateOfBirth)
 		{
 			DateTime now = DateTime.Today;
-			int age = now.Year - birthday.Year;
+			int age = now.Year - dateOfBirth.Year;
 
-			if (now < birthday.AddYears(age))
+			if (now < dateOfBirth.AddYears(age))
 			{
 				age--;
 			}
