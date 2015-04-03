@@ -1,6 +1,5 @@
-﻿using Shepherd.Data.Contracts;
+﻿using Shepherd.Data.Contracts.Repository;
 using Shepherd.Data.Infrastructure;
-using Shepherd.Data.Repository.Contracts;
 using Shepherd.Model.Models;
 
 namespace Shepherd.Data.Repository

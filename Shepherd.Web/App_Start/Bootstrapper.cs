@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using Shepherd.Domain.Entities.Members;
-using Shepherd.Domain.Entities.Members.Contracts;
-using Shepherd.Data;
-using Shepherd.Data.Contracts;
+using Shepherd.Data.Contracts.Infrastructure;
+using Shepherd.Data.Infrastructure;
 using Shepherd.Data.Repository;
+using Shepherd.Domain.Contracts.Models.Members;
+using Shepherd.Domain.Models.Members;
 using System.Reflection;
 using System.Web.Mvc;
 

@@ -1,6 +1,6 @@
 ﻿using PagedList;
 using Shepherd.Data.Contracts;
-using Shepherd.Data.Infrastructure.Contracts;
+using Shepherd.Data.Contracts.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

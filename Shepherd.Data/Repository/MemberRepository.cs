@@ -1,5 +1,5 @@
-﻿using Shepherd.Data.Infrastructure;
-using Shepherd.Data.Repository.Contracts;
+﻿using Shepherd.Data.Contracts.Repository;
+using Shepherd.Data.Infrastructure;
 using Shepherd.Model.Models;
 using System.Collections.Generic;
 using System.Linq;

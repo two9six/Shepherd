@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Shepherd.Data.Contracts;
-using Shepherd.Data.Repository.Contracts;
+using Shepherd.Data.Contracts.Infrastructure;
+using Shepherd.Data.Contracts.Repository;
 using Shepherd.Domain.Constants;
-using Shepherd.Domain.Entities.Members;
+using Shepherd.Domain.Models.Members;
 using Shepherd.Model.Models;
 using Shepherd.Testing;
 using Spackle;

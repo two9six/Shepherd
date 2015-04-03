@@ -1,4 +1,4 @@
-﻿using Shepherd.Domain.Entities.Members.Contracts;
+﻿using Shepherd.Domain.Contracts.Models.Members;
 using Shepherd.Web.ViewModels;
 using System.Web.Mvc;
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Shepherd.Data.Contracts;
+using Shepherd.Data.Contracts.Infrastructure;
+using Shepherd.Data.Infrastructure;
 using Spackle;
 
 namespace Shepherd.Data.Tests

@@ -1,5 +1,4 @@
-﻿using Shepherd.Domain.Entities.Members;
-using Shepherd.Domain.Entities.Members.Contracts;
+﻿using Shepherd.Domain.Contracts.Models.Members;
 using System;
 using System.ComponentModel.DataAnnotations;
 
