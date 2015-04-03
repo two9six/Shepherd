@@ -4,10 +4,10 @@ PRINT 'Insert Person'
 
 ;WITH Person_CTE (Id, FirstName, LastName, MiddleName, BirthDate, IsDeleted) AS 
 (
-				  SELECT 1, 'Liliana', 'Vess', NULL, DATEADD(YEAR, -20, GETDATE()), 0
-			UNION SELECT 2, 'Elspeth', 'Tirel', NULL, DATEADD(YEAR, -21, GETDATE()), 0
-			UNION SELECT 3, 'Chandra', 'Nalaar', NULL, DATEADD(YEAR, -22, GETDATE()), 0
-			UNION SELECT 4, 'Nissa', 'Revane', NULL, DATEADD(YEAR, -23, GETDATE()), 0
+				  SELECT 1, 'Gideon', 'Jura', NULL, DATEADD(YEAR, -20, GETDATE()), 0
+			UNION SELECT 2, 'Jace', 'Beleren', NULL, DATEADD(YEAR, -21, GETDATE()), 0
+			UNION SELECT 3, 'Elspeth', 'Tirel', NULL, DATEADD(YEAR, -22, GETDATE()), 0
+			UNION SELECT 4, 'Liliana', 'Vess', NULL, DATEADD(YEAR, -23, GETDATE()), 0
 )
 MERGE INTO Person
 	  USING Person_CTE as cte

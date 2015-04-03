@@ -58,7 +58,6 @@ namespace Shepherd.Domain.Models.Members
 
 		public ProcessResult Add()
 		{
-			//memberRepository.Add();
 			return new ProcessResult();
 		}
 
