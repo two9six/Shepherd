@@ -108,7 +108,7 @@ namespace Shepherd.Data
 		{
 			if (!this.disposed)
 			{
-				if (disposing)
+				if (disposing && context != null)
 				{
 					context.Dispose();
 				}

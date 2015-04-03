@@ -1,4 +1,4 @@
-﻿using Shepherd.Core;
+﻿using Shepherd.Core.Models;
 using Shepherd.Data.Contracts;
 using Shepherd.Domain.Constants;
 using Shepherd.Domain.Entities.Members.Contracts;

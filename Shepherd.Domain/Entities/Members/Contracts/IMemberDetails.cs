@@ -1,6 +1,5 @@
-﻿using Shepherd.Core;
+﻿using Shepherd.Core.Models;
 using System;
-using System.Collections.Generic;
 
 namespace Shepherd.Domain.Entities.Members.Contracts
 {

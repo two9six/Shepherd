@@ -9,7 +9,5 @@ namespace Shepherd.Data.Repository
 		: RepositoryBase<LookupType>,
 		ILookupTypeRepository
 	{
-		//public LookupTypeRepository(IShepherdEntities context) :
-		//	base(context) { }
 	}
 }

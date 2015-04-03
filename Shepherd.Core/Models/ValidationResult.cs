@@ -1,7 +1,11 @@
-﻿namespace Shepherd.Core
+﻿namespace Shepherd.Core.Models
 {
 	public class ValidationResult
 	{
+		public string MemberName { get; set; }
+
+		public string Message { get; set; }
+
 		public ValidationResult()
 		{
 		}
@@ -16,9 +20,5 @@
 			this.MemberName = memberName;
 			this.Message = message;
 		}
-
-		public string MemberName { get; set; }
-
-		public string Message { get; set; }
 	}
 }

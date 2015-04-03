@@ -9,7 +9,5 @@ namespace Shepherd.Data.Repository
 		RepositoryBase<Person>,
 		IPersonRepository
 	{
-		//public PersonRepository(IShepherdEntities context)
-		//	: base(context) { }
 	}
 }

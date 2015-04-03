@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shepherd.Core.Helpers;
+using System;
 
 namespace Shepherd.Core.Tests.Helpers
 {

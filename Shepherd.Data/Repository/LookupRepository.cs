@@ -10,8 +10,6 @@ namespace Shepherd.Data.Repository
 		: RepositoryBase<Lookup>,
 		ILookupRepository
 	{
-		//public LookupRepository(IShepherdEntities context)
-		//	: base(context) { }
 
 		public IEnumerable<Lookup> GetByLookupTypeId(int lookupTypeId)
 		{
