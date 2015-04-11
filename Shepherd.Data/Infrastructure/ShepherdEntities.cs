@@ -5,7 +5,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Shepherd.Data.Infrastructure
 {
-	public class ShepherdEntities : DbContext, IShepherdEntities
+	public sealed class ShepherdEntities : DbContext, IShepherdEntities
 	{
 		public ShepherdEntities()
 			: base("ShepherdEntities")
@@ -22,7 +22,6 @@ namespace Shepherd.Data.Infrastructure
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
-
 
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 

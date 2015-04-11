@@ -1,32 +1,21 @@
 ﻿using Shepherd.Domain.Contracts.Models.Members;
 using Shepherd.Domain.Contracts.Services.Lookup;
 using Shepherd.Domain.Enums;
+using Shepherd.Web.Attributes;
+using Shepherd.Web.Extensions;
 using Shepherd.Web.Models.Members;
 using Shepherd.Web.ViewModels;
-using System.Collections.Generic;
 using System.Web.Mvc;
-using Shepherd.Web.Extensions;
 
 namespace Shepherd.Web.Controllers
 {
 	public class MembersController : CoreController
 	{
-		private readonly IMemberDetails memberDetails;
-		private readonly IMemberList memberList;
-		private readonly ILookupSelectListService lookupSelectListService;
-
-		public MembersController(IMemberDetails memberDetails, IMemberList memberList, ILookupSelectListService lookupSelectListService)
-		{
-			this.memberDetails = memberDetails;
-			this.memberList = memberList;
-			this.lookupSelectListService = lookupSelectListService;
-		}
-
 		public ViewResult Index()
 		{
-			var viewModel = new MemberListModel(memberList);
+			var viewModel = new MemberListModel(this.MemberList);
 			viewModel.Generate();
-			ViewBag.MemberType = lookupSelectListService.GetSelectList(LookupTypes.MemberType).ToSelectList();
+			ViewBag.MemberType = this.LookupSelectListService.GetSelectList(LookupTypes.MemberType).ToSelectList();
 
 			return View(viewModel);
 		}
@@ -34,7 +23,7 @@ namespace Shepherd.Web.Controllers
 		[HttpPost]
 		public ActionResult Index(MemberListModel model)
 		{
-			var viewModel = new MemberListModel(memberList);
+			var viewModel = new MemberListModel(this.MemberList);
 			viewModel.Generate();
 
 			return View(viewModel);
@@ -42,9 +31,9 @@ namespace Shepherd.Web.Controllers
 
 		public ViewResult Details(int id)
 		{
-			this.memberDetails.Fetch(id);
+			this.MemberDetails.Fetch(id);
 			var viewModel = new MemberDetailsViewModel();
-			viewModel.MapFromBusinessEntity(this.memberDetails);
+			viewModel.MapFromBusinessEntity(this.MemberDetails);
 
 			return View(viewModel);
 		}
@@ -54,8 +43,8 @@ namespace Shepherd.Web.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				viewModel.MapToBusinessEntity(this.memberDetails);
-				this.memberDetails.Update();
+				viewModel.MapToBusinessEntity(this.MemberDetails);
+				this.MemberDetails.Update();
 			}
 
 			return RedirectToAction("Details", new { id = viewModel.MemberId });
@@ -66,6 +55,15 @@ namespace Shepherd.Web.Controllers
 		{
 			return View(new MemberDetailsViewModel());
 		}
+
+		[Dependency]
+		public IMemberDetails MemberDetails { get; set; }
+
+		[Dependency]
+		public IMemberList MemberList { get; set; }
+
+		[Dependency]
+		public ILookupSelectListService LookupSelectListService { get; set; }
 
 		public static class Actions
 		{

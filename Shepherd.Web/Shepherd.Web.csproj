@@ -217,9 +217,10 @@
     <Content Include="Views\Members\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ContainerConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\DependencyAttribute.cs" />
     <Compile Include="Controllers\CoreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\WebContainerBuilderComposition.cs" />
     <Compile Include="Models\Members\MemberListModel.cs" />
     <Compile Include="Models\Members\MemberListSearchCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

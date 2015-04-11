@@ -1,6 +1,4 @@
-﻿using PagedList;
-using Shepherd.Data.Contracts;
-using Shepherd.Data.Contracts.Infrastructure;
+﻿using Shepherd.Data.Contracts.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -35,15 +33,6 @@ namespace Shepherd.Data.Infrastructure
 			return this.Context.Set<T>().Remove(entity);
 		}
 
-		public void Delete(Expression<Func<T, bool>> where)
-		{
-			IEnumerable<T> objects = this.Context.Set<T>().Where<T>(where).AsEnumerable();
-			foreach (T obj in objects)
-			{
-				this.Context.Set<T>().Remove(obj);
-			}
-		}
-
 		public T GetById(int id)
 		{
 			return this.Context.Set<T>().Find(id);
@@ -62,13 +51,6 @@ namespace Shepherd.Data.Infrastructure
 		public IEnumerable<T> ExecWithStoreProcedure(string query, params object[] parameters)
 		{
 			return this.Context.Database.SqlQuery<T>(query, parameters);
-		}
-
-		public IPagedList<T> GetPage<TOrder>(Page page, Expression<Func<T, bool>> where, Expression<Func<T, TOrder>> order)
-		{
-			var results = this.Context.Set<T>().OrderBy(order).Where(where).GetPage(page).ToList();
-			var total = this.Context.Set<T>().Count(where);
-			return new StaticPagedList<T>(results, page.PageNumber, page.PageSize, total);
 		}
 	}
 }

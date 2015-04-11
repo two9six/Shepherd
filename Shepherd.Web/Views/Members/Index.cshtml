@@ -18,9 +18,9 @@
 {
 	@Html.DropDownList("MemberType", ViewBag.Type as IEnumerable<SelectListItem>, new { @class = "dropdown" })
 	<div class="form-group">
-		@Html.LabelFor(_ => _.SearchCriteria.Name, new { @class = "col-md-2 control-label" })
+		@Html.LabelFor(_ => _.SearchCriteria.FirstName, new { @class = "col-md-2 control-label" })
 		<div class="col-md-10">
-			@Html.TextBoxFor(_ => _.SearchCriteria.Name, new { @class = "form-control" })
+			@Html.TextBoxFor(_ => _.SearchCriteria.FirstName, new { @class = "form-control" })
 		</div>
 	</div>
 

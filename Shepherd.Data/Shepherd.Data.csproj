@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -54,8 +58,7 @@
     <Compile Include="Contracts\Infrastructure\IShepherdEntities.cs" />
     <Compile Include="Contracts\Infrastructure\IRepositoryBase.cs" />
     <Compile Include="Contracts\Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Infrastructure\Page.cs" />
-    <Compile Include="Infrastructure\PagingExtensions.cs" />
+    <Compile Include="Infrastructure\DataContainerBuilderComposition.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shepherd.Core\Shepherd.Core.csproj">
+      <Project>{e2118038-9107-446c-97c9-f12c1a7e712d}</Project>
+      <Name>Shepherd.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shepherd.Model\Shepherd.Model.csproj">
       <Project>{f7585682-fd1f-4afd-8ac1-9ac2506e3f25}</Project>
       <Name>Shepherd.Model</Name>

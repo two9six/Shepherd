@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PagedList">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -53,6 +57,7 @@
     <Compile Include="Contracts\Models\Lookups\ILookupSelectList.cs" />
     <Compile Include="Contracts\Models\Lookups\ILookupSelectListItem.cs" />
     <Compile Include="Contracts\Models\Lookups\ILookupType.cs" />
+    <Compile Include="Infrastructure\DomainContainerBuilderComposition.cs" />
     <Compile Include="Models\Common\Address.cs" />
     <Compile Include="Models\Common\ContactInformation.cs" />
     <Compile Include="Models\Lookups\Lookup.cs" />
