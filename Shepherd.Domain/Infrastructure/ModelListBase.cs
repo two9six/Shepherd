@@ -2,13 +2,13 @@
 
 namespace Shepherd.Domain.Infrastructure
 {
-	public abstract class ListEntityBase<T> where T : class
+	public abstract class ModelListBase<T> where T : class
 	{
 		public List<T> Items { get; set; }
 
 		public virtual void Fetch() { }
 
-		protected ListEntityBase()
+		protected ModelListBase()
 		{
 			this.Items = new List<T>();
 		}

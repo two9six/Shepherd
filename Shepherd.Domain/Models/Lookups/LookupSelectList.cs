@@ -3,11 +3,12 @@ using Shepherd.Core.Extensions;
 using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Domain.Contracts.Models.Lookups;
 using Shepherd.Domain.Infrastructure;
+using Shepherd.Domain.Contracts.Infrastructure;
 
 namespace Shepherd.Domain.Models.Lookups
 {
 	public sealed class LookupSelectList
-		: ListEntityBase<LookupSelectListItem>,
+		: ModelListBase<LookupSelectListItem>,
 		ILookupSelectList
 	{
 		private readonly IUnitOfWork unitOfWork;
@@ -23,8 +24,14 @@ namespace Shepherd.Domain.Models.Lookups
 
 			foreach (var lookup in lookups)
 			{
-				this.Items.Add(new LookupSelectListItem().LoadChild(lookup));
+				this.Items.Add(new LookupSelectListItem().FetchChild(lookup));
 			}
+		}
+
+
+		public void Fetch(IModelListSearchCriteria criteria)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

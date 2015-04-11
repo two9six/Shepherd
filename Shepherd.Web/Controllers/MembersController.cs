@@ -1,25 +1,43 @@
 ﻿using Shepherd.Domain.Contracts.Models.Members;
+using Shepherd.Domain.Contracts.Services.Lookup;
+using Shepherd.Domain.Enums;
+using Shepherd.Web.Models.Members;
 using Shepherd.Web.ViewModels;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using Shepherd.Web.Extensions;
 
 namespace Shepherd.Web.Controllers
 {
-	public class MembersController : Controller
+	public class MembersController : CoreController
 	{
 		private readonly IMemberDetails memberDetails;
 		private readonly IMemberList memberList;
+		private readonly ILookupSelectListService lookupSelectListService;
 
-		public MembersController(IMemberDetails memberDetails, IMemberList memberList)
+		public MembersController(IMemberDetails memberDetails, IMemberList memberList, ILookupSelectListService lookupSelectListService)
 		{
 			this.memberDetails = memberDetails;
 			this.memberList = memberList;
+			this.lookupSelectListService = lookupSelectListService;
 		}
 
 		public ViewResult Index()
 		{
-			this.memberList.Fetch();
+			var viewModel = new MemberListModel(memberList);
+			viewModel.Generate();
+			ViewBag.MemberType = lookupSelectListService.GetSelectList(LookupTypes.MemberType).ToSelectList();
 
-			return View(this.memberList);
+			return View(viewModel);
+		}
+
+		[HttpPost]
+		public ActionResult Index(MemberListModel model)
+		{
+			var viewModel = new MemberListModel(memberList);
+			viewModel.Generate();
+
+			return View(viewModel);
 		}
 
 		public ViewResult Details(int id)
@@ -47,6 +65,12 @@ namespace Shepherd.Web.Controllers
 		public ViewResult Add()
 		{
 			return View(new MemberDetailsViewModel());
+		}
+
+		public static class Actions
+		{
+			public const string Index = "Index";
+			public const string Details = "Details";
 		}
 	}
 }

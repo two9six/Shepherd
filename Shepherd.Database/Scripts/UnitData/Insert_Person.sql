@@ -2,12 +2,12 @@
 GO
 PRINT 'Insert Person'
 
-;WITH Person_CTE (Id, FirstName, LastName, MiddleName, BirthDate, IsDeleted) AS 
+;WITH Person_CTE (Id, FirstName, LastName, MiddleName, BirthDate, Gender, DateCreated, CreatedBy, IsDeleted) AS 
 (
-				  SELECT 1, 'Gideon', 'Jura', NULL, DATEADD(YEAR, -20, GETDATE()), 0
-			UNION SELECT 2, 'Jace', 'Beleren', NULL, DATEADD(YEAR, -21, GETDATE()), 0
-			UNION SELECT 3, 'Elspeth', 'Tirel', NULL, DATEADD(YEAR, -22, GETDATE()), 0
-			UNION SELECT 4, 'Liliana', 'Vess', NULL, DATEADD(YEAR, -23, GETDATE()), 0
+				  SELECT 1, 'Gideon', 'Jura', NULL, DATEADD(YEAR, -20, GETDATE()), 'M', GETDATE(), 1, 0
+			UNION SELECT 2, 'Jace', 'Beleren', NULL, DATEADD(YEAR, -21, GETDATE()), 'M', GETDATE(), 1, 0
+			UNION SELECT 3, 'Elspeth', 'Tirel', NULL, DATEADD(YEAR, -22, GETDATE()), 'F', GETDATE(), 1, 0
+			UNION SELECT 4, 'Liliana', 'Vess', NULL, DATEADD(YEAR, -23, GETDATE()), 'F', GETDATE(), 1, 0
 )
 MERGE INTO Person
 	  USING Person_CTE as cte
@@ -18,10 +18,13 @@ MERGE INTO Person
 				,Person.LastName = cte.LastName
 				,Person.MiddleName = cte.MiddleName
 				,Person.BirthDate = cte.BirthDate
+				,Person.Gender = cte.Gender
+				,Person.DateCreated = cte.DateCreated
+				,Person.CreatedBy = cte.CreatedBy
 				,Person.IsDeleted = cte.IsDeleted
 	  WHEN NOT MATCHED BY TARGET THEN 
-			INSERT (Id, FirstName, LastName, MiddleName, BirthDate, IsDeleted) 
-			VALUES (cte.Id, cte.FirstName, cte.LastName, cte.MiddleName, cte.BirthDate, cte.IsDeleted)
+			INSERT (Id, FirstName, LastName, MiddleName, BirthDate, Gender, DateCreated, CreatedBy, IsDeleted) 
+			VALUES (cte.Id, cte.FirstName, cte.LastName, cte.MiddleName, cte.BirthDate, cte.Gender, cte.DateCreated, cte.CreatedBy, cte.IsDeleted)
 	  WHEN NOT MATCHED BY SOURCE THEN 
 			DELETE;
 

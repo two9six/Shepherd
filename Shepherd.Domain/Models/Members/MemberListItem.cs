@@ -22,7 +22,7 @@ namespace Shepherd.Domain.Models.Members
 			this.unitOfWork = unitOfWork;
 		}
 
-		public MemberListItem LoadChild(SMM.Member entity)
+		public MemberListItem FetchChild(SMM.Member entity)
 		{
 			if (entity != null && entity.Person != null)
 			{

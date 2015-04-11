@@ -1,10 +1,10 @@
-﻿using Shepherd.Domain.Infrastructure.Contracts;
+﻿using Shepherd.Domain.Contracts.Infrastructure;
 using SMM = Shepherd.Model.Models;
 
 namespace Shepherd.Domain.Contracts.Models.Members
 {
 	public interface IMemberListItem<T>
-		: IListEntityItemBase<T, SMM.Member>
+		: IModelListItemBase<T, SMM.Member>
 		where T : class
 	{
 		int MemberId { get; }

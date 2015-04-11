@@ -4,7 +4,9 @@ using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Data.Repository;
 using Shepherd.Domain.Contracts.Models.Members;
+using Shepherd.Domain.Contracts.Services.Lookup;
 using Shepherd.Domain.Models.Members;
+using Shepherd.Domain.Services.Lookup;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -27,10 +29,13 @@ namespace Shepherd.Web
 			builder.RegisterType<MemberDetails>().As<IMemberDetails>().InstancePerRequest();
 			builder.RegisterType<MemberList>().As<IMemberList>().InstancePerRequest();
 
+			builder.RegisterType<LookupSelectListService>().As<ILookupSelectListService>().InstancePerRequest();
+
 			builder.RegisterAssemblyTypes(typeof(PersonRepository).Assembly)
 				.Where(_ => _.Name.EndsWith("Repository"))
 				.AsImplementedInterfaces()
 				.InstancePerRequest();
+			
 
 			builder.RegisterFilterProvider();
 			IContainer container = builder.Build();

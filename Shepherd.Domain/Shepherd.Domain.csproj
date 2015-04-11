@@ -44,11 +44,17 @@
   <ItemGroup>
     <Compile Include="Constants\GenericValidationMessages.cs" />
     <Compile Include="Contracts\Infrastructure\ICurrentDate.cs" />
+    <Compile Include="Contracts\Infrastructure\IModelListSearchCriteria.cs" />
+    <Compile Include="Contracts\Services\Lookup\ILookupSelectListService.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Enums\SelectListOptions.cs" />
     <Compile Include="Infrastructure\CurrentDate.cs" />
     <Compile Include="Contracts\Models\Lookups\ILookup.cs" />
     <Compile Include="Contracts\Models\Lookups\ILookupSelectList.cs" />
     <Compile Include="Contracts\Models\Lookups\ILookupSelectListItem.cs" />
     <Compile Include="Contracts\Models\Lookups\ILookupType.cs" />
+    <Compile Include="Models\Common\Address.cs" />
+    <Compile Include="Models\Common\ContactInformation.cs" />
     <Compile Include="Models\Lookups\Lookup.cs" />
     <Compile Include="Models\Lookups\LookupSelectList.cs" />
     <Compile Include="Models\Lookups\LookupSelectListItem.cs" />
@@ -59,10 +65,12 @@
     <Compile Include="Models\Members\MemberDetails.cs" />
     <Compile Include="Models\Members\MemberList.cs" />
     <Compile Include="Models\Members\MemberListItem.cs" />
-    <Compile Include="Infrastructure\Contracts\IListEntityBase.cs" />
-    <Compile Include="Infrastructure\Contracts\IListEntityItemBase.cs" />
-    <Compile Include="Infrastructure\ListEntityBase.cs" />
+    <Compile Include="Contracts\Infrastructure\IModelListBase.cs" />
+    <Compile Include="Contracts\Infrastructure\IModelListItemBase.cs" />
+    <Compile Include="Infrastructure\ModelListBase.cs" />
+    <Compile Include="Models\Members\MemberListSearchCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Lookup\LookupSelectListService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -81,6 +89,7 @@
       <Name>Shepherd.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

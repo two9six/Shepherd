@@ -11,7 +11,7 @@ namespace Shepherd.Domain.Models.Lookups
 
 		public bool IsDefault { get; set; }
 
-		public LookupSelectListItem LoadChild(SMM.Lookup entity)
+		public LookupSelectListItem FetchChild(SMM.Lookup entity)
 		{
 			if (entity != null)
 			{

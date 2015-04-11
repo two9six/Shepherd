@@ -10,7 +10,7 @@ using Spackle;
 using System;
 using System.Linq;
 
-namespace Shepherd.Domain.Tests.Entities
+namespace Shepherd.Domain.Tests.Models.Members
 {
 	[TestClass]
 	public class MemberDetailsTests
