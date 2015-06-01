@@ -1,4 +1,5 @@
 ﻿using Shepherd.Data.Contracts.Infrastructure;
+using Shepherd.Entities.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +11,7 @@ namespace Shepherd.Data.Infrastructure
 	public abstract class RepositoryBase<T> 
 		: IRepositoryBase<T> where T : class
 	{
-		public IShepherdEntities Context { get; set; }
+		public IShepherdContext Context { get; set; }
 
 		public virtual T Add(T entity)
 		{

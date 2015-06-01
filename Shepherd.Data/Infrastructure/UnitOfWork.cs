@@ -1,20 +1,22 @@
 ﻿using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Contracts.Repository;
 using Shepherd.Data.Repository;
+using Shepherd.Entities;
+using Shepherd.Entities.Contracts;
 using System;
 
 namespace Shepherd.Data.Infrastructure
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		private IShepherdEntities context;
-		public IShepherdEntities Context
+		private IShepherdContext context;
+		public IShepherdContext Context
 		{
 			get
 			{
 				if (context == null)
 				{
-					context = new ShepherdEntities();
+					context = new ShepherdContext();
 				}
 				return context;
 			}

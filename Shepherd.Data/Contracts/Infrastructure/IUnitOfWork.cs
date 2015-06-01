@@ -1,11 +1,12 @@
 ﻿using Shepherd.Data.Contracts.Repository;
+using Shepherd.Entities.Contracts;
 using System;
 
 namespace Shepherd.Data.Contracts.Infrastructure
 {
 	public interface IUnitOfWork: IDisposable
 	{
-		IShepherdEntities Context { get; set; }
+		IShepherdContext Context { get; set; }
 
 		ILookupRepository LookupRepository { get; set; }
 

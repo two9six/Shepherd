@@ -1,6 +1,6 @@
 ﻿using Shepherd.Data.Contracts.Repository;
 using Shepherd.Data.Infrastructure;
-using Shepherd.Model.Models;
+using Shepherd.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,9 +10,9 @@ namespace Shepherd.Data.Repository
 		: RepositoryBase<Member>,
 		IMemberRepository
 	{
-		public Member GetByGeneratedId(string generatedId)
+		public Member GetByChurchId(string churchId)
 		{
-			return this.FindBy(_ => _.GeneratedId == generatedId && !_.IsDeleted).SingleOrDefault();
+			return this.FindBy(_ => _.ChurchId == churchId && !_.IsDeleted).SingleOrDefault();
 		}
 
 		public Member GetByIdWithPerson(int id)

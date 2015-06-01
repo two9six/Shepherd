@@ -32,7 +32,7 @@ namespace Shepherd.Web.ViewModels
 		public void MapToBusinessEntity(IMemberDetails entity)
 		{
 			entity.MemberId = this.MemberId;
-			entity.GeneratedId = this.GeneratedId;
+			entity.ChurchId = this.GeneratedId;
 			entity.FirstName = this.FirstName;
 			entity.LastName = this.LastName;
 			entity.MiddleName = this.MiddleName;
@@ -43,7 +43,7 @@ namespace Shepherd.Web.ViewModels
 		public void MapFromBusinessEntity(IMemberDetails entity)
 		{
 			this.MemberId = entity.MemberId;
-			this.GeneratedId = entity.GeneratedId;
+			this.GeneratedId = entity.ChurchId;
 			this.FirstName = entity.FirstName;
 			this.LastName = entity.LastName;
 			this.MiddleName = entity.MiddleName;

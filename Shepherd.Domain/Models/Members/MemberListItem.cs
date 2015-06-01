@@ -1,7 +1,7 @@
 ﻿using Shepherd.Core.Helpers;
 using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Domain.Contracts.Models.Members;
-using SMM = Shepherd.Model.Models;
+using SE = Shepherd.Entities;
 
 namespace Shepherd.Domain.Models.Members
 {
@@ -22,7 +22,7 @@ namespace Shepherd.Domain.Models.Members
 			this.unitOfWork = unitOfWork;
 		}
 
-		public MemberListItem FetchChild(SMM.Member entity)
+		public MemberListItem FetchChild(SE.Member entity)
 		{
 			if (entity != null && entity.Person != null)
 			{

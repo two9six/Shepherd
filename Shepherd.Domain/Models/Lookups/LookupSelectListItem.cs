@@ -1,5 +1,5 @@
 ﻿using Shepherd.Domain.Contracts.Models.Lookups;
-using SMM = Shepherd.Model.Models;
+using SE = Shepherd.Entities;
 
 namespace Shepherd.Domain.Models.Lookups
 {
@@ -11,7 +11,7 @@ namespace Shepherd.Domain.Models.Lookups
 
 		public bool IsDefault { get; set; }
 
-		public LookupSelectListItem FetchChild(SMM.Lookup entity)
+		public LookupSelectListItem FetchChild(SE.Lookup entity)
 		{
 			if (entity != null)
 			{

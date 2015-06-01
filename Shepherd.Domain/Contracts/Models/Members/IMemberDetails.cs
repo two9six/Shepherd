@@ -7,7 +7,7 @@ namespace Shepherd.Domain.Contracts.Models.Members
 	{
 		int MemberId { get; set; }
 
-		string GeneratedId { get; set; }
+		string ChurchId { get; set; }
 
 		string FirstName { get; set; }
 

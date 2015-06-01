@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Shepherd.Model")]
+[assembly: AssemblyTitle("Shepherd.Entities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Shepherd.Model")]
+[assembly: AssemblyProduct("Shepherd.Entities")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b8779bb5-8a7a-4033-bacf-caf8f0477487")]
+[assembly: Guid("2a763ed9-372d-4377-8d31-3213cbbe4bdb")]
 
 // Version information for an assembly consists of the following four values:
 //

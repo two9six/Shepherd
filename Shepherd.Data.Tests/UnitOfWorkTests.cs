@@ -2,6 +2,8 @@
 using Moq;
 using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Infrastructure;
+using Shepherd.Entities;
+using Shepherd.Entities.Contracts;
 using Spackle;
 
 namespace Shepherd.Data.Tests
@@ -31,7 +33,7 @@ namespace Shepherd.Data.Tests
 			var unitOfWork = new UnitOfWork();
 
 			//Assert
-			Assert.IsInstanceOfType(unitOfWork.Context, typeof(ShepherdEntities));
+			Assert.IsInstanceOfType(unitOfWork.Context, typeof(ShepherdContext));
 		}
 
 		[TestMethod]
@@ -56,7 +58,7 @@ namespace Shepherd.Data.Tests
 			var generator = new RandomObjectGenerator();
 			var expectedResult = generator.Generate<int>();
 
-			var mockEntities = new Mock<IShepherdEntities>(MockBehavior.Strict);
+			var mockEntities = new Mock<IShepherdContext>(MockBehavior.Strict);
 			mockEntities
 				.Setup(_ => _.SaveChanges())
 				.Returns(expectedResult);

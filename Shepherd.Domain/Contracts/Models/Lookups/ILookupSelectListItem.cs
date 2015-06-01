@@ -1,10 +1,10 @@
 ﻿using Shepherd.Domain.Contracts.Infrastructure;
-using SMM = Shepherd.Model.Models;
+using SE = Shepherd.Entities;
 
 namespace Shepherd.Domain.Contracts.Models.Lookups
 {
 	public interface ILookupSelectListItem<T>
-		: IModelListItemBase<T, SMM.Lookup>
+		: IModelListItemBase<T, SE.Lookup>
 		where T : class
 	{
 		int LookupTypeId { get; }

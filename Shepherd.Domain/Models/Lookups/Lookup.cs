@@ -2,7 +2,7 @@
 using Shepherd.Domain.Constants;
 using Shepherd.Domain.Contracts.Models.Lookups;
 using System;
-using SMM = Shepherd.Model.Models;
+using SE = Shepherd.Entities;
 
 namespace Shepherd.Domain.Models.Lookups
 {
@@ -43,10 +43,25 @@ namespace Shepherd.Domain.Models.Lookups
 			}
 		}
 
-		public void Create(SMM.Lookup lookup)
+		public void Create()
 		{
-			unitOfWork.LookupRepository.Add(lookup);
+
+		}
+
+		public void Add()
+		{
+			var lookUp = new SE.Lookup
+			{
+				 LookupTypeId = this.LookupTypeId,
+				 Name = this.Name,
+				 IsDefault = this.IsDefault,
+				 IsDeleted = this.IsDeleted
+			};
+
+			unitOfWork.LookupRepository.Add(lookUp);
 			unitOfWork.Save();
+
+			this.LookupId = lookUp.Id;
 		}
 
 		public void Update()

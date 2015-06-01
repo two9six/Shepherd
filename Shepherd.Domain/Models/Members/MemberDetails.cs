@@ -14,7 +14,7 @@ namespace Shepherd.Domain.Models.Members
 
 		public int MemberId { get; set; }
 
-		public string GeneratedId { get; set; }
+		public string ChurchId { get; set; }
 
 		public string FirstName { get; set; }
 
@@ -43,7 +43,7 @@ namespace Shepherd.Domain.Models.Members
 			if (member != null)
 			{
 				this.MemberId = member.Id;
-				this.GeneratedId = member.GeneratedId;
+				this.ChurchId = member.ChurchId;
 				this.DateBabtized = member.DateBabtized;
 
 				if (member.Person != null)
@@ -83,7 +83,7 @@ namespace Shepherd.Domain.Models.Members
 			}
 			else
 			{
-				member.GeneratedId = this.GeneratedId;
+				member.ChurchId = this.ChurchId;
 				member.DateBabtized = this.DateBabtized;
 
 				member.Person.FirstName = this.FirstName;
@@ -114,7 +114,7 @@ namespace Shepherd.Domain.Models.Members
 			var validationResults = new List<ValidationResult>();
 
 			// TODO: Implement auto validation with reflection
-			if (string.IsNullOrEmpty(this.GeneratedId))
+			if (string.IsNullOrEmpty(this.ChurchId))
 			{
 				validationResults.Add(
 					new ValidationResult(MemberDetails.MemberLabels.GeneratedId,

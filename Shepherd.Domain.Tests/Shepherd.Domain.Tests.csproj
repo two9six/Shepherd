@@ -88,9 +88,9 @@
       <Project>{c4c0d4dd-5d62-4ba0-b4a6-7fb5bbf7156c}</Project>
       <Name>Shepherd.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Model\Shepherd.Model.csproj">
-      <Project>{f7585682-fd1f-4afd-8ac1-9ac2506e3f25}</Project>
-      <Name>Shepherd.Model</Name>
+    <ProjectReference Include="..\Shepherd.Entities\Shepherd.Entities.csproj">
+      <Project>{e358161b-e0b1-42ad-a2a1-2becda696c8c}</Project>
+      <Name>Shepherd.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shepherd.Testing\Shepherd.Testing.csproj">
       <Project>{9969ba6e-91a3-4507-94c5-ed0f9725ea5b}</Project>

@@ -89,9 +89,9 @@
       <Project>{75c43176-bd06-4a87-a40d-80b891da33b5}</Project>
       <Name>Shepherd.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Model\Shepherd.Model.csproj">
-      <Project>{f7585682-fd1f-4afd-8ac1-9ac2506e3f25}</Project>
-      <Name>Shepherd.Model</Name>
+    <ProjectReference Include="..\Shepherd.Entities\Shepherd.Entities.csproj">
+      <Project>{e358161b-e0b1-42ad-a2a1-2becda696c8c}</Project>
+      <Name>Shepherd.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

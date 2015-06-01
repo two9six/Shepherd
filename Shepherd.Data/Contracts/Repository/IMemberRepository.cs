@@ -1,12 +1,12 @@
 ﻿using Shepherd.Data.Contracts.Infrastructure;
-using Shepherd.Model.Models;
+using Shepherd.Entities;
 using System.Collections.Generic;
 
 namespace Shepherd.Data.Contracts.Repository
 {
 	public interface IMemberRepository : IRepositoryBase<Member>
 	{	
-		Member GetByGeneratedId(string generatedId);
+		Member GetByChurchId(string churchId);
 
 		Member GetByIdWithPerson(int id);
 
