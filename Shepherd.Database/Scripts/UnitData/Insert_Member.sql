@@ -2,12 +2,12 @@
 GO
 PRINT 'Insert Member'
 
-;WITH Member_CTE (Id, PersonId, GeneratedId, DateBabtized, StatusId, IsDeleted) AS 
+;WITH Member_CTE (Id, PersonId, ChurchId, DateBabtized, BabtizedById, MaritalStatus, SpouseName, LandLine, MobileNumber, Email, StatusId, MemberTypeId, ChurchDesignationId, DateCreated, CreatedById, IsDeleted) AS 
 (
-				  SELECT 1, 1, 'GUA00001', DATEADD(YEAR, -2, GETDATE()), 1, 0
-			UNION SELECT 2, 2, 'GUA00002', DATEADD(YEAR, -3, GETDATE()), 2, 0
-			UNION SELECT 3, 3, 'GUA00003', DATEADD(YEAR, -4, GETDATE()), 2, 0
-			UNION SELECT 4, 4, 'GUA00004', DATEADD(YEAR, -5, GETDATE()), 2, 0
+				  SELECT 1, 1, 'GUA00001', DATEADD(YEAR, -2, GETDATE()), 1, 'M', 'Test Spouse', '8811111', '09175201111', 'jgideon@gmail.com', 1, 25, 28, GETDATE(), 1, 0
+			UNION SELECT 2, 2, 'GUA00002', DATEADD(YEAR, -3, GETDATE()), 1, 'M', 'Test Spouse', '8811112', '09175201112', 'jbeleren@gmail.com', 1, 25, 28, GETDATE(), 1, 0
+			UNION SELECT 3, 3, 'GUA00003', DATEADD(YEAR, -4, GETDATE()), 1, 'F', null, '8811113', '09175201113', null, 1, 25, 28, GETDATE(), 1, 0
+			UNION SELECT 4, 4, 'GUA00004', DATEADD(YEAR, -5, GETDATE()), 1, 'F', null, '8811114', '09175201114', null, 1, 25, 28, GETDATE(), 1, 0
 )
 MERGE INTO Member
 	  USING Member_CTE as cte
@@ -15,13 +15,23 @@ MERGE INTO Member
 	  WHEN MATCHED THEN 
 			UPDATE SET 
 				 Member.PersonId = cte.PersonId
-				,Member.GeneratedId = cte.GeneratedId
+				,Member.ChurchId = cte.ChurchId
 				,Member.DateBabtized = cte.DateBabtized
+				,Member.BabtizedById = cte.BabtizedById
+				,Member.MaritalStatus = cte.MaritalStatus
+				,Member.SpouseName = cte.SpouseName
+				,Member.LandLine = cte.LandLine
+				,Member.MobileNumber = cte.MobileNumber
+				,Member.Email = cte.Email
 				,Member.StatusId = cte.StatusId
+				,Member.MemberTypeId = cte.MemberTypeId
+				,Member.ChurchDesignationId = cte.ChurchDesignationId
+				,Member.DateCreated = cte.DateCreated
+				,Member.CreatedById = cte.CreatedById
 				,Member.IsDeleted = cte.IsDeleted
 	  WHEN NOT MATCHED BY TARGET THEN 
-			INSERT (Id, PersonId, GeneratedId, DateBabtized, StatusId, IsDeleted) 
-			VALUES (cte.Id, cte.PersonId, cte.GeneratedId, cte.DateBabtized, cte.StatusId, cte.IsDeleted)
+			INSERT (Id, PersonId, ChurchId, DateBabtized, BabtizedById, MaritalStatus, SpouseName, LandLine, MobileNumber, Email, StatusId, MemberTypeId, ChurchDesignationId, DateCreated, CreatedById, IsDeleted) 
+			VALUES (cte.Id, cte.PersonId, cte.ChurchId, cte.DateBabtized, cte.BabtizedById, cte.MaritalStatus, cte.SpouseName, cte.LandLine, cte.MobileNumber, cte.Email, cte.StatusId, cte.MemberTypeId, cte.ChurchDesignationId, cte.DateCreated, cte.CreatedById, cte.IsDeleted)
 	  WHEN NOT MATCHED BY SOURCE THEN 
 			DELETE;
 
