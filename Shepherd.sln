@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Data", "Shepherd.D
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Shepherd.Database", "Shepherd.Database\Shepherd.Database.sqlproj", "{424588B0-F30B-4C97-A0F3-89FBE65C6F87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Web", "Shepherd.Web\Shepherd.Web.csproj", "{6EA4DF75-22F8-498C-BD65-7237C0E2CCDE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Web.Tests", "Shepherd.Web.Tests\Shepherd.Web.Tests.csproj", "{70DF89D3-D1EE-491B-8501-20C7CCE6490A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Testing", "Shepherd.Testing\Shepherd.Testing.csproj", "{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Domain", "Shepherd.Domain\Shepherd.Domain.csproj", "{C4C0D4DD-5D62-4BA0-B4A6-7FB5BBF7156C}"
@@ -25,9 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Data.Tests", "Shep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Entities", "Shepherd.Entities\Shepherd.Entities.csproj", "{E358161B-E0B1-42AD-A2A1-2BECDA696C8C}"
 EndProject
-<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Domain.Integration.Tests", "Shepherd.Domain.Integration.Tests\Shepherd.Domain.Integration.Tests.csproj", "{53BEDF64-6C08-46A9-8B48-5FE0E3928E70}"
-=======
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.WebApi", "Shepherd.WebApi\Shepherd.WebApi.csproj", "{BFA8B6A9-2853-415B-BA0B-890C9A07666F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.WebApi.Tests", "Shepherd.WebApi.Tests\Shepherd.WebApi.Tests.csproj", "{62A27EB9-70E5-45D4-BECE-1A574419E4FD}"
@@ -35,7 +30,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.WebAngular", "Shepherd.WebAngular\Shepherd.WebAngular.csproj", "{0C43E537-000C-4D2A-A062-8C55E861A593}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.WebAngular.Tests", "Shepherd.WebAngular.Tests\Shepherd.WebAngular.Tests.csproj", "{4CFDA6C7-2CAC-40B7-89BC-847A48FB6511}"
->>>>>>> origin/master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,14 +51,6 @@ Global
 		{424588B0-F30B-4C97-A0F3-89FBE65C6F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{424588B0-F30B-4C97-A0F3-89FBE65C6F87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{424588B0-F30B-4C97-A0F3-89FBE65C6F87}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{6EA4DF75-22F8-498C-BD65-7237C0E2CCDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EA4DF75-22F8-498C-BD65-7237C0E2CCDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EA4DF75-22F8-498C-BD65-7237C0E2CCDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EA4DF75-22F8-498C-BD65-7237C0E2CCDE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70DF89D3-D1EE-491B-8501-20C7CCE6490A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70DF89D3-D1EE-491B-8501-20C7CCE6490A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70DF89D3-D1EE-491B-8501-20C7CCE6490A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70DF89D3-D1EE-491B-8501-20C7CCE6490A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,12 +75,10 @@ Global
 		{E358161B-E0B1-42AD-A2A1-2BECDA696C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E358161B-E0B1-42AD-A2A1-2BECDA696C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E358161B-E0B1-42AD-A2A1-2BECDA696C8C}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{53BEDF64-6C08-46A9-8B48-5FE0E3928E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53BEDF64-6C08-46A9-8B48-5FE0E3928E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53BEDF64-6C08-46A9-8B48-5FE0E3928E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53BEDF64-6C08-46A9-8B48-5FE0E3928E70}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{BFA8B6A9-2853-415B-BA0B-890C9A07666F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFA8B6A9-2853-415B-BA0B-890C9A07666F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA8B6A9-2853-415B-BA0B-890C9A07666F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -111,7 +95,6 @@ Global
 		{4CFDA6C7-2CAC-40B7-89BC-847A48FB6511}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CFDA6C7-2CAC-40B7-89BC-847A48FB6511}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CFDA6C7-2CAC-40B7-89BC-847A48FB6511}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> origin/master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
