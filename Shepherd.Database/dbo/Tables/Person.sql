@@ -13,7 +13,7 @@
 	[City] VARCHAR(100) NULL,
 	[StateProvince] VARCHAR(100) NULL,
 	[Country] VARCHAR(100) NULL,
-	[DateCreated] DATETIME NOT NULL DEFAULT GETDATE(),
+	[DateCreated] DATETIME NOT NULL ,
 	[CreatedBy] INT NOT NULL,
 	[DateModified] DATETIME NULL ,
 	[ModifiedBy] INT NULL,

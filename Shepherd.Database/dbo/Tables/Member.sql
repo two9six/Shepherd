@@ -13,10 +13,10 @@
 	[StatusId] INT NOT NULL,
 	[MemberTypeId] INT NOT NULL,
 	[ChurchDesignationId] INT NOT NULL,
-	[DateCreated] DATETIME NOT NULL DEFAULT GETDATE(),
-	[CreatedById] INT NOT NULL,
+	[DateCreated] DATETIME NOT NULL ,
+	[CreatedBy] INT NOT NULL,
 	[DateModified] DATETIME NULL ,
-	[ModifiedById] INT NULL,
+	[ModifiedBy] INT NULL,
     [IsDeleted] BIT NOT NULL DEFAULT 0
 	CONSTRAINT [PK_Member] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Member_Person] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Person]([Id])   

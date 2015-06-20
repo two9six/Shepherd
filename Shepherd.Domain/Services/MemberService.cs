@@ -2,6 +2,7 @@
 using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Domain.Contracts.Services;
 using Shepherd.Domain.Models;
+using System;
 
 namespace Shepherd.Domain.Services
 {
@@ -20,23 +21,6 @@ namespace Shepherd.Domain.Services
 
 			var serviceResult = new ServiceResult();
 
-			//var createdPerson = unitOfWork.PersonRepository.Add(new Entities.Person
-			//{
-			//	FirstName = member.FirstName,
-			//	LastName = member.LastName,
-			//	MiddleName = member.MiddleName,
-			//	BirthDate = member.BirthDate,
-			//	PlaceOfBirth = member.PlaceOfBirth,
-			//	Gender = member.Gender,
-			//	Citizenship = member.Citizenship,
-			//	AddressLine1 = member.Address.AddressLine1,
-			//	AddressLine2 = member.Address.AddressLine2,
-			//	City = member.Address.City,
-			//	StateProvince = member.Address.StateProvince,
-			//	Country = member.Address.Country,
-			//	CreatedBy = 1
-			//});
-
 			var createdMember = unitOfWork.MemberRepository.Add(new Entities.Member
 			{
 				ChurchId = member.ChurchId,
@@ -50,6 +34,7 @@ namespace Shepherd.Domain.Services
 				StatusId = member.StatusId,
 				MemberTypeId = member.MemberTypeId,
 				ChurchDesignationId = member.ChurchDesignationId,
+				DateCreated = DateTime.Now,
 				Person = new Entities.Person
 				{
 					FirstName = member.FirstName,
@@ -64,9 +49,10 @@ namespace Shepherd.Domain.Services
 					City = member.Address.City,
 					StateProvince = member.Address.StateProvince,
 					Country = member.Address.Country,
-					CreatedBy = 1
+					CreatedBy = 1,
+					DateCreated = DateTime.Now
 				},
-				CreatedById = 1
+				CreatedBy = 1
 			});
 
 			unitOfWork.Save();

@@ -41,9 +41,9 @@
           <Property Name="MemberTypeId" Type="int" Nullable="false" />
           <Property Name="ChurchDesignationId" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
-          <Property Name="CreatedById" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="DateModified" Type="datetime" />
-          <Property Name="ModifiedById" Type="int" />
+          <Property Name="ModifiedBy" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
@@ -175,9 +175,9 @@
           <Property Name="MemberTypeId" Type="Int32" Nullable="false" />
           <Property Name="ChurchDesignationId" Type="Int32" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedById" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="DateModified" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedById" Type="Int32" />
+          <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="ShepherdModel.FK_Member_Person" FromRole="Member" ToRole="Person" />
         </EntityType>
@@ -247,9 +247,9 @@
             <EntityTypeMapping TypeName="ShepherdModel.Member">
               <MappingFragment StoreEntitySet="Member">
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="ChurchDesignationId" ColumnName="ChurchDesignationId" />
                 <ScalarProperty Name="MemberTypeId" ColumnName="MemberTypeId" />

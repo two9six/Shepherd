@@ -84,4 +84,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ModifiedById" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="91c5d3de-2fa8-4d57-abe5-e460d6f039f7" ChangeDateTime="06/20/2015 03:56:54">
+    <Property Name="ElementName" Value="[dbo].[Member].[CreatedById]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Member]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="868a4a68-8e0a-41fc-9862-0dadeb26803d" ChangeDateTime="06/20/2015 03:56:58">
+    <Property Name="ElementName" Value="[dbo].[Member].[ModifiedById]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Member]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ModifiedBy" />
+  </Operation>
 </Operations>
