@@ -35,9 +35,9 @@ namespace Shepherd.Domain.Models
 
 		public ContactInformation ContactInformation { get; set; }
 
-		public int StatusId { get; set; }
+		public MemberStatus Status { get; set; }
 
-		public int MemberTypeId { get; set; }
+		public MemberType Type { get; set; }
 
 		public int ChurchDesignationId { get; set; }
 
@@ -54,6 +54,21 @@ namespace Shepherd.Domain.Models
 			this.Address = new Address();
 			this.Baptizer = new Baptizer();
 			this.ContactInformation = new ContactInformation();
+		}
+
+		public enum MemberStatus
+		{
+			Active = 1,
+			InActive = 2,
+			Suspended = 3,
+			Excommunicated = 4
+		}
+
+		public enum MemberType
+		{
+			Member = 25,
+			Officer = 26,
+			Worker = 27
 		}
 	}
 }

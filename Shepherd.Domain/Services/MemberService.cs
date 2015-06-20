@@ -31,8 +31,8 @@ namespace Shepherd.Domain.Services
 				LandLine = member.ContactInformation.LandLine,
 				MobileNumber = member.ContactInformation.MobileNumber,
 				Email = member.ContactInformation.Email,
-				StatusId = member.StatusId,
-				MemberTypeId = member.MemberTypeId,
+				StatusId = (int)member.Status,
+				MemberTypeId = (int)member.Type,
 				ChurchDesignationId = member.ChurchDesignationId,
 				DateCreated = DateTime.Now,
 				Person = new Entities.Person

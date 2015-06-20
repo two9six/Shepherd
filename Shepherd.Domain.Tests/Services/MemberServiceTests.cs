@@ -46,8 +46,8 @@ namespace Shepherd.Domain.Tests.Services
 				DateBaptized = generator.Generate<DateTime>(),
 				MaritalStatus = generator.Generate<string>(),
 				SpouseName = generator.Generate<string>(),
-				StatusId = generator.Generate<int>(),
-				MemberTypeId = generator.Generate<int>(),
+				Status = Member.MemberStatus.Active,
+				Type = Member.MemberType.Member,
 				ChurchDesignationId = generator.Generate<int>()
 			};
 

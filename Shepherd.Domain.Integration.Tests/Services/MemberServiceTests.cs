@@ -31,8 +31,8 @@ namespace Shepherd.Domain.Integration.Tests.Services
 				{
 					Id = 1
 				},
-				StatusId = 1,
-				MemberTypeId = 1,
+				Status = Member.MemberStatus.Active,
+				Type = Member.MemberType.Member,
 				ChurchDesignationId = 1
 			};
 
