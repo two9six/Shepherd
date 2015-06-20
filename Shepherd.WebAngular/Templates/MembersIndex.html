@@ -1,0 +1,24 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="col-name text-center">Name</th>
+            <th class="col-age text-center">Age</th>
+            <th class="col-status text-center">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="member in members">
+            <td><a href="/Members/Details/{{member.Id}}">{{ member.Name }}</a></td>
+            <td class="text-center">{{ member.Age }}</td>
+            <td class="text-center">{{ member.Status }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    <a class="btn btn-primary" href="/Members/Add">Add New Member</a>
+    &nbsp;
+    &nbsp;
+    <a class="btn btn-default" href="/">Back to Home Page</a>
+</p>
+

@@ -1,0 +1,58 @@
+﻿<br />
+<br />
+    <form class="form-horizontal" role="form" name="memberForm" novalidate>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="FirstName">First name</label>
+            <div class="col-md-10">
+                <input class="form-control" id="FirstName"
+                       name="FirstName" type="text"
+                       value="" ng-required="true"
+                       ng-minlength="1" ng-maxlength="100"
+                       ng-model="member.FirstName" />
+                <span ng-show="memberForm.FirstName.$error.required && memberForm.FirstName.$dirty">Firstname is required</span>
+                <span ng-show="memberForm.FirstName.$error.minlength && memberForm.FirstName.$dirty">Must be at least 1 character</span>
+                <span ng-show="memberForm.FirstName.$error.maxlength && memberForm.FirstName.$dirty">Must be at most 100 characters</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="LastName">Last name</label>
+            <div class="col-md-10">
+                <input class="form-control" id="LastName" 
+                       name="LastName" type="text" 
+                       value="" ng-required="true"
+                       ng-minlength="1" ng-maxlength="100"
+                       ng-model="member.LastName" />
+                <span ng-show="memberForm.LastName.$error.required && memberForm.LastName.$dirty">LastName is required</span>
+                <span ng-show="memberForm.LastName.$error.minlength && memberForm.LastName.$dirty">Must be at least 1 character</span>
+                <span ng-show="memberForm.LastName.$error.maxlength && memberForm.LastName.$dirty">Must be at most 100 characters</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="MiddleName">Middle name</label>
+            <div class="col-md-10">
+                <input class="form-control" id="MiddleName" name="MiddleName" type="text" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="BirthDate">Birth date</label>
+
+            <div class="col-md-10">
+                <!--<input class="form-control text-box single-line" data-val="true" data-val-date="The field Birth date must be a date." data-val-required="The Birth date field is required." id="BirthDate" name="BirthDate" placeholder="Select Birth Date" type="datetime" value="01/01/0001" />-->
+                <datepicker name="BirthDate" ng-model="member.BirthDate" init-date=""></datepicker>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="DateBabtized">Date babtized</label>
+            <div class="col-md-10">
+                <!--<input class="form-control text-box single-line" data-val="true" data-val-date="The field Date babtized must be a date." data-val-required="The Date babtized field is required." id="DateBabtized" name="DateBabtized" placeholder="Select Date Babtized" type="datetime" value="01/01/0001" />-->
+                <datepicker name="DateBabtized" ng-model="member.DateBabtized"></datepicker>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-primary" value="Add" ng-click="submitForm()"  />
+                &nbsp;&nbsp;
+                <a class="btn btn-default" href="/Members">Return to Members List</a>
+            </div>
+        </div>
+    </form>
