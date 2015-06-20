@@ -6,15 +6,15 @@
     app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
 
         $routeProvider.when("/Members", {
-            templateUrl: "/Templates/MembersIndex.html",
+            templateUrl: "/Templates/Members/MembersIndex.html",
             controller: "MembersIndexController"
         })
         .when("/Members/Add", {
-            templateUrl: "/Templates/MembersAdd.html",
+            templateUrl: "/Templates/Members/MembersAdd.html",
             controller: "MembersAddController"
         })
         .when("/Members/Details/:id", {
-            templateUrl: "/Templates/MembersDetail.html",
+            templateUrl: "/Templates/Members/MembersDetail.html",
             controller: "MembersDetailController"
         })
         .when("/", {

@@ -4,6 +4,7 @@
 
     app.factory("MemberService", ["$http", "$q", function ($http, $q) {
 
+        var baseUrl = "http://localhost:7071/";
 
         var getMembers = function () {
             return [
@@ -21,9 +22,49 @@
 
         var insertMember = function (member) {
 
+            member.ChurchId = "GUAXXX";
+            member.Gender = "M";
+            member.Citizenship = "Filipino";
+            member.Address = {
+                AddressLine1: "",
+                AddressLine2: "",
+                City: "",
+                StateProvince: "",
+                Country: ""
+            };
+            member.Baptizer = {
+                Id: "1"
+            };
+            member.MaritalStatus = "Single";
+            member.SpouseName = "";
+            member.ContactInformation = {
+                LandLine: "",
+                MobileNumber: "",
+                Email: ""
+            };
+            member.StatusId = "1";
+            member.MemberTypeId = "1";
+            member.ChurchDesignationId = "1";
+            member.CreatedBy = "1";
+
+            console.log(member);
 
 
-            return;
+            var apiUrl = baseUrl + "api/Member/AddMember";
+
+            var deferred = $q.defer();
+
+
+            $http.post(apiUrl, member).then(function (response) {
+                deferred.resolve(response);
+            }, function (response) {
+                deferred.reject(response);
+            });
+
+
+
+
+            return deferred.promise;
         }
 
         var updateMember = function (id, member) {

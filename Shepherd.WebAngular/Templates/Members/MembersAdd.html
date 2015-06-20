@@ -30,9 +30,22 @@
         <div class="form-group">
             <label class="col-md-2 control-label" for="MiddleName">Middle name</label>
             <div class="col-md-10">
-                <input class="form-control" id="MiddleName" name="MiddleName" type="text" value="" />
+                <input class="form-control" id="MiddleName" 
+                       name="MiddleName" type="text" value="" 
+                       ng-model="member.MiddleName" ng-maxlength="100" />
+                <span ng-show="memberForm.MiddleName.$error.maxlength && memberForm.MiddleName.$dirty">Must be at most 100 characters</span>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="PlaceOfBirth">Place Of Birth</label>
+            <div class="col-md-10">
+                <input class="form-control" id="PlaceOfBirth"
+                       name="PlaceOfBirth" type="text" value=""
+                       ng-model="member.PlaceOfBirth" ng-maxlength="100"/>
+                <span ng-show="memberForm.PlaceOfBirth.$error.maxlength && memberForm.PlaceOfBirth.$dirty">Must be at most 100 characters</span>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="col-md-2 control-label" for="BirthDate">Birth date</label>
 
@@ -41,11 +54,14 @@
                 <datepicker name="BirthDate" ng-model="member.BirthDate" init-date=""></datepicker>
             </div>
         </div>
+
+        
+
         <div class="form-group">
-            <label class="col-md-2 control-label" for="DateBabtized">Date babtized</label>
+            <label class="col-md-2 control-label" for="DateBaptized">Date baptized</label>
             <div class="col-md-10">
                 <!--<input class="form-control text-box single-line" data-val="true" data-val-date="The field Date babtized must be a date." data-val-required="The Date babtized field is required." id="DateBabtized" name="DateBabtized" placeholder="Select Date Babtized" type="datetime" value="01/01/0001" />-->
-                <datepicker name="DateBabtized" ng-model="member.DateBabtized"></datepicker>
+                <datepicker name="DateBaptized" ng-model="member.DateBaptized"></datepicker>
             </div>
         </div>
         <div class="form-group">

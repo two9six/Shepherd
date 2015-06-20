@@ -14,9 +14,17 @@
             }
             else {
                 console.log("Insert Member: ");
-                console.log($scope.member);
-                MemberService.insertMember($scope.member);
-                $location.path("/Members");
+                var promise = MemberService.insertMember($scope.member);
+
+                promise.then(function (response) {
+                    console.log(response.data);
+                    $location.path("/Members");
+
+                }, function (response) {
+                    console.log(response);
+                });
+
+                
             }
 
         }
