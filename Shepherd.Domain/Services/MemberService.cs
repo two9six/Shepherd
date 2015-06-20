@@ -1,8 +1,11 @@
 ﻿using Shepherd.Core.Models;
 using Shepherd.Data.Contracts.Infrastructure;
+using Shepherd.Domain.Constants;
 using Shepherd.Domain.Contracts.Services;
 using Shepherd.Domain.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Shepherd.Domain.Services
 {
@@ -15,11 +18,14 @@ namespace Shepherd.Domain.Services
 			this.unitOfWork = unitOfWork;
 		}
 
-		public ServiceResult AddMember(Member member)
+		public ServiceResponse AddMember(Member member)
 		{
 			// TODO: Implement transaction
 
-			var serviceResult = new ServiceResult();
+			var serviceResponse = new ServiceResponse();
+
+			if (!this.IsValidateAddMember(member, serviceResponse))
+				return serviceResponse;
 
 			var createdMember = unitOfWork.MemberRepository.Add(new Entities.Member
 			{
@@ -59,7 +65,31 @@ namespace Shepherd.Domain.Services
 
 			member.Id = createdMember.Id;
 
-			return serviceResult;
+			return serviceResponse;
+		}
+
+		private bool IsValidateAddMember(Member member, ServiceResponse response)
+		{
+			var errors = new List<string>();
+
+			if (string.IsNullOrEmpty(member.ChurchId))
+				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Church Id"));
+
+			if (string.IsNullOrEmpty(member.FirstName))
+				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "First Name"));
+
+			if (string.IsNullOrEmpty(member.LastName))
+				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Last Name"));
+
+			if (member.BirthDate == DateTime.MinValue)
+				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Birth Date"));
+
+			if (member.DateBaptized == DateTime.MinValue)
+				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Baptized Date"));
+
+			response.Errors = response.Errors.ToList().Concat(errors.ToList());
+
+			return errors.Count == 0;
 		}
 	}
 }

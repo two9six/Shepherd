@@ -15,7 +15,7 @@ namespace Shepherd.Domain.Constants
 
 		public static class Common
 		{
-			public static readonly string CannotBeNullOrEmpty = "Field cannot be null or empty";
+			public static readonly string CannotBeNullOrEmpty = "Field ({0}) cannot be null or empty";
 		}
 	}
 }

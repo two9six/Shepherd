@@ -4,6 +4,7 @@ using Shepherd.Domain.Services;
 using Shepherd.Domain.Models;
 using Spackle;
 using Shepherd.Data.Infrastructure;
+using System.Linq;
 
 namespace Shepherd.Domain.Integration.Tests.Services
 {
@@ -39,7 +40,7 @@ namespace Shepherd.Domain.Integration.Tests.Services
 			// Act
 			var result = memberService.AddMember(member);
 
-			Assert.AreEqual(result.ValidationResults.Count, 0);
+			Assert.AreEqual(result.Errors.ToList().Count, 0);
 		}
 	}
 }

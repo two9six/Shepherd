@@ -7,6 +7,7 @@ using Shepherd.Domain.Services;
 using Spackle;
 using System;
 using SE = Shepherd.Entities;
+using System.Linq;
 
 namespace Shepherd.Domain.Tests.Services
 {
@@ -43,6 +44,9 @@ namespace Shepherd.Domain.Tests.Services
 			var member = new Member()
 			{
 				ChurchId = generator.Generate<string>(),
+				FirstName = generator.Generate<string>(),
+				LastName = generator.Generate<string>(),
+				BirthDate = generator.Generate<DateTime>(),
 				DateBaptized = generator.Generate<DateTime>(),
 				MaritalStatus = generator.Generate<string>(),
 				SpouseName = generator.Generate<string>(),
@@ -59,6 +63,34 @@ namespace Shepherd.Domain.Tests.Services
 			mockUnitOfWork.VerifyAll();
 
 			Assert.IsTrue(member.Id > 0);
+		}
+
+		[TestMethod]
+		public void AddMember_WithEmptyRequiredFields_RespondWithValidationErrors()
+		{
+			// Arrange
+			var generator = new RandomObjectGenerator();
+			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
+
+			var memberService = new MemberService(mockUnitOfWork.Object);
+
+			var member = new Member()
+			{
+				MaritalStatus = generator.Generate<string>(),
+				SpouseName = generator.Generate<string>(),
+				Status = Member.MemberStatus.Active,
+				Type = Member.MemberType.Member,
+				ChurchDesignationId = generator.Generate<int>()
+			};
+
+			// Act
+			var response = memberService.AddMember(member);
+
+			// Assert
+			mockUnitOfWork.VerifyAll();
+
+			Assert.IsTrue(member.Id == 0);
+			Assert.AreEqual(response.Errors.Count(), 5);
 		}
 	}
 }

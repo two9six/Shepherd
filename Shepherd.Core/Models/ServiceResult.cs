@@ -2,15 +2,15 @@
 
 namespace Shepherd.Core.Models
 {
-	public sealed class ServiceResult
+	public sealed class ServiceResponse
 	{
-		public int Id { get; set; }
+		public string Message { get; set; }
 
-		public List<ValidationResult> ValidationResults { get; set; }
+		public IEnumerable<string> Errors { get; set; }
 
-		public ServiceResult()
+		public ServiceResponse()
 		{
-			this.ValidationResults = new List<ValidationResult>();
+			this.Errors = new List<string>();
 		}
 	}
 }

@@ -47,7 +47,6 @@
     <Compile Include="Infrastructure\IoC.cs" />
     <Compile Include="Models\ServiceResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
