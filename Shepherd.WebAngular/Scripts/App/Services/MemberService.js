@@ -24,24 +24,24 @@
 
             member.ChurchId = "GUAXXX";
             member.Gender = "M";
-            member.Citizenship = "Filipino";
-            member.Address = {
-                AddressLine1: "",
-                AddressLine2: "",
-                City: "",
-                StateProvince: "",
-                Country: ""
-            };
+            //member.Citizenship = "Filipino";
+            //member.Address = {
+            //    AddressLine1: "",
+            //    AddressLine2: "",
+            //    City: "",
+            //    StateProvince: "",
+            //    Country: ""
+            //};
             member.Baptizer = {
                 Id: "1"
             };
             member.MaritalStatus = "Single";
-            member.SpouseName = "";
-            member.ContactInformation = {
-                LandLine: "",
-                MobileNumber: "",
-                Email: ""
-            };
+            //member.SpouseName = "";
+            //member.ContactInformation = {
+            //    LandLine: "",
+            //    MobileNumber: "",
+            //    Email: ""
+            //};
             member.StatusId = "1";
             member.MemberTypeId = "1";
             member.ChurchDesignationId = "1";
@@ -51,7 +51,6 @@
 
 
             var apiUrl = baseUrl + "api/Member/AddMember";
-
             var deferred = $q.defer();
 
 
