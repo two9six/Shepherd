@@ -21,9 +21,9 @@ namespace Shepherd.Domain.Contracts.Models.Members
 
 		void Fetch(int memberId);
 
-		ProcessResult Add();
+		ServiceResult Add();
 
-		ProcessResult Update();
+		ServiceResult Update();
 
 		void Delete(int memberId);
 	}

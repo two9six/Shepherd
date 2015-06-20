@@ -45,7 +45,7 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Infrastructure\IoC.cs" />
-    <Compile Include="Models\ProcessResult.cs" />
+    <Compile Include="Models\ServiceResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ValidationResult.cs" />
   </ItemGroup>

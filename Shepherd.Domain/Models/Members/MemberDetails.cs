@@ -44,7 +44,7 @@ namespace Shepherd.Domain.Models.Members
 			{
 				this.MemberId = member.Id;
 				this.ChurchId = member.ChurchId;
-				this.DateBabtized = member.DateBabtized;
+				this.DateBabtized = member.DateBaptized;
 
 				if (member.Person != null)
 				{
@@ -56,14 +56,14 @@ namespace Shepherd.Domain.Models.Members
 			}
 		}
 
-		public ProcessResult Add()
+		public ServiceResult Add()
 		{
-			return new ProcessResult();
+			return new ServiceResult();
 		}
 
-		public ProcessResult Update()
+		public ServiceResult Update()
 		{
-			var processResult = new ProcessResult();
+			var processResult = new ServiceResult();
 			processResult.ValidationResults = this.ValidateUpdate();
 
 			if (processResult.ValidationResults.Count() > 0)
@@ -84,7 +84,7 @@ namespace Shepherd.Domain.Models.Members
 			else
 			{
 				member.ChurchId = this.ChurchId;
-				member.DateBabtized = this.DateBabtized;
+				member.DateBaptized = this.DateBabtized;
 
 				member.Person.FirstName = this.FirstName;
 				member.Person.LastName = this.LastName;

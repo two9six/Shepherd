@@ -34,8 +34,8 @@ namespace Shepherd.Entities
         public string Country { get; set; }
         public System.DateTime DateCreated { get; set; }
         public int CreatedBy { get; set; }
-        public Nullable<System.DateTime> DateUpdated { get; set; }
-        public Nullable<int> UpdatedBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
     
         public virtual ICollection<Member> Members { get; set; }

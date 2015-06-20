@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShepherdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShepherdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Lookup">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,8 +30,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonId" Type="int" Nullable="false" />
           <Property Name="ChurchId" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="DateBabtized" Type="datetime" Nullable="false" />
-          <Property Name="BabtizedById" Type="int" Nullable="false" />
+          <Property Name="DateBaptized" Type="datetime" Nullable="false" />
+          <Property Name="BaptizedById" Type="int" Nullable="false" />
           <Property Name="MaritalStatus" Type="varchar" MaxLength="10" />
           <Property Name="SpouseName" Type="varchar" MaxLength="200" />
           <Property Name="LandLine" Type="varchar" MaxLength="50" />
@@ -42,8 +42,8 @@
           <Property Name="ChurchDesignationId" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="CreatedById" Type="int" Nullable="false" />
-          <Property Name="DateUpdated" Type="datetime" />
-          <Property Name="UpdatedById" Type="int" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedById" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
@@ -65,8 +65,8 @@
           <Property Name="Country" Type="varchar" MaxLength="100" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="DateUpdated" Type="datetime" />
-          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Lookup_LookupType">
@@ -107,8 +107,7 @@
             <End Role="Member" EntitySet="Member" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShepherdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -132,54 +131,6 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Lookups" Relationship="Self.FK_Lookup_LookupType" FromRole="LookupType" ToRole="Lookup" />
         </EntityType>
-        <EntityType Name="Member">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonId" Type="Int32" Nullable="false" />
-          <Property Name="ChurchId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DateBabtized" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="BabtizedById" Type="Int32" Nullable="false" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="SpouseName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="LandLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="MemberTypeId" Type="Int32" Nullable="false" />
-          <Property Name="ChurchDesignationId" Type="Int32" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedById" Type="Int32" Nullable="false" />
-          <Property Name="DateUpdated" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedById" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="Self.FK_Member_Person" FromRole="Member" ToRole="Person" />
-        </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PlaceOfBirth" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Citizenship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="StateProvince" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="DateUpdated" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_Member_Person" FromRole="Person" ToRole="Member" />
-        </EntityType>
         <Association Name="FK_Lookup_LookupType">
           <End Role="LookupType" Type="Self.LookupType" Multiplicity="1" />
           <End Role="Lookup" Type="Self.Lookup" Multiplicity="*" />
@@ -192,9 +143,71 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="ShepherdContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lookups" EntityType="Self.Lookup" />
+          <EntitySet Name="LookupTypes" EntityType="Self.LookupType" />
+          <AssociationSet Name="FK_Lookup_LookupType" Association="Self.FK_Lookup_LookupType">
+            <End Role="LookupType" EntitySet="LookupTypes" />
+            <End Role="Lookup" EntitySet="Lookups" />
+          </AssociationSet>
+          <EntitySet Name="Members" EntityType="ShepherdModel.Member" />
+          <EntitySet Name="People" EntityType="ShepherdModel.Person" />
+          <AssociationSet Name="FK_Member_Person" Association="ShepherdModel.FK_Member_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="ChurchId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateBaptized" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BaptizedById" Type="Int32" Nullable="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SpouseName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LandLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="MemberTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ChurchDesignationId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedById" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="ShepherdModel.FK_Member_Person" FromRole="Member" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PlaceOfBirth" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Citizenship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StateProvince" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Person" FromRole="Person" ToRole="Member" />
+        </EntityType>
         <Association Name="FK_Member_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <End Type="ShepherdModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="Id" />
@@ -204,20 +217,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ShepherdContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Lookups" EntityType="Self.Lookup" />
-          <EntitySet Name="LookupTypes" EntityType="Self.LookupType" />
-          <EntitySet Name="Members" EntityType="Self.Member" />
-          <EntitySet Name="People" EntityType="Self.Person" />
-          <AssociationSet Name="FK_Lookup_LookupType" Association="Self.FK_Lookup_LookupType">
-            <End Role="LookupType" EntitySet="LookupTypes" />
-            <End Role="Lookup" EntitySet="Lookups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Member_Person" Association="Self.FK_Member_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Member" EntitySet="Members" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -247,48 +246,48 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ShepherdModel.Member">
               <MappingFragment StoreEntitySet="Member">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="ChurchId" ColumnName="ChurchId" />
-                <ScalarProperty Name="DateBabtized" ColumnName="DateBabtized" />
-                <ScalarProperty Name="BabtizedById" ColumnName="BabtizedById" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
-                <ScalarProperty Name="LandLine" ColumnName="LandLine" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="MemberTypeId" ColumnName="MemberTypeId" />
-                <ScalarProperty Name="ChurchDesignationId" ColumnName="ChurchDesignationId" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ChurchDesignationId" ColumnName="ChurchDesignationId" />
+                <ScalarProperty Name="MemberTypeId" ColumnName="MemberTypeId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="LandLine" ColumnName="LandLine" />
+                <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="BaptizedById" ColumnName="BaptizedById" />
+                <ScalarProperty Name="DateBaptized" ColumnName="DateBaptized" />
+                <ScalarProperty Name="ChurchId" ColumnName="ChurchId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="ShepherdModel.Person">
               <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="StateProvince" ColumnName="StateProvince" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="StateProvince" ColumnName="StateProvince" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

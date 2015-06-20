@@ -2,13 +2,13 @@
 
 namespace Shepherd.Core.Models
 {
-	public sealed class ProcessResult
+	public sealed class ServiceResult
 	{
 		public int Id { get; set; }
 
 		public List<ValidationResult> ValidationResults { get; set; }
 
-		public ProcessResult()
+		public ServiceResult()
 		{
 			this.ValidationResults = new List<ValidationResult>();
 		}

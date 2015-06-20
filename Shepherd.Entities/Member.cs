@@ -17,8 +17,8 @@ namespace Shepherd.Entities
         public int Id { get; set; }
         public int PersonId { get; set; }
         public string ChurchId { get; set; }
-        public System.DateTime DateBabtized { get; set; }
-        public int BabtizedById { get; set; }
+        public System.DateTime DateBaptized { get; set; }
+        public int BaptizedById { get; set; }
         public string MaritalStatus { get; set; }
         public string SpouseName { get; set; }
         public string LandLine { get; set; }
@@ -29,8 +29,8 @@ namespace Shepherd.Entities
         public int ChurchDesignationId { get; set; }
         public System.DateTime DateCreated { get; set; }
         public int CreatedById { get; set; }
-        public Nullable<System.DateTime> DateUpdated { get; set; }
-        public Nullable<int> UpdatedById { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public Nullable<int> ModifiedById { get; set; }
         public bool IsDeleted { get; set; }
     
         public virtual Person Person { get; set; }

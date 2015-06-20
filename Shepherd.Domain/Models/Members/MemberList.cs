@@ -33,7 +33,7 @@ namespace Shepherd.Domain.Models.Members
 				.FindBy(_ =>
 					_.Person.LastName.Contains(criteria.LastName) &&
 					_.Person.FirstName.Contains(criteria.FirstName) &&
-					_.DateBabtized > criteria.DateBabtizedFrom && _.DateBabtized <= criteria.DateBabtizedTo)
+					_.DateBaptized > criteria.DateBabtizedFrom && _.DateBaptized <= criteria.DateBabtizedTo)
 				.OrderBy(_ => _.Person.LastName);
 
 			foreach (var member in members)

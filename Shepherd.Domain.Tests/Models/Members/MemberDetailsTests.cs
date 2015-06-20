@@ -103,7 +103,7 @@ namespace Shepherd.Domain.Tests.Models.Members
 			{
 				_.Id = generator.Generate<int>();
 				_.ChurchId = generator.Generate<string>();
-				_.DateBabtized = generator.Generate<DateTime>();
+				_.DateBaptized = generator.Generate<DateTime>();
 				_.Person = EntityCreator.Create<SE.Person>(__ =>
 				{
 					__.LastName = generator.Generate<string>();
@@ -134,7 +134,7 @@ namespace Shepherd.Domain.Tests.Models.Members
 			{
 				MemberId = expectedMember.Id,
 				ChurchId = expectedMember.ChurchId,
-				DateBabtized = expectedMember.DateBabtized,
+				DateBabtized = expectedMember.DateBaptized,
 				LastName = expectedMember.Person.LastName,
 				FirstName = expectedMember.Person.FirstName,
 				MiddleName = expectedMember.Person.MiddleName,
@@ -164,7 +164,7 @@ namespace Shepherd.Domain.Tests.Models.Members
 
 			Assert.AreEqual(memberDetails.FirstName, savedMember.Person.FirstName);
 			Assert.AreEqual(memberDetails.ChurchId, savedMember.ChurchId);
-			Assert.AreEqual(memberDetails.DateBabtized, savedMember.DateBabtized);
+			Assert.AreEqual(memberDetails.DateBabtized, savedMember.DateBaptized);
 			Assert.IsTrue(isMemberUpdated);
 		}
 
@@ -209,7 +209,7 @@ namespace Shepherd.Domain.Tests.Models.Members
 			{
 				_.Id = generator.Generate<int>();
 				_.ChurchId = generator.Generate<string>();
-				_.DateBabtized = generator.Generate<DateTime>();
+				_.DateBaptized = generator.Generate<DateTime>();
 				_.Person = null;
 			});
 

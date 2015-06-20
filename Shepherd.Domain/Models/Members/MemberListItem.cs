@@ -28,7 +28,7 @@ namespace Shepherd.Domain.Models.Members
 			{
 				this.MemberId = entity.Id;
 				this.Name = string.Format("{0} {1}", entity.Person.FirstName, entity.Person.LastName);
-				this.AgeInSpirit = DateTimeHelpers.ComputeAge(entity.DateBabtized);
+				this.AgeInSpirit = DateTimeHelpers.ComputeAge(entity.DateBaptized);
 
 				var lookup = unitOfWork.LookupRepository.GetById(entity.StatusId);
 				if (lookup != null)

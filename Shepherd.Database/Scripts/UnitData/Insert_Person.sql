@@ -2,12 +2,12 @@
 GO
 PRINT 'Insert Person'
 
-;WITH Person_CTE (Id, FirstName, LastName, MiddleName, BirthDate, PlaceOfBirth, Gender, Citizenship, AddressLine1, AddressLine2, City, StateProvince, Country, DateCreated, CreatedBy, IsDeleted) AS 
+;WITH Person_CTE (Id, FirstName, LastName, MiddleName, BirthDate, PlaceOfBirth, Gender, Citizenship, AddressLine1, AddressLine2, City, StateProvince, Country, CreatedBy, IsDeleted) AS 
 (
-				  SELECT 1, 'Gideon', 'Jura', NULL, DATEADD(YEAR, -20, GETDATE()), 'Makati', 'M', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', GETDATE(), 1, 0
-			UNION SELECT 2, 'Jace', 'Beleren', NULL, DATEADD(YEAR, -21, GETDATE()), 'Makati', 'M', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', GETDATE(), 1, 0
-			UNION SELECT 3, 'Elspeth', 'Tirel', NULL, DATEADD(YEAR, -22, GETDATE()), 'Taguig', 'F', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', GETDATE(), 1, 0
-			UNION SELECT 4, 'Liliana', 'Vess', NULL, DATEADD(YEAR, -23, GETDATE()), 'Taguig', 'F', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', GETDATE(), 1, 0
+				  SELECT 1, 'Gideon', 'Jura', NULL, DATEADD(YEAR, -20, GETDATE()), 'Makati', 'M', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', 1, 0
+			UNION SELECT 2, 'Jace', 'Beleren', NULL, DATEADD(YEAR, -21, GETDATE()), 'Makati', 'M', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', 1, 0
+			UNION SELECT 3, 'Elspeth', 'Tirel', NULL, DATEADD(YEAR, -22, GETDATE()), 'Taguig', 'F', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', 1, 0
+			UNION SELECT 4, 'Liliana', 'Vess', NULL, DATEADD(YEAR, -23, GETDATE()), 'Taguig', 'F', 'Filipino', 'Test Address Line 1', 'Test Address Line 2', 'Makati', 'NCR', 'Philippines', 1, 0
 )
 MERGE INTO Person
 	  USING Person_CTE as cte
@@ -26,12 +26,11 @@ MERGE INTO Person
 				,Person.City = cte.City
 				,Person.StateProvince = cte.StateProvince
 				,Person.Country = cte.Country
-				,Person.DateCreated = cte.DateCreated
 				,Person.CreatedBy = cte.CreatedBy
 				,Person.IsDeleted = cte.IsDeleted
 	  WHEN NOT MATCHED BY TARGET THEN 
-			INSERT (Id, FirstName, LastName, MiddleName, BirthDate, PlaceOfBirth, Gender, Citizenship, AddressLine1, AddressLine2, City, StateProvince, Country, DateCreated, CreatedBy, IsDeleted) 
-			VALUES (cte.Id, cte.FirstName, cte.LastName, cte.MiddleName, cte.BirthDate, cte.PlaceOfBirth, cte.Gender, cte.Citizenship, cte.AddressLine1, cte.AddressLine2, cte.City, cte.StateProvince, cte.Country, cte.DateCreated, cte.CreatedBy, cte.IsDeleted)
+			INSERT (Id, FirstName, LastName, MiddleName, BirthDate, PlaceOfBirth, Gender, Citizenship, AddressLine1, AddressLine2, City, StateProvince, Country, CreatedBy, IsDeleted) 
+			VALUES (cte.Id, cte.FirstName, cte.LastName, cte.MiddleName, cte.BirthDate, cte.PlaceOfBirth, cte.Gender, cte.Citizenship, cte.AddressLine1, cte.AddressLine2, cte.City, cte.StateProvince, cte.Country, cte.CreatedBy, cte.IsDeleted)
 	  WHEN NOT MATCHED BY SOURCE THEN 
 			DELETE;
 

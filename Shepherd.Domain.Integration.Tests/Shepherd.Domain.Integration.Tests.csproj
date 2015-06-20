@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBCC0A3F-9190-45C4-BA50-826483318862}</ProjectGuid>
+    <ProjectGuid>{53BEDF64-6C08-46A9-8B48-5FE0E3928E70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shepherd.Domain.Tests</RootNamespace>
-    <AssemblyName>Shepherd.Domain.Tests</AssemblyName>
+    <RootNamespace>Shepherd.Domain.Integration.Tests</RootNamespace>
+    <AssemblyName>Shepherd.Domain.Integration.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,25 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="Spackle">
-      <HintPath>..\packages\Spackle.7.1.0.0\lib\NET4.0\Spackle.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -68,35 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Models\Members\MemberDetailsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MemberServiceTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shepherd.Core\Shepherd.Core.csproj">
-      <Project>{e2118038-9107-446c-97c9-f12c1a7e712d}</Project>
-      <Name>Shepherd.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Data\Shepherd.Data.csproj">
-      <Project>{75c43176-bd06-4a87-a40d-80b891da33b5}</Project>
-      <Name>Shepherd.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Domain\Shepherd.Domain.csproj">
-      <Project>{c4c0d4dd-5d62-4ba0-b4a6-7fb5bbf7156c}</Project>
-      <Name>Shepherd.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Entities\Shepherd.Entities.csproj">
-      <Project>{e358161b-e0b1-42ad-a2a1-2becda696c8c}</Project>
-      <Name>Shepherd.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Testing\Shepherd.Testing.csproj">
-      <Project>{9969ba6e-91a3-4507-94c5-ed0f9725ea5b}</Project>
-      <Name>Shepherd.Testing</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
