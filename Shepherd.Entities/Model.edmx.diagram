@@ -4,7 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
       <Diagram DiagramId="763d1758034d4447a8abcc6a2ce033e5" Name="Diagram1" ZoomLevel="80">
+=======
+      <Diagram DiagramId="763d1758034d4447a8abcc6a2ce033e5" Name="Diagram1" ZoomLevel="31">
+>>>>>>> origin/master
         <EntityTypeShape EntityType="ShepherdModel.Lookup" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ShepherdModel.LookupType" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="ShepherdModel.FK_Lookup_LookupType" ManuallyRouted="false" />

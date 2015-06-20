@@ -16,7 +16,7 @@ namespace Shepherd.Data.Infrastructure
 			{
 				if (context == null)
 				{
-					context = new ShepherdContext();
+                    context = new ShepherdContext();
 				}
 				return context;
 			}

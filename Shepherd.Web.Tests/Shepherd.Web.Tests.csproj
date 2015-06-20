@@ -51,13 +51,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shepherd.Web\Shepherd.Web.csproj">
-      <Project>{6EA4DF75-22F8-498C-BD65-7237C0E2CCDE}</Project>
-      <Name>Shepherd.Web</Name>
-    </ProjectReference>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\Shepherd.Web\Shepherd.Web.csproj">
+      <Project>{6ea4df75-22f8-498c-bd65-7237c0e2ccde}</Project>
+      <Name>Shepherd.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
