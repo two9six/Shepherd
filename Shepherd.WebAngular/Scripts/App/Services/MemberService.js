@@ -71,7 +71,17 @@
         }
 
         var updateMember = function (id, member) {
-            return;
+
+            var apiUrl = baseUrl + "api/Members/" + id;
+            var deferred = $q.defer;
+
+            $http.put(apiUrl, member).then(function (response) {
+                deferred.resolve(response);
+            }, function (response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
         }
 
         return {
