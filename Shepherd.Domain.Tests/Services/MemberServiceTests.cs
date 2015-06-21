@@ -67,13 +67,15 @@ namespace Shepherd.Domain.Tests.Services
 
 		[TestMethod]
 		public void AddMember_WithEmptyRequiredFields_RespondWithValidationErrors()
-		{
+		{	
 			// Arrange
+			const int ExpectedValidationError = 5;
 			var generator = new RandomObjectGenerator();
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
 
 			var memberService = new MemberService(mockUnitOfWork.Object);
 
+			
 			var member = new Member()
 			{
 				MaritalStatus = generator.Generate<string>(),
@@ -90,7 +92,7 @@ namespace Shepherd.Domain.Tests.Services
 			mockUnitOfWork.VerifyAll();
 
 			Assert.IsTrue(member.Id == 0);
-			Assert.AreEqual(response.Errors.Count(), 5);
+			Assert.AreEqual(response.Errors.Count(), ExpectedValidationError);
 		}
 	}
 }

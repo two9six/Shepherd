@@ -38,6 +38,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Exceptions\AuthorizationFailedException.cs" />
+    <Compile Include="Common\Exceptions\RequiredDetailsException.cs" />
+    <Compile Include="Common\Exceptions\BusinessLogicException.cs" />
+    <Compile Include="Common\Exceptions\ModelNotFoundException.cs" />
     <Compile Include="Common\Identifiers.cs" />
     <Compile Include="Contracts\Infrastructure\IContainerBuilderComposition.cs" />
     <Compile Include="Infrastructure\CoreContainerBuilderComposition.cs" />
