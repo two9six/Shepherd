@@ -50,11 +50,15 @@
             console.log(member);
 
 
-            var apiUrl = baseUrl + "api/Member/AddMember";
+            var apiUrl = baseUrl + "api/Members/";
             var deferred = $q.defer();
 
 
-            $http.post(apiUrl, member).then(function (response) {
+            var addMemberRequest = {
+                Member: member
+            };
+
+            $http.post(apiUrl, addMemberRequest).then(function (response) {
                 deferred.resolve(response);
             }, function (response) {
                 deferred.reject(response);
