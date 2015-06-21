@@ -1,14 +1,9 @@
 ﻿using Shepherd.Domain.Contracts.Services;
-using Shepherd.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Cors;
 using Shepherd.WebApi.Infrastructure.Extensions;
 using Shepherd.WebApi.Models;
+using System;
+using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Shepherd.WebApi.Controllers
 {
@@ -29,15 +24,20 @@ namespace Shepherd.WebApi.Controllers
 		}
 
 		[HttpPost]
-		public HttpResponseMessage Post([FromBody]AddMemberRequest request)
+		public AddMemberResponse Post([FromBody]AddMemberRequest request)
 		{
 			try
 			{
-				_memberService.AddMember(request.Member);
+				// TODO: We should deserializing the request back to domain object
+				var member = request.Member;
 
-				var response = new HttpResponseMessage(HttpStatusCode.OK);
-				response.Content = new StringContent(request.Member.Id.ToString());
-				return response;
+				_memberService.AddMember(member);
+
+				return new AddMemberResponse
+				{
+					MemberId = member.Id,
+					Message = string.Format("{0} {1} has been added.", member.FirstName, member.LastName)
+				};
 			}
 			catch(Exception ex)
 			{
