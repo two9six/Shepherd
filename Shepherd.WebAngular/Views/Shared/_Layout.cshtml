@@ -40,6 +40,13 @@
     </div>
 
 
+    
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jasmine/lib/jasmine-core/jasmine.css">
+
+    <script type="text/javascript" src="~/Scripts/jasmine/lib/jasmine-core/jasmine.js"></script>
+    <script type="text/javascript" src="~/Scripts/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+    <script type="text/javascript" src="~/Scripts/jasmine/lib/jasmine-core/boot.js"></script>
+
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
@@ -52,6 +59,15 @@
     <script src="~/Scripts/App/Controllers/Members/MembersAddController.js"></script>
     <script src="~/Scripts/App/Controllers/Members/MembersIndexController.js"></script>
     <script src="~/Scripts/App/Controllers/Members/MembersDetailController.js"></script>
+
+
+    <script>
+        describe("A suite", function () {
+            it("contains spec with an expectation", function () {
+                expect(true).toBe(true);
+            });
+        });
+    </script>
 
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
