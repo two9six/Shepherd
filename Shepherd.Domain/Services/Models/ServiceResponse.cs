@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Shepherd.Core.Models
+namespace Shepherd.Domain.Services.Models
 {
-	public sealed class ServiceResponse
+	public class ServiceResponse
 	{
 		public string Message { get; set; }
 

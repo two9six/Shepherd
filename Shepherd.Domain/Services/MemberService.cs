@@ -1,8 +1,9 @@
-﻿using Shepherd.Core.Models;
-using Shepherd.Data.Contracts.Infrastructure;
+﻿using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Domain.Constants;
 using Shepherd.Domain.Contracts.Services;
 using Shepherd.Domain.Models;
+using Shepherd.Domain.Models.SearchCriteria;
+using Shepherd.Domain.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,6 +67,24 @@ namespace Shepherd.Domain.Services
 			member.Id = createdMember.Id;
 
 			return serviceResponse;
+		}
+
+		public GetMembersServiceResponse GetMembers(SearchMembersCriteria criteria)
+		{
+			var members = unitOfWork.MemberRepository
+				.FindBy(_ => _.Person.FirstName.Contains(criteria.FirstName))
+				.OrderByDescending(_ => _.DateCreated)
+				.Select(_ => new Member()
+				{
+					ChurchId = _.ChurchId,
+					FirstName = _.Person.FirstName,
+					LastName = _.Person.LastName
+				}).ToList();
+
+			return new GetMembersServiceResponse
+			{
+				Members = members
+			};
 		}
 
 		private bool IsValidateAddMember(Member member, ServiceResponse response)

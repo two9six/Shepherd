@@ -5,6 +5,7 @@ using Shepherd.Domain.Models;
 using Spackle;
 using Shepherd.Data.Infrastructure;
 using System.Linq;
+using Shepherd.Domain.Models.SearchCriteria;
 
 namespace Shepherd.Domain.Integration.Tests.Services
 {
@@ -41,6 +42,38 @@ namespace Shepherd.Domain.Integration.Tests.Services
 			var result = memberService.AddMember(member);
 
 			Assert.AreEqual(result.Errors.ToList().Count, 0);
+		}
+
+		[TestMethod]
+		public void GetMembers_UsingValidFirstNameCriteria_RetrievesOneRecord()
+		{
+			var generator = new RandomObjectGenerator();
+
+			var unitOfWork = new UnitOfWork();
+			var searchMembersCriteria = new SearchMembersCriteria { FirstName = "Liliana" };
+			var memberService = new MemberService(unitOfWork);
+
+			// Act
+			var result = memberService.GetMembers(searchMembersCriteria);
+
+			Assert.AreEqual(result.Errors.Count(), 0);
+			Assert.AreEqual(result.Members.Count(), 1);
+		}
+
+		[TestMethod]
+		public void GetMembers_UsingEmptyFirstNameCriteria_RetrievesAllRecord()
+		{
+			var generator = new RandomObjectGenerator();
+
+			var unitOfWork = new UnitOfWork();
+			var searchMembersCriteria = new SearchMembersCriteria { FirstName = "" };
+			var memberService = new MemberService(unitOfWork);
+
+			// Act
+			var result = memberService.GetMembers(searchMembersCriteria);
+
+			Assert.AreEqual(result.Errors.Count(), 0);
+			Assert.IsTrue(result.Members.Count() > 1);
 		}
 	}
 }
