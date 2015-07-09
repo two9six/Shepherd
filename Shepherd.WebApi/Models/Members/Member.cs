@@ -1,9 +1,10 @@
-﻿using Shepherd.Domain.Models.Common;
+﻿using Shepherd.WebApi.Infrastructure.Contracts;
 using System;
+using System.Collections.Generic;
 
-namespace Shepherd.Domain.Models
+namespace Shepherd.WebApi.Models.Members
 {
-	public class Member
+	public class Member : IValidatable
 	{
 		public int Id { get; set; }
 
@@ -35,11 +36,11 @@ namespace Shepherd.Domain.Models
 
 		public ContactInformation ContactInformation { get; set; }
 
-		public MemberStatus Status { get; set; }
+		public string Status { get; set; }
 
-		public MemberType Type { get; set; }
+		public string Type { get; set; }
 
-		public ChurchDesignation Designation { get; set; }
+		public string Designation { get; set; }
 
 		public int CreatedBy { get; set; }
 
@@ -49,35 +50,9 @@ namespace Shepherd.Domain.Models
 
 		public DateTime? DateModified { get; set; }
 
-		public Member()
+		public IList<string> GetValidationErrors()
 		{
-			this.Address = new Address();
-			this.Baptizer = new Baptizer();
-			this.ContactInformation = new ContactInformation();
-			this.Status = MemberStatus.Active;
-			this.Type = MemberType.Member;
-			this.Designation = ChurchDesignation.Member;
-		}
-
-		public enum MemberStatus
-		{
-			Active = 1,
-			InActive = 2,
-			Suspended = 3,
-			Excommunicated = 4
-		}
-
-		public enum MemberType
-		{
-			Member = 25,
-			Officer = 26,
-			Worker = 27
-		}
-
-		public enum ChurchDesignation
-		{
-			Member = 28,
-			Deacon = 29
+			throw new NotImplementedException();
 		}
 	}
 }

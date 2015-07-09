@@ -2,8 +2,10 @@
 using Shepherd.Domain.Constants;
 using Shepherd.Domain.Contracts.Services;
 using Shepherd.Domain.Models;
-using Shepherd.Domain.Models.SearchCriteria;
+using Shepherd.Domain.Models.Common;
 using Shepherd.Domain.Services.Models;
+using Shepherd.Domain.Services.Models.Criteria;
+using Shepherd.Domain.Services.Models.ServiceResponses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +42,7 @@ namespace Shepherd.Domain.Services
 				Email = member.ContactInformation.Email,
 				StatusId = (int)member.Status,
 				MemberTypeId = (int)member.Type,
-				ChurchDesignationId = member.ChurchDesignationId,
+				ChurchDesignationId = (int)member.Designation,
 				DateCreated = DateTime.Now,
 				Person = new Entities.Person
 				{
@@ -69,16 +71,49 @@ namespace Shepherd.Domain.Services
 			return serviceResponse;
 		}
 
-		public GetMembersServiceResponse GetMembers(SearchMembersCriteria criteria)
+		public GetMembersServiceResponse GetMembers(GetMembersCriteria criteria)
 		{
 			var members = unitOfWork.MemberRepository
 				.FindBy(_ => _.Person.FirstName.Contains(criteria.FirstName))
 				.OrderByDescending(_ => _.DateCreated)
 				.Select(_ => new Member()
 				{
+					Id = _.Id,
 					ChurchId = _.ChurchId,
 					FirstName = _.Person.FirstName,
-					LastName = _.Person.LastName
+					LastName = _.Person.LastName,
+					MiddleName = _.Person.MiddleName,
+					BirthDate = _.Person.BirthDate,
+					PlaceOfBirth = _.Person.PlaceOfBirth,
+					Gender = _.Person.Gender,
+					Citizenship = _.Person.Citizenship,
+					Address = new Address
+					{
+						AddressLine1 = _.Person.AddressLine1,
+						AddressLine2 = _.Person.AddressLine2,
+						City = _.Person.City,
+						StateProvince = _.Person.StateProvince,
+						Country = _.Person.Country
+					},
+					Baptizer = new Baptizer
+					{
+						Id = _.BaptizedById
+					},
+					MaritalStatus = _.MaritalStatus,
+					SpouseName = _.SpouseName,
+					ContactInformation = new ContactInformation
+					{
+						LandLine = _.LandLine,
+						MobileNumber = _.MobileNumber,
+						Email = _.Email
+					},
+					Status = (Member.MemberStatus)_.StatusId,
+					Type = (Member.MemberType)_.MemberTypeId,
+					Designation = (Member.ChurchDesignation)_.ChurchDesignationId,
+					CreatedBy = _.CreatedBy,
+					DateCreated = _.DateCreated,
+					ModifiedBy = _.ModifiedBy,
+					DateModified = _.DateModified
 				}).ToList();
 
 			return new GetMembersServiceResponse

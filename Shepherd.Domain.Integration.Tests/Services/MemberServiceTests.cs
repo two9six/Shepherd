@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shepherd.Domain.Services;
-using Shepherd.Domain.Models;
-using Spackle;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shepherd.Data.Infrastructure;
+using Shepherd.Domain.Models;
+using Shepherd.Domain.Services;
+using Shepherd.Domain.Services.Models.Criteria;
+using Spackle;
+using System;
 using System.Linq;
-using Shepherd.Domain.Models.SearchCriteria;
 
 namespace Shepherd.Domain.Integration.Tests.Services
 {
@@ -35,7 +35,7 @@ namespace Shepherd.Domain.Integration.Tests.Services
 				},
 				Status = Member.MemberStatus.Active,
 				Type = Member.MemberType.Member,
-				ChurchDesignationId = 1
+				Designation = Member.ChurchDesignation.Member
 			};
 
 			// Act
@@ -50,7 +50,7 @@ namespace Shepherd.Domain.Integration.Tests.Services
 			var generator = new RandomObjectGenerator();
 
 			var unitOfWork = new UnitOfWork();
-			var searchMembersCriteria = new SearchMembersCriteria { FirstName = "Liliana" };
+			var searchMembersCriteria = new GetMembersCriteria { FirstName = "Liliana" };
 			var memberService = new MemberService(unitOfWork);
 
 			// Act
@@ -66,7 +66,7 @@ namespace Shepherd.Domain.Integration.Tests.Services
 			var generator = new RandomObjectGenerator();
 
 			var unitOfWork = new UnitOfWork();
-			var searchMembersCriteria = new SearchMembersCriteria { FirstName = "" };
+			var searchMembersCriteria = new GetMembersCriteria { FirstName = "" };
 			var memberService = new MemberService(unitOfWork);
 
 			// Act

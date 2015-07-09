@@ -1,6 +1,6 @@
 ﻿using Shepherd.Domain.Contracts.Services;
 using Shepherd.WebApi.Infrastructure.Extensions;
-using Shepherd.WebApi.Models;
+using Shepherd.WebApi.Models.Members;
 using System;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -28,8 +28,25 @@ namespace Shepherd.WebApi.Controllers
 		{
 			try
 			{
-				// TODO: We should deserializing the request back to domain object
-				var member = request.Member;
+				var member = new Domain.Models.Member()
+				{
+					ChurchId = request.Member.ChurchId,
+					FirstName = request.Member.FirstName,
+					LastName = request.Member.LastName,
+					MiddleName = request.Member.MiddleName,
+					BirthDate = request.Member.BirthDate,
+					PlaceOfBirth = request.Member.PlaceOfBirth,
+					Gender = request.Member.Gender,
+					Citizenship = request.Member.Citizenship,
+					Address = request.Member.Address.ToDomainObject(),
+					DateBaptized = request.Member.DateBaptized,
+					Baptizer = request.Member.Baptizer.ToDomainObject(),
+					MaritalStatus = request.Member.MaritalStatus,
+					SpouseName = request.Member.SpouseName,
+					ContactInformation = request.Member.ContactInformation.ToDomainObject()
+				};
+
+				// TODO: Convert Status, Types and Designation
 
 				_memberService.AddMember(member);
 

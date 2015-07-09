@@ -1,8 +1,7 @@
-﻿using Shepherd.Domain.Models;
-using Shepherd.WebApi.Infrastructure.Contracts;
+﻿using Shepherd.WebApi.Infrastructure.Contracts;
 using System.Collections.Generic;
 
-namespace Shepherd.WebApi.Models
+namespace Shepherd.WebApi.Models.Members
 {
 	public class AddMemberRequest : IValidatable
 	{

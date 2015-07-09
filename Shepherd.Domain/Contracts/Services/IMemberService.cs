@@ -1,6 +1,6 @@
 ﻿using Shepherd.Domain.Models;
-using Shepherd.Domain.Models.SearchCriteria;
-using Shepherd.Domain.Services.Models;
+using Shepherd.Domain.Services.Models.Criteria;
+using Shepherd.Domain.Services.Models.ServiceResponses;
 
 namespace Shepherd.Domain.Contracts.Services
 {
@@ -8,6 +8,6 @@ namespace Shepherd.Domain.Contracts.Services
 	{
 		ServiceResponse AddMember(Member member);
 
-		GetMembersServiceResponse GetMembers(SearchMembersCriteria getMembersCriteria);
+		GetMembersServiceResponse GetMembers(GetMembersCriteria getMembersCriteria);
 	}
 }

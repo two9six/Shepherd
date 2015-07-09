@@ -58,13 +58,13 @@
     <Compile Include="Models\Baptizer.cs" />
     <Compile Include="Models\Common\Address.cs" />
     <Compile Include="Models\Common\ContactInformation.cs" />
-    <Compile Include="Services\Models\GetMembersServiceResponse.cs" />
-    <Compile Include="Services\Models\ServiceResponse.cs" />
+    <Compile Include="Services\Models\ServiceResponses\GetMembersServiceResponse.cs" />
+    <Compile Include="Services\Models\ServiceResponses\ServiceResponse.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Contracts\Infrastructure\IModelListBase.cs" />
     <Compile Include="Contracts\Infrastructure\IModelListItemBase.cs" />
     <Compile Include="Infrastructure\ModelListBase.cs" />
-    <Compile Include="Models\SearchCriteria\SearchMembersCriteria.cs" />
+    <Compile Include="Services\Models\Criteria\GetMembersCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Lookup\LookupSelectListService.cs" />
     <Compile Include="Services\MemberService.cs" />

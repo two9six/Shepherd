@@ -4,10 +4,13 @@ using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Contracts.Repository;
 using Shepherd.Domain.Models;
 using Shepherd.Domain.Services;
+using Shepherd.Domain.Services.Models.Criteria;
 using Spackle;
 using System;
-using SE = Shepherd.Entities;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using SE = Shepherd.Entities;
 
 namespace Shepherd.Domain.Tests.Services
 {
@@ -52,7 +55,7 @@ namespace Shepherd.Domain.Tests.Services
 				SpouseName = generator.Generate<string>(),
 				Status = Member.MemberStatus.Active,
 				Type = Member.MemberType.Member,
-				ChurchDesignationId = generator.Generate<int>()
+				Designation = Member.ChurchDesignation.Member
 			};
 
 			// Act
@@ -82,7 +85,7 @@ namespace Shepherd.Domain.Tests.Services
 				SpouseName = generator.Generate<string>(),
 				Status = Member.MemberStatus.Active,
 				Type = Member.MemberType.Member,
-				ChurchDesignationId = generator.Generate<int>()
+				Designation = Member.ChurchDesignation.Member
 			};
 
 			// Act
@@ -93,6 +96,55 @@ namespace Shepherd.Domain.Tests.Services
 
 			Assert.IsTrue(member.Id == 0);
 			Assert.AreEqual(response.Errors.Count(), ExpectedValidationError);
+		}
+
+		[TestMethod]
+		public void GetMembers_UsingValidSearchCriteria_SearchSuccessfully()
+		{
+			// Arrange
+			var generator = new RandomObjectGenerator();
+			var expectedMembers = new List<SE.Member> { 
+				new SE.Member 
+				{					
+					Id = Math.Abs(generator.Generate<int>()),
+					StatusId = (int)Member.MemberStatus.Active,
+					MemberTypeId = (int)Member.MemberType.Member,
+					ChurchDesignationId = (int)Member.ChurchDesignation.Member,
+					Person = new SE.Person
+					{
+						Id = Math.Abs(generator.Generate<int>()),
+						FirstName = generator.Generate<string>(),
+						LastName = generator.Generate<string>()
+					}
+				}
+			};
+
+			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
+			mockMemberRepository
+				.Setup<IEnumerable<SE.Member>>(_ => _.FindBy(It.IsAny<Expression<Func<SE.Member, bool>>>()))
+				.Returns(expectedMembers);
+
+			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
+			mockUnitOfWork
+				.SetupGet<IMemberRepository>(_ => _.MemberRepository)
+				.Returns(mockMemberRepository.Object);
+
+			var memberService = new MemberService(mockUnitOfWork.Object);
+
+			var criteria = new GetMembersCriteria();
+
+			// Act
+			var result = memberService.GetMembers(criteria);
+
+			// Assert
+			mockMemberRepository.VerifyAll();
+			mockUnitOfWork.VerifyAll();
+
+			Assert.IsTrue(result.Errors.Count() == 0);
+			Assert.AreEqual(expectedMembers.Count, result.Members.Count());
+			Assert.AreEqual(Member.MemberStatus.Active, result.Members.ElementAt(0).Status);
+			Assert.AreEqual(Member.MemberType.Member, result.Members.ElementAt(0).Type);
+			Assert.AreEqual(Member.ChurchDesignation.Member, result.Members.ElementAt(0).Designation);
 		}
 	}
 }

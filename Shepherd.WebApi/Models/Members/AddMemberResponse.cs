@@ -1,6 +1,6 @@
 ﻿using Shepherd.WebApi.Infrastructure.Common;
 
-namespace Shepherd.WebApi.Models
+namespace Shepherd.WebApi.Models.Members
 {
 	public class AddMemberResponse : APIResponse
 	{

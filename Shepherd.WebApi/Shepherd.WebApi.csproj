@@ -163,6 +163,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Contracts\IDomainConvertible.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -172,8 +173,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddMemberRequest.cs" />
-    <Compile Include="Models\AddMemberResponse.cs" />
+    <Compile Include="Models\Members\AddMemberRequest.cs" />
+    <Compile Include="Models\Members\AddMemberResponse.cs" />
+    <Compile Include="Models\Members\Address.cs" />
+    <Compile Include="Models\Members\Baptizer.cs" />
+    <Compile Include="Models\Members\ContactInformation.cs" />
+    <Compile Include="Models\Members\GetMembersResponse.cs" />
+    <Compile Include="Models\Members\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
