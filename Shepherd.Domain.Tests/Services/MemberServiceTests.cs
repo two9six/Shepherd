@@ -108,8 +108,8 @@ namespace Shepherd.Domain.Tests.Services
 				{					
 					Id = Math.Abs(generator.Generate<int>()),
 					StatusId = (int)Member.MemberStatus.Active,
-					MemberTypeId = (int)Member.MemberType.Member,
-					ChurchDesignationId = (int)Member.ChurchDesignation.Member,
+					TypeId = (int)Member.MemberType.Member,
+					DesignationId = (int)Member.ChurchDesignation.Member,
 					Person = new SE.Person
 					{
 						Id = Math.Abs(generator.Generate<int>()),

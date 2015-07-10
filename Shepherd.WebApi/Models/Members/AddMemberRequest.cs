@@ -9,6 +9,8 @@ namespace Shepherd.WebApi.Models.Members
 
 		public IList<string> GetValidationErrors()
 		{
+			var errors = new List<string>();
+
 			return new List<string>();
 		}
 	}

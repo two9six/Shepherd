@@ -8,8 +8,8 @@
         <EntityTypeShape EntityType="ShepherdModel.Lookup" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ShepherdModel.LookupType" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="ShepherdModel.FK_Lookup_LookupType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="3" PointY="4" />
         <EntityTypeShape EntityType="ShepherdModel.Person" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="3" PointY="4" />
         <AssociationConnector Association="ShepherdModel.FK_Member_Person" />
       </Diagram>
     </edmx:Diagrams>

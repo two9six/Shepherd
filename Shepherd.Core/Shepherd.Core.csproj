@@ -44,6 +44,8 @@
     <Compile Include="Common\Exceptions\ModelNotFoundException.cs" />
     <Compile Include="Common\Identifiers.cs" />
     <Compile Include="Contracts\Infrastructure\IContainerBuilderComposition.cs" />
+    <Compile Include="Extensions\SafeCastExtensions.cs" />
+    <Compile Include="Helpers\DataValidator.cs" />
     <Compile Include="Infrastructure\CoreContainerBuilderComposition.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

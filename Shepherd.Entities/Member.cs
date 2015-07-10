@@ -25,8 +25,8 @@ namespace Shepherd.Entities
         public string MobileNumber { get; set; }
         public string Email { get; set; }
         public int StatusId { get; set; }
-        public int MemberTypeId { get; set; }
-        public int ChurchDesignationId { get; set; }
+        public int TypeId { get; set; }
+        public int DesignationId { get; set; }
         public System.DateTime DateCreated { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> DateModified { get; set; }

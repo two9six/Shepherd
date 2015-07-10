@@ -10,7 +10,6 @@ namespace Shepherd.WebApi.Controllers
 	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class MembersController : ApiController
 	{
-
 		private readonly IMemberService _memberService;
 
 		public MembersController(IMemberService memberService)
@@ -28,6 +27,8 @@ namespace Shepherd.WebApi.Controllers
 		{
 			try
 			{
+
+
 				var member = new Domain.Models.Member()
 				{
 					ChurchId = request.Member.ChurchId,

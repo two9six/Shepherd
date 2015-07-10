@@ -27,7 +27,7 @@ namespace Shepherd.Entities
     
         public virtual DbSet<Lookup> Lookups { get; set; }
         public virtual DbSet<LookupType> LookupTypes { get; set; }
-        public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
     }
 }

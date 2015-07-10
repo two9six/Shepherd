@@ -41,8 +41,8 @@ namespace Shepherd.Domain.Services
 				MobileNumber = member.ContactInformation.MobileNumber,
 				Email = member.ContactInformation.Email,
 				StatusId = (int)member.Status,
-				MemberTypeId = (int)member.Type,
-				ChurchDesignationId = (int)member.Designation,
+				TypeId = (int)member.Type,
+				DesignationId = (int)member.Designation,
 				DateCreated = DateTime.Now,
 				Person = new Entities.Person
 				{
@@ -108,8 +108,8 @@ namespace Shepherd.Domain.Services
 						Email = _.Email
 					},
 					Status = (Member.MemberStatus)_.StatusId,
-					Type = (Member.MemberType)_.MemberTypeId,
-					Designation = (Member.ChurchDesignation)_.ChurchDesignationId,
+					Type = (Member.MemberType)_.TypeId,
+					Designation = (Member.ChurchDesignation)_.DesignationId,
 					CreatedBy = _.CreatedBy,
 					DateCreated = _.DateCreated,
 					ModifiedBy = _.ModifiedBy,

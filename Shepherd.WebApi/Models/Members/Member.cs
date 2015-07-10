@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Shepherd.WebApi.Models.Members
 {
-	public class Member : IValidatable
+	public sealed class Member : IValidatable
 	{
 		public int Id { get; set; }
 
@@ -52,7 +52,24 @@ namespace Shepherd.WebApi.Models.Members
 
 		public IList<string> GetValidationErrors()
 		{
-			throw new NotImplementedException();
+			var errors = new List<string>();
+
+			if(string.IsNullOrEmpty(this.ChurchId))
+			{
+				errors.Add(Member.ErrorMessages.RequiredChurchId);
+			}
+
+			if (string.IsNullOrEmpty(this.FirstName))
+			{
+				errors.Add(Member.ErrorMessages.RequiredChurchId);
+			}
+
+			return errors;
+		}
+
+		public static class ErrorMessages
+		{
+			public const string RequiredChurchId = "Church Id is required.";
 		}
 	}
 }
