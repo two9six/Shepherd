@@ -46,7 +46,10 @@
             member.MemberTypeId = "1";
             member.ChurchDesignationId = "1";
             member.CreatedBy = "1";
+            member.Type = "25";
+            member.Status = "1";
 
+            member.Designation = "28";
             console.log(member);
 
 
