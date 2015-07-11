@@ -35,6 +35,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq, Version=4.2.1507.118, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -99,6 +103,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MembersControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
@@ -110,6 +115,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shepherd.Domain\Shepherd.Domain.csproj">
+      <Project>{c4c0d4dd-5d62-4ba0-b4a6-7fb5bbf7156c}</Project>
+      <Name>Shepherd.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shepherd.WebApi\Shepherd.WebApi.csproj">
       <Project>{bfa8b6a9-2853-415b-ba0b-890c9a07666f}</Project>
       <Name>Shepherd.WebApi</Name>
