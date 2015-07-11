@@ -4,5 +4,6 @@
 		where T : class
 	{
 		T ToDomainObject();
+		void LoadFromDomainObject(T domainObject);
 	}
 }

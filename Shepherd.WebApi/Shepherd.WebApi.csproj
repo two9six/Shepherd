@@ -173,12 +173,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Members\AddMemberRequest.cs" />
-    <Compile Include="Models\Members\AddMemberResponse.cs" />
+    <Compile Include="DTOs\Members\AddMemberRequest.cs" />
+    <Compile Include="DTOs\Members\AddMemberResponse.cs" />
     <Compile Include="Models\Members\Address.cs" />
     <Compile Include="Models\Members\Baptizer.cs" />
     <Compile Include="Models\Members\ContactInformation.cs" />
-    <Compile Include="Models\Members\GetMembersResponse.cs" />
+    <Compile Include="DTOs\Members\GetMembersResponse.cs" />
     <Compile Include="Models\Members\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

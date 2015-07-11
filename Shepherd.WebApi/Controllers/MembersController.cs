@@ -1,6 +1,7 @@
 ﻿using Shepherd.Domain.Contracts.Services;
+using Shepherd.Domain.Services.Models.Criteria;
+using Shepherd.WebApi.DTOs.Members;
 using Shepherd.WebApi.Infrastructure.Extensions;
-using Shepherd.WebApi.Models.Members;
 using System;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -17,9 +18,23 @@ namespace Shepherd.WebApi.Controllers
 			_memberService = memberService;
 		}
 
-		public string Get()
+		public GetMembersResponse Get()
 		{
-			return "a";
+			try
+			{
+				var getMembersCriteria = new GetMembersCriteria
+				{
+					FirstName = ""
+				};
+
+				var response = _memberService.GetMembers(getMembersCriteria);
+
+				return new GetMembersResponse();
+			}
+			catch (Exception ex)
+			{
+				throw this.HandleGeneralError<GetMembersResponse>(ex);
+			}
 		}
 
 		[HttpPost]
@@ -27,7 +42,7 @@ namespace Shepherd.WebApi.Controllers
 		{
 			try
 			{
-
+				this.ValidateInput<AddMemberResponse>(request);
 
 				var member = new Domain.Models.Member()
 				{
@@ -44,10 +59,11 @@ namespace Shepherd.WebApi.Controllers
 					Baptizer = request.Member.Baptizer.ToDomainObject(),
 					MaritalStatus = request.Member.MaritalStatus,
 					SpouseName = request.Member.SpouseName,
-					ContactInformation = request.Member.ContactInformation.ToDomainObject()
+					ContactInformation = request.Member.ContactInformation.ToDomainObject(),
+					Status = (Domain.Models.Member.MemberStatus)Enum.Parse(typeof(Domain.Models.Member.MemberStatus), request.Member.Status),
+					Type = (Domain.Models.Member.MemberType)Enum.Parse(typeof(Domain.Models.Member.MemberType), request.Member.Type),
+					Designation = (Domain.Models.Member.ChurchDesignation)Enum.Parse(typeof(Domain.Models.Member.ChurchDesignation), request.Member.Designation)
 				};
-
-				// TODO: Convert Status, Types and Designation
 
 				_memberService.AddMember(member);
 

@@ -10,5 +10,10 @@ namespace Shepherd.WebApi.Models.Members
 		{
 			return new Domain.Models.Baptizer { Id = this.Id };
 		}
+
+		public void LoadFromDomainObject(Domain.Models.Baptizer domainObject)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

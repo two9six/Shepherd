@@ -1,4 +1,5 @@
-﻿using Shepherd.WebApi.Infrastructure.Contracts;
+﻿using Shepherd.Core.Extensions;
+using Shepherd.WebApi.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
 
@@ -54,22 +55,26 @@ namespace Shepherd.WebApi.Models.Members
 		{
 			var errors = new List<string>();
 
-			if(string.IsNullOrEmpty(this.ChurchId))
-			{
-				errors.Add(Member.ErrorMessages.RequiredChurchId);
-			}
+			Domain.Models.Member.MemberStatus memberStatus = 0;
+			if (!this.Status.TryParseAsEnum<Domain.Models.Member.MemberStatus>(out memberStatus))
+				errors.Add(Member.ErrorMessages.UnknownMemberStatus);
 
-			if (string.IsNullOrEmpty(this.FirstName))
-			{
-				errors.Add(Member.ErrorMessages.RequiredChurchId);
-			}
+			Domain.Models.Member.MemberType memberType = 0;
+			if (!this.Status.TryParseAsEnum<Domain.Models.Member.MemberType>(out memberType))
+				errors.Add(Member.ErrorMessages.UnknownMemberType);
+
+			Domain.Models.Member.ChurchDesignation churchDesignation = 0;
+			if (!this.Status.TryParseAsEnum<Domain.Models.Member.ChurchDesignation>(out churchDesignation))
+				errors.Add(Member.ErrorMessages.UnknownMemberStatus);
 
 			return errors;
 		}
 
 		public static class ErrorMessages
 		{
-			public const string RequiredChurchId = "Church Id is required.";
+			public const string UnknownMemberStatus = "Unknown Member Status."; 
+			public const string UnknownMemberType= "Unknown Member Type.";
+			public const string UnknownChurchDesignation = "Unknown Church Designation.";
 		}
 	}
 }

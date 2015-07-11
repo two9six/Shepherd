@@ -1,6 +1,6 @@
 ﻿using Shepherd.WebApi.Infrastructure.Common;
 
-namespace Shepherd.WebApi.Models.Members
+namespace Shepherd.WebApi.DTOs.Members
 {
 	public class AddMemberResponse : APIResponse
 	{

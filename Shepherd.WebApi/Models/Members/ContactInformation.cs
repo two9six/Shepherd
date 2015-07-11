@@ -19,5 +19,10 @@ namespace Shepherd.WebApi.Models.Members
 				Email = this.Email
 			};
 		}
+
+		public void LoadFromDomainObject(Domain.Models.Common.ContactInformation domainObject)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

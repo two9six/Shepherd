@@ -25,5 +25,10 @@ namespace Shepherd.WebApi.Models.Members
 				Country = this.Country
 			};
 		}
+
+		public void LoadFromDomainObject(Domain.Models.Common.Address domainObject)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
