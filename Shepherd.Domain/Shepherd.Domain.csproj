@@ -58,7 +58,8 @@
     <Compile Include="Models\Baptizer.cs" />
     <Compile Include="Models\Common\Address.cs" />
     <Compile Include="Models\Common\ContactInformation.cs" />
-    <Compile Include="Services\Models\ServiceResponses\GetMembersServiceResponse.cs" />
+    <Compile Include="Services\Models\ServiceResponses\Members\AddMemberServiceResponse.cs" />
+    <Compile Include="Services\Models\ServiceResponses\Members\GetMembersServiceResponse.cs" />
     <Compile Include="Services\Models\ServiceResponses\ServiceResponse.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Contracts\Infrastructure\IModelListBase.cs" />

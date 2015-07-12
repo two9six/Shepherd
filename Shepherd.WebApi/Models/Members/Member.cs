@@ -3,6 +3,7 @@ using Shepherd.WebApi.Contracts;
 using Shepherd.WebApi.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
+using Shepherd.WebApi.Models.Members;
 
 namespace Shepherd.WebApi.Models.Members
 {
@@ -46,13 +47,12 @@ namespace Shepherd.WebApi.Models.Members
 
 		public string Designation { get; set; }
 
-		public int CreatedBy { get; set; }
-
-		public DateTime DateCreated { get; set; }
-
-		public int? ModifiedBy { get; set; }
-
-		public DateTime? DateModified { get; set; }
+		public Member()
+		{
+			this.Address = new Address();
+			this.Baptizer = new Baptizer();
+			this.ContactInformation = new ContactInformation();
+		}
 
 		public IList<string> GetValidationErrors()
 		{
@@ -99,7 +99,34 @@ namespace Shepherd.WebApi.Models.Members
 
 		public void LoadFromDomainObject(Domain.Models.Member domainObject)
 		{
-			throw new NotImplementedException();
+			if (domainObject != null)
+			{
+				this.Id = domainObject.Id;
+				this.ChurchId = domainObject.ChurchId;
+				this.FirstName = domainObject.FirstName;
+				this.LastName = domainObject.LastName;
+				this.MiddleName = domainObject.MiddleName;
+				this.BirthDate = domainObject.BirthDate;
+				this.PlaceOfBirth = domainObject.PlaceOfBirth;
+				this.Gender = domainObject.Gender;
+				this.Citizenship = domainObject.Citizenship;
+				this.Address.LoadFromDomainObject(domainObject.Address);
+				this.DateBaptized = domainObject.DateBaptized;
+				this.Baptizer.LoadFromDomainObject(domainObject.Baptizer);
+				this.MaritalStatus = domainObject.MaritalStatus;
+				this.SpouseName = domainObject.SpouseName;
+				this.ContactInformation.LoadFromDomainObject(domainObject.ContactInformation);
+				this.Status = domainObject.Status.ToString();
+				this.Type = domainObject.Type.ToString();
+				this.Designation = domainObject.Designation.ToString();
+			}
+		}
+
+		public static Member Parse(Domain.Models.Member domainMember)
+		{
+			var member = new Member();
+			member.LoadFromDomainObject(domainMember);
+			return member;
 		}
 
 		public static class ErrorMessages

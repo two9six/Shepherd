@@ -3,7 +3,7 @@ using System;
 
 namespace Shepherd.Domain.Models
 {
-	public class Member
+	public sealed class Member
 	{
 		public int Id { get; set; }
 

@@ -2,7 +2,8 @@
 
 namespace Shepherd.WebApi.Models.Members
 {
-	public sealed class ContactInformation : IDomainConvertible<Domain.Models.Common.ContactInformation>
+	public sealed class ContactInformation 
+		: IDomainConvertible<Domain.Models.Common.ContactInformation>
 	{
 		public string LandLine { get; set; }
 
@@ -22,7 +23,12 @@ namespace Shepherd.WebApi.Models.Members
 
 		public void LoadFromDomainObject(Domain.Models.Common.ContactInformation domainObject)
 		{
-			throw new System.NotImplementedException();
+			if (domainObject != null)
+			{
+				this.LandLine = domainObject.LandLine;
+				this.MobileNumber = domainObject.MobileNumber;
+				this.Email = domainObject.Email;
+			}
 		}
 	}
 }

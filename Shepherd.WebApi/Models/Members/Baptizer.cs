@@ -2,7 +2,8 @@
 
 namespace Shepherd.WebApi.Models.Members
 {
-	public class Baptizer : IDomainConvertible<Domain.Models.Baptizer>
+	public sealed class Baptizer 
+		: IDomainConvertible<Domain.Models.Baptizer>
 	{
 		public int Id { get; set; }
 
@@ -13,7 +14,10 @@ namespace Shepherd.WebApi.Models.Members
 
 		public void LoadFromDomainObject(Domain.Models.Baptizer domainObject)
 		{
-			throw new System.NotImplementedException();
+			if (domainObject != null)
+			{
+				this.Id = domainObject.Id;
+			}
 		}
 	}
 }

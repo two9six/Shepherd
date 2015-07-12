@@ -2,7 +2,7 @@
 
 namespace Shepherd.WebApi.DTOs.Members
 {
-	public class AddMemberResponse : APIResponse
+	public sealed class AddMemberResponse : APIResponse
 	{
 		public int MemberId { get; set; }
 	}

@@ -1,10 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shepherd.Domain.Contracts.Services;
-using Shepherd.Domain.Models;
-using Shepherd.Domain.Services.Models.ServiceResponses;
+using Shepherd.Domain.Services.Models.ServiceResponses.Members;
 using Shepherd.WebApi.Controllers;
 using Shepherd.WebApi.DTOs.Members;
+using Shepherd.WebApi.Models.Members;
+using Spackle;
+using System;
 using System.Linq;
 
 namespace Shepherd.WebApi.Tests.Controllers
@@ -12,19 +14,21 @@ namespace Shepherd.WebApi.Tests.Controllers
 	[TestClass]
 	public class MembersControllerTests
 	{
-		[Ignore]
 		[TestMethod]
 		public void Post_WhenUsingValidData_SavesSuccessfully()
 		{
 			// arrange
+			var generator = new RandomObjectGenerator();
+			var expectedMember = new Domain.Models.Member { Id = Math.Abs(generator.Generate<int>()) };
+
 			var mockMemberService = new Mock<IMemberService>(MockBehavior.Strict);
 			mockMemberService
-				.Setup<ServiceResponse>(_ => _.AddMember(It.IsAny<Member>()))
-				.Returns(new ServiceResponse());
+				.Setup<AddMemberServiceResponse>(_ => _.AddMember(It.IsAny<Domain.Models.Member>()))
+				.Returns(new AddMemberServiceResponse { Member = expectedMember });
 
 			var addMemberRequest = new AddMemberRequest
 			{
-				Member = new Models.Members.Member
+				Member = new Member()
 				{
 					Status = ((int)Domain.Models.Member.MemberStatus.Active).ToString(),
 					Type = ((int)Domain.Models.Member.MemberType.Member).ToString(),
@@ -40,7 +44,7 @@ namespace Shepherd.WebApi.Tests.Controllers
 			// assert
 			mockMemberService.VerifyAll();
 			Assert.AreEqual(0, result.Errors.Count());
-
+			Assert.AreEqual(expectedMember.Id, result.MemberId);
 		}
 	}
 }

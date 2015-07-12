@@ -6,13 +6,14 @@ using Shepherd.Domain.Models.Common;
 using Shepherd.Domain.Services.Models;
 using Shepherd.Domain.Services.Models.Criteria;
 using Shepherd.Domain.Services.Models.ServiceResponses;
+using Shepherd.Domain.Services.Models.ServiceResponses.Members;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Shepherd.Domain.Services
 {
-	public class MemberService : IMemberService
+	public sealed class MemberService : IMemberService
 	{
 		private readonly IUnitOfWork unitOfWork;
 
@@ -21,43 +22,41 @@ namespace Shepherd.Domain.Services
 			this.unitOfWork = unitOfWork;
 		}
 
-		public ServiceResponse AddMember(Member member)
+		public AddMemberServiceResponse AddMember(Member newMember)
 		{
-			// TODO: Implement transaction
+			var serviceResponse = new AddMemberServiceResponse();
 
-			var serviceResponse = new ServiceResponse();
-
-			if (!this.IsValidateAddMember(member, serviceResponse))
+			if (!this.IsValidateAddMember(newMember, serviceResponse))
 				return serviceResponse;
 
 			var createdMember = unitOfWork.MemberRepository.Add(new Entities.Member
 			{
-				ChurchId = member.ChurchId,
-				DateBaptized = member.DateBaptized,
-				BaptizedById = member.Baptizer.Id,
-				MaritalStatus = member.MaritalStatus,
-				SpouseName = member.SpouseName,
-				LandLine = member.ContactInformation.LandLine,
-				MobileNumber = member.ContactInformation.MobileNumber,
-				Email = member.ContactInformation.Email,
-				StatusId = (int)member.Status,
-				TypeId = (int)member.Type,
-				DesignationId = (int)member.Designation,
+				ChurchId = newMember.ChurchId,
+				DateBaptized = newMember.DateBaptized,
+				BaptizedById = newMember.Baptizer.Id,
+				MaritalStatus = newMember.MaritalStatus,
+				SpouseName = newMember.SpouseName,
+				LandLine = newMember.ContactInformation.LandLine,
+				MobileNumber = newMember.ContactInformation.MobileNumber,
+				Email = newMember.ContactInformation.Email,
+				StatusId = (int)newMember.Status,
+				TypeId = (int)newMember.Type,
+				DesignationId = (int)newMember.Designation,
 				DateCreated = DateTime.Now,
 				Person = new Entities.Person
 				{
-					FirstName = member.FirstName,
-					LastName = member.LastName,
-					MiddleName = member.MiddleName,
-					BirthDate = member.BirthDate,
-					PlaceOfBirth = member.PlaceOfBirth,
-					Gender = member.Gender,
-					Citizenship = member.Citizenship,
-					AddressLine1 = member.Address.AddressLine1,
-					AddressLine2 = member.Address.AddressLine2,
-					City = member.Address.City,
-					StateProvince = member.Address.StateProvince,
-					Country = member.Address.Country,
+					FirstName = newMember.FirstName,
+					LastName = newMember.LastName,
+					MiddleName = newMember.MiddleName,
+					BirthDate = newMember.BirthDate,
+					PlaceOfBirth = newMember.PlaceOfBirth,
+					Gender = newMember.Gender,
+					Citizenship = newMember.Citizenship,
+					AddressLine1 = newMember.Address.AddressLine1,
+					AddressLine2 = newMember.Address.AddressLine2,
+					City = newMember.Address.City,
+					StateProvince = newMember.Address.StateProvince,
+					Country = newMember.Address.Country,
 					CreatedBy = 1,
 					DateCreated = DateTime.Now
 				},
@@ -66,9 +65,12 @@ namespace Shepherd.Domain.Services
 
 			unitOfWork.Save();
 
-			member.Id = createdMember.Id;
+			newMember.Id = createdMember.Id;
 
-			return serviceResponse;
+			return new AddMemberServiceResponse
+			{
+				Member = newMember
+			};
 		}
 
 		public GetMembersServiceResponse GetMembers(GetMembersCriteria criteria)

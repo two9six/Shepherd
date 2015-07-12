@@ -1,13 +1,11 @@
 ﻿using Shepherd.WebApi.Infrastructure.Common;
-using System;
+using Shepherd.WebApi.Models.Members;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Shepherd.WebApi.DTOs.Members
 {
-	public class GetMembersResponse : APIResponse
+	public sealed class GetMembersResponse : APIResponse
 	{
-
+		public IEnumerable<Member> Members { get; set; }
 	}
 }

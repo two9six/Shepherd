@@ -1,7 +1,7 @@
 ﻿
 namespace Shepherd.Domain.Models
 {
-	public class Baptizer
+	public sealed class Baptizer
 	{
 		public int Id { get; set; }
 	}

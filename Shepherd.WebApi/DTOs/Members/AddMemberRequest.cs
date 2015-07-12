@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Shepherd.WebApi.DTOs.Members
 {
-	public class AddMemberRequest : IValidatable
+	public sealed class AddMemberRequest : IValidatable
 	{
 		public Member Member { get; set; }
 

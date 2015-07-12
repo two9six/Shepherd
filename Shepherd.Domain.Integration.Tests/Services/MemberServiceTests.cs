@@ -12,7 +12,6 @@ namespace Shepherd.Domain.Integration.Tests.Services
 	[TestClass]
 	public class MemberServiceTests
 	{
-		[TestMethod]
 		public void AddMember_UsingValidData_SavesSuccessfully()
 		{
 			var generator = new RandomObjectGenerator();
@@ -44,7 +43,6 @@ namespace Shepherd.Domain.Integration.Tests.Services
 			Assert.AreEqual(result.Errors.ToList().Count, 0);
 		}
 
-		[TestMethod]
 		public void GetMembers_UsingValidFirstNameCriteria_RetrievesOneRecord()
 		{
 			var generator = new RandomObjectGenerator();
@@ -60,7 +58,6 @@ namespace Shepherd.Domain.Integration.Tests.Services
 			Assert.AreEqual(result.Members.Count(), 1);
 		}
 
-		[TestMethod]
 		public void GetMembers_UsingEmptyFirstNameCriteria_RetrievesAllRecord()
 		{
 			var generator = new RandomObjectGenerator();

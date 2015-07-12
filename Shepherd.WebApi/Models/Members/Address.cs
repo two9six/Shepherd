@@ -2,7 +2,8 @@
 
 namespace Shepherd.WebApi.Models.Members
 {
-	public sealed class Address : IDomainConvertible<Domain.Models.Common.Address>
+	public sealed class Address 
+		: IDomainConvertible<Domain.Models.Common.Address>
 	{
 		public string AddressLine1 { get; set; }
 
@@ -28,7 +29,14 @@ namespace Shepherd.WebApi.Models.Members
 
 		public void LoadFromDomainObject(Domain.Models.Common.Address domainObject)
 		{
-			throw new System.NotImplementedException();
+			if (domainObject != null)
+			{
+				this.AddressLine1 = domainObject.AddressLine1;
+				this.AddressLine2 = domainObject.AddressLine2;
+				this.City = domainObject.City;
+				this.StateProvince = domainObject.StateProvince;
+				this.Country = domainObject.Country;
+			}
 		}
 	}
 }

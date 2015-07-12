@@ -5,6 +5,8 @@ using Shepherd.WebApi.Infrastructure.Extensions;
 using System;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Linq;
+using Shepherd.WebApi.Models.Members;
 
 namespace Shepherd.WebApi.Controllers
 {
@@ -29,7 +31,10 @@ namespace Shepherd.WebApi.Controllers
 
 				var response = _memberService.GetMembers(getMembersCriteria);
 
-				return new GetMembersResponse();
+				return new GetMembersResponse()
+				{
+					Members = response.Members.Select(_=> Member.Parse(_)).ToList()
+				};
 			}
 			catch (Exception ex)
 			{
@@ -44,13 +49,13 @@ namespace Shepherd.WebApi.Controllers
 			{
 				this.ValidateInput<AddMemberResponse>(request);
 
-				var member = request.Member.ToDomainObject(); 
+				var member = request.Member.ToDomainObject();
 
-				_memberService.AddMember(member);
+				var serviceResponse = _memberService.AddMember(member);
 
 				return new AddMemberResponse
 				{
-					MemberId = member.Id,
+					MemberId = serviceResponse.Member.Id,
 					Message = string.Format(MembersController.Messages.PostMemberSuccess, member.FirstName, member.LastName)
 				};
 			}
