@@ -214,6 +214,7 @@
     <Content Include="Scripts\App\Controllers\Members\MembersIndexController.js" />
     <Content Include="Scripts\App\Services\MemberService.js" />
     <Content Include="Scripts\App\ShepherdApp.js" />
+    <Content Include="Scripts\App\Tests\MemberServiceTests.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />
