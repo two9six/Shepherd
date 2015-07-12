@@ -7,12 +7,25 @@
         var baseUrl = "http://localhost:7071/";
 
         var getMembers = function () {
-            return [
-                { "Id":"1","Name" : "Gideon Jura", "Age" : "2", "Status" : "Active" },
-                { "Id": "2", "Name": "Jace Beleren", "Age": "3", "Status": "Active" },
-                { "Id": "3", "Name": "Elspeth Tirel", "Age": "4", "Status": "Active" },
-                { "Id": "4", "Name": "Liliana Vess", "Age": "5", "Status": "Active" },
-                ]
+
+
+            var apiUrl = baseUrl + "api/Members";
+
+            var deferred = $q.defer();
+
+            $http.get(apiUrl).then(function (response) {
+                deferred.resolve(response);
+            }, function (response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+            //return [
+            //    { "Id":"1","Name" : "Gideon Jura", "Age" : "2", "Status" : "Active" },
+            //    { "Id": "2", "Name": "Jace Beleren", "Age": "3", "Status": "Active" },
+            //    { "Id": "3", "Name": "Elspeth Tirel", "Age": "4", "Status": "Active" },
+            //    { "Id": "4", "Name": "Liliana Vess", "Age": "5", "Status": "Active" },
+            //    ]
         }
 
         var getMemberById = function (id) {
@@ -76,7 +89,7 @@
         var updateMember = function (id, member) {
 
             var apiUrl = baseUrl + "api/Members/" + id;
-            var deferred = $q.defer;
+            var deferred = $q.defer();
 
             $http.put(apiUrl, member).then(function (response) {
                 deferred.resolve(response);

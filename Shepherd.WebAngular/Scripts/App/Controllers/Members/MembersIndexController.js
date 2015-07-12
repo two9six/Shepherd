@@ -6,7 +6,19 @@
 
         $scope.hello = "Hello Angular!";
 
-        $scope.members = MemberService.getMembers();
+
+        var promise = MemberService.getMembers();
+
+        promise.then(function (response) {
+            console.log(response.data);
+            $scope.members = response.data.members;
+            //$location.path("/Members");
+
+        }, function (response) {
+            console.log(response);
+        });
+
+        //$scope.members = MemberService.getMembers();
 
     }]);
 

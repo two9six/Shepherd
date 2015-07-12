@@ -2,15 +2,15 @@
     <thead>
         <tr>
             <th class="col-name text-center">Name</th>
-            <th class="col-age text-center">Age</th>
+            <!--<th class="col-age text-center">Age</th>-->
             <th class="col-status text-center">Status</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="member in members">
-            <td><a href="/Members/Details/{{member.Id}}">{{ member.Name }}</a></td>
-            <td class="text-center">{{ member.Age }}</td>
-            <td class="text-center">{{ member.Status }}</td>
+            <td><a href="/Members/Details/{{member.id}}">{{ member.firstName }}</a></td>
+            <!--<td class="text-center">{{ member.age }}</td>-->
+            <td class="text-center">{{ member.status }}</td>
         </tr>
     </tbody>
 </table>
