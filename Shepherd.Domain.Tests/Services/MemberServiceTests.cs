@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using SE = Shepherd.Entities;
 
 namespace Shepherd.Domain.Tests.Services
 {
@@ -24,13 +23,14 @@ namespace Shepherd.Domain.Tests.Services
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
-
+			var expectedMemberId = Math.Abs(generator.Generate<int>());
 			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
+
 			mockMemberRepository
-				.Setup<SE.Member>(_ => _.Add(It.IsAny<SE.Member>()))
-				.Returns((SE.Member pMember) =>
+				.Setup<Entities.Member>(_ => _.Add(It.IsAny<Entities.Member>()))
+				.Returns((Entities.Member pMember) =>
 				{
-					pMember.Id = Math.Abs(generator.Generate<int>());
+					pMember.Id = expectedMemberId;
 					return pMember;
 				});
 
@@ -59,13 +59,13 @@ namespace Shepherd.Domain.Tests.Services
 			};
 
 			// Act
-			memberService.AddMember(member);
+			var actualResult = memberService.AddMember(member);
 
 			// Assert
 			mockMemberRepository.VerifyAll();
 			mockUnitOfWork.VerifyAll();
 
-			Assert.IsTrue(member.Id > 0);
+			Assert.AreEqual(expectedMemberId, actualResult.Member.Id);
 		}
 
 		[TestMethod]
@@ -77,8 +77,7 @@ namespace Shepherd.Domain.Tests.Services
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
 
 			var memberService = new MemberService(mockUnitOfWork.Object);
-
-			
+		
 			var member = new Member()
 			{
 				MaritalStatus = generator.Generate<string>(),
@@ -89,13 +88,13 @@ namespace Shepherd.Domain.Tests.Services
 			};
 
 			// Act
-			var response = memberService.AddMember(member);
+			var actualResult = memberService.AddMember(member);
 
 			// Assert
 			mockUnitOfWork.VerifyAll();
 
 			Assert.IsTrue(member.Id == 0);
-			Assert.AreEqual(response.Errors.Count(), ExpectedValidationError);
+			Assert.AreEqual(actualResult.Errors.Count(), ExpectedValidationError);
 		}
 
 		[TestMethod]
@@ -103,14 +102,14 @@ namespace Shepherd.Domain.Tests.Services
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
-			var expectedMembers = new List<SE.Member> { 
-				new SE.Member 
+			var expectedMembers = new List<Entities.Member> { 
+				new Entities.Member 
 				{					
 					Id = Math.Abs(generator.Generate<int>()),
 					StatusId = (int)Member.MemberStatus.Active,
 					TypeId = (int)Member.MemberType.Member,
 					DesignationId = (int)Member.ChurchDesignation.Member,
-					Person = new SE.Person
+					Person = new Entities.Person
 					{
 						Id = Math.Abs(generator.Generate<int>()),
 						FirstName = generator.Generate<string>(),
@@ -121,7 +120,7 @@ namespace Shepherd.Domain.Tests.Services
 
 			var mockMemberRepository = new Mock<IMemberRepository>(MockBehavior.Strict);
 			mockMemberRepository
-				.Setup<IEnumerable<SE.Member>>(_ => _.FindBy(It.IsAny<Expression<Func<SE.Member, bool>>>()))
+				.Setup<IEnumerable<Entities.Member>>(_ => _.FindBy(It.IsAny<Expression<Func<Entities.Member, bool>>>()))
 				.Returns(expectedMembers);
 
 			var mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);

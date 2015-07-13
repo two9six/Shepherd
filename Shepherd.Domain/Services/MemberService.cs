@@ -1,9 +1,9 @@
-﻿using Shepherd.Data.Contracts.Infrastructure;
-using Shepherd.Domain.Constants;
+﻿using Shepherd.Core.Extensions;
+using Shepherd.Core.Helpers;
+using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Domain.Contracts.Services;
 using Shepherd.Domain.Models;
 using Shepherd.Domain.Models.Common;
-using Shepherd.Domain.Services.Models;
 using Shepherd.Domain.Services.Models.Criteria;
 using Shepherd.Domain.Services.Models.ServiceResponses;
 using Shepherd.Domain.Services.Models.ServiceResponses.Members;
@@ -32,7 +32,7 @@ namespace Shepherd.Domain.Services
 			var createdMember = unitOfWork.MemberRepository.Add(new Entities.Member
 			{
 				ChurchId = newMember.ChurchId,
-				DateBaptized = newMember.DateBaptized,
+				DateBaptized = newMember.DateBaptized.Value,
 				BaptizedById = newMember.Baptizer.Id,
 				MaritalStatus = newMember.MaritalStatus,
 				SpouseName = newMember.SpouseName,
@@ -48,7 +48,7 @@ namespace Shepherd.Domain.Services
 					FirstName = newMember.FirstName,
 					LastName = newMember.LastName,
 					MiddleName = newMember.MiddleName,
-					BirthDate = newMember.BirthDate,
+					BirthDate = newMember.BirthDate.Value,
 					PlaceOfBirth = newMember.PlaceOfBirth,
 					Gender = newMember.Gender,
 					Citizenship = newMember.Citizenship,
@@ -126,26 +126,17 @@ namespace Shepherd.Domain.Services
 
 		private bool IsValidateAddMember(Member member, ServiceResponse response)
 		{
-			var errors = new List<string>();
-
-			if (string.IsNullOrEmpty(member.ChurchId))
-				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Church Id"));
-
-			if (string.IsNullOrEmpty(member.FirstName))
-				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "First Name"));
-
-			if (string.IsNullOrEmpty(member.LastName))
-				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Last Name"));
-
-			if (member.BirthDate == DateTime.MinValue)
-				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Birth Date"));
-
-			if (member.DateBaptized == DateTime.MinValue)
-				errors.Add(string.Format(GenericValidationMessages.Common.CannotBeNullOrEmpty, "Baptized Date"));
-
-			response.Errors = response.Errors.ToList().Concat(errors.ToList());
-
-			return errors.Count == 0;
+			// TODO: Implement reflection to get member name, no magic strings
+			var errors = new DataValidator().Validate(new List<DataValidationRule>()
+			{
+				new DataValidationRule("Church Id", member.ChurchId, true, typeof(string)),
+				new DataValidationRule("First Name", member.FirstName, true, typeof(string)),
+				new DataValidationRule("Last Name", member.LastName, true, typeof(string)),
+				new DataValidationRule("Birth Date", member.BirthDate.TryGetString(), true, typeof(DateTime)),
+				new DataValidationRule("Baptized Date", member.DateBaptized.TryGetString(), true, typeof(DateTime))
+			});
+			response.Errors = errors.Concat(response.Errors);
+			return errors.Count() == 0;
 		}
 	}
 }

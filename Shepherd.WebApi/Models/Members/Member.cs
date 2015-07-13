@@ -3,7 +3,6 @@ using Shepherd.WebApi.Contracts;
 using Shepherd.WebApi.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
-using Shepherd.WebApi.Models.Members;
 
 namespace Shepherd.WebApi.Models.Members
 {
@@ -21,7 +20,7 @@ namespace Shepherd.WebApi.Models.Members
 
 		public string MiddleName { get; set; }
 
-		public DateTime BirthDate { get; set; }
+		public DateTime? BirthDate { get; set; }
 
 		public string PlaceOfBirth { get; set; }
 
@@ -31,7 +30,7 @@ namespace Shepherd.WebApi.Models.Members
 
 		public Address Address { get; set; }
 
-		public DateTime DateBaptized { get; set; }
+		public DateTime? DateBaptized { get; set; }
 
 		public Baptizer Baptizer { get; set; }
 

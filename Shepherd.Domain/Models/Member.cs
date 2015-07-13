@@ -15,7 +15,7 @@ namespace Shepherd.Domain.Models
 
 		public string MiddleName { get; set; }
 
-		public DateTime BirthDate { get; set; }
+		public DateTime? BirthDate { get; set; }
 
 		public string PlaceOfBirth { get; set; }
 
@@ -25,7 +25,7 @@ namespace Shepherd.Domain.Models
 
 		public Address Address { get; set; }
 
-		public DateTime DateBaptized { get; set; }
+		public DateTime? DateBaptized { get; set; }
 
 		public Baptizer Baptizer { get; set; }
 

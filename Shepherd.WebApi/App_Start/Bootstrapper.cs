@@ -3,11 +3,7 @@ using Autofac.Integration.WebApi;
 using Shepherd.Core.Infrastructure;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Domain.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
 
 namespace Shepherd.WebApi.App_Start
@@ -30,12 +26,9 @@ namespace Shepherd.WebApi.App_Start
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();
 
-
-
             var container = builder.Build();
 
             configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-
         }
 
     }

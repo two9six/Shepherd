@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Shepherd.Core.Extensions
 {
 	public static class SafeCastExtensions
@@ -7,6 +8,13 @@ namespace Shepherd.Core.Extensions
 		{
 			int result = 0;
 			int.TryParse(value, out result);
+			return result;
+		}
+
+		public static DateTime ToSafeDateTime(this string value)
+		{
+			var result = DateTime.MinValue;
+			DateTime.TryParse(value, out result);
 			return result;
 		}
 	}
