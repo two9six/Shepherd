@@ -4,14 +4,12 @@ using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Domain.Contracts.Services;
 using Shepherd.Domain.Models;
 using Shepherd.Domain.Models.Common;
-using Shepherd.Domain.Services.Models.Criteria;
-using Shepherd.Domain.Services.Models.ServiceResponses;
-using Shepherd.Domain.Services.Models.ServiceResponses.Members;
+using Shepherd.Domain.Services.MemberService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Shepherd.Domain.Services
+namespace Shepherd.Domain.Services.MemberService
 {
 	public sealed class MemberService : IMemberService
 	{

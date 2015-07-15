@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shepherd.Domain.Contracts.Services;
-using Shepherd.Domain.Services.Models.ServiceResponses.Members;
+using Shepherd.Domain.Services.MemberService.Models;
 using Shepherd.WebApi.Controllers;
 using Shepherd.WebApi.DTOs.Members;
 using Shepherd.WebApi.Models.Members;

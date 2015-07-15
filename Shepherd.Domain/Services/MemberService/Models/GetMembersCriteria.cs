@@ -1,5 +1,5 @@
 ﻿
-namespace Shepherd.Domain.Services.Models.Criteria
+namespace Shepherd.Domain.Services.MemberService.Models
 {
 	public sealed class GetMembersCriteria
 	{

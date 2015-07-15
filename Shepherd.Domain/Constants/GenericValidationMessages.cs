@@ -1,5 +1,4 @@
-﻿
-namespace Shepherd.Domain.Constants
+﻿namespace Shepherd.Domain.Constants
 {
 	public static class GenericValidationMessages
 	{

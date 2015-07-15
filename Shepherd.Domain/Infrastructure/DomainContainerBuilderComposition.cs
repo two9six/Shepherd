@@ -2,8 +2,8 @@
 using Shepherd.Core.Contracts.Infrastructure;
 using Shepherd.Domain.Contracts.Services;
 using Shepherd.Domain.Contracts.Services.Lookup;
-using Shepherd.Domain.Services;
 using Shepherd.Domain.Services.Lookup;
+using Shepherd.Domain.Services.MemberService;
 
 namespace Shepherd.Domain.Infrastructure
 {

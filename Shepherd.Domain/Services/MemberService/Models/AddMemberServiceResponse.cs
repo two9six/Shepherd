@@ -1,6 +1,6 @@
 ﻿using Shepherd.Domain.Models;
 
-namespace Shepherd.Domain.Services.Models.ServiceResponses.Members
+namespace Shepherd.Domain.Services.MemberService.Models
 {
 	public sealed class AddMemberServiceResponse : ServiceResponse
 	{

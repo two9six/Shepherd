@@ -1,7 +1,5 @@
 ﻿using Shepherd.Domain.Models;
-using Shepherd.Domain.Services.Models.Criteria;
-using Shepherd.Domain.Services.Models.ServiceResponses;
-using Shepherd.Domain.Services.Models.ServiceResponses.Members;
+using Shepherd.Domain.Services.MemberService.Models;
 
 namespace Shepherd.Domain.Contracts.Services
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Shepherd.Domain.Services.Models.ServiceResponses
+namespace Shepherd.Domain.Services
 {
 	public class ServiceResponse
 	{

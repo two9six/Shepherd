@@ -1,7 +1,7 @@
 ﻿using Shepherd.Domain.Models;
 using System.Collections.Generic;
 
-namespace Shepherd.Domain.Services.Models.ServiceResponses.Members
+namespace Shepherd.Domain.Services.MemberService.Models
 {
 	public sealed class GetMembersServiceResponse : ServiceResponse
 	{

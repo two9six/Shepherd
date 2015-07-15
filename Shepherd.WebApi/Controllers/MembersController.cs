@@ -1,12 +1,12 @@
 ﻿using Shepherd.Domain.Contracts.Services;
-using Shepherd.Domain.Services.Models.Criteria;
+using Shepherd.Domain.Services.MemberService.Models;
 using Shepherd.WebApi.DTOs.Members;
 using Shepherd.WebApi.Infrastructure.Extensions;
+using Shepherd.WebApi.Models.Members;
 using System;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Linq;
-using Shepherd.WebApi.Models.Members;
 
 namespace Shepherd.WebApi.Controllers
 {
