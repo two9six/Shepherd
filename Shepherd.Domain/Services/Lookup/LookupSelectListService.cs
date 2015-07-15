@@ -1,6 +1,6 @@
 ﻿using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Domain.Contracts.Services.Lookup;
-using Shepherd.Domain.Enums;
+using Shepherd.Domain.Common.Enums;
 using System.Collections.Generic;
 using System.Linq;
 

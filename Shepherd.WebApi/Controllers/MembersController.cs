@@ -20,16 +20,11 @@ namespace Shepherd.WebApi.Controllers
 			_memberService = memberService;
 		}
 
-		public GetMembersResponse Get()
+		public GetMembersResponse Get(string name = "", string churchId = "")
 		{
 			try
 			{
-				var getMembersCriteria = new GetMembersCriteria
-				{
-					FirstName = ""
-				};
-
-				var response = _memberService.GetMembers(getMembersCriteria);
+				var response = _memberService.GetMembers(name, churchId);
 
 				return new GetMembersResponse()
 				{

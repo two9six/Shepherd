@@ -24,7 +24,7 @@ namespace Shepherd.Domain.Services.MemberService
 		{
 			var serviceResponse = new AddMemberServiceResponse();
 
-			if (!this.IsValidateAddMember(newMember, serviceResponse))
+			if (!this.IsValidAddMember(newMember, serviceResponse))
 				return serviceResponse;
 
 			var createdMember = unitOfWork.MemberRepository.Add(new Entities.Member
@@ -71,10 +71,12 @@ namespace Shepherd.Domain.Services.MemberService
 			};
 		}
 
-		public GetMembersServiceResponse GetMembers(GetMembersCriteria criteria)
+		public GetMembersServiceResponse GetMembers(string name, string churchId)
 		{
 			var members = unitOfWork.MemberRepository
-				.FindBy(_ => _.Person.FirstName.Contains(criteria.FirstName))
+				.FindBy(_ => 
+					(_.Person.FirstName.Contains(name) || _.Person.LastName.Contains(name))
+					&& _.ChurchId.Contains(churchId))
 				.OrderByDescending(_ => _.DateCreated)
 				.Select(_ => new Member()
 				{
@@ -122,16 +124,17 @@ namespace Shepherd.Domain.Services.MemberService
 			};
 		}
 
-		private bool IsValidateAddMember(Member member, ServiceResponse response)
+		private bool IsValidAddMember(Member member, ServiceResponse response)
 		{
 			// TODO: Implement reflection to get member name, no magic strings
+
 			var errors = new DataValidator().Validate(new List<DataValidationRule>()
 			{
-				new DataValidationRule("Church Id", member.ChurchId, true, typeof(string)),
-				new DataValidationRule("First Name", member.FirstName, true, typeof(string)),
-				new DataValidationRule("Last Name", member.LastName, true, typeof(string)),
-				new DataValidationRule("Birth Date", member.BirthDate.TryGetString(), true, typeof(DateTime)),
-				new DataValidationRule("Baptized Date", member.DateBaptized.TryGetString(), true, typeof(DateTime))
+				new DataValidationRule(Member.FieldNames.ChurchId, member.ChurchId, true, typeof(string)),
+				new DataValidationRule(Member.FieldNames.FirstName, member.FirstName, true, typeof(string)),
+				new DataValidationRule(Member.FieldNames.LastName, member.LastName, true, typeof(string)),
+				new DataValidationRule(Member.FieldNames.BirthDate, member.BirthDate.TryGetString(), true, typeof(DateTime)),
+				new DataValidationRule(Member.FieldNames.DateBaptized, member.DateBaptized.TryGetString(), true, typeof(DateTime))
 			});
 			response.Errors = errors.Concat(response.Errors);
 			return errors.Count() == 0;

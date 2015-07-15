@@ -68,25 +68,5 @@ namespace Shepherd.Core.Tests.Helpers
 			// Assert
 			Assert.AreEqual(expectedErrors, result.Count());
 		}
-
-		[TestMethod]
-		public void Validate_UsingInvalidInt_ReturnsInvalidValidationError()
-		{
-			// Arrage
-			var generator = new RandomObjectGenerator();
-			var expectedErrors = 1;
-			var dataValidationRules = new List<DataValidationRule>()
-			{
-				new DataValidationRule(generator.Generate<string>(), generator.Generate<string>(), true, typeof(int))
-			};
-
-			// Act
-			var result = new DataValidator().Validate(dataValidationRules);
-
-			// Assert
-			Assert.AreEqual(expectedErrors, result.Count());
-			Assert.AreEqual(string.Format(DataValidator.DataValidatorMessages.InvalidType, dataValidationRules[0].MemberName, dataValidationRules[0].DataType),
-				result.ElementAt(0));
-		}
 	}
 }

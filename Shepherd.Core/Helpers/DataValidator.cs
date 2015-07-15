@@ -17,19 +17,6 @@ namespace Shepherd.Core.Helpers
 						errors.Add(string.Format(DataValidator.DataValidatorMessages.Required, rule.MemberName));
 					continue;
 				}
-
-				if (rule.DataType == typeof(int))
-				{
-					var value = 0;
-					if (!int.TryParse(rule.MemberValue, out value))
-						errors.Add(string.Format(DataValidator.DataValidatorMessages.InvalidType, rule.MemberName, rule.DataType.ToString()));
-				}
-				else if (rule.DataType == typeof(DateTime))
-				{
-					var value = DateTime.MinValue;
-					if (!DateTime.TryParse(rule.MemberValue, out value))
-						errors.Add(string.Format(DataValidator.DataValidatorMessages.InvalidType, rule.MemberName, rule.DataType.ToString()));
-				}
 			}
 
 			return errors;

@@ -7,6 +7,6 @@ namespace Shepherd.Domain.Contracts.Services
 	{
 		AddMemberServiceResponse AddMember(Member newMember);
 
-		GetMembersServiceResponse GetMembers(GetMembersCriteria getMembersCriteria);
+		GetMembersServiceResponse GetMembers(string name, string churchId);
 	}
 }

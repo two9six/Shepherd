@@ -1,4 +1,4 @@
-﻿using Shepherd.Domain.Enums;
+﻿using Shepherd.Domain.Common.Enums;
 using System.Collections.Generic;
 
 namespace Shepherd.Domain.Contracts.Services.Lookup

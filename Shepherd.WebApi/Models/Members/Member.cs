@@ -46,6 +46,14 @@ namespace Shepherd.WebApi.Models.Members
 
 		public string Designation { get; set; }
 
+		public int CreatedBy { get; set; }
+
+		public DateTime DateCreated { get; set; }
+
+		public int? ModifiedBy { get; set; }
+
+		public DateTime? DateModified { get; set; }
+
 		public Member()
 		{
 			this.Address = new Address();
@@ -118,6 +126,10 @@ namespace Shepherd.WebApi.Models.Members
 				this.Status = domainObject.Status.ToString();
 				this.Type = domainObject.Type.ToString();
 				this.Designation = domainObject.Designation.ToString();
+				this.CreatedBy = domainObject.CreatedBy;
+				this.DateCreated = domainObject.DateCreated;
+				this.ModifiedBy = domainObject.ModifiedBy;
+				this.DateModified = domainObject.DateModified;
 			}
 		}
 

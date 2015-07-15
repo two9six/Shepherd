@@ -19,7 +19,7 @@ namespace Shepherd.Domain.Tests.Services
 		// Unit Test Naming Convention: MethodName_StateUnderTest_ExpectedBehavior
 
 		[TestMethod]
-		public void AddMember_UsingValidData_SavesSuccessfully()
+		public void AddMember_WhenUsingValidData_SavesSuccessfully()
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
@@ -69,7 +69,7 @@ namespace Shepherd.Domain.Tests.Services
 		}
 
 		[TestMethod]
-		public void AddMember_WithEmptyRequiredFields_RespondWithValidationErrors()
+		public void AddMember_WhenUsingEmptyOnRequiredFields_ReturnsValidationErrors()
 		{	
 			// Arrange
 			const int ExpectedValidationError = 5;
@@ -98,10 +98,12 @@ namespace Shepherd.Domain.Tests.Services
 		}
 
 		[TestMethod]
-		public void GetMembers_UsingValidSearchCriteria_SearchSuccessfully()
+		public void GetMembers_WhenUsingValidSearchCriteria_SearchSuccessfully()
 		{
 			// Arrange
 			var generator = new RandomObjectGenerator();
+			var searchName = string.Empty;
+			var searchChurchId = string.Empty;
 			var expectedMembers = new List<Entities.Member> { 
 				new Entities.Member 
 				{					
@@ -130,10 +132,8 @@ namespace Shepherd.Domain.Tests.Services
 
 			var memberService = new MemberService(mockUnitOfWork.Object);
 
-			var criteria = new GetMembersCriteria();
-
 			// Act
-			var result = memberService.GetMembers(criteria);
+			var result = memberService.GetMembers(searchName, searchChurchId);
 
 			// Assert
 			mockMemberRepository.VerifyAll();

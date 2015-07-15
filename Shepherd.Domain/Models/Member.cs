@@ -41,7 +41,7 @@ namespace Shepherd.Domain.Models
 
 		public ChurchDesignation Designation { get; set; }
 
-		public int CreatedBy { get; set; }
+		public int CreatedBy { get;  set; }
 
 		public DateTime DateCreated { get; set; }
 
@@ -78,6 +78,15 @@ namespace Shepherd.Domain.Models
 		{
 			Member = 28,
 			Deacon = 29
+		}
+
+		public static class FieldNames
+		{
+			public const string ChurchId = "Church Id";
+			public const string FirstName = "First Name";
+			public const string LastName = "Last Name";
+			public const string BirthDate = "Birth Date";
+			public const string DateBaptized = "Date Baptized";
 		}
 	}
 }
