@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Shepherd.WebApi
+namespace Shepherd.Services
 {
     public class FilterConfig
     {

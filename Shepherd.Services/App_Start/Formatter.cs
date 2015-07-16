@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 
-namespace Shepherd.WebApi.App_Start
+namespace Shepherd.Services.App_Start
 {
 	public class Formatter
 	{

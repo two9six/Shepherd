@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Web.Http;
 
-namespace Shepherd.WebApi.Controllers
+namespace Shepherd.Services.Controllers
 {
 	public abstract class BaseApiController : ApiController
 	{

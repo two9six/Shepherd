@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Shepherd.WebApi.Controllers;
-using Shepherd.WebApi.Tests.Helpers;
+using Shepherd.Services.Controllers;
+using Shepherd.Services.Tests.Helpers;
 using Spackle;
 using System;
 using System.Linq;
 
-namespace Shepherd.WebApi.Tests.Controllers
+namespace Shepherd.Services.Tests.Controllers
 {
 	[TestClass]
 	public class MembersControllerTests

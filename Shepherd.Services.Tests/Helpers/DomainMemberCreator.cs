@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Shepherd.WebApi.Tests.Helpers
+namespace Shepherd.Services.Tests.Helpers
 {
 	public sealed class DomainMemberCreator
 	{

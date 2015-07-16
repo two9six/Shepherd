@@ -19,9 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Data.Tests", "Shep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Entities", "Shepherd.Entities\Shepherd.Entities.csproj", "{E358161B-E0B1-42AD-A2A1-2BECDA696C8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.WebApi", "Shepherd.WebApi\Shepherd.WebApi.csproj", "{BFA8B6A9-2853-415B-BA0B-890C9A07666F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Services", "Shepherd.Services\Shepherd.Services.csproj", "{BFA8B6A9-2853-415B-BA0B-890C9A07666F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.WebApi.Tests", "Shepherd.WebApi.Tests\Shepherd.WebApi.Tests.csproj", "{62A27EB9-70E5-45D4-BECE-1A574419E4FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Services.Tests", "Shepherd.Services.Tests\Shepherd.Services.Tests.csproj", "{62A27EB9-70E5-45D4-BECE-1A574419E4FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.WebAngular", "Shepherd.WebAngular\Shepherd.WebAngular.csproj", "{0C43E537-000C-4D2A-A062-8C55E861A593}"
 EndProject

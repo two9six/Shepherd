@@ -2,7 +2,7 @@
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace Shepherd.WebApi.Controllers
+namespace Shepherd.Services.Controllers
 {
 	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class MembersController : BaseApiController

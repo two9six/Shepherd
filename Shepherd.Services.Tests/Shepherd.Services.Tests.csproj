@@ -9,8 +9,8 @@
     <ProjectGuid>{62A27EB9-70E5-45D4-BECE-1A574419E4FD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shepherd.WebApi.Tests</RootNamespace>
-    <AssemblyName>Shepherd.WebApi.Tests</AssemblyName>
+    <RootNamespace>Shepherd.Services.Tests</RootNamespace>
+    <AssemblyName>Shepherd.Services.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -121,7 +121,7 @@
       <Project>{c4c0d4dd-5d62-4ba0-b4a6-7fb5bbf7156c}</Project>
       <Name>Shepherd.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shepherd.WebApi\Shepherd.WebApi.csproj">
+    <ProjectReference Include="..\Shepherd.Services\Shepherd.Services.csproj">
       <Project>{bfa8b6a9-2853-415b-ba0b-890c9a07666f}</Project>
       <Name>Shepherd.WebApi</Name>
     </ProjectReference>
