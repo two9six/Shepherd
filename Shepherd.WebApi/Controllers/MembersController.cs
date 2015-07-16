@@ -1,69 +1,36 @@
-﻿using Shepherd.Domain.Contracts.Services;
-using Shepherd.Domain.Services.MemberService.Models;
-using Shepherd.WebApi.DTOs.Members;
-using Shepherd.WebApi.Infrastructure.Extensions;
-using Shepherd.WebApi.Models.Members;
-using System;
-using System.Linq;
+﻿using Shepherd.Domain.Models;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace Shepherd.WebApi.Controllers
 {
 	[EnableCors(origins: "*", headers: "*", methods: "*")]
-	public class MembersController : ApiController
+	public class MembersController : BaseApiController
 	{
-		private readonly IMemberService _memberService;
-
-		public MembersController(IMemberService memberService)
+		[HttpGet]
+		public IHttpActionResult Get(string name = "", string churchId = "")
 		{
-			_memberService = memberService;
-		}
-
-		public GetMembersResponse Get(string name = "", string churchId = "")
-		{
-			try
+			return GetActionResult(delegate()
 			{
-				var response = _memberService.GetMembers(name, churchId);
-
-				return new GetMembersResponse()
+				var membersIndex = new MembersIndex()
 				{
-					Members = response.Members.Select(_=> Member.Parse(_)).ToList()
+					Name = name,
+					ChurchId = churchId
 				};
-			}
-			catch (Exception ex)
-			{
-				throw this.HandleGeneralError<GetMembersResponse>(ex);
-			}
+				membersIndex.Load();
+
+				return membersIndex;
+			});
 		}
 
 		[HttpPost]
-		public AddMemberResponse Post([FromBody]AddMemberRequest request)
+		public IHttpActionResult Post([FromBody]Member member)
 		{
-			try
+			return GetActionResult(delegate()
 			{
-				this.ValidateInput<AddMemberResponse>(request);
-
-				var member = request.Member.ToDomainObject();
-
-				var serviceResponse = _memberService.AddMember(member);
-
-				return new AddMemberResponse
-				{
-					MemberId = serviceResponse.Member.Id,
-					Message = string.Format(MembersController.Messages.PostMemberSuccess, member.FirstName, member.LastName)
-				};
-			}
-			catch(Exception ex)
-			{
-				throw this.HandleGeneralError<AddMemberResponse>(ex);
-			}
+				member.Insert();
+				return member;
+			});
 		}
-
-		public static class Messages
-		{
-			public const string PostMemberSuccess = "{0} {1} has been added.";
-		}
-
 	}
 }

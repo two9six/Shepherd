@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Data", "Shepherd.D
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Shepherd.Database", "Shepherd.Database\Shepherd.Database.sqlproj", "{424588B0-F30B-4C97-A0F3-89FBE65C6F87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Testing", "Shepherd.Testing\Shepherd.Testing.csproj", "{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Domain", "Shepherd.Domain\Shepherd.Domain.csproj", "{C4C0D4DD-5D62-4BA0-B4A6-7FB5BBF7156C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shepherd.Domain.Tests", "Shepherd.Domain.Tests\Shepherd.Domain.Tests.csproj", "{BBCC0A3F-9190-45C4-BA50-826483318862}"
@@ -49,10 +47,6 @@ Global
 		{424588B0-F30B-4C97-A0F3-89FBE65C6F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{424588B0-F30B-4C97-A0F3-89FBE65C6F87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{424588B0-F30B-4C97-A0F3-89FBE65C6F87}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9969BA6E-91A3-4507-94C5-ED0F9725EA5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C4C0D4DD-5D62-4BA0-B4A6-7FB5BBF7156C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4C0D4DD-5D62-4BA0-B4A6-7FB5BBF7156C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4C0D4DD-5D62-4BA0-B4A6-7FB5BBF7156C}.Release|Any CPU.ActiveCfg = Release|Any CPU

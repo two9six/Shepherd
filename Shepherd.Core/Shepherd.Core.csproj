@@ -38,15 +38,20 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Exceptions\AuthorizationFailedException.cs" />
-    <Compile Include="Common\Exceptions\RequiredDetailsException.cs" />
-    <Compile Include="Common\Exceptions\BusinessLogicException.cs" />
-    <Compile Include="Common\Exceptions\ModelNotFoundException.cs" />
+    <Compile Include="Common\GenericValidationMessages.cs" />
+    <Compile Include="Enums\LookupTypes.cs" />
+    <Compile Include="Exceptions\AuthorizationFailedException.cs" />
+    <Compile Include="Exceptions\RequiredDetailsException.cs" />
+    <Compile Include="Exceptions\BusinessLogicException.cs" />
+    <Compile Include="Exceptions\ModelNotFoundException.cs" />
     <Compile Include="Common\Identifiers.cs" />
     <Compile Include="Contracts\Infrastructure\IContainerBuilderComposition.cs" />
+    <Compile Include="Enums\ChurchDesignation.cs" />
+    <Compile Include="Enums\MemberStatus.cs" />
+    <Compile Include="Enums\MemberType.cs" />
     <Compile Include="Extensions\SafeCastExtensions.cs" />
     <Compile Include="Extensions\SafeStringCastExtensions.cs" />
-    <Compile Include="Helpers\DataValidator.cs" />
+    <Compile Include="Helpers\DataValidatorHelper.cs" />
     <Compile Include="Infrastructure\CoreContainerBuilderComposition.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
@@ -54,9 +59,7 @@
     <Compile Include="Infrastructure\IoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

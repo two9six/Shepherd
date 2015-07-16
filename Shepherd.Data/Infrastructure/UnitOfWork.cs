@@ -9,6 +9,9 @@ namespace Shepherd.Data.Infrastructure
 {
 	public class UnitOfWork : IUnitOfWork
 	{
+		private static readonly UnitOfWork instance = new UnitOfWork();
+		public static UnitOfWork Instance { get { return instance; } }
+
 		private IShepherdContext context;
 		public IShepherdContext Context
 		{

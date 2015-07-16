@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Shepherd.Core.Common.Exceptions;
+using Shepherd.Core.Exceptions;
 using Shepherd.WebApi.Infrastructure.Common;
 using Shepherd.WebApi.Infrastructure.Contracts;
 using System;

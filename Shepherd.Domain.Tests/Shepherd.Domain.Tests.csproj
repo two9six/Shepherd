@@ -92,10 +92,6 @@
       <Project>{e358161b-e0b1-42ad-a2a1-2becda696c8c}</Project>
       <Name>Shepherd.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shepherd.Testing\Shepherd.Testing.csproj">
-      <Project>{9969ba6e-91a3-4507-94c5-ed0f9725ea5b}</Project>
-      <Name>Shepherd.Testing</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

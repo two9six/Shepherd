@@ -1,9 +1,7 @@
 ﻿using Autofac;
 using Shepherd.Core.Contracts.Infrastructure;
-using Shepherd.Domain.Contracts.Services;
-using Shepherd.Domain.Contracts.Services.Lookup;
-using Shepherd.Domain.Services.Lookup;
-using Shepherd.Domain.Services.MemberService;
+using Shepherd.Domain.Contracts.Models;
+using Shepherd.Domain.Models;
 
 namespace Shepherd.Domain.Infrastructure
 {
@@ -12,8 +10,7 @@ namespace Shepherd.Domain.Infrastructure
 	{
 		public void Compose(ContainerBuilder builder)
 		{
-			builder.RegisterType<MemberService>().As<IMemberService>();
-			builder.RegisterType<LookupSelectListService>().As<ILookupSelectListService>();
+			builder.RegisterType<Member>().As<IMember>();
 		}
 	}
 }

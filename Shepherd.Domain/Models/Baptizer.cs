@@ -1,5 +1,4 @@
-﻿
-namespace Shepherd.Domain.Models
+﻿namespace Shepherd.Domain.Models
 {
 	public sealed class Baptizer
 	{
