@@ -1,4 +1,5 @@
 ﻿using Shepherd.Core.Enums;
+using Shepherd.Core.Exceptions;
 using Shepherd.Core.Extensions;
 using Shepherd.Core.Helpers;
 using Shepherd.Data.Contracts.Infrastructure;
@@ -75,6 +76,9 @@ namespace Shepherd.Domain.Models
 		public void Load()
 		{
 			var memberEntity = unitOfWork.MemberRepository.GetByIdWithPerson(this.Id);
+			if (memberEntity == null)
+				throw new ModelNotFoundException("Member not found.");
+
 			this.LoadFromEntity(memberEntity);
 		}
 

@@ -68,6 +68,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\MemberHelpers.cs" />
+    <Compile Include="Models\MemberTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MemberServiceTests.cs" />
   </ItemGroup>
