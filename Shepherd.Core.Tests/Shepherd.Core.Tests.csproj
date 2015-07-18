@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Extensions\BooleanExtensionsTests.cs" />
     <Compile Include="Extensions\EnumExtensionsTests.cs" />
+    <Compile Include="Extensions\SafeCastExtensionsTests.cs" />
+    <Compile Include="Extensions\SafeStringCastExtensionsTests.cs" />
     <Compile Include="Helpers\DataValidatorHelperTests.cs" />
     <Compile Include="Helpers\DateTimeHelpersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,6 +17,7 @@ namespace Shepherd.Services.Controllers
 					Name = name,
 					ChurchId = churchId
 				};
+
 				membersIndex.Load();
 
 				return membersIndex;
