@@ -70,11 +70,11 @@
             var deferred = $q.defer();
 
 
-            var addMemberRequest = {
-                Member: member
-            };
+            //var addMemberRequest = {
+            //    Member: member
+            //};
 
-            $http.post(apiUrl, addMemberRequest).then(function (response) {
+            $http.post(apiUrl, member).then(function (response) {
                 deferred.resolve(response);
             }, function (response) {
                 deferred.reject(response);
