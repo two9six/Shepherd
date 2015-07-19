@@ -175,6 +175,55 @@ namespace Shepherd.Domain.Models
 			this.Id = createdMember.Id;
 		}
 
+        public void Update()
+        {
+            DataValidatorHelper.ValidateFields(new List<DataValidationRule>()
+			{
+				new DataValidationRule(Member.FieldNames.ChurchId, this.ChurchId, true, typeof(string)),
+				new DataValidationRule(Member.FieldNames.FirstName, this.FirstName, true, typeof(string)),
+				new DataValidationRule(Member.FieldNames.LastName, this.LastName, true, typeof(string)),
+				new DataValidationRule(Member.FieldNames.BirthDate, this.BirthDate.TryGetString(), true, typeof(DateTime)),
+				new DataValidationRule(Member.FieldNames.DateBaptized, this.DateBaptized.TryGetString(), true, typeof(DateTime))
+			});
+
+            var updatedMember = unitOfWork.MemberRepository.Edit(new Entities.Member
+            {
+                ChurchId = this.ChurchId,
+                DateBaptized = this.DateBaptized.Value,
+                BaptizedById = this.Baptizer.Id,
+                MaritalStatus = this.MaritalStatus,
+                SpouseName = this.SpouseName,
+                LandLine = this.ContactInformation.LandLine,
+                MobileNumber = this.ContactInformation.MobileNumber,
+                Email = this.ContactInformation.Email,
+                StatusId = (int)this.Status,
+                TypeId = (int)this.Type,
+                DesignationId = (int)this.Designation,
+                DateCreated = DateTime.Now,
+                Person = new Entities.Person
+                {
+                    FirstName = this.FirstName,
+                    LastName = this.LastName,
+                    MiddleName = this.MiddleName,
+                    BirthDate = this.BirthDate.Value,
+                    PlaceOfBirth = this.PlaceOfBirth,
+                    Gender = this.Gender,
+                    Citizenship = this.Citizenship,
+                    AddressLine1 = this.Address.AddressLine1,
+                    AddressLine2 = this.Address.AddressLine2,
+                    City = this.Address.City,
+                    StateProvince = this.Address.StateProvince,
+                    Country = this.Address.Country,
+                    CreatedBy = 1,
+                    DateCreated = DateTime.Now
+                },
+                CreatedBy = 1
+            });
+
+            unitOfWork.Save();
+
+        }
+
 		public static class FieldNames
 		{
 			public const string ChurchId = "Church Id";

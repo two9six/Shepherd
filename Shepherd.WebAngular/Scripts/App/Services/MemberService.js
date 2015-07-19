@@ -30,7 +30,19 @@
 
         var getMemberById = function (id) {
 
-            return { Id: "1", FirstName: "Gideon", LastName: "Jura", MiddleName: "", BirthDate: "06/15/2015", DateBabtized: "06/15/2015" }
+            var apiUrl = baseUrl + "api/Members/" + id;
+
+            var deferred = $q.defer();
+
+            $http.get(apiUrl).then(function (response) {
+                deferred.resolve(response);
+            }, function (response) {
+                deferred.reject(response);
+            });
+            
+            return deferred.promise;
+
+            //return { Id: "1", FirstName: "Gideon", LastName: "Jura", MiddleName: "", BirthDate: "06/15/2015", DateBabtized: "06/15/2015" }
         }
 
         var insertMember = function (member) {
@@ -86,9 +98,9 @@
             return deferred.promise;
         }
 
-        var updateMember = function (id, member) {
+        var updateMember = function (member) {
 
-            var apiUrl = baseUrl + "api/Members/" + id;
+            var apiUrl = baseUrl + "api/Members/";
             var deferred = $q.defer();
 
             $http.put(apiUrl, member).then(function (response) {

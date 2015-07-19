@@ -24,6 +24,20 @@ namespace Shepherd.Services.Controllers
 			});
 		}
 
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            return GetActionResult(delegate() { 
+                
+                var membersDetail = new MembersDetail()
+                {
+                    Id = id
+                };
+                membersDetail.Load();
+                return membersDetail;
+            });
+        }
+
 		[HttpPost]
 		public IHttpActionResult Post([FromBody]Member member)
 		{
@@ -33,5 +47,15 @@ namespace Shepherd.Services.Controllers
 				return member;
 			});
 		}
+
+        [HttpPut]
+        public IHttpActionResult Put([FromBody]Member member)
+        {
+            return GetActionResult(delegate() {
+                member.Update();
+                return member;
+            });
+        }
+
 	}
 }

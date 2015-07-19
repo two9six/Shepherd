@@ -32,5 +32,7 @@ namespace Shepherd.Domain.Contracts.Models
 
 		void Load();
 		void Insert();
+
+        void Update();
 	}
 }

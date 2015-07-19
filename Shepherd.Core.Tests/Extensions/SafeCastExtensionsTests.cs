@@ -24,17 +24,17 @@ namespace Shepherd.Core.Tests.Extensions
         }
 
         [TestMethod]
-        public void ToSafeInt_UsingInvalidStringInt_ReturnsInvalidInt()
+        public void ToSafeInt_UsingInvalidStringInt_ReturnsZero()
         {
             //Arrange
             var testValue = "jayson";
-            var expectedResult = 1;
+            var expectedResult = 0;
 
             //Act
             var actualResult = testValue.ToSafeInt();
 
             //Assert
-            Assert.AreNotEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
 
@@ -53,17 +53,17 @@ namespace Shepherd.Core.Tests.Extensions
         }
 
         [TestMethod]
-        public void ToSafeDateTime_UsingInvalidStringDateTime_ReturnsInvalidDateTime()
+        public void ToSafeDateTime_UsingInvalidStringDateTime_ReturnsDateTimeMin()
         { 
             //Arrange
             var testValue = "jayson";
-            var expectedResult = new DateTime(1991, 10, 24);
+            var expectedResult = DateTime.MinValue;
 
             //Act
             var actualResult = testValue.ToSafeDateTime();
 
             //Assert
-            Assert.AreNotEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedResult, actualResult);
         }
     }
 }
