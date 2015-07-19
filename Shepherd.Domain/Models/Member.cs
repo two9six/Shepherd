@@ -186,40 +186,14 @@ namespace Shepherd.Domain.Models
 				new DataValidationRule(Member.FieldNames.DateBaptized, this.DateBaptized.TryGetString(), true, typeof(DateTime))
 			});
 
-            var updatedMember = unitOfWork.MemberRepository.Edit(new Entities.Member
-            {
-                ChurchId = this.ChurchId,
-                DateBaptized = this.DateBaptized.Value,
-                BaptizedById = this.Baptizer.Id,
-                MaritalStatus = this.MaritalStatus,
-                SpouseName = this.SpouseName,
-                LandLine = this.ContactInformation.LandLine,
-                MobileNumber = this.ContactInformation.MobileNumber,
-                Email = this.ContactInformation.Email,
-                StatusId = (int)this.Status,
-                TypeId = (int)this.Type,
-                DesignationId = (int)this.Designation,
-                DateCreated = DateTime.Now,
-                Person = new Entities.Person
-                {
-                    FirstName = this.FirstName,
-                    LastName = this.LastName,
-                    MiddleName = this.MiddleName,
-                    BirthDate = this.BirthDate.Value,
-                    PlaceOfBirth = this.PlaceOfBirth,
-                    Gender = this.Gender,
-                    Citizenship = this.Citizenship,
-                    AddressLine1 = this.Address.AddressLine1,
-                    AddressLine2 = this.Address.AddressLine2,
-                    City = this.Address.City,
-                    StateProvince = this.Address.StateProvince,
-                    Country = this.Address.Country,
-                    CreatedBy = 1,
-                    DateCreated = DateTime.Now
-                },
-                CreatedBy = 1
-            });
+            var existingMember = unitOfWork.MemberRepository.GetById(this.Id);
+            existingMember.Person.FirstName = this.FirstName;
+            existingMember.Person.LastName = this.LastName;
+            existingMember.Person.MiddleName = this.MiddleName;
+            existingMember.DateBaptized = this.DateBaptized.Value;
+            existingMember.Person.BirthDate = this.BirthDate.Value;
 
+            unitOfWork.MemberRepository.Edit(existingMember);
             unitOfWork.Save();
 
         }

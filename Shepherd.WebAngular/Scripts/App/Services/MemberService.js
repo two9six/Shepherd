@@ -100,6 +100,23 @@
 
         var updateMember = function (member) {
 
+
+            member.ChurchId = "GUAXXX";
+            member.Gender = "F";
+            member.Baptizer = {
+                Id: "1"
+            };
+            member.MaritalStatus = "Single";
+            member.StatusId = "1";
+            member.MemberTypeId = "1";
+            member.ChurchDesignationId = "1";
+            member.CreatedBy = "1";
+            member.Type = "25";
+            member.Status = "1";
+
+            member.Designation = "28";
+            console.log(member);
+
             var apiUrl = baseUrl + "api/Members/";
             var deferred = $q.defer();
 

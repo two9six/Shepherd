@@ -73,14 +73,45 @@ namespace Shepherd.Domain.Models
         {
             var member = unitOfWork.MemberRepository.GetById(this.Id);
 
+            this.ChurchId = member.ChurchId;
             this.FirstName = member.Person.FirstName;
             this.LastName = member.Person.LastName;
             this.MiddleName = member.Person.MiddleName;
-            this.DateCreated = member.DateCreated;
+            this.BirthDate = member.Person.BirthDate;
+            this.PlaceOfBirth = member.Person.PlaceOfBirth;
+            this.Gender = member.Person.Gender;
+            this.Citizenship = member.Person.Citizenship;
+            this.Address = new Address() { 
+                AddressLine1 = member.Person.AddressLine1,
+                AddressLine2 = member.Person.AddressLine2,
+                City = member.Person.City,
+                Country = member.Person.Country,
+                StateProvince = member.Person.StateProvince
+            };
             this.DateBaptized = member.DateBaptized;
+
+            this.Baptizer = new Baptizer() { 
+                Id = member.BaptizedById
+            };
+
+            this.MaritalStatus = member.MaritalStatus;
+            this.SpouseName = member.SpouseName;
+            this.ContactInformation = new ContactInformation()
+            {
+                Email = member.Email,
+                LandLine = member.LandLine,
+                MobileNumber = member.MobileNumber
+            };
+            
             this.Status = MemberStatus.Active;
             this.Type = MemberType.Member;
             this.Designation = ChurchDesignation.Member;
+
+            this.CreatedBy = member.CreatedBy;
+            this.DateCreated = member.DateCreated;
+            this.ModifiedBy = member.ModifiedBy;
+            this.DateModified = member.DateModified;
+
 
         }
     }

@@ -21,6 +21,8 @@ namespace Shepherd.Services
 			Formatter.Configure();
 
             Bootstrapper.Run();
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
         }
     }
 }
