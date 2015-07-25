@@ -1,20 +1,47 @@
-﻿<table class="table table-bordered table-hover">
+﻿
+
+
+
+
+<!--<table class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th class="col-name text-center">Name</th>
-            <!--<th class="col-age text-center">Age</th>-->
+            <th class="col-firstName text-center">Firstname</th>
+            <th class="col-lastName text-center">Lastname</th>
             <th class="col-status text-center">Status</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="member in members">
             <td><a href="/Members/Details/{{member.id}}">{{ member.firstName }}</a></td>
-            <!--<td class="text-center">{{ member.age }}</td>-->
+            <td>{{ member.lastName }}</td>
             <td class="text-center">{{ member.status }}</td>
         </tr>
     </tbody>
-</table>
+</table>-->
 
+<p class="text-muted">
+    Search: <input type="text" placeholder=" enter search text " ng-model="models.searchText" />
+</p>
+
+<!-- ========== Usage ========== -->
+<ad-table-lite table-name="members"
+               enable-column-search="true"
+               column-definition="membersTableColumnDefinition"
+               local-data-source="models.members"
+               page-sizes="[7, 20]"
+               pagination-btn-group-classes="pagination pagination-sm"
+               table-classes="table table-bordered"
+               items-not-found-message="Cars Not Found"
+               selected-items="models.selectedMembers"
+               snug-sort-icons="false"
+               search-text="models.searchText"
+               state="models.state"
+               on-state-change="onStateChange"
+               row-class-provider="checkRowSelected">
+</ad-table-lite>
+<!--row-expand-template="src/tablelite/docs/carMoreInfo.html"-->
+<!--row-expand-callback="rowExpanded"-->
 <p>
     <a class="btn btn-primary" href="/Members/Add">Add New Member</a>
     &nbsp;

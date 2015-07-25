@@ -42,7 +42,6 @@
             
             return deferred.promise;
 
-            //return { Id: "1", FirstName: "Gideon", LastName: "Jura", MiddleName: "", BirthDate: "06/15/2015", DateBabtized: "06/15/2015" }
         }
 
         var insertMember = function (member) {
@@ -81,25 +80,16 @@
             var apiUrl = baseUrl + "api/Members/";
             var deferred = $q.defer();
 
-
-            //var addMemberRequest = {
-            //    Member: member
-            //};
-
             $http.post(apiUrl, member).then(function (response) {
                 deferred.resolve(response);
             }, function (response) {
                 deferred.reject(response);
             });
 
-
-
-
             return deferred.promise;
         }
 
         var updateMember = function (member) {
-
 
             member.ChurchId = "GUAXXX";
             member.Gender = "F";
