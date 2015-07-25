@@ -4,4 +4,20 @@
     <div>
         {{hello}}
     </div>
+
+    <!-- Usage: put this in your main app container -->
+    <ad-alerts timeout="timeoutValue" custom-classes="thick-border"></ad-alerts>
+
+    <button id="infoBut" class="btn btn-info" ng-click="showInfo();">
+        Show Info Message
+    </button>
+    <button class="btn btn-warning" ng-click="showWarning();">
+        Show Warning Message
+    </button>
+    <button class="btn btn-success" ng-click="showSuccess();">
+        Show Success Message
+    </button>
+    <button class="btn btn-danger" ng-click="showError();">
+        Show Error Message
+    </button>
 </div>

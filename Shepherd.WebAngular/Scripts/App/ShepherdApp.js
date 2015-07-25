@@ -1,7 +1,7 @@
 ﻿(function () {
 
 
-    var app = angular.module("shepherdApp", ["ngRoute", "ui.bootstrap"]);
+    var app = angular.module("shepherdApp", ["ngRoute", "ui.bootstrap", "ngSanitize", "adaptv.adaptStrap"]);
 
     app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
 
