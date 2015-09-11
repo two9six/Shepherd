@@ -12,9 +12,9 @@ function pageTitle($rootScope, $timeout) {
 	return {
 		link: function (scope, element) {
 			var listener = function (event, toState, toParams, fromState, fromParams) {
-				var title = 'BCG B2B Pricing';
+				var title = 'Shepherd';
 				// Create your own title pattern
-				if (toState.data && toState.data.pageTitle) title = 'BCG B2B Pricing | ' + toState.data.pageTitle;
+				if (toState.data && toState.data.pageTitle) title = 'Shepherd | ' + toState.data.pageTitle;
 				$timeout(function () {
 					element.text(title);
 				});

@@ -1,4 +1,4 @@
-﻿var sw;
+﻿var cis;
 var app;
 
 app = angular.module('Shepherd'
@@ -10,7 +10,7 @@ app = angular.module('Shepherd'
     , 'ui.router'
 	]);
 
-(function (sw) {
+(function (cis) {
 	app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 		$stateProvider
@@ -48,4 +48,4 @@ app = angular.module('Shepherd'
 		//	requireBase: false
 		//});
 	});
-})(sw || (sw = {}));
+})(cis || (cis = {}));
