@@ -1,0 +1,187 @@
+﻿/*ibox style extensions*/
+.ibox-title-inline {
+    display: inline-block;
+}
+
+.clip {
+    overflow: hidden;
+    -moz-text-overflow: clip;
+    text-overflow: clip;
+}
+
+.clip-ellipsis {
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.upload-file-log-table {
+    width: 40%;
+}
+
+.product-list-table {
+    width: 70%;
+}
+
+.active-period-table {
+    width: 40%;
+}
+
+.dropdown-menu > hr{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ibox-content {
+    padding: 0;
+    margin: 0;
+}
+
+.ibox.collapsed .ibox-content {
+     display: none;
+}
+/*todo: add a class for this like table-reduced-padding so not overriding default bootstrap styles
+*/
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 3px;
+}
+
+.btn-xs {
+    margin-right: 3px;
+    margin-left: 2px;
+}
+
+/*todo: more specific selector isntead of overriding default bootstrap vertical-align: top
+    just use same selectors as bootstrap uses, but with class
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+*/
+table.vertical-align-middle td, table.vertical-align-middle tr{
+    vertical-align: middle !important;
+}
+
+/*body {
+    background-color: #F3F3F4;
+}
+
+nav.navbar-default{
+    background-color: rgb(47, 64, 80);
+    top: 0;
+    bottom: -400px;
+}*/
+
+input[type="checkbox"].checkbox-padded {
+    margin-left: 5px;
+}
+
+.ibox-title {
+    height: auto;
+    min-height: 48px;
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.container-fluid {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.floor-price-in-sync{
+    color: lightgray
+}
+
+.floor-price-not-in-sync{
+    color: black
+}
+
+.base-goal-default{
+    color:#23C6C8;
+}
+
+.log-level-warn {
+    color:#ff6a00;
+}
+.log-level-debug {
+    color:#0094ff;
+}
+.log-level-error {
+    color:#ff0000;
+}
+.log-level-fatal {
+    color:#ff0000;
+}
+.log-level-info {
+    color:#0000ff;
+}
+
+.chosen-select {
+    width: 100% !important;
+}
+
+div.ep-impact-tracking-entry, div .ep-impact-tracking-entry {
+    padding: 0.45em;
+}
+
+tfoot hr, tfoot hr {
+    height: 6px;
+    border: 0;
+    margin: 0;
+    -webkit-box-shadow: inset 0 6px 6px -6px black;
+    -ms-box-shadow: inset 0 6px 6px -6px black;
+    box-shadow: inset 0 6px 6px -6px black;
+}
+
+div.ep-impact-general-comment-section span.label {
+    margin-bottom: 1em;
+}
+
+.info-circle {
+    color: #32c77f;
+    font-size: 13px; 
+}
+
+.legend-text {
+    color: #b1b2b5;
+    font-size: 11px; 
+}
+
+body {
+    overflow: hidden;
+}
+
+.show-scrollbar {
+    overflow-y:visible;
+    ms-overflow-y:visible;
+}
+
+.hide-scrollbar {
+    overflow-y:hidden;
+    ms-overflow-y:hidden;
+}
+
+.area-rounded {
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+}
+
+.sub-area {
+    /*margin: 10px;*/
+    padding: 10px; 
+}
+
+.sub-sub-area {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+/* override bootstrap min-width requirement for dropdown menu min width at 160px */
+.dropdown-menu {
+    -moz-min-width: 20px !important;
+    -ms-min-width: 20px !important;
+    -o-min-width: 20px !important;
+    -webkit-min-width: 20px !important;
+    min-width: 20px !important;
+}

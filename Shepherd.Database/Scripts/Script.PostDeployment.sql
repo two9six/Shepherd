@@ -10,8 +10,7 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\BaselineData\Insert_LookupType.SQL
-:r .\BaselineData\Insert_Lookup.SQL
-
-:r .\UnitData\Insert_Person.SQL
-:r .\UnitData\Insert_Member.SQL
+:r .\BaselineData\Load_DesignationType.SQL
+:r .\BaselineData\Load_Designation.SQL
+:r .\BaselineData\Load_GatheringType.SQL
+:r .\BaselineData\Load_MemberStatus.SQL

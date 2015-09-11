@@ -29,39 +29,39 @@ namespace Shepherd.Data.Infrastructure
 			}
 		}
 
-		private ILookupRepository lookupRepository;
-		public ILookupRepository LookupRepository
+		private IDesignationRepository designationRepository;
+		public IDesignationRepository DesignationRepository
 		{
 			get
 			{
-				if (lookupRepository == null)
+				if (designationRepository == null)
 				{
-					lookupRepository = new LookupRepository();
-					lookupRepository.Context = this.Context;
+					designationRepository = new DesignationRepository();
+					designationRepository.Context = this.Context;
 				}
-				return lookupRepository;
+				return designationRepository;
 			}
 			set
 			{
-				lookupRepository = value;
+				designationRepository = value;
 			}
 		}
 
-		private ILookupTypeRepository lookupTypeRepository;
-		public ILookupTypeRepository LookupTypeRepository
+		private IGatheringTypeRepository gatheringTypeRepository;
+		public IGatheringTypeRepository GatheringTypeRepository
 		{
 			get
 			{
-				if (lookupTypeRepository == null)
+				if (gatheringTypeRepository == null)
 				{
-					lookupTypeRepository = new LookupTypeRepository();
-					lookupTypeRepository.Context = this.Context;
+					gatheringTypeRepository = new GatheringTypeRepository();
+					gatheringTypeRepository.Context = this.Context;
 				}
-				return lookupTypeRepository;
+				return gatheringTypeRepository;
 			}
 			set
 			{
-				lookupTypeRepository = value;
+				gatheringTypeRepository = value;
 			}
 		}
 
@@ -80,6 +80,42 @@ namespace Shepherd.Data.Infrastructure
 			set
 			{
 				memberRepository = value;
+			}
+		}
+
+		private IMemberStatusRepository memberStatusRepository;
+		public IMemberStatusRepository MemberStatusRepository
+		{
+			get
+			{
+				if (memberStatusRepository == null)
+				{
+					memberStatusRepository = new MemberStatusRepository();
+					memberStatusRepository.Context = this.Context;
+				}
+				return memberStatusRepository;
+			}
+			set
+			{
+				memberStatusRepository = value;
+			}
+		}
+
+		private IDesignationTypeRepository memberTypeRepository;
+		public IDesignationTypeRepository MemberTypeRepository
+		{
+			get
+			{
+				if (memberTypeRepository == null)
+				{
+					memberTypeRepository = new DesignationTypeRepository();
+					memberTypeRepository.Context = this.Context;
+				}
+				return memberTypeRepository;
+			}
+			set
+			{
+				memberTypeRepository = value;
 			}
 		}
 

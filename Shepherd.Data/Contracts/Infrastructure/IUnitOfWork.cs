@@ -8,11 +8,15 @@ namespace Shepherd.Data.Contracts.Infrastructure
 	{
 		IShepherdContext Context { get; set; }
 
-		ILookupRepository LookupRepository { get; set; }
+		IDesignationRepository DesignationRepository { get; set; }
 
-		ILookupTypeRepository LookupTypeRepository { get; set; }
+		IGatheringTypeRepository GatheringTypeRepository { get; set; }	
 
 		IMemberRepository MemberRepository { get; set; }
+
+		IMemberStatusRepository MemberStatusRepository { get; set; }
+
+		IDesignationTypeRepository MemberTypeRepository { get; set; }
 
 		IPersonRepository PersonRepository { get; set; }
 

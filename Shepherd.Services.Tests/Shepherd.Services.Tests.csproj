@@ -123,7 +123,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Shepherd.Services\Shepherd.Services.csproj">
       <Project>{bfa8b6a9-2853-415b-ba0b-890c9a07666f}</Project>
-      <Name>Shepherd.WebApi</Name>
+      <Name>Shepherd.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

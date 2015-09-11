@@ -5,22 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ShepherdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Lookup">
+        <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LookupTypeId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesignationTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="LookupType">
+        <EntityType Name="DesignationType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GatheringType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Member">
@@ -37,13 +46,21 @@
           <Property Name="LandLine" Type="varchar" MaxLength="50" />
           <Property Name="MobileNumber" Type="varchar" MaxLength="500" />
           <Property Name="Email" Type="varchar" MaxLength="500" />
-          <Property Name="StatusId" Type="int" Nullable="false" />
-          <Property Name="TypeId" Type="int" Nullable="false" />
-          <Property Name="DesignationId" Type="int" Nullable="false" />
+          <Property Name="MemberStatusId" Type="tinyint" Nullable="false" />
+          <Property Name="DesignationId" Type="tinyint" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="DateModified" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
@@ -69,15 +86,39 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Lookup_LookupType">
-          <End Role="LookupType" Type="Self.LookupType" Multiplicity="1" />
-          <End Role="Lookup" Type="Self.Lookup" Multiplicity="*" />
+        <Association Name="FK_Designation_DesignationType">
+          <End Role="DesignationType" Type="Self.DesignationType" Multiplicity="1" />
+          <End Role="Designation" Type="Self.Designation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LookupType">
+            <Principal Role="DesignationType">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Lookup">
-              <PropertyRef Name="LookupTypeId" />
+            <Dependent Role="Designation">
+              <PropertyRef Name="DesignationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Designation">
+          <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_MemberStatus">
+          <End Role="MemberStatus" Type="Self.MemberStatus" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="MemberStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -94,13 +135,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ShepherdModelStoreContainer">
-          <EntitySet Name="Lookup" EntityType="Self.Lookup" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LookupType" EntityType="Self.LookupType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DesignationType" EntityType="Self.DesignationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GatheringType" EntityType="Self.GatheringType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberStatus" EntityType="Self.MemberStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Lookup_LookupType" Association="Self.FK_Lookup_LookupType">
-            <End Role="LookupType" EntitySet="LookupType" />
-            <End Role="Lookup" EntitySet="Lookup" />
+          <AssociationSet Name="FK_Designation_DesignationType" Association="Self.FK_Designation_DesignationType">
+            <End Role="DesignationType" EntitySet="DesignationType" />
+            <End Role="Designation" EntitySet="Designation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Designation" Association="Self.FK_Member_Designation">
+            <End Role="Designation" EntitySet="Designation" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_MemberStatus" Association="Self.FK_Member_MemberStatus">
+            <End Role="MemberStatus" EntitySet="MemberStatus" />
+            <End Role="Member" EntitySet="Member" />
           </AssociationSet>
           <AssociationSet Name="FK_Member_Person" Association="Self.FK_Member_Person">
             <End Role="Person" EntitySet="Person" />
@@ -111,52 +162,61 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShepherdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Lookup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LookupTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="LookupType" Relationship="Self.FK_Lookup_LookupType" FromRole="Lookup" ToRole="LookupType" />
-        </EntityType>
-        <EntityType Name="LookupType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Lookups" Relationship="Self.FK_Lookup_LookupType" FromRole="LookupType" ToRole="Lookup" />
-        </EntityType>
-        <Association Name="FK_Lookup_LookupType">
-          <End Role="LookupType" Type="Self.LookupType" Multiplicity="1" />
-          <End Role="Lookup" Type="Self.Lookup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LookupType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Lookup">
-              <PropertyRef Name="LookupTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ShepherdContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Lookups" EntityType="Self.Lookup" />
-          <EntitySet Name="LookupTypes" EntityType="Self.LookupType" />
-          <AssociationSet Name="FK_Lookup_LookupType" Association="Self.FK_Lookup_LookupType">
-            <End Role="LookupType" EntitySet="LookupTypes" />
-            <End Role="Lookup" EntitySet="Lookups" />
-          </AssociationSet>
-          <EntitySet Name="People" EntityType="ShepherdModel.Person" />
+          <EntitySet Name="Designations" EntityType="ShepherdModel.Designation" />
+          <EntitySet Name="GatheringTypes" EntityType="ShepherdModel.GatheringType" />
+          <EntitySet Name="MemberStatuses" EntityType="ShepherdModel.MemberStatus" />
+          <EntitySet Name="Persons" EntityType="ShepherdModel.Person" />
+          <EntitySet Name="DesignationTypes" EntityType="ShepherdModel.DesignationType" />
           <EntitySet Name="Members" EntityType="ShepherdModel.Member" />
-          <AssociationSet Name="FK_Member_Person" Association="ShepherdModel.FK_Member_Person">
-            <End Role="Person" EntitySet="People" />
+          <AssociationSet Name="FK_Designation_DesignationType" Association="ShepherdModel.FK_Designation_DesignationType">
+            <End Role="DesignationType" EntitySet="DesignationTypes" />
+            <End Role="Designation" EntitySet="Designations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Designation" Association="ShepherdModel.FK_Member_Designation">
+            <End Role="Designation" EntitySet="Designations" />
             <End Role="Member" EntitySet="Members" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="FK_Member_MemberStatus" Association="ShepherdModel.FK_Member_MemberStatus">
+            <End Role="MemberStatus" EntitySet="MemberStatuses" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Person" Association="ShepherdModel.FK_Member_Person">
+            <End Role="Person" EntitySet="Persons" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DesignationTypeId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="DesignationType" Relationship="ShepherdModel.FK_Designation_DesignationType" FromRole="Designation" ToRole="DesignationType" />
+          <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Designation" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="GatheringType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_MemberStatus" FromRole="MemberStatus" ToRole="Member" />
+        </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
@@ -181,6 +241,15 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Person" FromRole="Person" ToRole="Member" />
         </EntityType>
+        <EntityType Name="DesignationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Designations" Relationship="ShepherdModel.FK_Designation_DesignationType" FromRole="DesignationType" ToRole="Designation" />
+        </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="Id" />
@@ -195,16 +264,53 @@
           <Property Name="LandLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="TypeId" Type="Int32" Nullable="false" />
-          <Property Name="DesignationId" Type="Int32" Nullable="false" />
+          <Property Name="MemberStatusId" Type="Byte" Nullable="false" />
+          <Property Name="DesignationId" Type="Byte" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="DateModified" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Designation" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Member" ToRole="Designation" />
+          <NavigationProperty Name="MemberStatu" Relationship="ShepherdModel.FK_Member_MemberStatus" FromRole="Member" ToRole="MemberStatus" />
           <NavigationProperty Name="Person" Relationship="ShepherdModel.FK_Member_Person" FromRole="Member" ToRole="Person" />
         </EntityType>
+        <Association Name="FK_Designation_DesignationType">
+          <End Type="ShepherdModel.DesignationType" Role="DesignationType" Multiplicity="1" />
+          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DesignationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Designation">
+              <PropertyRef Name="DesignationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Designation">
+          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="1" />
+          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_MemberStatus">
+          <End Type="ShepherdModel.MemberStatus" Role="MemberStatus" Multiplicity="1" />
+          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="MemberStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Member_Person">
           <End Type="ShepherdModel.Person" Role="Person" Multiplicity="1" />
           <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
@@ -217,33 +323,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShepherdModelStoreContainer" CdmEntityContainer="ShepherdContext">
-          <EntitySetMapping Name="Lookups">
-            <EntityTypeMapping TypeName="ShepherdModel.Lookup">
-              <MappingFragment StoreEntitySet="Lookup">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LookupTypeId" ColumnName="LookupTypeId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+          <EntitySetMapping Name="Designations">
+            <EntityTypeMapping TypeName="ShepherdModel.Designation">
+              <MappingFragment StoreEntitySet="Designation">
+                <ScalarProperty Name="DesignationTypeId" ColumnName="DesignationTypeId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LookupTypes">
-            <EntityTypeMapping TypeName="ShepherdModel.LookupType">
-              <MappingFragment StoreEntitySet="LookupType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="People">
+          <EntitySetMapping Name="GatheringTypes">
+            <EntityTypeMapping TypeName="ShepherdModel.GatheringType">
+              <MappingFragment StoreEntitySet="GatheringType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberStatuses">
+            <EntityTypeMapping TypeName="ShepherdModel.MemberStatus">
+              <MappingFragment StoreEntitySet="MemberStatus">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
             <EntityTypeMapping TypeName="ShepherdModel.Person">
               <MappingFragment StoreEntitySet="Person">
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -267,6 +384,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DesignationTypes">
+            <EntityTypeMapping TypeName="ShepherdModel.DesignationType">
+              <MappingFragment StoreEntitySet="DesignationType">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ShepherdModel.Member">
               <MappingFragment StoreEntitySet="Member">
@@ -276,8 +402,7 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
-                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="MemberStatusId" ColumnName="MemberStatusId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
                 <ScalarProperty Name="LandLine" ColumnName="LandLine" />

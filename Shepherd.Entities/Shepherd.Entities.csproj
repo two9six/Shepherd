@@ -51,13 +51,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IShepherdContext.cs" />
-    <Compile Include="Lookup.cs">
+    <Compile Include="Designation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="LookupType.cs">
+    <Compile Include="DesignationType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GatheringType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Member.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberStatus.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">

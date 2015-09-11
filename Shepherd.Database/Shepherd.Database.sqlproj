@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{424588b0-f30b-4c97-a0f3-89fbe65c6f87}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -61,21 +61,22 @@
     <Folder Include="Scripts" />
     <Folder Include="dbo\Tables" />
     <Folder Include="Scripts\BaselineData" />
-    <Folder Include="Scripts\UnitData" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Person.sql" />
     <Build Include="dbo\Tables\Member.sql" />
-    <Build Include="dbo\Tables\LookupType.sql" />
-    <Build Include="dbo\Tables\Lookup.sql" />
-    <None Include="Scripts\BaselineData\Insert_Lookup.sql" />
-    <None Include="Scripts\BaselineData\Insert_LookupType.sql" />
+    <Build Include="dbo\Tables\MemberStatus.sql" />
+    <Build Include="dbo\Tables\GatheringType.sql" />
+    <Build Include="dbo\Tables\DesignationType.sql" />
+    <Build Include="dbo\Tables\Designation.sql" />
+    <None Include="Scripts\BaselineData\Load_Designation.sql" />
+    <None Include="Scripts\BaselineData\Load_GatheringType.sql" />
+    <None Include="Scripts\BaselineData\Load_MemberStatus.sql" />
+    <None Include="Scripts\BaselineData\Load_DesignationType.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\UnitData\Insert_Member.sql" />
-    <None Include="Scripts\UnitData\Insert_Person.sql" />
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
-    <None Include="Shepherd.Database.publish.xml" />
+    <None Include="Shepherd.Database.Local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Shepherd.Database.refactorlog" />

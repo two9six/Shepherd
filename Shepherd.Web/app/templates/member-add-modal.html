@@ -1,0 +1,181 @@
+﻿<div class="inmodal">
+	<div class="modal-header">
+		<h4 class="modal-title">Add Member</h4>
+		<small class="font-bold"></small>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+
+			<form class="form-horizontal" role="form" name="memberForm" novalidate>
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="FirstName">First name</label>
+					<div class="col-md-10">
+						<input class="form-control" id="FirstName"
+							   name="FirstName" type="text"
+							   value="" ng-required="true"
+							   ng-minlength="1" ng-maxlength="100"
+							   ng-model="member.FirstName" />
+						<span ng-show="memberForm.FirstName.$error.required && memberForm.FirstName.$dirty">Firstname is required</span>
+						<span ng-show="memberForm.FirstName.$error.minlength && memberForm.FirstName.$dirty">Must be at least 1 character</span>
+						<span ng-show="memberForm.FirstName.$error.maxlength && memberForm.FirstName.$dirty">Must be at most 100 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="MiddleName">Middle name</label>
+					<div class="col-md-10">
+						<input class="form-control" id="MiddleName"
+							   name="MiddleName" type="text" value=""
+							   ng-model="member.MiddleName" ng-maxlength="100" />
+						<span ng-show="memberForm.MiddleName.$error.maxlength && memberForm.MiddleName.$dirty">Must be at most 100 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="LastName">Last name</label>
+					<div class="col-md-10">
+						<input class="form-control" id="LastName"
+							   name="LastName" type="text"
+							   value="" ng-required="true"
+							   ng-minlength="1" ng-maxlength="100"
+							   ng-model="member.LastName" />
+						<span ng-show="memberForm.LastName.$error.required && memberForm.LastName.$dirty">LastName is required</span>
+						<span ng-show="memberForm.LastName.$error.minlength && memberForm.LastName.$dirty">Must be at least 1 character</span>
+						<span ng-show="memberForm.LastName.$error.maxlength && memberForm.LastName.$dirty">Must be at most 100 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="Citizenship">Citizenship</label>
+					<div class="col-md-10">
+						<input class="form-control" id="Citizenship"
+							   name="Citizenship" type="text"
+							   value="" ng-maxlength="50"
+							   ng-model="member.Citizenship" />
+						<span ng-show="memberForm.Citizenship.$error.maxlength && memberForm.Citizenship.$dirty">Must be at most 100 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="PlaceOfBirth">Place Of Birth</label>
+					<div class="col-md-10">
+						<input class="form-control" id="PlaceOfBirth"
+							   name="PlaceOfBirth" type="text" value=""
+							   ng-model="member.PlaceOfBirth" ng-maxlength="100" />
+						<span ng-show="memberForm.PlaceOfBirth.$error.maxlength && memberForm.PlaceOfBirth.$dirty">Must be at most 100 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="SpouseName">Spouse Name</label>
+					<div class="col-md-10">
+						<input class="form-control" id="SpouseName"
+							   name="SpouseName" type="text" value=""
+							   ng-model="member.SpouseName" ng-maxlength="200" />
+						<span ng-show="memberForm.SpouseName.$error.maxlength && memberForm.SpouseName.$dirty">Must be at most 100 characters</span>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="BirthDate">Birth date</label>
+
+					<div class="col-md-10">
+						<!--<input class="form-control text-box single-line" data-val="true" data-val-date="The field Birth date must be a date." data-val-required="The Birth date field is required." id="BirthDate" name="BirthDate" placeholder="Select Birth Date" type="datetime" value="01/01/0001" />-->
+						<datepicker name="BirthDate" ng-model="member.BirthDate" init-date=""></datepicker>
+					</div>
+				</div>
+
+
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="DateBaptized">Date baptized</label>
+					<div class="col-md-10">
+						<!--<input class="form-control text-box single-line" data-val="true" data-val-date="The field Date babtized must be a date." data-val-required="The Date babtized field is required." id="DateBabtized" name="DateBabtized" placeholder="Select Date Babtized" type="datetime" value="01/01/0001" />-->
+						<datepicker name="DateBaptized" ng-model="member.DateBaptized"></datepicker>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="LandLine">Landline</label>
+					<div class="col-md-10">
+						<input type="text" name="LandLine" value="" id="LandLine"
+							   ng-model="member.ContactInformation.LandLine" ng-maxlength="7"
+							   ng-minlength="7" />
+						<span ng-show="memberForm.LandLine.$error.maxlength && memberForm.LandLine.$dirty">must be 7 characters</span>
+						<span ng-show="memberForm.LandLine.$error.minlength && memberForm.LandLine.$dirty">must be 7 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="Email">Email</label>
+					<div class="col-md-10">
+						<input type="text" name="Email" value="" id="Email"
+							   ng-model="member.ContactInformation.Email" ng-pattern="" ng-maxlength="500" />
+						<span ng-show="memberForm.Email.$error.maxlength && memberForm.Email.$dirty">must be 500 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="MobileNumber">Mobile Number</label>
+					<div class="col-md-10">
+						<input type="text" name="MobileNumber" value="" id="MobileNumber"
+							   ng-model="member.ContactInformation.MobileNumber" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="AddressLine1">Address Line 1</label>
+					<div class="col-md-10">
+						<input type="text" name="AddressLine1" value="" id="AddressLine1"
+							   ng-model="member.Address.AddressLine1" ng-maxlength="200" />
+						<span ng-show="memberForm.AddressLine1.$error.maxlength && memberForm.AddressLine1.$dirty">must be at most 200 characters</span>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="AddressLine2">Address Line 2</label>
+					<div class="col-md-10">
+						<input type="text" name="AddressLine2" value="" id="AddressLine2"
+							   ng-model="member.Address.AddressLine2" ng-maxlength="200" />
+						<span ng-show="memberForm.AddressLine2.$error.maxlength && memberForm.AddressLine2.$dirty">must be at most 200 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="City">City</label>
+					<div class="col-md-10">
+						<input type="text" name="City" value="" id="City"
+							   ng-model="member.Address.City" ng-maxlength="100" />
+						<span ng-show="memberForm.City.$error.maxlength && memberForm.City.$dirty">must be at most 100 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="StateProvince">StateProvince</label>
+					<div class="col-md-10">
+						<input type="text" name="StateProvince" value="" id="StateProvince"
+							   ng-model="member.Address.StateProvince" ng-maxlength="100" />
+						<span ng-show="memberForm.StateProvince.$error.maxlength && memberForm.StateProvince.$dirty">must be at most 100 characters</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="Country">Country</label>
+					<div class="col-md-10">
+						<input type="text" name="Country" value="" id="Country"
+							   ng-model="member.Address.Country" ng-maxlength="100" />
+						<span ng-show="memberForm.Country.$error.maxlength && memberForm.Country.$dirty">must be at most 100 characters</span>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" tabindex="3" ng-click="save()" ng-disabled="isSaveButtonDisabled()">Save</button>
+		<button type="button" class="btn btn-primary btn-close" tabindex="4" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

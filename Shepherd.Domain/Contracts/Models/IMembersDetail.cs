@@ -1,10 +1,6 @@
 ﻿using Shepherd.Core.Enums;
 using Shepherd.Domain.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shepherd.Domain.Contracts.Models
 {
@@ -25,9 +21,9 @@ namespace Shepherd.Domain.Contracts.Models
         string MaritalStatus { get; set; }
         string SpouseName { get; set; }
         ContactInformation ContactInformation { get; set; }
-        MemberStatus Status { get; set; }
-        MemberType Type { get; set; }
-        ChurchDesignation Designation { get; set; }
+        MemberStatuses Status { get; set; }
+        DesignationTypes Type { get; set; }
+        Designations Designation { get; set; }
         int CreatedBy { get; set; }
         DateTime DateCreated { get; set; }
         int? ModifiedBy { get; set; }

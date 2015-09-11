@@ -14,9 +14,8 @@ namespace Shepherd.Domain.Tests.Helpers
 			{
 				Id = Math.Abs(generator.Generate<int>()),
 				ChurchId = generator.Generate<string>(),
-				StatusId = (int)MemberStatus.Active,
-				TypeId = (int)MemberType.Member,
-				DesignationId = (int)ChurchDesignation.Member,
+				MemberStatusId = (byte)MemberStatuses.Active,
+				DesignationId = (byte)Designations.Member,
 				Person = new Entities.Person
 				{
 					Id = Math.Abs(generator.Generate<int>()),

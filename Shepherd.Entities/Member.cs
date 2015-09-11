@@ -24,15 +24,16 @@ namespace Shepherd.Entities
         public string LandLine { get; set; }
         public string MobileNumber { get; set; }
         public string Email { get; set; }
-        public int StatusId { get; set; }
-        public int TypeId { get; set; }
-        public int DesignationId { get; set; }
+        public byte MemberStatusId { get; set; }
+        public byte DesignationId { get; set; }
         public System.DateTime DateCreated { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> DateModified { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
     
+        public virtual Designation Designation { get; set; }
+        public virtual MemberStatus MemberStatu { get; set; }
         public virtual Person Person { get; set; }
     }
 }

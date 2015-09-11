@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[MemberStatus]
+(
+	[Id] TINYINT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] VARCHAR(128) NOT NULL, 
+    [IsDefault] BIT NOT NULL DEFAULT 0,
+	[IsDeleted] BIT NOT NULL DEFAULT 0
+)

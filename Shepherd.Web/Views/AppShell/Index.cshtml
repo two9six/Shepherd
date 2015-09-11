@@ -1,0 +1,37 @@
+﻿@model Shepherd.Web.Models.AppShellViewModel
+
+<!DOCTYPE html>
+<html ng-app="Shepherd">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Locale Assistant</title>
+		<link href="/favicon.ico" rel="shortcut icon" />
+		@Styles.Render("~/css")
+		@Scripts.Render("~/js")
+
+		<!-- Load settings constants -->
+		<script type="text/javascript">
+			app.constant('baseServiceUrl', '@Html.Raw( Model.Settings.BaseServiceUrl )');
+			app.constant('environmentName', '@Html.Raw( Model.Settings.EnvironmentName )');
+		</script>
+		<meta name="description" content="The description of my page" />
+</head>
+	<body data-ng-controller="appShellController as appCtrl" class="mini-navbar" ng-class="bodyClass()">
+		<div class="row border-bottom">
+			<ng-include src="'/app/partials/top-navigation.html'"></ng-include>
+		</div>
+		<div id="wrapper">
+			<ng-include src="'/app/partials/left-navigation.html'"></ng-include>
+			<div id="page-wrapper" class="gray-bg dashoard-1">
+				<div>
+					<div class="primary-view-wrapper wrapper-content" id="primary-view-wrapper">
+						<ui-view></ui-view>
+					</div>
+					<div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -6,16 +6,17 @@ namespace Shepherd.Entities.Contracts
 {
 	public interface IShepherdContext : IDisposable
 	{
-		DbSet<Lookup> Lookups { get; set; }
-		DbSet<LookupType> LookupTypes { get; set; }
+		DbSet<Designation> Designations { get; set; }
+		DbSet<DesignationType> DesignationTypes { get; set; }
+		DbSet<GatheringType> GatheringTypes { get; set; }
 		DbSet<Member> Members { get; set; }
-		DbSet<Person> People { get; set; }
+		DbSet<MemberStatus> MemberStatuses { get; set; }
+		DbSet<Person> Persons { get; set; }
 
 		Database Database { get; }
 		DbEntityEntry Entry(object entity);
 		int SaveChanges();	
 		DbSet Set(Type entityType);
-		DbSet<T> Set<T>() where T : class;
-		
+		DbSet<T> Set<T>() where T : class;		
 	}
 }

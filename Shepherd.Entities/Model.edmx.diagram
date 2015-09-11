@@ -4,12 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="764300518a5c480ca0d1db2a34aae15e" Name="Diagram1" ZoomLevel="87">
-        <EntityTypeShape EntityType="ShepherdModel.Lookup" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShepherdModel.LookupType" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="ShepherdModel.FK_Lookup_LookupType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ShepherdModel.Person" Width="1.5" PointX="0.75" PointY="4" />
-        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="3" PointY="4" />
+      <Diagram DiagramId="764300518a5c480ca0d1db2a34aae15e" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="ShepherdModel.Designation" Width="1.5" PointX="4.875" PointY="0.625" />
+        <EntityTypeShape EntityType="ShepherdModel.GatheringType" Width="1.5" PointX="9.875" PointY="0.625" />
+        <EntityTypeShape EntityType="ShepherdModel.MemberStatus" Width="1.5" PointX="4.875" PointY="3.25" />
+        <EntityTypeShape EntityType="ShepherdModel.Person" Width="1.5" PointX="0.75" PointY="0.625" />
+        <EntityTypeShape EntityType="ShepherdModel.DesignationType" Width="1.625" PointX="6.75" PointY="0.625" />
+        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="2.875" PointY="0.625" />
+        <AssociationConnector Association="ShepherdModel.FK_Designation_DesignationType" />
+        <AssociationConnector Association="ShepherdModel.FK_Member_Designation" />
+        <AssociationConnector Association="ShepherdModel.FK_Member_MemberStatus" />
         <AssociationConnector Association="ShepherdModel.FK_Member_Person" />
       </Diagram>
     </edmx:Diagrams>

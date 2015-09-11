@@ -1,0 +1,31 @@
+﻿.data-grid tbody tr, .data-grid tbody td, .data-grid tbody tr th {
+    line-height: 1.1em;
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.data-grid .sub-table {
+    line-height: 1em !important;
+}
+
+table.hover:hover {
+    background-color: #e8e8e8;
+    /*background-color: #0A9CE6;*/
+}
+
+table.hover.selected:hover {
+    background-color: #fdfd96;
+    /*background-color: #B5B8CF;*/
+}
+
+table.selected {
+    background-color: #fdfd96;
+}
+
+/*table.hover.selected:hover {
+    background-color: #B5B8CF;
+}
+
+table.selected {
+    background-color: #1ab394;
+}*/

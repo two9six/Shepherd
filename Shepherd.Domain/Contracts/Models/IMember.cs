@@ -21,9 +21,8 @@ namespace Shepherd.Domain.Contracts.Models
 		string MaritalStatus { get; set; }
 		string SpouseName { get; set; }
 		ContactInformation ContactInformation { get; set; }
-		MemberStatus Status { get; set; }
-		MemberType Type { get; set; }
-		ChurchDesignation Designation { get; set; }
+		MemberStatuses MemberStatus { get; set; }
+		Designations Designation { get; set; }
 		int CreatedBy { get; set; }
 		DateTime DateCreated { get; set; }
 		int? ModifiedBy { get; set; }

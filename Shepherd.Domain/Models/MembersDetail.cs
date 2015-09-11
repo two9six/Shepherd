@@ -42,11 +42,11 @@ namespace Shepherd.Domain.Models
 
         public ContactInformation ContactInformation { get; set; }
 
-        public MemberStatus Status { get; set; }
+        public MemberStatuses Status { get; set; }
 
-        public MemberType Type { get; set; }
+        public DesignationTypes Type { get; set; }
 
-        public ChurchDesignation Designation { get; set; }
+        public Designations Designation { get; set; }
 
         public int CreatedBy { get; set; }
 
@@ -103,9 +103,9 @@ namespace Shepherd.Domain.Models
                 MobileNumber = member.MobileNumber
             };
             
-            this.Status = MemberStatus.Active;
-            this.Type = MemberType.Member;
-            this.Designation = ChurchDesignation.Member;
+            this.Status = MemberStatuses.Active;
+            this.Type = DesignationTypes.Member;
+            this.Designation = Designations.Member;
 
             this.CreatedBy = member.CreatedBy;
             this.DateCreated = member.DateCreated;

@@ -1,0 +1,36 @@
+﻿<div>
+	<div class="row wrapper border-bottom white-bg page-heading">
+		<div class="col-lg-10">
+			<h2>Manage Members</h2>
+		</div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight clear">
+		<section class=" row col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<a class="btn btn-primary" ng-click='addMember()'>
+						<i class="glyphicon glyphicon-plus-sign icon-large"></i> Add Member
+					</a>
+				</div>
+				<div class="ibox-content data-grid">
+					<ad-table-lite table-name="membersTable"
+								   column-definition="membersTableColumnDefinition"
+								   local-data-source="members"
+								   enable-column-search="true"
+								   page-sizes="[10, 20]"
+								   page-size="10"
+								   table-max-height="600px"
+								   pagination-btn-group-classes="pagination pagination-sm"
+								   table-classes="table table-striped table-bordered members-table"
+								   items-not-found-message="Members Not Found">
+					</ad-table-lite>
+				</div>
+			</div>
+		</section>
+	</div>
+	<i class="fa fa-info-circle info-circle"
+	   popover-template="app/templates/member-details-popover.html"
+	   popover-trigger="mouseenter"
+	   popover-append-to-body="true"
+	   popover-placement="top"></i>
+</div>

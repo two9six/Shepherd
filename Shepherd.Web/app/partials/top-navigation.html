@@ -1,0 +1,34 @@
+﻿<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0" id="navbar-top">
+	<div class="navbar-header clear">
+		<div class="logo-element left">
+			<a ui-sref="/" title="Home">
+				<img src="/content/images/logo-main.png" alt="Angular" />
+			</a>
+		</div>
+		<h1 class="left">Locale Assistant</h1>
+	</div>
+	<ul class="nav navbar-top-links navbar-right">
+		<li>
+			<span class="m-r-sm text-danger"> {{environmentName}} </span>
+			<span class="m-r-sm">Username</span>
+		</li>
+		<li class="user-settings" style="padding-right: 40px;">
+			<div class="dropdown">
+				<span>
+					<img alt="image" class="img-circle" src="/content/images/profile_black.jpg" />
+				</span>
+				<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
+					<span class="clear">
+						<span class="text-muted text-xs block"> <b class="caret"></b></span>
+					</span>
+				</a>
+				<ul class="dropdown-menu m-t-xs">
+					<li><a ui-sref="user-profile">Profile</a></li>
+					<li><a ui-sref="settings-user">Users/Roles</a></li>
+					<li class="divider"></li>
+					<li><a ng-click="logOut()" ui-sref="login">Log Out</a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</nav>

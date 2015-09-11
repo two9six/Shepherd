@@ -43,11 +43,9 @@ namespace Shepherd.Domain.Models
 
 		public ContactInformation ContactInformation { get; set; }
 
-		public MemberStatus Status { get; set; }
+		public MemberStatuses MemberStatus { get; set; }
 
-		public MemberType Type { get; set; }
-
-		public ChurchDesignation Designation { get; set; }
+		public Designations Designation { get; set; }
 
 		public int CreatedBy { get;  set; }
 
@@ -115,9 +113,8 @@ namespace Shepherd.Domain.Models
 					MobileNumber = memberEntity.MobileNumber,
 					Email = memberEntity.Email
 				};
-				this.Status = (MemberStatus)memberEntity.StatusId;
-				this.Type = (MemberType)memberEntity.TypeId;
-				this.Designation = (ChurchDesignation)memberEntity.DesignationId;
+				this.MemberStatus = (MemberStatuses)memberEntity.MemberStatusId;
+				this.Designation = (Designations)memberEntity.DesignationId;
 				this.CreatedBy = memberEntity.CreatedBy;
 				this.DateCreated = memberEntity.DateCreated;
 				this.ModifiedBy = memberEntity.ModifiedBy;
@@ -146,9 +143,8 @@ namespace Shepherd.Domain.Models
 				LandLine = this.ContactInformation.LandLine,
 				MobileNumber = this.ContactInformation.MobileNumber,
 				Email = this.ContactInformation.Email,
-				StatusId = (int)this.Status,
-				TypeId = (int)this.Type,
-				DesignationId = (int)this.Designation,
+				MemberStatusId = (byte)this.MemberStatus,
+				DesignationId = (byte)this.Designation,
 				DateCreated = DateTime.Now,
 				Person = new Entities.Person
 				{

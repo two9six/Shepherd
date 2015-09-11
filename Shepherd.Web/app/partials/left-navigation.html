@@ -1,0 +1,34 @@
+﻿<!-- Implement authentication -->
+<nav class="navbar-default navbar-static-side" role="navigation" style="display:block !important;">
+	<div class="sidebar-collapse">
+		<span minimaliza-sidebar id="sidebar-controller"></span>
+		<ul class="nav" id="side-menu" data-metis-menu>
+			<li ng-class="{ active: isActive('/dashboard')}">
+				<a ui-sref="dashboard">
+					<i class="fa fa-lg fa-desktop"></i>
+					<span class="nav-label">Dashboard</span>
+				</a>
+			</li>
+			<li ng-class="{ active: isActive('/members')}">
+				<a ui-sref="members">
+					<i class="fa fa-lg fa-users"></i>
+					<span class="nav-label">Members List</span>
+				</a>
+			</li>
+			<li ng-class="{ active: isActive('/file-upload')}">
+				<a ui-sref="file-upload">
+					<i class="fa fa-lg fa-upload"></i>
+					<span class="nav-label">File Upload</span>
+				</a>
+			</li>
+			<li ng-class="{ active: false }" class="hasChildren">
+				<a><i class="fa fa-lg fa-gears"></i> <span class="nav-label">Settings</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li ng-class="{ active: isActive('/users')}">
+						<a ui-sref="users"><i class="fa fa-lg fa-user"></i>Users</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>

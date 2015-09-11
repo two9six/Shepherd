@@ -112,4 +112,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="TypeId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="da48d0c0-d915-4752-ad3e-b69a6a69dd58" ChangeDateTime="09/01/2015 03:09:33">
+    <Property Name="ElementName" Value="[dbo].[Lookup].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Lookup]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MemberStatusId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ace7938d-25be-4d5e-9d3f-add333d1a141" ChangeDateTime="09/01/2015 03:11:52">
+    <Property Name="ElementName" Value="[dbo].[MemberStatus].[MemberStatusId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MemberStatus]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GatheringTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6e96b233-627d-4b07-bbd7-5e6d6ddb63b2" ChangeDateTime="09/01/2015 03:13:13">
+    <Property Name="ElementName" Value="[dbo].[MemberStatus].[MemberStatusId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MemberStatus]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MemberTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="134671dd-94b9-410e-bbc6-88051540ce14" ChangeDateTime="09/01/2015 03:30:30">
+    <Property Name="ElementName" Value="[dbo].[Member].[TypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Member]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MemberTypeId" />
+  </Operation>
 </Operations>

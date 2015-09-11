@@ -45,10 +45,12 @@ namespace Shepherd.Data.Tests
 			var unitOfWork = new UnitOfWork();
 
 			//Assert
-			Assert.IsNotNull(unitOfWork.LookupRepository);
-			Assert.IsNotNull(unitOfWork.LookupTypeRepository);
-			Assert.IsNotNull(unitOfWork.PersonRepository);
+			Assert.IsNotNull(unitOfWork.DesignationRepository);
+			Assert.IsNotNull(unitOfWork.GatheringTypeRepository);
 			Assert.IsNotNull(unitOfWork.MemberRepository);
+			Assert.IsNotNull(unitOfWork.MemberStatusRepository);
+			Assert.IsNotNull(unitOfWork.MemberTypeRepository);
+			Assert.IsNotNull(unitOfWork.PersonRepository);	
 		}
 
 		[TestMethod]

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[DesignationType]
+(
+	[Id] TINYINT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] VARCHAR(128) NOT NULL,
+	[IsDeleted] BIT NOT NULL DEFAULT 0
+)
