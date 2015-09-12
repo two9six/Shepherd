@@ -49,7 +49,7 @@ app.controller('memberAddModal', [
 		        var promise = membersService.insertMember($scope.member).$promise;
 
 		        promise.then(function (response) {
-		            console.log(response.data);
+		            console.log(response);
 		            $modalInstance.dismiss('saved');
 
 		        }, function (response) {

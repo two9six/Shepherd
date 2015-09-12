@@ -1,6 +1,8 @@
 ﻿using Shepherd.Domain.Models;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Net.Http.Formatting;
+using System.Net;
 
 namespace Shepherd.Services.Controllers
 {
@@ -39,13 +41,14 @@ namespace Shepherd.Services.Controllers
         }
 
 		[HttpPost]
-		public IHttpActionResult Post([FromBody]Member member)
+        public string Post([FromBody]AddMember member)
 		{
-			return GetActionResult(delegate()
-			{
-				member.Insert();
-				return member;
-			});
+            return "a";
+            //return GetActionResult(delegate()
+            //{
+            //    member.Insert();
+            //    return member;
+            //});
 		}
 
         [HttpPut]

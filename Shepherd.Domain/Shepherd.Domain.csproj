@@ -53,6 +53,7 @@
     <Compile Include="Helpers\DataValidatorHelper.cs" />
     <Compile Include="Infrastructure\CurrentDate.cs" />
     <Compile Include="Infrastructure\DomainContainerBuilderComposition.cs" />
+    <Compile Include="Models\AddMember.cs" />
     <Compile Include="Models\Baptizer.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ContactInformation.cs" />
