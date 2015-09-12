@@ -12,6 +12,12 @@ app.factory('membersService', [
 				action: ''
 			},
 			isArray: false
+		},
+
+		insertMember: {
+		    method: 'POST',
+            isArray: false
 		}
+
 	});}
 ]);
