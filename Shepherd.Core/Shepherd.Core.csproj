@@ -44,14 +44,12 @@
     <Compile Include="Exceptions\RequiredDetailsException.cs" />
     <Compile Include="Exceptions\BusinessLogicException.cs" />
     <Compile Include="Exceptions\ModelNotFoundException.cs" />
-    <Compile Include="Common\Identifiers.cs" />
     <Compile Include="Contracts\Infrastructure\IContainerBuilderComposition.cs" />
     <Compile Include="Enums\Designations.cs" />
     <Compile Include="Enums\MemberStatuses.cs" />
     <Compile Include="Enums\DesignationTypes.cs" />
     <Compile Include="Extensions\SafeCastExtensions.cs" />
     <Compile Include="Extensions\SafeStringCastExtensions.cs" />
-    <Compile Include="Helpers\DataValidatorHelper.cs" />
     <Compile Include="Infrastructure\CoreContainerBuilderComposition.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

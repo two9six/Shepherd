@@ -1,10 +1,10 @@
 ﻿using Shepherd.Core.Enums;
 using Shepherd.Core.Exceptions;
 using Shepherd.Core.Extensions;
-using Shepherd.Core.Helpers;
 using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Domain.Contracts.Models;
+using Shepherd.Domain.Helpers;
 using System;
 using System.Collections.Generic;
 

@@ -50,6 +50,7 @@
     <Compile Include="Contracts\Models\IMember.cs" />
     <Compile Include="Contracts\Models\IMembersDetail.cs" />
     <Compile Include="Contracts\Models\IMembersIndex.cs" />
+    <Compile Include="Helpers\DataValidatorHelper.cs" />
     <Compile Include="Infrastructure\CurrentDate.cs" />
     <Compile Include="Infrastructure\DomainContainerBuilderComposition.cs" />
     <Compile Include="Models\Baptizer.cs" />

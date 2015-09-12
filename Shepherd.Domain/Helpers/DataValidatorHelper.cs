@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Shepherd.Core.Helpers
+namespace Shepherd.Domain.Helpers
 {
-	public sealed class DataValidatorHelper
+	internal sealed class DataValidatorHelper
 	{
 		public static void ValidateFields(IEnumerable<DataValidationRule> dataValidationRules)
 		{
@@ -31,7 +31,7 @@ namespace Shepherd.Core.Helpers
 		}
 	}
 
-	public sealed class DataValidationRule
+	internal sealed class DataValidationRule
 	{
 		public string MemberName { get; private set; }
 		public string MemberValue { get; private set; }

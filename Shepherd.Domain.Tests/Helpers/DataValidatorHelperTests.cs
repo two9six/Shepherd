@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shepherd.Core.Exceptions;
-using Shepherd.Core.Helpers;
+using Shepherd.Domain.Helpers;
 using Spackle;
 using System.Collections.Generic;
 
-namespace Shepherd.Core.Tests.Helpers
+namespace Shepherd.Domain.Tests.Helpers
 {
 	[TestClass]
 	public class DataValidatorHelperTests
