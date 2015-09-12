@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Entities;
 using Shepherd.Entities.Contracts;

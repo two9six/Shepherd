@@ -2,7 +2,7 @@
 
 namespace Shepherd.Core.Exceptions
 {
-	public class BusinessLogicException : Exception
+	public sealed class BusinessLogicException : Exception
 	{
 		public BusinessLogicException()
 		{

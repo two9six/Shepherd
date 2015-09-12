@@ -2,7 +2,7 @@
 
 namespace Shepherd.Core.Exceptions
 {
-	public class RequiredDetailsException : Exception
+	public sealed class RequiredDetailsException : Exception
 	{
 		public RequiredDetailsException()
 		{

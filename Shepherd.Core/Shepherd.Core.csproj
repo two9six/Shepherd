@@ -53,7 +53,6 @@
     <Compile Include="Infrastructure\CoreContainerBuilderComposition.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Infrastructure\IoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

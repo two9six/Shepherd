@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shepherd.Core.Helpers;
+using Shepherd.Domain.Helpers;
 using System;
 
-namespace Shepherd.Core.Tests.Helpers
+namespace Shepherd.Domain.Tests.Helpers
 {
 	[TestClass]
 	public class DateTimeHelpersTests

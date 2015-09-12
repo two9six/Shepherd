@@ -26,6 +26,11 @@ namespace Shepherd.Services.Controllers
 			catch (Exception ex)
 			{
 				LogException(ex);
+				/*
+				TODO:	Use proper HTTP code
+						If the exception caused by user and can be corrected by user, use the correct HTTP 4XX result, 
+						If the exception is caused by system and the user can't do anything about it, use HTTP 500
+				*/
 				return NotFound();
 			}
 		}

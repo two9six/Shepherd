@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shepherd.Core.Helpers
+namespace Shepherd.Domain.Helpers
 {
 	public static class DateTimeHelpers
 	{

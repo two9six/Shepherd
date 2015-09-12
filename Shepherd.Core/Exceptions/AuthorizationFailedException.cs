@@ -2,7 +2,7 @@
 
 namespace Shepherd.Core.Exceptions
 {
-	public class AuthorizationFailedException : Exception
+	public sealed class AuthorizationFailedException : Exception
 	{
 		public AuthorizationFailedException()
 		{
