@@ -2,7 +2,7 @@
 
 namespace Shepherd.Core.Exceptions
 {
-	public class ModelNotFoundException : Exception
+	public sealed class ModelNotFoundException : Exception
 	{
 		public ModelNotFoundException()
 		{

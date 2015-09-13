@@ -38,7 +38,6 @@ namespace Shepherd.Services.Controllers
 			{
 				LogException(ex);
                 return InternalServerError(new BusinessLogicException());
-				//return NotFound();
 			}
 		}
 
