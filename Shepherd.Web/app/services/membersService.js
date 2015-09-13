@@ -14,7 +14,7 @@ app.factory('membersService', [
 			isArray: false
 		},
 
-		insertMember: {
+		createMember: {
 		    method: 'POST',
             isArray: false
 		}

@@ -42,11 +42,12 @@ app.controller('memberAddModal', [
 		        member.Type = "25";
 		        member.Status = "1";
 
-		        member.Designation = "28";
+		        member.Designation = "1";
+		        member.MemberStatus = "1";
 
 		        console.log(member);
 
-		        var promise = membersService.insertMember($scope.member).$promise;
+		        var promise = membersService.createMember($scope.member).$promise;
 
 		        promise.then(function (response) {
 		            console.log(response);

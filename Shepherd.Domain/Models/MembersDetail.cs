@@ -71,6 +71,7 @@ namespace Shepherd.Domain.Models
 
         public void Load()
         {
+
             var member = unitOfWork.MemberRepository.GetById(this.Id);
 
             this.ChurchId = member.ChurchId;

@@ -41,14 +41,13 @@ namespace Shepherd.Services.Controllers
         }
 
 		[HttpPost]
-        public string Post([FromBody]AddMember member)
+        public IHttpActionResult Post([FromBody]Member member)
 		{
-            return "a";
-            //return GetActionResult(delegate()
-            //{
-            //    member.Insert();
-            //    return member;
-            //});
+            return GetActionResult(delegate()
+            {
+                member.Insert();
+                return member;
+            });
 		}
 
         [HttpPut]

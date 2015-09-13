@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shepherd.Core.Exceptions;
+using System;
 using System.Diagnostics;
 using System.Text;
 using System.Web.Http;
@@ -21,12 +22,23 @@ namespace Shepherd.Services.Controllers
 			try
 			{
 				var returnObject = callBack();
-				return Ok(returnObject);
+
+                if (returnObject != null)
+                {
+                    return Ok(returnObject);
+                }
+                else {
+
+                    return NotFound();
+                }
+
+				
 			}
 			catch (Exception ex)
 			{
 				LogException(ex);
-				return NotFound();
+                return InternalServerError(new BusinessLogicException());
+				//return NotFound();
 			}
 		}
 

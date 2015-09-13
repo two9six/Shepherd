@@ -143,7 +143,7 @@ namespace Shepherd.Domain.Models
 				LandLine = this.ContactInformation.LandLine,
 				MobileNumber = this.ContactInformation.MobileNumber,
 				Email = this.ContactInformation.Email,
-				MemberStatusId = (byte)this.MemberStatus,
+                MemberStatusId = (byte)this.MemberStatus,//(byte)this.MemberStatus,
 				DesignationId = (byte)this.Designation,
 				DateCreated = DateTime.Now,
 				Person = new Entities.Person
