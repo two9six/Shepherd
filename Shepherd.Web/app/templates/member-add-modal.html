@@ -77,25 +77,41 @@
 				</div>
 
 
-				<div class="form-group">
+				<!--<div class="form-group">
 					<label class="col-md-2 control-label" for="BirthDate">Birth date</label>
 
 					<div class="col-md-10">
-						<!--<input class="form-control text-box single-line" data-val="true" data-val-date="The field Birth date must be a date." data-val-required="The Birth date field is required." id="BirthDate" name="BirthDate" placeholder="Select Birth Date" type="datetime" value="01/01/0001" />-->
+						<input class="form-control text-box single-line" data-val="true" data-val-date="The field Birth date must be a date." data-val-required="The Birth date field is required." id="BirthDate" name="BirthDate" placeholder="Select Birth Date" type="datetime" value="01/01/0001" />
 						<datepicker name="BirthDate" ng-model="member.BirthDate" init-date=""></datepicker>
 					</div>
-				</div>
+				</div>-->
+                <div class="form-group">
+                    
+                    <label class="col-md-2 control-label" for="BirthDate">Birth date</label>
 
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
+                               ng-model="member.BirthDate" is-open="birthdayOpened" 
+                               ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openBirthday()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
 
-
+                </div>
+				
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="DateBaptized">Date baptized</label>
 					<div class="col-md-10">
-						<!--<input class="form-control text-box single-line" data-val="true" data-val-date="The field Date babtized must be a date." data-val-required="The Date babtized field is required." id="DateBabtized" name="DateBabtized" placeholder="Select Date Babtized" type="datetime" value="01/01/0001" />-->
-						<datepicker name="DateBaptized" ng-model="member.DateBaptized"></datepicker>
+						<input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
+                               ng-model="member.DateBaptized" is-open="dateBaptizedOpened" 
+                               ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openDateBaptized()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
 					</div>
+					
 				</div>
-
 
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="LandLine">Landline</label>

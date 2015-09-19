@@ -2,13 +2,39 @@
 app.controller('memberAddModal', [
 	  '$scope'
 	, '$modalInstance'
+	, '$timeout'
 	, 'membersService'
 	, function (
 		  $scope
 		, $modalInstance
+		, $timeout
 		, membersService) {
 		$scope.addMemberValidationMessage = '';
 
+		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		$scope.format = $scope.formats[0];
+		
+		$scope.dateOptions = {
+			formatYear: 'yy',
+			startingDay: 1
+		};
+		
+		
+		$scope.birthdayOpened = false;
+		$scope.dateBaptizedOpened = false;
+		
+		$scope.openBirthday = function () {		
+			$timeout(function() {
+				$scope.birthdayOpened = true;
+			});
+		}
+		$scope.openDateBaptized = function () {		
+			$timeout(function() {
+				$scope.dateBaptizedOpened = true;
+			});
+		}
+		
+		
 		$scope.isSaveButtonDisabled = function () {
 			if (false) {
 				$scope.addMemberValidationMessage = 'blah blah blah';
@@ -19,6 +45,8 @@ app.controller('memberAddModal', [
 			return false;
 		};
 
+
+		
 
 		$scope.save = function () {
 		    
