@@ -4,13 +4,15 @@ app.controller('memberAddModal', [
 	, '$modalInstance'
 	, '$timeout'
 	, 'membersService'
+	, 'enumHelpers'
 	, function (
 		  $scope
 		, $modalInstance
 		, $timeout
-		, membersService) {
+		, membersService
+		, enumHelpers) {
 		$scope.addMemberValidationMessage = '';
-
+		$scope.memberStatusOptions = enumHelpers.convertEnumToKeyValueArray(memberStatusEnum);		
 		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		$scope.format = $scope.formats[0];
 		
@@ -19,7 +21,23 @@ app.controller('memberAddModal', [
 			startingDay: 1
 		};
 		
-		
+		/*
+		 *  instead of using member.property, it is a good practice to use vm (view model) 
+		 *  since the page (member-add-modal.html) is referencing to member itself (x-add-modal.html, where x is the vm)
+		 *  no need to be more explicit about it (it is more conventional way as well)
+		 *  also, vm gives programmer an idea what data to manipulate in views
+		 */ 
+		$scope.vm = {
+			firstName: "",
+			middleName: "",
+			lastName: "",
+			citizenship: "",
+			placeOfBirth: "",
+			spouseName: "",
+			// ... add the rest members
+			memberStatus: ""
+		}
+
 		$scope.birthdayOpened = false;
 		$scope.dateBaptizedOpened = false;
 		
@@ -56,6 +74,7 @@ app.controller('memberAddModal', [
 		        return;
 		    }
 		    else {
+		    	// TODO: always use camel-case, use vm.firstName, instead of member.firstName
 		        var member = $scope.member;
 		        member.ChurchId = "GUAXXX";
 		        member.Gender = "M";

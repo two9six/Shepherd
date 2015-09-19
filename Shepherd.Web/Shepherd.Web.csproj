@@ -191,6 +191,7 @@
     <Content Include="app\directives\themeDirectives.js" />
     <Content Include="app\enums\memberStatusEnum.js" />
     <Content Include="app\enums\designationEnum.js" />
+    <Content Include="app\helpers\enumHelpers.js" />
     <Content Include="app\modals\memberAddModal.js" />
     <Content Include="app\partials\left-navigation.html" />
     <Content Include="app\partials\top-navigation.html" />
@@ -1364,7 +1365,6 @@
     <Content Include="Views\AppShell\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\helpers\" />
     <Folder Include="app\models\" />
     <Folder Include="app\parsers\" />
     <Folder Include="App_Data\" />

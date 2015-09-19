@@ -5,13 +5,28 @@
 	</div>
 	<div class="modal-body">
 		<div class="form-group">
-
 			<form class="form-horizontal" role="form" name="memberForm" novalidate>
-			
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="memberStatus">Member Status:</label>
+					<div class="col-md-10">
+						<div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
+							<select name="memberStatus"
+									class="form-control"
+									ng-init="vm.memberStatus = memberStatusOptions[0]"
+									ng-model="vm.memberStatus"
+									ng-options="ms.value for ms in memberStatusOptions"
+									title="Member Options"></select><br>
+						</div>
+					</div>
+				</div>
+
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="FirstName">First name</label>
 					<div class="col-md-10">
-						<input class="form-control" id="FirstName"
+						<input class="form-control" 
+							   id="FirstName"
+							   placeholder="First Name"
 							   name="FirstName" type="text"
 							   value="" ng-required="true"
 							   ng-minlength="1" ng-maxlength="100"
@@ -77,32 +92,32 @@
 					</div>
 				</div>
 
-                <div class="form-group">
-                    
-                    <label class="col-md-2 control-label" for="BirthDate">Birth date</label>
+				<div class="form-group">
 
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
-                               ng-model="member.BirthDate" is-open="birthdayOpened" 
-                               ng-required="true" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="openBirthday()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </div>
+					<label class="col-md-2 control-label" for="BirthDate">Birth date</label>
 
-                </div>
-				
+					<div class="col-md-10">
+						<input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
+							   ng-model="member.BirthDate" is-open="birthdayOpened"
+							   ng-required="true" close-text="Close" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="openBirthday()"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</div>
+
+				</div>
+
 				<div class="form-group">
 					<label class="col-md-2 control-label" for="DateBaptized">Date baptized</label>
 					<div class="col-md-10">
 						<input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
-                               ng-model="member.DateBaptized" is-open="dateBaptizedOpened" 
-                               ng-required="true" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="openDateBaptized()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
+							   ng-model="member.DateBaptized" is-open="dateBaptizedOpened"
+							   ng-required="true" close-text="Close" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="openDateBaptized()"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
 					</div>
-					
+
 				</div>
 
 				<div class="form-group">
