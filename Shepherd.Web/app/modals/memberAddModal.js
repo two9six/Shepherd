@@ -26,7 +26,8 @@ app.controller('memberAddModal', [
 		 *  since the page (member-add-modal.html) is referencing to member itself (x-add-modal.html, where x is the vm)
 		 *  no need to be more explicit about it (it is more conventional way as well)
 		 *  also, vm gives programmer an idea what data to manipulate in views
-		 */ 
+		 */
+
 		$scope.vm = {
 			firstName: "",
 			middleName: "",
@@ -34,7 +35,34 @@ app.controller('memberAddModal', [
 			citizenship: "",
 			placeOfBirth: "",
 			spouseName: "",
-			// ... add the rest members
+            birthDate: "",
+            dateBaptized: "",
+            contactInformation: {
+                landLine: "",
+                email: "",
+                mobileNumber: ""
+            },
+            address: {
+                addressLine1: "",
+                addressLine2: "",
+                city: "",
+                stateProvince: "",
+                country: "",
+
+            },
+            churchId: "",
+            gender: "",
+            baptizer: {
+                Id: "1"
+            },
+            maritalStatus: "",
+            statusId: "",
+            memberTypeId: "",
+            churchDesignationId: "",
+            createdBy: "",
+            type: "",
+            status: "",
+            designation: "",
 			memberStatus: ""
 		}
 
@@ -74,29 +102,26 @@ app.controller('memberAddModal', [
 		        return;
 		    }
 		    else {
-		    	// TODO: always use camel-case, use vm.firstName, instead of member.firstName
-		        var member = $scope.member;
-		        member.churchId = "GUAXXX";
-		        member.gender = "M";
-		        member.baptizer = {
+		        $scope.vm.churchId = "GUAXXX";
+		        $scope.vm.gender = "M";
+		        $scope.vm.baptizer = {
 		            Id: "1"
 		        };
-		        member.maritalStatus = "Single";
-		        member.statusId = "1";
-		        member.memberTypeId = "1";
-		        member.churchDesignationId = "1";
-		        member.createdBy = "1";
-		        member.type = "25";
-		        member.status = "1";
+		        $scope.vm.maritalStatus = "Single";
+		        $scope.vm.statusId = "1";
+		        $scope.vm.memberTypeId = "1";
+		        $scope.vm.churchDesignationId = "1";
+		        $scope.vm.createdBy = "1";
+		        $scope.vm.type = "25";
+		        $scope.vm.status = "1";
 
-		        member.designation = "1";
-		        member.memberStatus = "1";
+		        $scope.vm.designation = "1";
+		        $scope.vm.memberStatus = "1";
 
-		        console.log(member);
+		        console.log($scope.vm);
 
-		        var promise = membersService.createMember($scope.member).$promise;
-
-		        promise.then(function (response) {
+		        membersService.createMember($scope.vm).$promise
+                    .then(function (response) {
 		            console.log(response);
 		            $modalInstance.dismiss('saved');
 
