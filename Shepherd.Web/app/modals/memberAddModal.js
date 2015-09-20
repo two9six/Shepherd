@@ -76,21 +76,21 @@ app.controller('memberAddModal', [
 		    else {
 		    	// TODO: always use camel-case, use vm.firstName, instead of member.firstName
 		        var member = $scope.member;
-		        member.ChurchId = "GUAXXX";
-		        member.Gender = "M";
-		        member.Baptizer = {
+		        member.churchId = "GUAXXX";
+		        member.gender = "M";
+		        member.baptizer = {
 		            Id: "1"
 		        };
-		        member.MaritalStatus = "Single";
-		        member.StatusId = "1";
-		        member.MemberTypeId = "1";
-		        member.ChurchDesignationId = "1";
-		        member.CreatedBy = "1";
-		        member.Type = "25";
-		        member.Status = "1";
+		        member.maritalStatus = "Single";
+		        member.statusId = "1";
+		        member.memberTypeId = "1";
+		        member.churchDesignationId = "1";
+		        member.createdBy = "1";
+		        member.type = "25";
+		        member.status = "1";
 
-		        member.Designation = "1";
-		        member.MemberStatus = "1";
+		        member.designation = "1";
+		        member.memberStatus = "1";
 
 		        console.log(member);
 
