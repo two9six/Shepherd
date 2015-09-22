@@ -15,23 +15,21 @@ namespace Shepherd.Domain.Contracts.Models
 		string PlaceOfBirth { get; set; }
 		string Gender { get; set; }
 		string Citizenship { get; set; }
-		Address Address { get; set; }
+		IAddress Address { get; set; }
 		DateTime? DateBaptized { get; set; }
-		Baptizer Baptizer { get; set; }
+		IBaptizer Baptizer { get; set; }
 		string MaritalStatus { get; set; }
 		string SpouseName { get; set; }
-		ContactInformation ContactInformation { get; set; }
+		IContactInformation ContactInformation { get; set; }
 		MemberStatuses MemberStatus { get; set; }
 		Designations Designation { get; set; }
 		int CreatedBy { get; set; }
 		DateTime DateCreated { get; set; }
 		int? ModifiedBy { get; set; }
-
 		DateTime? DateModified { get; set; }
 
 		void Load();
 		void Insert();
-
         void Update();
 	}
 }

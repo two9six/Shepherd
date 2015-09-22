@@ -47,9 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Infrastructure\ICurrentDate.cs" />
+    <Compile Include="Contracts\Models\IAddress.cs" />
+    <Compile Include="Contracts\Models\IBaptizer.cs" />
+    <Compile Include="Contracts\Models\IContactInformation.cs" />
+    <Compile Include="Contracts\Models\IGathering.cs" />
+    <Compile Include="Contracts\Models\IGatheringSchedule.cs" />
     <Compile Include="Contracts\Models\IMember.cs" />
     <Compile Include="Contracts\Models\IMembersDetail.cs" />
     <Compile Include="Contracts\Models\IMembersIndex.cs" />
+    <Compile Include="Contracts\Models\IOfficer.cs" />
+    <Compile Include="Contracts\Models\IWorker.cs" />
+    <Compile Include="Extensions\MemberTransformExtensions.cs" />
     <Compile Include="Helpers\DataValidatorHelper.cs" />
     <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Infrastructure\CurrentDate.cs" />
@@ -57,9 +65,13 @@
     <Compile Include="Models\Baptizer.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ContactInformation.cs" />
+    <Compile Include="Models\Gathering.cs" />
+    <Compile Include="Models\GatheringSchedule.cs" />
+    <Compile Include="Models\Worker.cs" />
     <Compile Include="Models\MembersDetail.cs" />
     <Compile Include="Models\MembersIndex.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Officer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

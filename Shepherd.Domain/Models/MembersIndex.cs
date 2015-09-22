@@ -1,6 +1,7 @@
 ﻿using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Infrastructure;
 using Shepherd.Domain.Contracts.Models;
+using Shepherd.Domain.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,9 +32,7 @@ namespace Shepherd.Domain.Models
 		public void Load()
 		{
 			unitOfWork.MemberRepository
-				.FindBy(_ =>
-					(_.Person.FirstName.Contains(this.Name) || _.Person.LastName.Contains(this.Name))
-					&& _.ChurchId.Contains(this.ChurchId))
+				.GetAll()	
 				.OrderByDescending(_ => _.DateCreated)
 				.ToList()
 				.ForEach(_ =>

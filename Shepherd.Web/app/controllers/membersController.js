@@ -37,6 +37,7 @@ app.controller('membersController', [
 				size: size, // defaults if none provided http://angular-ui.github.io/bootstrap/
 				animation: true,
 				backdrop: 'static',
+				windowClass: 'members-modal-window',
 				resolve: {
 				}
 			});

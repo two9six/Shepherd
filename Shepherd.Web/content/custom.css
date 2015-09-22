@@ -863,50 +863,6 @@ h5.hasChartIcon:before{
 	content:'';
 }
 
-/**** ACCOUNT PLANNER  ****/
-div.account-planner-view .col-md-12,
-div .account-planner-view .col-md-12 {
-    padding-right:0;
-}
-
-div.account-planner-view .table > tbody > tr > td:first-child,
-div .account-planner-view .table > tbody > tr > td:first-child {
-	font-weight: 600;
-}
-
-div.account-planner-view  .table >tbody > tr > td,
-div .account-planner-view  .table >tbody > tr > td{
-	padding:3px 5px;
-}
-
-.accountPlanStatus{
-	padding-left:10px;
-}
-
-.account-planner-product-adjustor-row {
-    border-left: 10px solid #1ab394 !important;
-}
-
-.account-planner-customer-adjustor-row {
-    border-left: 10px solid #f8ac59 !important;
-}
-
-#accountPlannerTableTitle{padding:15px;}
-
-#targetToFloorPriceDeviation{
-	border: 0 none;
-	font-weight: 800;
-	padding: 0 0 0 5px;
-	float:left;
-	width:auto;
-}
-
-/* Wrapping Buttons Issue*/
-#account-planner .col-md-6.clear.right {
-	margin-top: 20px;
-	width: 420px;
-}
-
 /* thead */
 table.sticky > tbody > tr:first-child {
 	z-index: 1;
@@ -2402,4 +2358,9 @@ svg {
 /* dialog box*/
 .ui-dialog-titlebar-close {
   visibility: hidden;
+}
+
+/* Members index */
+.members-modal-window .modal-dialog {
+  width: 800px;
 }

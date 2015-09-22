@@ -10,16 +10,11 @@ namespace Shepherd.Services.Controllers
 	public class MembersController : BaseApiController
 	{
 		[HttpGet]
-		public IHttpActionResult Get(string name = "", string churchId = "")
+		public IHttpActionResult Get()
 		{
 			return GetActionResult(delegate()
 			{
-				var membersIndex = new MembersIndex()
-				{
-					Name = name,
-					ChurchId = churchId
-				};
-
+				var membersIndex = new MembersIndex();
 				membersIndex.Load();
 
 				return membersIndex;

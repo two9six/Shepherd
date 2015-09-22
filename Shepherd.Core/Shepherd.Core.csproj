@@ -50,7 +50,6 @@
     <Compile Include="Enums\DesignationTypes.cs" />
     <Compile Include="Extensions\SafeCastExtensions.cs" />
     <Compile Include="Extensions\SafeStringCastExtensions.cs" />
-    <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Infrastructure\CoreContainerBuilderComposition.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

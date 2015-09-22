@@ -1,6 +1,8 @@
-﻿namespace Shepherd.Domain.Models
+﻿using Shepherd.Domain.Contracts.Models;
+namespace Shepherd.Domain.Models
 {
 	public sealed class Address
+		: IAddress
 	{
 		public string AddressLine1 { get; set; }
 

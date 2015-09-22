@@ -2,9 +2,8 @@
 
 namespace Shepherd.Domain.Models
 {
-	public sealed class Baptizer
-		: IBaptizer
+	public sealed class Officer
+		: Member, IOfficer
 	{
-		public int Id { get; set; }
 	}
 }
