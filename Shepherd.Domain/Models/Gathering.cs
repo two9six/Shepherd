@@ -21,5 +21,9 @@ namespace Shepherd.Domain.Models
 		public List<IWorker> WorkersOnDuty { get; set; }
 
 		public List<IOfficer> OfficersOnDuty { get; set; }
+
+		public List<IMember> Attendees { get; set; }
+
+		public string Notes { get; set; }
 	}
 }

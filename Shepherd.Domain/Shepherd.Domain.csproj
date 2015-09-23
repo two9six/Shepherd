@@ -67,6 +67,7 @@
     <Compile Include="Models\ContactInformation.cs" />
     <Compile Include="Models\Gathering.cs" />
     <Compile Include="Models\GatheringSchedule.cs" />
+    <Compile Include="Models\Reporting\MonthlyCelebrants.cs" />
     <Compile Include="Models\Worker.cs" />
     <Compile Include="Models\MembersDetail.cs" />
     <Compile Include="Models\MembersIndex.cs" />

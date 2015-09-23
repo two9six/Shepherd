@@ -119,7 +119,6 @@ namespace Shepherd.Domain.Models
 
             unitOfWork.MemberRepository.Edit(existingMember);
             unitOfWork.Save();
-
         }
 
 		public static class FieldNames

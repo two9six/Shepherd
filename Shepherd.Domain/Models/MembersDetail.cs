@@ -2,10 +2,15 @@
 
 namespace Shepherd.Domain.Models
 {
-	public class MembersDetail : IMembersDetail
+	public sealed class MembersDetail : IMembersDetail
 	{
 		public int Id { get; set; }
 		public Member Member { get; set; }
+
+		public MembersDetail()
+		{
+			this.Member = new Member();
+		}
 
 		public void Load()
 		{

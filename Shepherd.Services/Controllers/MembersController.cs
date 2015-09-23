@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Net.Http.Formatting;
 using System.Net;
+using Shepherd.Domain.Models.Reporting;
 
 namespace Shepherd.Services.Controllers
 {
@@ -31,7 +32,7 @@ namespace Shepherd.Services.Controllers
                     Id = id
                 };
                 membersDetail.Load();
-                return membersDetail;
+                return membersDetail.Member;
             });
         }
 
@@ -53,6 +54,20 @@ namespace Shepherd.Services.Controllers
                 return member;
             });
         }
+
+		[HttpGet]
+		public IHttpActionResult GetMonthlyCelebrant(int month)
+		{
+			return GetActionResult(delegate()
+			{
+				var monthlyCelebrants = new MonthlyCelebrants()
+				{
+					Month = month
+				};
+				monthlyCelebrants.Load();
+				return monthlyCelebrants.Celebrators;
+			});
+		}
 
 	}
 }

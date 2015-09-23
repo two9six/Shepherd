@@ -19,25 +19,33 @@ namespace Shepherd.Services.Controllers
 		/// </summary>
 		protected IHttpActionResult GetActionResult<T>(ActionResultDelegate<T> callBack)
 		{
+			// TODO: Catch all known exceptions and return HTTP 400
+			// Exceptions found in Shepherd.Core.Exceptions should all return HTTP 400
+			// Other exceptions will return 500
+			// Refer to this: https://msdn.microsoft.com/en-us/library/system.net.httpstatuscode(v=vs.118).aspx 
 			try
 			{
 				var returnObject = callBack();
 
-                if (returnObject != null)
-                {
-                    return Ok(returnObject);
-                }
-                else {
+				if (returnObject != null)
+				{
+					return Ok(returnObject);
+				}
+				else
+				{
 
-                    return NotFound();
-                }
-                //test commit
-				
+					return NotFound();
+				}
+			}
+			catch (ModelNotFoundException ex)
+			{
+				LogException(ex);
+				return BadRequest(ex.Message);
 			}
 			catch (Exception ex)
 			{
 				LogException(ex);
-                return InternalServerError(new BusinessLogicException());
+				return InternalServerError();
 			}
 		}
 
