@@ -1,4 +1,5 @@
 ﻿using Shepherd.Core.Enums;
+using Shepherd.Domain.Contracts.Models;
 using Shepherd.Domain.Models;
 using System;
 
@@ -6,7 +7,7 @@ namespace Shepherd.Domain.Extensions
 {
 	public static class MemberTransformExtensions
 	{
-		public static void LoadFromEntity(this Member member, Entities.Member memberEntity)
+		public static void LoadFromEntity(this IMember member, Entities.Member memberEntity)
 		{
 			if (memberEntity != null)
 			{
@@ -48,7 +49,7 @@ namespace Shepherd.Domain.Extensions
 			}
 		}
 
-		public static Entities.Member ToEntity(this Member member)
+		public static Entities.Member ToEntity(this IMember member)
 		{
 			var memberEntity = new Entities.Member();
 
@@ -66,7 +67,10 @@ namespace Shepherd.Domain.Extensions
 					Email = member.ContactInformation.Email,
 					MemberStatusId = (byte)member.MemberStatus,
 					DesignationId = (byte)member.Designation,
-					DateCreated = DateTime.Now,
+					CreatedBy = member.CreatedBy,
+					DateCreated = member.DateCreated,
+					ModifiedBy = member.ModifiedBy,
+					DateModified = member.DateModified,
 					Person = new Entities.Person
 					{
 						FirstName = member.FirstName,
@@ -81,10 +85,9 @@ namespace Shepherd.Domain.Extensions
 						City = member.Address.City,
 						StateProvince = member.Address.StateProvince,
 						Country = member.Address.Country,
-						CreatedBy = 1,
+						CreatedBy = member.CreatedBy,
 						DateCreated = DateTime.Now
-					},
-					CreatedBy = 1
+					}					
 				};
 			}
 

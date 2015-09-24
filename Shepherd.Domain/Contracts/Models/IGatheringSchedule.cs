@@ -13,5 +13,7 @@ namespace Shepherd.Domain.Contracts.Models
 		List<IWorker> AssignedWorkers { get; set; }
 		List<IOfficer> AssignedOfficers { get; set; }
 		string Notes { get; set; }
+
+		void Load();
 	}
 }

@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Extensions\MemberTransformExtensionsTests.cs" />
     <Compile Include="Helpers\DataValidatorHelperTests.cs" />
     <Compile Include="Helpers\DateTimeHelpersTests.cs" />
     <Compile Include="Helpers\MemberHelpers.cs" />

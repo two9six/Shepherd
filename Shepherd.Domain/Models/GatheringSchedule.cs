@@ -21,5 +21,10 @@ namespace Shepherd.Domain.Models
 		public List<IOfficer> AssignedOfficers { get; set; }
 
 		public string Notes { get; set; }
+
+		public void Load()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
