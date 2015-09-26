@@ -73,6 +73,9 @@
     <None Include="Scripts\BaselineData\Load_GatheringType.sql" />
     <None Include="Scripts\BaselineData\Load_MemberStatus.sql" />
     <None Include="Scripts\BaselineData\Load_DesignationType.sql" />
+    <Build Include="dbo\Tables\Baptizer.sql" />
+    <Build Include="dbo\Tables\GatheringSchedule.sql" />
+    <None Include="Scripts\BaselineData\Load_Baptizer.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />

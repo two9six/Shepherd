@@ -13,5 +13,7 @@ namespace Shepherd.Domain.Contracts.Models
 		DateTime ActualEnd { get; set; }
 		List<IWorker> WorkersOnDuty { get; set; }
 		List<IOfficer> OfficersOnDuty { get; set; }
+
+		void Load();
 	}
 }

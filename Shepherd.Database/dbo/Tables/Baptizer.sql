@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Baptizer]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NVARCHAR(200) NOT NULL, 
+    [IsDeleted] BIT NULL DEFAULT 0,
+	UNIQUE ([Name])
+)

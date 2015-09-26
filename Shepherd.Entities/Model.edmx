@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ShepherdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Baptizer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
         <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="Id" />
@@ -23,6 +31,21 @@
           <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="GatheringSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GatheringTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="StartTime" Type="bigint" Nullable="false" />
+          <Property Name="EndTime" Type="bigint" Nullable="false" />
+          <Property Name="Notes" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="GatheringType">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,8 +62,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonId" Type="int" Nullable="false" />
           <Property Name="ChurchId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LocaleChurchId" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="DateBaptized" Type="datetime" Nullable="false" />
-          <Property Name="BaptizedById" Type="int" Nullable="false" />
+          <Property Name="BaptizerId" Type="int" Nullable="false" />
           <Property Name="MaritalStatus" Type="varchar" MaxLength="10" />
           <Property Name="SpouseName" Type="varchar" MaxLength="200" />
           <Property Name="LandLine" Type="varchar" MaxLength="50" />
@@ -68,9 +92,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="MiddleName" Type="varchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameExtension" Type="nvarchar" MaxLength="10" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="PlaceOfBirth" Type="varchar" MaxLength="200" />
           <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
@@ -95,6 +120,30 @@
             </Principal>
             <Dependent Role="Designation">
               <PropertyRef Name="DesignationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GatheringSchedule_GatheringType">
+          <End Role="GatheringType" Type="Self.GatheringType" Multiplicity="1" />
+          <End Role="GatheringSchedule" Type="Self.GatheringSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GatheringType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GatheringSchedule">
+              <PropertyRef Name="GatheringTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Baptizer">
+          <End Role="Baptizer" Type="Self.Baptizer" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Baptizer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="BaptizerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -135,8 +184,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ShepherdModelStoreContainer">
+          <EntitySet Name="Baptizer" EntityType="Self.Baptizer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DesignationType" EntityType="Self.DesignationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GatheringSchedule" EntityType="Self.GatheringSchedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GatheringType" EntityType="Self.GatheringType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberStatus" EntityType="Self.MemberStatus" Schema="dbo" store:Type="Tables" />
@@ -144,6 +195,14 @@
           <AssociationSet Name="FK_Designation_DesignationType" Association="Self.FK_Designation_DesignationType">
             <End Role="DesignationType" EntitySet="DesignationType" />
             <End Role="Designation" EntitySet="Designation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GatheringSchedule_GatheringType" Association="Self.FK_GatheringSchedule_GatheringType">
+            <End Role="GatheringType" EntitySet="GatheringType" />
+            <End Role="GatheringSchedule" EntitySet="GatheringSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Baptizer" Association="Self.FK_Member_Baptizer">
+            <End Role="Baptizer" EntitySet="Baptizer" />
+            <End Role="Member" EntitySet="Member" />
           </AssociationSet>
           <AssociationSet Name="FK_Member_Designation" Association="Self.FK_Member_Designation">
             <End Role="Designation" EntitySet="Designation" />
@@ -168,10 +227,20 @@
           <EntitySet Name="MemberStatuses" EntityType="ShepherdModel.MemberStatus" />
           <EntitySet Name="Persons" EntityType="ShepherdModel.Person" />
           <EntitySet Name="DesignationTypes" EntityType="ShepherdModel.DesignationType" />
-          <EntitySet Name="Members" EntityType="ShepherdModel.Member" />
           <AssociationSet Name="FK_Designation_DesignationType" Association="ShepherdModel.FK_Designation_DesignationType">
             <End Role="DesignationType" EntitySet="DesignationTypes" />
             <End Role="Designation" EntitySet="Designations" />
+          </AssociationSet>
+          <EntitySet Name="GatheringSchedules" EntityType="ShepherdModel.GatheringSchedule" />
+          <AssociationSet Name="FK_GatheringSchedule_GatheringType" Association="ShepherdModel.FK_GatheringSchedule_GatheringType">
+            <End Role="GatheringType" EntitySet="GatheringTypes" />
+            <End Role="GatheringSchedule" EntitySet="GatheringSchedules" />
+          </AssociationSet>
+          <EntitySet Name="Baptizers" EntityType="ShepherdModel.Baptizer" />
+          <EntitySet Name="Members" EntityType="ShepherdModel.Member" />
+          <AssociationSet Name="FK_Member_Baptizer" Association="ShepherdModel.FK_Member_Baptizer">
+            <End Role="Baptizer" EntitySet="Baptizers" />
+            <End Role="Member" EntitySet="Members" />
           </AssociationSet>
           <AssociationSet Name="FK_Member_Designation" Association="ShepherdModel.FK_Member_Designation">
             <End Role="Designation" EntitySet="Designations" />
@@ -206,6 +275,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="IsDefault" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GatheringSchedules" Relationship="ShepherdModel.FK_GatheringSchedule_GatheringType" FromRole="GatheringType" ToRole="GatheringSchedule" />
         </EntityType>
         <EntityType Name="MemberStatus">
           <Key>
@@ -222,9 +292,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PlaceOfBirth" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -239,6 +309,7 @@
           <Property Name="DateModified" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="NameExtension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Person" FromRole="Person" ToRole="Member" />
         </EntityType>
         <EntityType Name="DesignationType">
@@ -250,6 +321,55 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Designations" Relationship="ShepherdModel.FK_Designation_DesignationType" FromRole="DesignationType" ToRole="Designation" />
         </EntityType>
+        <Association Name="FK_Designation_DesignationType">
+          <End Type="ShepherdModel.DesignationType" Role="DesignationType" Multiplicity="1" />
+          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DesignationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Designation">
+              <PropertyRef Name="DesignationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GatheringSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GatheringTypeId" Type="Byte" Nullable="false" />
+          <Property Name="StartTime" Type="Int64" Nullable="false" />
+          <Property Name="EndTime" Type="Int64" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GatheringType" Relationship="ShepherdModel.FK_GatheringSchedule_GatheringType" FromRole="GatheringSchedule" ToRole="GatheringType" />
+        </EntityType>
+        <Association Name="FK_GatheringSchedule_GatheringType">
+          <End Type="ShepherdModel.GatheringType" Role="GatheringType" Multiplicity="1" />
+          <End Type="ShepherdModel.GatheringSchedule" Role="GatheringSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GatheringType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GatheringSchedule">
+              <PropertyRef Name="GatheringTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Baptizer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Baptizer" FromRole="Baptizer" ToRole="Member" />
+        </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="Id" />
@@ -257,8 +377,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonId" Type="Int32" Nullable="false" />
           <Property Name="ChurchId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LocaleChurchId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DateBaptized" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="BaptizedById" Type="Int32" Nullable="false" />
+          <Property Name="BaptizerId" Type="Int32" Nullable="false" />
           <Property Name="MaritalStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="SpouseName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="LandLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -271,19 +392,20 @@
           <Property Name="DateModified" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Baptizer" Relationship="ShepherdModel.FK_Member_Baptizer" FromRole="Member" ToRole="Baptizer" />
           <NavigationProperty Name="Designation" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Member" ToRole="Designation" />
           <NavigationProperty Name="MemberStatu" Relationship="ShepherdModel.FK_Member_MemberStatus" FromRole="Member" ToRole="MemberStatus" />
           <NavigationProperty Name="Person" Relationship="ShepherdModel.FK_Member_Person" FromRole="Member" ToRole="Person" />
         </EntityType>
-        <Association Name="FK_Designation_DesignationType">
-          <End Type="ShepherdModel.DesignationType" Role="DesignationType" Multiplicity="1" />
-          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="*" />
+        <Association Name="FK_Member_Baptizer">
+          <End Type="ShepherdModel.Baptizer" Role="Baptizer" Multiplicity="1" />
+          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DesignationType">
+            <Principal Role="Baptizer">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Designation">
-              <PropertyRef Name="DesignationTypeId" />
+            <Dependent Role="Member">
+              <PropertyRef Name="BaptizerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -363,6 +485,7 @@
           <EntitySetMapping Name="Persons">
             <EntityTypeMapping TypeName="ShepherdModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="NameExtension" ColumnName="NameExtension" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
@@ -393,6 +516,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="GatheringSchedules">
+            <EntityTypeMapping TypeName="ShepherdModel.GatheringSchedule">
+              <MappingFragment StoreEntitySet="GatheringSchedule">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="GatheringTypeId" ColumnName="GatheringTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Baptizers">
+            <EntityTypeMapping TypeName="ShepherdModel.Baptizer">
+              <MappingFragment StoreEntitySet="Baptizer">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ShepherdModel.Member">
               <MappingFragment StoreEntitySet="Member">
@@ -408,8 +556,9 @@
                 <ScalarProperty Name="LandLine" ColumnName="LandLine" />
                 <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
                 <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="BaptizedById" ColumnName="BaptizedById" />
+                <ScalarProperty Name="BaptizerId" ColumnName="BaptizerId" />
                 <ScalarProperty Name="DateBaptized" ColumnName="DateBaptized" />
+                <ScalarProperty Name="LocaleChurchId" ColumnName="LocaleChurchId" />
                 <ScalarProperty Name="ChurchId" ColumnName="ChurchId" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

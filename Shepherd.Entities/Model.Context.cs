@@ -30,6 +30,8 @@ namespace Shepherd.Entities
         public virtual DbSet<MemberStatus> MemberStatuses { get; set; }
         public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<DesignationType> DesignationTypes { get; set; }
+        public virtual DbSet<GatheringSchedule> GatheringSchedules { get; set; }
+        public virtual DbSet<Baptizer> Baptizers { get; set; }
         public virtual DbSet<Member> Members { get; set; }
     }
 }

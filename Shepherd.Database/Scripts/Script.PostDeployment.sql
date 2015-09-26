@@ -14,3 +14,4 @@ Post-Deployment Script Template
 :r .\BaselineData\Load_Designation.SQL
 :r .\BaselineData\Load_GatheringType.SQL
 :r .\BaselineData\Load_MemberStatus.SQL
+:r .\BaselineData\Load_Baptizer.SQL

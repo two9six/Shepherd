@@ -50,11 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Baptizer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contracts\IShepherdContext.cs" />
     <Compile Include="Designation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DesignationType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GatheringSchedule.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="GatheringType.cs">

@@ -25,5 +25,11 @@ namespace Shepherd.Domain.Models
 		public List<IMember> Attendees { get; set; }
 
 		public string Notes { get; set; }
+
+
+		public void Load()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

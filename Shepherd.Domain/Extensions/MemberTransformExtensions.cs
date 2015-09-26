@@ -30,7 +30,7 @@ namespace Shepherd.Domain.Extensions
 				};
 				member.Baptizer = new Baptizer()
 				{
-					Id = memberEntity.BaptizedById
+					Id = memberEntity.BaptizerId
 				};
 				member.MaritalStatus = memberEntity.MaritalStatus;
 				member.SpouseName = memberEntity.SpouseName;
@@ -59,7 +59,7 @@ namespace Shepherd.Domain.Extensions
 				{
 					ChurchId = member.ChurchId,
 					DateBaptized = member.DateBaptized.Value,
-					BaptizedById = member.Baptizer.Id,
+					BaptizerId = member.Baptizer.Id,
 					MaritalStatus = member.MaritalStatus,
 					SpouseName = member.SpouseName,
 					LandLine = member.ContactInformation.LandLine,

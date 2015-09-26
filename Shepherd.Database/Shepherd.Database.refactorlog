@@ -140,4 +140,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="MemberTypeId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="94c4923f-4410-4790-b3a5-25dce3ecd9e7" ChangeDateTime="09/26/2015 23:05:41">
+    <Property Name="ElementName" Value="[dbo].[Baptizer].[IsActive]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Baptizer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsDeleted" />
+  </Operation>
 </Operations>

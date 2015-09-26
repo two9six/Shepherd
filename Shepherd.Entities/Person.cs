@@ -37,6 +37,7 @@ namespace Shepherd.Entities
         public Nullable<System.DateTime> DateModified { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
+        public string NameExtension { get; set; }
     
         public virtual ICollection<Member> Members { get; set; }
     }

@@ -1,9 +1,10 @@
 ﻿CREATE TABLE [dbo].[Person]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [FirstName] VARCHAR(100) NOT NULL, 
-    [LastName] VARCHAR(100) NOT NULL, 
-    [MiddleName] VARCHAR(100) NULL, 
+    [FirstName] NVARCHAR(100) NOT NULL, 
+    [LastName] NVARCHAR(100) NOT NULL, 
+    [MiddleName] NVARCHAR(100) NULL, 
+	[NameExtension] NVARCHAR(10) NULL,
     [BirthDate] DATE NOT NULL, 
 	[PlaceOfBirth] VARCHAR(200) NULL,
 	[Gender] CHAR NOT NULL,

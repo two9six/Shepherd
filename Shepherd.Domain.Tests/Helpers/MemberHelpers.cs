@@ -15,7 +15,7 @@ namespace Shepherd.Domain.Tests.Helpers
 			{
 				ChurchId = generator.Generate<string>(),
 				DateBaptized = generator.Generate<DateTime>(),
-				BaptizedById = Math.Abs(generator.Generate<int>()),
+				BaptizerId = Math.Abs(generator.Generate<int>()),
 				MaritalStatus = generator.Generate<string>(),
 				SpouseName = generator.Generate<string>(),
 				LandLine = generator.Generate<string>(),

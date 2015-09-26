@@ -12,18 +12,19 @@ namespace Shepherd.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class GatheringType
+    public partial class GatheringSchedule
     {
-        public GatheringType()
-        {
-            this.GatheringSchedules = new HashSet<GatheringSchedule>();
-        }
-    
-        public byte Id { get; set; }
-        public string Name { get; set; }
-        public bool IsDefault { get; set; }
+        public int Id { get; set; }
+        public byte GatheringTypeId { get; set; }
+        public long StartTime { get; set; }
+        public long EndTime { get; set; }
+        public string Notes { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public int CreatedBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
     
-        public virtual ICollection<GatheringSchedule> GatheringSchedules { get; set; }
+        public virtual GatheringType GatheringType { get; set; }
     }
 }
