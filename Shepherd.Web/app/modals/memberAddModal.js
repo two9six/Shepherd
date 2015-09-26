@@ -20,13 +20,6 @@ app.controller('memberAddModal', [
 			formatYear: 'yy',
 			startingDay: 1
 		};
-		
-		/*
-		 *  instead of using member.property, it is a good practice to use vm (view model) 
-		 *  since the page (member-add-modal.html) is referencing to member itself (x-add-modal.html, where x is the vm)
-		 *  no need to be more explicit about it (it is more conventional way as well)
-		 *  also, vm gives programmer an idea what data to manipulate in views
-		 */
 
 		$scope.vm = {
 			firstName: "",
