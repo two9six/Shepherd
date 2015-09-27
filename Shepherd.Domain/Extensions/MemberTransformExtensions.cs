@@ -68,9 +68,10 @@ namespace Shepherd.Domain.Extensions
 					MemberStatusId = (byte)member.MemberStatus,
 					DesignationId = (byte)member.Designation,
 					CreatedBy = member.CreatedBy,
-					DateCreated = member.DateCreated,
+					DateCreated = DateTime.Now,
 					ModifiedBy = member.ModifiedBy,
-					DateModified = member.DateModified,
+					DateModified = DateTime.Now,//member.DateModified, //TODO: check wh
+                    LocaleChurchId = member.LocaleChurchId,//member.LocaleChurchId,
 					Person = new Entities.Person
 					{
 						FirstName = member.FirstName,
@@ -86,7 +87,11 @@ namespace Shepherd.Domain.Extensions
 						StateProvince = member.Address.StateProvince,
 						Country = member.Address.Country,
 						CreatedBy = member.CreatedBy,
-						DateCreated = DateTime.Now
+						DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now,//member.DateModified, //TODO: check wh
+                        IsDeleted = false,
+                        ModifiedBy = member.ModifiedBy,
+                        NameExtension = String.Empty
 					}					
 				};
 			}

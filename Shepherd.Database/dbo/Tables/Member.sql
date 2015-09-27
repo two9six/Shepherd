@@ -23,6 +23,6 @@
 	CONSTRAINT [FK_Member_MemberStatus] FOREIGN KEY ([MemberStatusId]) REFERENCES [dbo].[MemberStatus]([Id]),
 	CONSTRAINT [FK_Member_Designation] FOREIGN KEY ([DesignationId]) REFERENCES [dbo].[Designation]([Id]),
 	CONSTRAINT [FK_Member_Baptizer] FOREIGN KEY ([BaptizerId]) REFERENCES [dbo].[Baptizer]([Id]),
-	UNIQUE ([ChurchId]),
-	UNIQUE ([LocaleChurchId])
+	--CONSTRAINT Member_ChurchId UNIQUE ([ChurchId]),
+	--CONSTRAINT Member_LocaleChuchId UNIQUE ([LocaleChurchId])
 )

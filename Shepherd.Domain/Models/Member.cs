@@ -18,6 +18,8 @@ namespace Shepherd.Domain.Models
 
 		public string ChurchId { get; set; }
 
+        public string LocaleChurchId { get; set; }
+
 		public string FirstName { get; set; }
 
 		public string LastName { get; set; }
@@ -53,6 +55,8 @@ namespace Shepherd.Domain.Models
 		public DateTime DateCreated { get; set; }
 
 		public int? ModifiedBy { get; set; }
+
+        //public Nullable<System.DateTime> DateModified { get; set; }
 
 		public DateTime? DateModified { get; set; }
 

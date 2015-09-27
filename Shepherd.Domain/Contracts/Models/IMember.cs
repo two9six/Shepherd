@@ -8,6 +8,7 @@ namespace Shepherd.Domain.Contracts.Models
 	{
 		int Id { get; set; }
 		string ChurchId { get; set; }
+        string LocaleChurchId { get; set; }
 		string FirstName { get; set; }
 		string LastName { get; set; }
 		string MiddleName { get; set; }

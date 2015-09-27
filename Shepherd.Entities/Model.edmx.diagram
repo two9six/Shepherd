@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="764300518a5c480ca0d1db2a34aae15e" Name="Diagram1" ZoomLevel="78">
+      <Diagram DiagramId="764300518a5c480ca0d1db2a34aae15e" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="ShepherdModel.Designation" Width="1.5" PointX="4.875" PointY="0.625" />
         <EntityTypeShape EntityType="ShepherdModel.GatheringType" Width="1.5" PointX="8.75" PointY="0.625" />
         <EntityTypeShape EntityType="ShepherdModel.MemberStatus" Width="1.5" PointX="4.875" PointY="3.25" />
@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="ShepherdModel.GatheringSchedule" Width="1.5" PointX="8.75" PointY="3" />
         <AssociationConnector Association="ShepherdModel.FK_GatheringSchedule_GatheringType" />
         <EntityTypeShape EntityType="ShepherdModel.Baptizer" Width="1.5" PointX="2.875" PointY="6.5" />
-        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="2.875" PointY="0.625" />
+        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="11.125" PointY="1.875" />
         <AssociationConnector Association="ShepherdModel.FK_Member_Baptizer" />
         <AssociationConnector Association="ShepherdModel.FK_Member_Designation" />
         <AssociationConnector Association="ShepherdModel.FK_Member_MemberStatus" />

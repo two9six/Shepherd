@@ -59,6 +59,7 @@ app.controller('memberAddModal', [
 			memberStatus: ""
 		}
 
+		$scope.saving = false;
 		$scope.birthdayOpened = false;
 		$scope.dateBaptizedOpened = false;
 		
@@ -85,45 +86,37 @@ app.controller('memberAddModal', [
 		};
 
 
-		
-
 		$scope.save = function () {
 		    
+		    $scope.saving = true;
 
-		    $scope.$broadcast('show-errors-event');
-		    if ($scope.memberForm.$invalid) {
-		        return;
-		    }
-		    else {
-		        $scope.vm.churchId = "GUAXXX";
-		        $scope.vm.gender = "M";
-		        $scope.vm.baptizer = {
-		            Id: "1"
-		        };
-		        $scope.vm.maritalStatus = "Single";
-		        $scope.vm.statusId = "1";
-		        $scope.vm.memberTypeId = "1";
-		        $scope.vm.churchDesignationId = "1";
-		        $scope.vm.createdBy = "1";
-		        $scope.vm.type = "25";
-		        $scope.vm.status = "1";
+		    $scope.vm.churchId = "12345";
+		    $scope.vm.gender = "M";
+		    $scope.vm.baptizer = {
+		        Id: "1"
+		    };
+		    $scope.vm.maritalStatus = "Single";
+		    $scope.vm.statusId = "1";
+		    $scope.vm.memberTypeId = "1";
+		    $scope.vm.churchDesignationId = "1";
+		    $scope.vm.createdBy = "1";
+		    $scope.vm.type = "25";
+		    $scope.vm.status = "1";
 
-		        $scope.vm.designation = "1";
-		        $scope.vm.memberStatus = "1";
+		    $scope.vm.designation = "1";
+		    $scope.vm.memberStatus = "1";
+		    $scope.vm.localeChurchId = "6789";
 
-		        console.log($scope.vm);
+		    console.log($scope.vm);
+		    console.log($scope.vm.contactInformation.landLine);
+		    membersService.createMember($scope.vm).$promise
+                .then(function (response) {
+		        console.log(response);
+		        $modalInstance.dismiss('saved');
 
-		        membersService.createMember($scope.vm).$promise
-                    .then(function (response) {
-		            console.log(response);
-		            $modalInstance.dismiss('saved');
-
-		        }, function (response) {
-		            console.log(response);
-		        });
-
-
-		    }
+		    }, function (response) {
+		        console.log(response);
+		    });
 
 		}
 
