@@ -16,12 +16,12 @@ namespace Shepherd.Domain.Contracts.Models
 		string PlaceOfBirth { get; set; }
 		string Gender { get; set; }
 		string Citizenship { get; set; }
-		IAddress Address { get; set; }
+		Address Address { get; set; }
 		DateTime? DateBaptized { get; set; }
-		IBaptizer Baptizer { get; set; }
+		Baptizer Baptizer { get; set; }
 		string MaritalStatus { get; set; }
 		string SpouseName { get; set; }
-		IContactInformation ContactInformation { get; set; }
+		ContactInformation ContactInformation { get; set; }
 		MemberStatuses MemberStatus { get; set; }
 		Designations Designation { get; set; }
 		int CreatedBy { get; set; }

@@ -47,9 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Infrastructure\ICurrentDate.cs" />
-    <Compile Include="Contracts\Models\IAddress.cs" />
-    <Compile Include="Contracts\Models\IBaptizer.cs" />
-    <Compile Include="Contracts\Models\IContactInformation.cs" />
     <Compile Include="Contracts\Models\IGathering.cs" />
     <Compile Include="Contracts\Models\IGatheringSchedule.cs" />
     <Compile Include="Contracts\Models\IMember.cs" />

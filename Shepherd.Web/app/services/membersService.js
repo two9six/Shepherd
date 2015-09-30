@@ -5,19 +5,28 @@ app.factory('membersService', [
 	, function (
 	  $resource
 	, baseServiceUrl) {
-	return $resource(baseServiceUrl + '/api/members/:action', { action: '@action' }, {
-		getMembers: {
-			method: 'GET',
-			params: {
-				action: ''
+		return $resource(baseServiceUrl + '/api/members/:action', { action: '@action' }, {
+			getMembers: {
+				method: 'GET',
+				params: {
+					action: ''
+				},
+				isArray: false
 			},
-			isArray: false
-		},
 
-		createMember: {
-		    method: 'POST',
-            isArray: false
-		}
+			createMember: {
+				method: 'POST',
+				isArray: false
+			},
 
-	});}
+			getMonthlyCelebrants: {
+				method: 'GET',
+				params: {
+					action: 'GetMonthlyCelebrants'
+				},
+				isArray: true
+			}
+
+		});
+	}
 ]);

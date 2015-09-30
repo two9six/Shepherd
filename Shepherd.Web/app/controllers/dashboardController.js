@@ -1,9 +1,38 @@
 ﻿'use strict';
 app.controller('dashboardController', [
-	'$scope'
+	  '$scope'
+	, '$timeout'
+	, 'membersService'
 	, (function (
-		$scope) {
+	  $scope
+	, $timeout
+	, membersService) {
 
-		$scope.test = 'Hello Dashboard';
+		$scope.monthlyCelebrants = [];
+
+		loadMonthlyCelebrants();
+
+		/////////////////////////////
+		////// Local Functions //////
+		/////////////////////////////
+
+		function loadMonthlyCelebrants() {
+			membersService
+				.getMonthlyCelebrants({
+					month: 9
+				})
+				.$promise.then(function (data) {
+					$scope.monthlyCelebrants = data;
+
+					renderMonthlyCelebrants();
+				});
+		}
+
+		function renderMonthlyCelebrants() {
+			$timeout(function () {
+				$scope.$broadcast('renderMonthlyCelebrants');
+			}, 0);
+		}
+
 	})
 ]);

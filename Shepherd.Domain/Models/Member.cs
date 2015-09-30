@@ -34,17 +34,17 @@ namespace Shepherd.Domain.Models
 
 		public string Citizenship { get; set; }
 
-		public IAddress Address { get; set; }
+		public Address Address { get; set; }
 
 		public DateTime? DateBaptized { get; set; }
 
-		public IBaptizer Baptizer { get; set; }
+		public Baptizer Baptizer { get; set; }
 
 		public string MaritalStatus { get; set; }
 
 		public string SpouseName { get; set; }
 
-		public IContactInformation ContactInformation { get; set; }
+		public ContactInformation ContactInformation { get; set; }
 
 		public MemberStatuses MemberStatus { get; set; }
 

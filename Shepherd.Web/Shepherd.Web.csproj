@@ -188,10 +188,12 @@
     <Content Include="app\controls\adapt-strap\adapt-strap.js" />
     <Content Include="app\controls\adapt-strap\adapt-strap.tpl.js" />
     <Content Include="app\directives\metisMenu.js" />
+    <Content Include="app\directives\monthly-celebrants.js" />
     <Content Include="app\directives\themeDirectives.js" />
     <Content Include="app\enums\memberStatusEnum.js" />
     <Content Include="app\enums\designationEnum.js" />
     <Content Include="app\helpers\enumHelpers.js" />
+    <Content Include="app\helpers\formatHelpers.js" />
     <Content Include="app\modals\memberAddModal.js" />
     <Content Include="app\partials\left-navigation.html" />
     <Content Include="app\partials\top-navigation.html" />

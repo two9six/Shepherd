@@ -2,7 +2,6 @@
 namespace Shepherd.Domain.Models
 {
 	public sealed class Address
-		: IAddress
 	{
 		public string AddressLine1 { get; set; }
 

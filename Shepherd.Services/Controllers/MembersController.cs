@@ -56,7 +56,7 @@ namespace Shepherd.Services.Controllers
         }
 
 		[HttpGet]
-		public IHttpActionResult GetMonthlyCelebrant(int month)
+		public IHttpActionResult GetMonthlyCelebrants(int month)
 		{
 			return GetActionResult(delegate()
 			{

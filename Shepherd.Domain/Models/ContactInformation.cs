@@ -3,7 +3,6 @@
 namespace Shepherd.Domain.Models
 {
 	public sealed class ContactInformation
-		: IContactInformation
 	{
 		public string LandLine { get; set; }
 
