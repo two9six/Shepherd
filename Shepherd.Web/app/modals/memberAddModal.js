@@ -58,19 +58,21 @@ app.controller('memberAddModal', [
             designation: "",
 			memberStatus: ""
 		}
-
+		$scope.dtStatus = {};
 		$scope.saving = false;
-		$scope.birthdayOpened = false;
-		$scope.dateBaptizedOpened = false;
+		$scope.dtStatus.birthdayOpened = false;
+		
+		$scope.dtStatus.dateBaptizedOpened = false;
 		
 		$scope.openBirthday = function () {		
 			$timeout(function() {
-				$scope.birthdayOpened = true;
+			    $scope.dtStatus.birthdayOpened = true;
 			});
 		}
-		$scope.openDateBaptized = function () {		
+		$scope.openDateBaptized = function () {
+		    console.log($scope.dtStatus.dateBaptizedOpened);;
 			$timeout(function() {
-				$scope.dateBaptizedOpened = true;
+				$scope.dtStatus.dateBaptizedOpened = true;
 			});
 		}
 		
@@ -90,12 +92,12 @@ app.controller('memberAddModal', [
 		    
 		    $scope.saving = true;
 
-		    $scope.vm.churchId = "12345";
-		    $scope.vm.gender = "M";
+		    //$scope.vm.churchId = "12345";
+		    //$scope.vm.gender = "M";
 		    $scope.vm.baptizer = {
 		        Id: "1"
 		    };
-		    $scope.vm.maritalStatus = "Single";
+		    //$scope.vm.maritalStatus = "Single";
 		    $scope.vm.statusId = "1";
 		    $scope.vm.memberTypeId = "1";
 		    $scope.vm.churchDesignationId = "1";
@@ -105,10 +107,9 @@ app.controller('memberAddModal', [
 
 		    $scope.vm.designation = "1";
 		    $scope.vm.memberStatus = "1";
-		    $scope.vm.localeChurchId = "6789";
+		    //$scope.vm.localeChurchId = "6789";
 
 		    console.log($scope.vm);
-		    console.log($scope.vm.contactInformation.landLine);
 		    membersService.createMember($scope.vm).$promise
                 .then(function (response) {
 		        console.log(response);
