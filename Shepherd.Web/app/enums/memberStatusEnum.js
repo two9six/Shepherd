@@ -10,7 +10,7 @@
 				result = "Active";
 				break;
 			case 2:
-				result = "In-Active";
+			    result = "InActive";
 				break;
 			case 3:
 				result = "Suspended";

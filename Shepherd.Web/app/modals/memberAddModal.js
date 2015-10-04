@@ -1,12 +1,14 @@
 ﻿'use strict';
 app.controller('memberAddModal', [
 	  '$scope'
+    , '$modal'
 	, '$modalInstance'
 	, '$timeout'
 	, 'membersService'
 	, 'enumHelpers'
 	, function (
 		  $scope
+        , $modal
 		, $modalInstance
 		, $timeout
 		, membersService
@@ -14,7 +16,7 @@ app.controller('memberAddModal', [
 		$scope.addMemberValidationMessage = '';
 		$scope.memberStatusOptions = enumHelpers.convertEnumToKeyValueArray(memberStatusEnum);
 		$scope.genderOptions = enumHelpers.convertEnumToKeyValueArray(genderEnum);
-		
+		$scope.maritalStatusOptions = enumHelpers.convertEnumToKeyValueArray(maritalStatusEnum);
 
 		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		$scope.format = $scope.formats[0];
@@ -48,10 +50,12 @@ app.controller('memberAddModal', [
             },
             churchId: "",
             gender: "",
+            genderKeyValue: "",
             baptizer: {
                 Id: "1"
             },
             maritalStatus: "",
+            maritalStatusKeyValue: "",
             statusId: "",
             memberTypeId: "",
             churchDesignationId: "",
@@ -59,7 +63,8 @@ app.controller('memberAddModal', [
             type: "",
             status: "",
             designation: "",
-			memberStatus: ""
+			memberStatus: "",
+            memberStatusKeyValue: ""
 		}
 		$scope.dtStatus = {};
 		$scope.saving = false;
@@ -91,14 +96,13 @@ app.controller('memberAddModal', [
 		};
 
 
-		$scope.save = function () {
-		    
-		    
+		$scope.save = function () {	    
 
-		    var membeStatusValue = $scope.vm.memberStatus.value;
-		    var genderValue = $scope.vm.gender;
+		    var memberStatusValue = $scope.vm.memberStatusKeyValue.value;
+		    var genderValue = $scope.vm.genderKeyValue.value;
+		    var maritalStatusValue = $scope.vm.maritalStatusKeyValue.value;
 
-		    console.log(membeStatusValue);
+		    console.log(memberStatusValue);
 		    $scope.saving = true;
 		    $scope.vm.baptizer = {
 		        Id: "1"
@@ -111,20 +115,51 @@ app.controller('memberAddModal', [
 		    $scope.vm.status = "1";
 		    $scope.vm.designation = "1";
 
-		    $scope.vm.memberStatus = membeStatusValue;
+		    $scope.vm.memberStatus = memberStatusValue;
 		    $scope.vm.gender = genderValue;
+		    $scope.vm.maritalStatus = maritalStatusValue;
+
 
 		    console.log($scope.vm);
+
 		    membersService.createMember($scope.vm).$promise
                 .then(function (response) {
 		        console.log(response);
 		        $modalInstance.dismiss('saved');
+		        $scope.success("lg");
 
 		    }, function (response) {
 		        console.log(response);
 		    });
 
 		}
+
+
+		$scope.success = function (size) {
+
+		    var modalInstance = $modal.open({
+		        templateUrl: '/app/templates/member-add-success-modal.html',
+		        controller: 'memberAddSuccessModal',
+		        size: size, // defaults if none provided http://angular-ui.github.io/bootstrap/
+		        animation: true,
+		        backdrop: 'static',
+		        windowClass: 'members-modal-window',
+		        resolve: {
+		            member: function () {
+		                return $scope.vm;
+		            }
+		        }
+		    });
+
+		    modalInstance.result.then(
+				function (result) {
+				    //refresh the page
+				},
+				function () {
+
+				}
+			);
+		};
 
 
 		$scope.cancel = function () {

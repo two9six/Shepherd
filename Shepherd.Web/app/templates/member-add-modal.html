@@ -9,7 +9,7 @@
         <tabset>
             <tab heading="General Information">
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="FirstName">First name</label>
+                    <label class="col-md-2 control-label" for="FirstName">First Name</label>
                     <div class="col-md-10">
                         <input class="form-control"
                                id="FirstName"
@@ -22,19 +22,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="MiddleName">Middle name</label>
+                    <label class="col-md-2 control-label" for="MiddleName">Middle Name</label>
                     <div class="col-md-10">
-                        <input class="form-control" id="MiddleName"
+                        <input class="form-control" id="MiddleName" placeholder="Middle Name"
                                name="MiddleName" type="text" value=""
                                ng-model="vm.middleName" ng-maxlength="100" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="LastName">Last name</label>
+                    <label class="col-md-2 control-label" for="LastName">Last Name</label>
                     <div class="col-md-10">
                         <input class="form-control" id="LastName"
-                               name="LastName" type="text"
+                               name="LastName" type="text" placeholder="Last Name"
                                value="" ng-required="true"
                                ng-minlength="1" ng-maxlength="100"
                                ng-model="vm.lastName" />
@@ -58,58 +58,55 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="PlaceOfBirth">Place Of Birth</label>
                     <div class="col-md-10">
-                        <input class="form-control" id="PlaceOfBirth"
+                        <input class="form-control" id="PlaceOfBirth" placeholder="Place of birth"
                                name="PlaceOfBirth" type="text" value=""
                                ng-model="vm.placeOfBirth" ng-maxlength="100" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="gender">Gender:</label>
+                    <label class="col-md-2 control-label" for="gender">Gender</label>
                     <div class="col-md-10">
                         <div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
                             <select name="gender"
                                     class="form-control"
-                                    ng-init="vm.gender = genderOptions[0]"
-                                    ng-model="vm.gender"
+                                    ng-init="vm.genderKeyValue = genderOptions[0]"
+                                    ng-model="vm.genderKeyValue"
                                     ng-options="g.value for g in genderOptions"
                                     title="--Select Gender-"></select><br>
                         </div>
                     </div>
                 </div>
 
-
-                <!--<div class="form-group">
-                    <label class="col-md-2 control-label" for="gender">Gender</label>
-                    <div class="col-md-10">
-                        <input class="form-control" id="gender"
-                               name="gender" type="text"
-                               value="" ng-required="true"
-                               ng-model="vm.gender" />
-                    </div>
-                </div>-->
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="Citizenship">Citizenship</label>
                     <div class="col-md-10">
                         <input class="form-control" id="Citizenship"
-                               name="Citizenship" type="text"
+                               name="Citizenship" type="text" placeholder="Citizenship"
                                value="" ng-maxlength="50"
                                ng-model="vm.citizenship" />
                     </div>
                 </div>
+
+
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="maritalStatus">Marital Status</label>
+                    <label class="col-md-2 control-label" for="maritalStatus">Marital Status:</label>
                     <div class="col-md-10">
-                        <input class="form-control" id="maritalStatus"
-                               name="maritalStatus" type="text"
-                               value="" ng-required="true"
-                               ng-model="vm.maritalStatus" />
+                        <div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
+                            <select name="maritalStatus"
+                                    class="form-control"
+                                    ng-init="vm.maritalStatusKeyValue = maritalStatusOptions[0]"
+                                    ng-model="vm.maritalStatusKeyValue"
+                                    ng-options="m.value for m in maritalStatusOptions"
+                                    title="--Select Marital Status-"></select><br>
+                        </div>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="SpouseName">Spouse Name</label>
                     <div class="col-md-10">
-                        <input class="form-control" id="SpouseName"
+                        <input class="form-control" id="SpouseName" placeholder="Spouse name"
                                name="SpouseName" type="text" value=""
                                ng-model="vm.spouseName" ng-maxlength="200" />
                     </div>
@@ -120,6 +117,7 @@
                     <label class="col-md-2 control-label" for="AddressLine1">Address Line 1</label>
                     <div class="col-md-10">
                         <input class="form-control" type="text" name="AddressLine1" value="" id="AddressLine1"
+                               placeholder="Address line 1"
                                ng-model="vm.address.addressLine1" ng-maxlength="200" />
                     </div>
                 </div>
@@ -128,6 +126,7 @@
                     <label class="col-md-2 control-label" for="AddressLine2">Address Line 2</label>
                     <div class="col-md-10">
                         <input class="form-control" type="text" name="AddressLine2" value="" id="AddressLine2"
+                               placeholder="Address line 2"
                                ng-model="vm.address.addressLine2" ng-maxlength="200" />
                     </div>
                 </div>
@@ -158,6 +157,7 @@
                     <label class="col-md-2 control-label" for="LandLine">Landline</label>
                     <div class="col-md-10">
                         <input class="form-control" type="text" name="LandLine" value="" id="LandLine"
+                               placeholder="Landline"
                                ng-model="vm.contactInformation.landLine" ng-maxlength="7"
                                ng-minlength="7" />
                     </div>
@@ -206,8 +206,8 @@
                         <div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
                             <select name="memberStatus"
                                     class="form-control"
-                                    ng-init="vm.memberStatus = memberStatusOptions[0]"
-                                    ng-model="vm.memberStatus"
+                                    ng-init="vm.memberStatusKeyValue = memberStatusOptions[0]"
+                                    ng-model="vm.memberStatusKeyValue"
                                     ng-options="ms.value for ms in memberStatusOptions"
                                     title="Member Options"></select><br>
                         </div>
