@@ -12,7 +12,10 @@ app.controller('memberAddModal', [
 		, membersService
 		, enumHelpers) {
 		$scope.addMemberValidationMessage = '';
-		$scope.memberStatusOptions = enumHelpers.convertEnumToKeyValueArray(memberStatusEnum);		
+		$scope.memberStatusOptions = enumHelpers.convertEnumToKeyValueArray(memberStatusEnum);
+		$scope.genderOptions = enumHelpers.convertEnumToKeyValueArray(genderEnum);
+		
+
 		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		$scope.format = $scope.formats[0];
 		
@@ -90,24 +93,26 @@ app.controller('memberAddModal', [
 
 		$scope.save = function () {
 		    
-		    $scope.saving = true;
+		    
 
-		    //$scope.vm.churchId = "12345";
-		    //$scope.vm.gender = "M";
+		    var membeStatusValue = $scope.vm.memberStatus.value;
+		    var genderValue = $scope.vm.gender;
+
+		    console.log(membeStatusValue);
+		    $scope.saving = true;
 		    $scope.vm.baptizer = {
 		        Id: "1"
 		    };
-		    //$scope.vm.maritalStatus = "Single";
 		    $scope.vm.statusId = "1";
 		    $scope.vm.memberTypeId = "1";
 		    $scope.vm.churchDesignationId = "1";
 		    $scope.vm.createdBy = "1";
 		    $scope.vm.type = "25";
 		    $scope.vm.status = "1";
-
 		    $scope.vm.designation = "1";
-		    $scope.vm.memberStatus = "1";
-		    //$scope.vm.localeChurchId = "6789";
+
+		    $scope.vm.memberStatus = membeStatusValue;
+		    $scope.vm.gender = genderValue;
 
 		    console.log($scope.vm);
 		    membersService.createMember($scope.vm).$promise
