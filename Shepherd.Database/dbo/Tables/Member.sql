@@ -6,7 +6,7 @@
 	[LocaleChurchId] VARCHAR(10) NOT NULL,
 	[DateBaptized] DATETIME NOT NULL,
 	[BaptizerId] INT NOT NULL,
-	[MaritalStatus] VARCHAR(10) NULL,
+	[MaritalStatusId] TINYINT NOT NULL,
 	[SpouseName] VARCHAR(200) NULL,
 	[LandLine] VARCHAR(50) NULL,
 	[MobileNumber] VARCHAR(500) NULL,

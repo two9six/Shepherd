@@ -2161,6 +2161,16 @@ div#mdg-content-wrapper .container-fluid [class*="col"] {
     text-shadow: none;
 }
 
+.popover-details {
+    -ms-border-radius:3px;
+    border-radius:3px;
+    font-family: 'Open Sans';
+    font-size: 10px;
+    font-weight: 500;
+    -ms-text-shadow: none;
+    text-shadow: none;
+}
+
 .popover-tooltip {
     background: #3FAD93;
 	border:1px solid #3fad93;

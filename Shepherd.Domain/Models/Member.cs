@@ -26,6 +26,8 @@ namespace Shepherd.Domain.Models
 
 		public string MiddleName { get; set; }
 
+		public string NameExtension { get; set; }
+
 		public DateTime? BirthDate { get; set; }
 
 		public string PlaceOfBirth { get; set; }
@@ -40,7 +42,7 @@ namespace Shepherd.Domain.Models
 
 		public Baptizer Baptizer { get; set; }
 
-		public string MaritalStatus { get; set; }
+		public MaritalStatuses MaritalStatus { get; set; }
 
 		public string SpouseName { get; set; }
 

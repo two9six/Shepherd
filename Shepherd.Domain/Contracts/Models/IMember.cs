@@ -12,6 +12,7 @@ namespace Shepherd.Domain.Contracts.Models
 		string FirstName { get; set; }
 		string LastName { get; set; }
 		string MiddleName { get; set; }
+		string NameExtension { get; set; }
 		DateTime? BirthDate { get; set; }
 		string PlaceOfBirth { get; set; }
 		string Gender { get; set; }
@@ -19,7 +20,7 @@ namespace Shepherd.Domain.Contracts.Models
 		Address Address { get; set; }
 		DateTime? DateBaptized { get; set; }
 		Baptizer Baptizer { get; set; }
-		string MaritalStatus { get; set; }
+		MaritalStatuses MaritalStatus { get; set; }
 		string SpouseName { get; set; }
 		ContactInformation ContactInformation { get; set; }
 		MemberStatuses MemberStatus { get; set; }

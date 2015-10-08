@@ -1,18 +1,25 @@
-﻿'use strict';
-//TODO: write tests
+﻿//TODO: write unit tests
+'use strict';
 app.factory('formatHelpers', [
 	  '$log'
+	, '$filter'
 	, '$locale'
 	, function (
 	  $log
+	, $filter
 	, $locale) {
 
-	// TODO: Implement formatting
-	var formatDate = function () {
-		return '1';
-	}
 
-	return {
-		formatDate: formatDate
-	};
-}])
+		var formatShortDate = function (date) {
+			return $filter('date')(date, 'M/d/yyyy');
+		}
+
+		var formatDate = function (date) {
+			return $filter('date')(date, 'MMM dd, yyyy');
+		}
+
+		return {
+			formatShortDate: formatShortDate,
+			formatDate: formatDate
+		};
+	}])

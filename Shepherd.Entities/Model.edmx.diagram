@@ -19,7 +19,7 @@
         <AssociationConnector Association="ShepherdModel.FK_Member_Designation" />
         <AssociationConnector Association="ShepherdModel.FK_Member_MemberStatus" />
         <AssociationConnector Association="ShepherdModel.FK_Member_Person" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

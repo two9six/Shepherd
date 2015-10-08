@@ -1,5 +1,4 @@
 ﻿maritalStatusEnum = {
-
     single: 1,
     married: 2,
     widowed: 3,
@@ -17,7 +16,7 @@
                 result = "Widowed";
                 break;
             default:
-                result = "Unknown gender: " + value;
+                result = "Unknown marital status: " + value;
         }
 
         return result;

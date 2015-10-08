@@ -20,7 +20,7 @@ namespace Shepherd.Entities
         public string LocaleChurchId { get; set; }
         public System.DateTime DateBaptized { get; set; }
         public int BaptizerId { get; set; }
-        public string MaritalStatus { get; set; }
+        public byte MaritalStatusId { get; set; }
         public string SpouseName { get; set; }
         public string LandLine { get; set; }
         public string MobileNumber { get; set; }

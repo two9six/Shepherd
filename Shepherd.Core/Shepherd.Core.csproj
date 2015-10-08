@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Common\GenericValidationMessages.cs" />
     <Compile Include="Enums\GatheringTypes.cs" />
+    <Compile Include="Enums\MaritalStatuses.cs" />
     <Compile Include="Exceptions\AuthorizationFailedException.cs" />
     <Compile Include="Exceptions\RequiredDetailsException.cs" />
     <Compile Include="Exceptions\BusinessLogicException.cs" />

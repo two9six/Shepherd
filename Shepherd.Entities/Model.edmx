@@ -65,7 +65,7 @@
           <Property Name="LocaleChurchId" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="DateBaptized" Type="datetime" Nullable="false" />
           <Property Name="BaptizerId" Type="int" Nullable="false" />
-          <Property Name="MaritalStatus" Type="varchar" MaxLength="10" />
+          <Property Name="MaritalStatusId" Type="tinyint" Nullable="false" />
           <Property Name="SpouseName" Type="varchar" MaxLength="200" />
           <Property Name="LandLine" Type="varchar" MaxLength="50" />
           <Property Name="MobileNumber" Type="varchar" MaxLength="500" />
@@ -380,7 +380,7 @@
           <Property Name="LocaleChurchId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DateBaptized" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BaptizerId" Type="Int32" Nullable="false" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatusId" Type="Byte" Nullable="false" />
           <Property Name="SpouseName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="LandLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
@@ -555,7 +555,7 @@
                 <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
                 <ScalarProperty Name="LandLine" ColumnName="LandLine" />
                 <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
                 <ScalarProperty Name="BaptizerId" ColumnName="BaptizerId" />
                 <ScalarProperty Name="DateBaptized" ColumnName="DateBaptized" />
                 <ScalarProperty Name="LocaleChurchId" ColumnName="LocaleChurchId" />

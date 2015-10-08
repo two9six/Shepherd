@@ -1,6 +1,42 @@
-﻿<div>
-	<div class="tooltip-row">
-		<div class="tooltip-cell-bold">Address:</div>
-		<div class="tooltip-cell">blk 1 lot 3 calachuchi</div>
-	</div>
+﻿<div class="popover-details">
+	<table class="clear table table-condensed">
+		<tbody>
+			<tr>
+				<td>Date of Birth:</td>
+				<td>{{ formatHelpers.formatDate(item.birthDate) }}</td>
+			</tr>
+			<tr>
+				<td>Place of Birth:</td>
+				<td>{{ item.placeOfBirth }}</td>
+			</tr>
+			<tr>
+				<td>Citizenship:</td>
+				<td>{{ item.citizenship }}</td>
+			</tr>
+			<tr>
+				<td>Civil Status:</td>
+				<td>{{ maritalStatusEnum.toString(item.maritalStatus) }}</td>
+			</tr>
+			<tr ng-show="item.maritalStatus == maritalStatusEnum.married">
+				<td>Spouse' Name:</td>
+				<td>{{ item.spouseName }}</td>
+			</tr>
+			<tr>
+				<td>Residential Address:</td>
+				<td>{{ item.address.addressLine1 }} {{ item.address.addressLine2 }} <br /> {{ item.address.city }} {{ item.address.StateProvince }}</td>
+			</tr>
+			<tr>
+				<td>E-mail:</td>
+				<td>{{ item.contactInformation.email }}</td>
+			</tr>
+			<tr>
+				<td>Mobile Number:</td>
+				<td>{{ item.contactInformation.mobileNumber }}</td>
+			</tr>
+			<tr>
+				<td>Land Line:</td>
+				<td>{{ item.contactInformation.landLine }}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

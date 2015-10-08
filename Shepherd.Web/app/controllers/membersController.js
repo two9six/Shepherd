@@ -4,16 +4,23 @@ app.controller('membersController', [
 	, '$scope'
 	, '$timeout'
 	, 'membersService'
+	, 'formatHelpers'
 	, (function (
 	  $modal
 	, $scope
 	, $timeout
-	, membersService) {
+	, membersService
+	, formatHelpers) {
+		$scope.formatHelpers = formatHelpers;
 		$scope.designationEnum = designationEnum;
 		$scope.memberStatusEnum = memberStatusEnum;
+		$scope.maritalStatusEnum = maritalStatusEnum;
 		$scope.members = [];
 		$scope.selectedMember = {};
 		$scope.loadMembers = loadMembers();
+		$scope.vm = {
+			memberDetailsPopoverTemplate: 'app/templates/member-details-popover.html'
+		};
 
 		////////////////////
 		////// Events //////
@@ -54,49 +61,62 @@ app.controller('membersController', [
 
 		$scope.membersTableColumnDefinition = [
             {
-            	columnHeaderTemplate: '',
-            	template: '<i class="fa fa-info-circle info-circle" ' +
-								'popover-template="app/templates/member-details-popover.html" ' +
-								'popover-trigger="mouseenter" ' +
-								'popover-append-to-body="true" popover-placement="top"></i>',
-            	width: '1em',
+            	columnHeaderTemplate: '<span>Picture</span>',
+            	template: '<div class="center"><img src="../content/images/profile_black.jpg" style="height: 80px; width: 80px;" /></div>',
+            	width: '2em',
             	visible: true
             },
             {
             	columnHeaderTemplate: '<span>Church Id</span>',
             	displayProperty: 'churchId',
             	sortKey: 'churchId',
-            	width: '3em',
+            	columnSearchProperty: 'churchId',
+            	width: '2em',
             	visible: true
             },
             {
-            	columnHeaderTemplate: '<span>First Name</span>',
-            	displayProperty: 'firstName',
-            	sortKey: 'firstName',
-            	columnSearchProperty: 'firstName',
-            	width: '10em',
+            	columnHeaderTemplate: '<span>Locale Id</span>',
+            	displayProperty: 'localeChurchId',
+            	sortKey: 'localeChurchId',
+            	columnSearchProperty: 'localeChurchId',
+            	width: '2em',
             	visible: true
             },
             {
-            	columnHeaderTemplate: '<span>Last Name</span>',
-            	displayProperty: 'lastName',
-            	sortKey: 'lastName',
-            	columnSearchProperty: 'lastName',
-            	width: '10em',
+            	columnHeaderTemplate: '<span>Name</span>',
+            	template: '<div popover-template="vm.memberDetailsPopoverTemplate" popover-trigger="mouseenter" popover-append-to-body="true" popover-placement="left">{{item.name}}</div>',
+            	sortKey: 'name',
+            	columnSearchProperty: 'name',
+            	width: '4em',
+            	visible: true
+            },
+            {
+            	columnHeaderTemplate: '<span>Sex</span>',
+            	displayProperty: 'gender',
+            	sortKey: 'gender',
+            	columnSearchProperty: 'gender',
+            	width: '1em',
+            	visible: true
+            },
+            {
+            	columnHeaderTemplate: '<span>Date Baptized</span>',
+            	template: '<div>{{ formatHelpers.formatDate(item.dateBaptized) }}</div>',
+            	sortKey: 'dateBaptized',
+            	width: '2em',
             	visible: true
             },
             {
             	columnHeaderTemplate: '<span>Status</span>',
             	template: '<div>{{ memberStatusEnum.toString(item.memberStatus) }}</div>',
             	sortKey: 'status',
-            	width: '5em',
+            	width: '2em',
             	visible: true
             },
             {
             	columnHeaderTemplate: '<span>Designation</span>',
             	template: '<span>{{ designationEnum.toString(item.designation) }}</span>',
             	sortKey: 'designation',
-            	width: '5em',
+            	width: '2em',
             	visible: true
             }
 		];
@@ -111,6 +131,11 @@ app.controller('membersController', [
 				.$promise.then(function (data) {
 					$scope.members = data.members;
 
+					$scope.members.forEach(function (m) {
+						// TODO: Soon, we will need to refactor this and put this concatenation logic on a separate helper
+						m.name = m.lastName + ', ' + m.firstName + ' ' + (m.nameExtension == null ? '' : m.nameExtension);
+					});
+
 					$timeout(function () {
 						if ($scope.members.length > 0) {
 							selectMember($scope.members[0]);
@@ -120,7 +145,9 @@ app.controller('membersController', [
 		}
 
 		function setRowClickBehavior() {
-			$('.members-table tr').unbind().click(function () {
+			// Used jquery delegated event instead
+			//$('.members-table tr').unbind().click(function () {
+			$('.members-table > tbody').on('click', 'tr', function () {
 				var tableRow = $(this).find('td')[1];
 				if (tableRow) {
 					var churchId = $.trim(tableRow.innerText);

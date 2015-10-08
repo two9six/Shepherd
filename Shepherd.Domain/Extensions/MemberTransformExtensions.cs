@@ -13,9 +13,11 @@ namespace Shepherd.Domain.Extensions
 			{
 				member.Id = memberEntity.Id;
 				member.ChurchId = memberEntity.ChurchId;
+				member.LocaleChurchId = memberEntity.LocaleChurchId;
 				member.FirstName = memberEntity.Person.FirstName;
 				member.LastName = memberEntity.Person.LastName;
 				member.MiddleName = memberEntity.Person.MiddleName;
+				member.NameExtension = memberEntity.Person.NameExtension;
 				member.BirthDate = memberEntity.Person.BirthDate;
 				member.PlaceOfBirth = memberEntity.Person.PlaceOfBirth;
 				member.Gender = memberEntity.Person.Gender;
@@ -28,11 +30,12 @@ namespace Shepherd.Domain.Extensions
 					StateProvince = memberEntity.Person.StateProvince,
 					Country = memberEntity.Person.Country
 				};
+				member.DateBaptized = memberEntity.DateBaptized;
 				member.Baptizer = new Baptizer()
 				{
 					Id = memberEntity.BaptizerId
 				};
-				member.MaritalStatus = memberEntity.MaritalStatus;
+				member.MaritalStatus = (MaritalStatuses)memberEntity.MaritalStatusId;
 				member.SpouseName = memberEntity.SpouseName;
 				member.ContactInformation = new ContactInformation
 				{
@@ -60,7 +63,7 @@ namespace Shepherd.Domain.Extensions
 					ChurchId = member.ChurchId,
 					DateBaptized = member.DateBaptized.Value,
 					BaptizerId = member.Baptizer.Id,
-					MaritalStatus = member.MaritalStatus,
+					MaritalStatusId = (byte)member.MaritalStatus,
 					SpouseName = member.SpouseName,
 					LandLine = member.ContactInformation.LandLine,
 					MobileNumber = member.ContactInformation.MobileNumber,
