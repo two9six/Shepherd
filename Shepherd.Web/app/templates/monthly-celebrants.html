@@ -1,0 +1,11 @@
+﻿Monthly Celebrants
+<div>
+	<table>
+		<tbody>
+			<tr ng-repeat="m in members">
+				<td>{{ m.name }}</td>
+				<td>{{ formatHelpers.formatDate(m.dateBaptized) }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

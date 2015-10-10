@@ -58,8 +58,6 @@ namespace Shepherd.Domain.Models
 
 		public int? ModifiedBy { get; set; }
 
-        //public Nullable<System.DateTime> DateModified { get; set; }
-
 		public DateTime? DateModified { get; set; }
 
 		private readonly IUnitOfWork unitOfWork;

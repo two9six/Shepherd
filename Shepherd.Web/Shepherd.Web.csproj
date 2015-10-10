@@ -208,6 +208,7 @@
     <Content Include="app\templates\members\members-add.html" />
     <Content Include="app\templates\members\members-detail.html" />
     <Content Include="app\templates\members\members-index.html" />
+    <Content Include="app\templates\monthly-celebrants.html" />
     <Content Include="app\views\dashboard.html" />
     <Content Include="app\views\file-upload.html" />
     <Content Include="app\views\users.html" />
