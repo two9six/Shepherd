@@ -30,6 +30,7 @@ app.controller('memberAddModal', [
 			firstName: "",
 			middleName: "",
 			lastName: "",
+		    nameExtension: "",
 			citizenship: "",
 			placeOfBirth: "",
 			spouseName: "",

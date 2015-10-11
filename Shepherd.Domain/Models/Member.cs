@@ -60,6 +60,9 @@ namespace Shepherd.Domain.Models
 
 		public DateTime? DateModified { get; set; }
 
+
+        //public byte[] Avatar { get; set; }
+
 		private readonly IUnitOfWork unitOfWork;
 
 		public Member()

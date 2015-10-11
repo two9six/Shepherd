@@ -71,7 +71,7 @@ namespace Shepherd.Domain.Extensions
 					MemberStatusId = (byte)member.MemberStatus,
 					DesignationId = (byte)member.Designation,
 					CreatedBy = member.CreatedBy,
-					DateCreated = member.DateCreated,
+					DateCreated = DateTime.Now,//member.DateCreated,
 					ModifiedBy = member.ModifiedBy,
 					DateModified = member.DateModified,
                     LocaleChurchId = member.LocaleChurchId,
@@ -90,7 +90,7 @@ namespace Shepherd.Domain.Extensions
 						StateProvince = member.Address.StateProvince,
 						Country = member.Address.Country,
 						CreatedBy = member.CreatedBy,
-						DateCreated = member.DateCreated,
+                        DateCreated = DateTime.Now,//member.DateCreated, //Clarify this line
                         DateModified = member.DateModified,
                         IsDeleted = false,
                         ModifiedBy = member.ModifiedBy,
