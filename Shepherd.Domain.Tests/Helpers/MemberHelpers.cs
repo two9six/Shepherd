@@ -87,5 +87,45 @@ namespace Shepherd.Domain.Tests.Helpers
 				DateModified = generator.Generate<DateTime>()
 			};
 		}
+
+		public static void FillDomainMember(Member member)
+		{
+			member.Id = Math.Abs(generator.Generate<int>());
+			member.ChurchId = generator.Generate<string>();
+			member.FirstName = generator.Generate<string>();
+			member.LastName = generator.Generate<string>();
+			member.MiddleName = generator.Generate<string>();
+			member.BirthDate = generator.Generate<DateTime>();
+			member.PlaceOfBirth = generator.Generate<string>();
+			member.Gender = generator.Generate<string>().Substring(0, 1);
+			member.Citizenship = generator.Generate<string>();
+			member.Address = new Address()
+			{
+				AddressLine1 = generator.Generate<string>(),
+				AddressLine2 = generator.Generate<string>(),
+				City = generator.Generate<string>(),
+				StateProvince = generator.Generate<string>(),
+				Country = generator.Generate<string>()
+			};
+			member.DateBaptized = generator.Generate<DateTime>();
+			member.Baptizer = new Baptizer()
+			{
+				Id = Math.Abs(generator.Generate<int>())
+			};
+			member.MaritalStatus = MaritalStatuses.Single;
+			member.SpouseName = generator.Generate<string>();
+			member.ContactInformation = new ContactInformation
+			{
+				LandLine = generator.Generate<string>(),
+				MobileNumber = generator.Generate<string>(),
+				Email = generator.Generate<string>()
+			};
+			member.MemberStatus = MemberStatuses.Active;
+			member.Designation = Designations.Member;
+			member.CreatedBy = Math.Abs(generator.Generate<int>());
+			member.DateCreated = generator.Generate<DateTime>();
+			member.ModifiedBy = Math.Abs(generator.Generate<int>());
+			member.DateModified = generator.Generate<DateTime>();
+		}
 	}
 }

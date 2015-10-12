@@ -75,6 +75,7 @@ namespace Shepherd.Domain.Models
 			this.Address = new Address();
 			this.Baptizer = new Baptizer();
 			this.ContactInformation = new ContactInformation();
+			this.DateCreated = DateTime.Now;
 
 			this.unitOfWork = unitOfWork;
 		}
