@@ -18,6 +18,11 @@
                                ng-minlength="1" ng-maxlength="100"
                                ng-model="vm.firstName" />
                     </div>
+
+                    <div ng-show="firstNameError">
+                        Invalid length
+                    </div>
+
                 </div>
 
                 <div class="form-group">

@@ -100,7 +100,14 @@ namespace Shepherd.Domain.Models
 				new DataValidationRule(Member.FieldNames.DateBaptized, this.DateBaptized.TryGetString(), true, typeof(DateTime))
 			});
 
-			var createdMember = unitOfWork.MemberRepository.Add(this.ToEntity());
+
+            var entityMember = this.ToEntity();
+            entityMember.DateCreated = DateTime.Now;
+            entityMember.Person.DateCreated = DateTime.Now;
+
+			var createdMember = unitOfWork.MemberRepository.Add(entityMember);
+
+            
 
 			unitOfWork.Save();
 

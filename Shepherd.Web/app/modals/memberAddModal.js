@@ -73,6 +73,9 @@ app.controller('memberAddModal', [
 		
 		$scope.dtStatus.dateBaptizedOpened = false;
 		
+
+		$scope.firstNameError = false;
+
 		$scope.openBirthday = function () {		
 			$timeout(function() {
 			    $scope.dtStatus.birthdayOpened = true;
@@ -99,8 +102,11 @@ app.controller('memberAddModal', [
 
 		$scope.save = function () {	    
 
+		    var firstNameLength = $scope.vm.firstName.length;
 
-
+		    if (firstNameLength < 1 || firstNameLength > 100) {
+		        $scope.firstNameError = true;
+		    }
 
 		    var memberStatusValue = $scope.vm.memberStatusKeyValue.value;
 		    var genderValue = $scope.vm.genderKeyValue.value;
