@@ -99,6 +99,9 @@ app.controller('memberAddModal', [
 
 		$scope.save = function () {	    
 
+
+
+
 		    var memberStatusValue = $scope.vm.memberStatusKeyValue.value;
 		    var genderValue = $scope.vm.genderKeyValue.value;
 		    var maritalStatusValue = $scope.vm.maritalStatusKeyValue.value;
