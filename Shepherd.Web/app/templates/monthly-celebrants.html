@@ -1,11 +1,13 @@
-﻿Monthly Celebrants
-<div>
-	<table>
-		<tbody>
-			<tr ng-repeat="m in members">
-				<td>{{ m.name }}</td>
-				<td>{{ formatHelpers.formatDate(m.dateBaptized) }}</td>
-			</tr>
-		</tbody>
-	</table>
+﻿<h3>Monthly Celebrants</h3>
+<div class="monthly-celebrators center">
+	<div ng-repeat="m in members">
+		<div ng-repeat="i in m" class="m-b-md celebrator-item">
+			<div class="center"><img src="../content/images/profile_black.jpg" class="mp-sm" /></div>
+			<div class="center">
+				<div>{{ formatHelpers.formatNameWithPrefix(i.name, i.gender) }}</div>
+				<div>{{ formatHelpers.formatDate(i.dateBaptized) }}</div>
+				<div>{{ i.age }} Year{{ i.age > 1 ? 's' : '' }} Old</div>
+			</div>
+		</div>
+	</div>
 </div>

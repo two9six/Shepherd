@@ -5,14 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ShepherdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Baptizer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="IsDeleted" Type="bit" />
-        </EntityType>
         <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="Id" />
@@ -64,7 +56,7 @@
           <Property Name="ChurchId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LocaleChurchId" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="DateBaptized" Type="datetime" Nullable="false" />
-          <Property Name="BaptizerId" Type="int" Nullable="false" />
+          <Property Name="Baptizer" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="MaritalStatusId" Type="tinyint" Nullable="false" />
           <Property Name="SpouseName" Type="varchar" MaxLength="200" />
           <Property Name="LandLine" Type="varchar" MaxLength="50" />
@@ -135,18 +127,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Member_Baptizer">
-          <End Role="Baptizer" Type="Self.Baptizer" Multiplicity="1" />
-          <End Role="Member" Type="Self.Member" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Baptizer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Member">
-              <PropertyRef Name="BaptizerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Member_Designation">
           <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
           <End Role="Member" Type="Self.Member" Multiplicity="*" />
@@ -184,7 +164,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ShepherdModelStoreContainer">
-          <EntitySet Name="Baptizer" EntityType="Self.Baptizer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DesignationType" EntityType="Self.DesignationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GatheringSchedule" EntityType="Self.GatheringSchedule" Schema="dbo" store:Type="Tables" />
@@ -199,10 +178,6 @@
           <AssociationSet Name="FK_GatheringSchedule_GatheringType" Association="Self.FK_GatheringSchedule_GatheringType">
             <End Role="GatheringType" EntitySet="GatheringType" />
             <End Role="GatheringSchedule" EntitySet="GatheringSchedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Member_Baptizer" Association="Self.FK_Member_Baptizer">
-            <End Role="Baptizer" EntitySet="Baptizer" />
-            <End Role="Member" EntitySet="Member" />
           </AssociationSet>
           <AssociationSet Name="FK_Member_Designation" Association="Self.FK_Member_Designation">
             <End Role="Designation" EntitySet="Designation" />
@@ -236,12 +211,7 @@
             <End Role="GatheringType" EntitySet="GatheringTypes" />
             <End Role="GatheringSchedule" EntitySet="GatheringSchedules" />
           </AssociationSet>
-          <EntitySet Name="Baptizers" EntityType="ShepherdModel.Baptizer" />
           <EntitySet Name="Members" EntityType="ShepherdModel.Member" />
-          <AssociationSet Name="FK_Member_Baptizer" Association="ShepherdModel.FK_Member_Baptizer">
-            <End Role="Baptizer" EntitySet="Baptizers" />
-            <End Role="Member" EntitySet="Members" />
-          </AssociationSet>
           <AssociationSet Name="FK_Member_Designation" Association="ShepherdModel.FK_Member_Designation">
             <End Role="Designation" EntitySet="Designations" />
             <End Role="Member" EntitySet="Members" />
@@ -361,15 +331,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Baptizer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Baptizer" FromRole="Baptizer" ToRole="Member" />
-        </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="Id" />
@@ -379,7 +340,7 @@
           <Property Name="ChurchId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LocaleChurchId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DateBaptized" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="BaptizerId" Type="Int32" Nullable="false" />
+          <Property Name="Baptizer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MaritalStatusId" Type="Byte" Nullable="false" />
           <Property Name="SpouseName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="LandLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -392,23 +353,10 @@
           <Property Name="DateModified" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Baptizer" Relationship="ShepherdModel.FK_Member_Baptizer" FromRole="Member" ToRole="Baptizer" />
           <NavigationProperty Name="Designation" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Member" ToRole="Designation" />
           <NavigationProperty Name="MemberStatu" Relationship="ShepherdModel.FK_Member_MemberStatus" FromRole="Member" ToRole="MemberStatus" />
           <NavigationProperty Name="Person" Relationship="ShepherdModel.FK_Member_Person" FromRole="Member" ToRole="Person" />
         </EntityType>
-        <Association Name="FK_Member_Baptizer">
-          <End Type="ShepherdModel.Baptizer" Role="Baptizer" Multiplicity="1" />
-          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Baptizer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Member">
-              <PropertyRef Name="BaptizerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Member_Designation">
           <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="1" />
           <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
@@ -532,15 +480,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Baptizers">
-            <EntityTypeMapping TypeName="ShepherdModel.Baptizer">
-              <MappingFragment StoreEntitySet="Baptizer">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ShepherdModel.Member">
               <MappingFragment StoreEntitySet="Member">
@@ -556,7 +495,7 @@
                 <ScalarProperty Name="LandLine" ColumnName="LandLine" />
                 <ScalarProperty Name="SpouseName" ColumnName="SpouseName" />
                 <ScalarProperty Name="MaritalStatusId" ColumnName="MaritalStatusId" />
-                <ScalarProperty Name="BaptizerId" ColumnName="BaptizerId" />
+                <ScalarProperty Name="Baptizer" ColumnName="Baptizer" />
                 <ScalarProperty Name="DateBaptized" ColumnName="DateBaptized" />
                 <ScalarProperty Name="LocaleChurchId" ColumnName="LocaleChurchId" />
                 <ScalarProperty Name="ChurchId" ColumnName="ChurchId" />

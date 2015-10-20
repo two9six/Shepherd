@@ -3,10 +3,12 @@ app.controller('dashboardController', [
 	  '$scope'
 	, '$timeout'
 	, 'membersService'
+	, 'dateTimeHelpers'
 	, (function (
 	  $scope
 	, $timeout
-	, membersService) {
+	, membersService
+	, dateTimeHelpers) {
 
 		$scope.monthlyCelebrants = [];
 
@@ -19,7 +21,7 @@ app.controller('dashboardController', [
 		function loadMonthlyCelebrants() {
 			membersService
 				.getMonthlyCelebrants({
-					month: 9
+					month: dateTimeHelpers.getCurrentMonth()
 				})
 				.$promise.then(function (data) {
 					$scope.monthlyCelebrants = data;

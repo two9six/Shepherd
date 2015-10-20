@@ -19,7 +19,7 @@ namespace Shepherd.Entities
         public string ChurchId { get; set; }
         public string LocaleChurchId { get; set; }
         public System.DateTime DateBaptized { get; set; }
-        public int BaptizerId { get; set; }
+        public string Baptizer { get; set; }
         public byte MaritalStatusId { get; set; }
         public string SpouseName { get; set; }
         public string LandLine { get; set; }
@@ -33,7 +33,6 @@ namespace Shepherd.Entities
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
     
-        public virtual Baptizer Baptizer { get; set; }
         public virtual Designation Designation { get; set; }
         public virtual MemberStatus MemberStatu { get; set; }
         public virtual Person Person { get; set; }

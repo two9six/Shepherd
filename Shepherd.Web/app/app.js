@@ -24,6 +24,11 @@ app = angular.module('Shepherd'
             	templateUrl: "/app/views/members.html",
             	controller: "membersController"
             })
+            .state('memberDetails', {
+            	url: "/member-details",
+            	templateUrl: "/app/views/member-details.html",
+            	controller: "memberDetailsController"
+            })
             .state('file-upload', {
             	url: "/file-upload",
             	templateUrl: "/app/views/file-upload.html",

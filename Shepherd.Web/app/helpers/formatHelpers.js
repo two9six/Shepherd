@@ -9,7 +9,6 @@ app.factory('formatHelpers', [
 	, $filter
 	, $locale) {
 
-
 		var formatShortDate = function (date) {
 			return $filter('date')(date, 'M/d/yyyy');
 		}
@@ -18,8 +17,17 @@ app.factory('formatHelpers', [
 			return $filter('date')(date, 'MMM dd, yyyy');
 		}
 
+		var formatNameWithPrefix = function (name, gender) {
+			if (gender != 'M' && gender != 'F') {
+				return name;
+			}
+
+			return (gender == 'M' ? 'Bro. ' : 'Sis. ') + name
+		}
+
 		return {
 			formatShortDate: formatShortDate,
-			formatDate: formatDate
+			formatDate: formatDate,
+			formatNameWithPrefix: formatNameWithPrefix
 		};
 	}])

@@ -59,7 +59,6 @@
     <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Infrastructure\CurrentDate.cs" />
     <Compile Include="Infrastructure\DomainContainerBuilderComposition.cs" />
-    <Compile Include="Models\Baptizer.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ContactInformation.cs" />
     <Compile Include="Models\Gathering.cs" />

@@ -90,21 +90,21 @@ app.controller('membersController', [
             	width: '4em',
             	visible: true
             },
-            {
-            	columnHeaderTemplate: '<span>Sex</span>',
-            	displayProperty: 'gender',
-            	sortKey: 'gender',
-            	columnSearchProperty: 'gender',
-            	width: '1em',
-            	visible: true
-            },
-            {
-            	columnHeaderTemplate: '<span>Date Baptized</span>',
-            	template: '<div>{{ formatHelpers.formatDate(item.dateBaptized) }}</div>',
-            	sortKey: 'dateBaptized',
-            	width: '2em',
-            	visible: true
-            },
+            //{
+            //	columnHeaderTemplate: '<span>Sex</span>',
+            //	displayProperty: 'gender',
+            //	sortKey: 'gender',
+            //	columnSearchProperty: 'gender',
+            //	width: '1em',
+            //	visible: true
+            //},
+            //{
+            //	columnHeaderTemplate: '<span>Date Baptized</span>',
+            //	template: '<div>{{ formatHelpers.formatDate(item.dateBaptized) }}</div>',
+            //	sortKey: 'dateBaptized',
+            //	width: '2em',
+            //	visible: true
+            //},
             {
             	columnHeaderTemplate: '<span>Status</span>',
             	template: '<div>{{ memberStatusEnum.toString(item.memberStatus) }}</div>',
@@ -117,6 +117,12 @@ app.controller('membersController', [
             	template: '<span>{{ designationEnum.toString(item.designation) }}</span>',
             	sortKey: 'designation',
             	width: '2em',
+            	visible: true
+            },
+            {
+            	columnHeaderTemplate: '<span></span>',
+            	template: '<a ui-sref="member-details({memberId: item.id})">Edit</a>',
+            	width: '1em',
             	visible: true
             }
 		];

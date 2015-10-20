@@ -19,7 +19,7 @@ namespace Shepherd.Domain.Contracts.Models
 		string Citizenship { get; set; }
 		Address Address { get; set; }
 		DateTime? DateBaptized { get; set; }
-		Baptizer Baptizer { get; set; }
+		string Baptizer { get; set; }
 		MaritalStatuses MaritalStatus { get; set; }
 		string SpouseName { get; set; }
 		ContactInformation ContactInformation { get; set; }

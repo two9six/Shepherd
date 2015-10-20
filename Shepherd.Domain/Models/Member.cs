@@ -40,7 +40,7 @@ namespace Shepherd.Domain.Models
 
 		public DateTime? DateBaptized { get; set; }
 
-		public Baptizer Baptizer { get; set; }
+		public string Baptizer { get; set; }
 
 		public MaritalStatuses MaritalStatus { get; set; }
 
@@ -73,7 +73,6 @@ namespace Shepherd.Domain.Models
 		public Member(IUnitOfWork unitOfWork)
 		{
 			this.Address = new Address();
-			this.Baptizer = new Baptizer();
 			this.ContactInformation = new ContactInformation();
 			this.DateCreated = DateTime.Now;
 

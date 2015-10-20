@@ -13,9 +13,7 @@
         <AssociationConnector Association="ShepherdModel.FK_Designation_DesignationType" />
         <EntityTypeShape EntityType="ShepherdModel.GatheringSchedule" Width="1.5" PointX="8.75" PointY="3" />
         <AssociationConnector Association="ShepherdModel.FK_GatheringSchedule_GatheringType" />
-        <EntityTypeShape EntityType="ShepherdModel.Baptizer" Width="1.5" PointX="2.875" PointY="6.5" />
-        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="11.125" PointY="1.875" />
-        <AssociationConnector Association="ShepherdModel.FK_Member_Baptizer" />
+        <EntityTypeShape EntityType="ShepherdModel.Member" Width="1.5" PointX="3" PointY="0.625" />
         <AssociationConnector Association="ShepherdModel.FK_Member_Designation" />
         <AssociationConnector Association="ShepherdModel.FK_Member_MemberStatus" />
         <AssociationConnector Association="ShepherdModel.FK_Member_Person" />

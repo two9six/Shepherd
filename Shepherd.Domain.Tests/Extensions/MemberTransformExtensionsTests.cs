@@ -34,7 +34,7 @@ namespace Shepherd.Domain.Tests.Extensions
 			Assert.AreEqual(entityMember.Person.City, domainMember.Address.City);
 			Assert.AreEqual(entityMember.Person.StateProvince, domainMember.Address.StateProvince);
 			Assert.AreEqual(entityMember.Person.Country, domainMember.Address.Country);
-			Assert.AreEqual(entityMember.BaptizerId, domainMember.Baptizer.Id);
+			Assert.AreEqual(entityMember.Baptizer, domainMember.Baptizer);
 			Assert.AreEqual(entityMember.MaritalStatusId, (byte)domainMember.MaritalStatus);
 			Assert.AreEqual(entityMember.SpouseName, domainMember.SpouseName);
 			Assert.AreEqual(entityMember.LandLine, domainMember.ContactInformation.LandLine);
@@ -73,7 +73,7 @@ namespace Shepherd.Domain.Tests.Extensions
 			Assert.AreEqual(domainMember.Address.City, entityMember.Person.City);
 			Assert.AreEqual(domainMember.Address.StateProvince, entityMember.Person.StateProvince);
 			Assert.AreEqual(domainMember.Address.Country, entityMember.Person.Country);
-			Assert.AreEqual(domainMember.Baptizer.Id, entityMember.BaptizerId);
+			Assert.AreEqual(domainMember.Baptizer, entityMember.Baptizer);
 			Assert.AreEqual((byte)domainMember.MaritalStatus, entityMember.MaritalStatusId);
 			Assert.AreEqual(domainMember.SpouseName, entityMember.SpouseName);
 			Assert.AreEqual(domainMember.ContactInformation.LandLine, entityMember.LandLine);

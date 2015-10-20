@@ -17,6 +17,8 @@ app.directive('monthlyCelebrants', [
 				////////////////
 				// Properties //
 				////////////////
+				var rowSize = 5;
+
 				$scope.members = [];
 				$scope.formatHelpers = formatHelpers;
 				
@@ -28,7 +30,7 @@ app.directive('monthlyCelebrants', [
 				$scope.$on('renderMonthlyCelebrants', render);
 
 				function render() {
-					$scope.members = $scope.monthlyCelebrantsData;
+					$scope.members = _.chunk($scope.monthlyCelebrantsData, rowSize);
 				}
 
 			}

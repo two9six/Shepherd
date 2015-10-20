@@ -5,7 +5,7 @@
     [ChurchId] VARCHAR(20) NOT NULL, 
 	[LocaleChurchId] VARCHAR(10) NOT NULL,
 	[DateBaptized] DATETIME NOT NULL,
-	[BaptizerId] INT NOT NULL,
+	[Baptizer] VARCHAR(100) NOT NULL,
 	[MaritalStatusId] TINYINT NOT NULL,
 	[SpouseName] VARCHAR(200) NULL,
 	[LandLine] VARCHAR(50) NULL,
@@ -21,8 +21,7 @@
 	CONSTRAINT [PK_Member] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Member_Person] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Person]([Id]),
 	CONSTRAINT [FK_Member_MemberStatus] FOREIGN KEY ([MemberStatusId]) REFERENCES [dbo].[MemberStatus]([Id]),
-	CONSTRAINT [FK_Member_Designation] FOREIGN KEY ([DesignationId]) REFERENCES [dbo].[Designation]([Id]),
-	CONSTRAINT [FK_Member_Baptizer] FOREIGN KEY ([BaptizerId]) REFERENCES [dbo].[Baptizer]([Id]),
+	CONSTRAINT [FK_Member_Designation] FOREIGN KEY ([DesignationId]) REFERENCES [dbo].[Designation]([Id])
 	--CONSTRAINT Member_ChurchId UNIQUE ([ChurchId]),
 	--CONSTRAINT Member_LocaleChuchId UNIQUE ([LocaleChurchId])
 )
