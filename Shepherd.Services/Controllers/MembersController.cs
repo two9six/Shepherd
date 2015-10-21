@@ -4,6 +4,7 @@ using System.Web.Http.Cors;
 using System.Net.Http.Formatting;
 using System.Net;
 using Shepherd.Domain.Models.Reporting;
+using System;
 
 namespace Shepherd.Services.Controllers
 {
@@ -66,6 +67,20 @@ namespace Shepherd.Services.Controllers
 				};
 				monthlyCelebrants.Load();
 				return monthlyCelebrants.Celebrators;
+			});
+		}
+
+		[HttpGet]
+		public IHttpActionResult GetNewlyBaptized(int monthThreshold)
+		{
+			return GetActionResult(delegate()
+			{
+				var newlyBaptizedBrethren = new NewlyBaptizedBrethren()
+				{
+					MonthThreshold = monthThreshold
+				};
+				newlyBaptizedBrethren.Load();
+				return newlyBaptizedBrethren.Members;
 			});
 		}
 

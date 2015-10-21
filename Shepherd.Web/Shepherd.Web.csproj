@@ -181,7 +181,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\appShellController.js" />
-    <Content Include="app\controllers\memberDetailsController.js" />
+    <Content Include="app\controllers\memberController.js" />
     <Content Include="app\controllers\membersController.js" />
     <Content Include="app\controllers\dashboardController.js" />
     <Content Include="app\controllers\fileUploadController.js" />
@@ -213,7 +213,7 @@
     <Content Include="app\templates\monthly-celebrants.html" />
     <Content Include="app\views\dashboard.html" />
     <Content Include="app\views\file-upload.html" />
-    <Content Include="app\views\member-details.html" />
+    <Content Include="app\views\member.html" />
     <Content Include="app\views\users.html" />
     <Content Include="app\views\members.html" />
     <Content Include="content\adapt-strap.css" />

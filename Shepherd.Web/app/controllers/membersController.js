@@ -121,7 +121,7 @@ app.controller('membersController', [
             },
             {
             	columnHeaderTemplate: '<span></span>',
-            	template: '<a ui-sref="member-details({memberId: item.id})">Edit</a>',
+            	template: '<a ui-sref="member({ id: {{ item.id }}})"><span>Edit</span></a>',
             	width: '1em',
             	visible: true
             }
