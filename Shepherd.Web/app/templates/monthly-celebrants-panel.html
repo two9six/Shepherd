@@ -1,0 +1,22 @@
+﻿<div class="monthly-celebrators-panel col-lg-12 col-md-8 col-sm-12">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<h5>{{ dateTimeHelpers.getCurrentMonthName() }} Celebrants</h5>
+			<div ibox-tools id="monthly-celebrants-panel-grid-menu"></div>
+		</div>
+		<div class="ibox-content center">
+			<div class="m-t-md">
+				<div ng-repeat="m in members">
+					<div ng-repeat="i in m" class="m-b-md celebrator-item">
+						<div class="center"><img src="../content/images/profile_black.jpg" class="mp-sm" /></div>
+						<div class="center">
+							<div>{{ formatHelpers.formatNameWithPrefix(i.name, i.gender) }}</div>
+							<div>{{ formatHelpers.formatDate(i.dateBaptized) }}</div>
+							<div>{{ i.age }} Year{{ i.age > 1 ? 's' : '' }} Old</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

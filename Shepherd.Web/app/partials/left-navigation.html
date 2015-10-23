@@ -15,6 +15,12 @@
 					<span class="nav-label">Members List</span>
 				</a>
 			</li>
+			<li ng-class="{ active: isActive('/reporst')}">
+				<a ui-sref="reports">
+					<i class="fa fa-lg fa-line-chart"></i>
+					<span class="nav-label">Reports</span>
+				</a>
+			</li>
 			<li ng-class="{ active: isActive('/file-upload')}">
 				<a ui-sref="file-upload">
 					<i class="fa fa-lg fa-upload"></i>

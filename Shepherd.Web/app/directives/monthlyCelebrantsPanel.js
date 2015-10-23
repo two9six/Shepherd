@@ -1,14 +1,16 @@
 ﻿'use strict';
-app.directive('monthlyCelebrants', [
+app.directive('monthlyCelebrantsPanel', [
 	  '$window'
 	, 'formatHelpers'
+	, 'dateTimeHelpers'
 	, function (
 	  $window
-	, formatHelpers) {
+	, formatHelpers
+	, dateTimeHelpers) {
 		return {
 			restrict: 'A',
 			replace: false,
-			templateUrl: 'app/templates/monthly-celebrants.html',
+			templateUrl: 'app/templates/monthly-celebrants-panel.html',
 			scope: {
 				monthlyCelebrantsData: '='
 			},
@@ -21,6 +23,7 @@ app.directive('monthlyCelebrants', [
 
 				$scope.members = [];
 				$scope.formatHelpers = formatHelpers;
+				$scope.dateTimeHelpers = dateTimeHelpers;
 				
 
 				////////////

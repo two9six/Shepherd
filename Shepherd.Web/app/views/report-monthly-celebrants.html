@@ -1,0 +1,56 @@
+﻿<div>
+	<div class="row wrapper border-bottom white-bg page-heading">
+		<div class="col-lg-10">
+			<h2>Reports - Monthly Celebrants</h2>
+		</div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight clear">
+		<section class=" row col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<div>
+						Select Month:
+						<div class="btn-group dropdown m-l-sm" dropdown dropdown-append-to-body style="max-width: 150px; min-width: 50px;">
+							<button type="button" class="btn btn-xs btn-primary dropdown-toggle" dropdown-toggle>
+								{{monthEnum.toString(selectedMonth)}} <span class="caret"></span>
+							</button>
+
+							<ul class="dropdown-menu" role="menu" style="max-width: 150px; min-width: 50px;">
+								<li ng-repeat="m in monthOptions track by $index">
+									<a ng-click="selectMonth($index)">{{m.value}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<br />
+					<div ng-if="members.length == 0">
+						No record found
+					</div>
+					<div ng-if="members.length > 0">
+						<table class="table table-condensed table-striped table-with-leg-room vertical-align-middle fa-border">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Date Baptized</th>
+									<th>Age</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="m in members">
+									<td>{{ formatHelpers.formatNameWithPrefix(m.name, m.gender) }}</td>
+									<td>{{ formatHelpers.formatDate(m.dateBaptized) }}</td>
+									<td>{{ m.age }} Year{{ m.age > 1 ? 's' : '' }} Old</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th colspan="3">{{ members.length }} record(s) found</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>

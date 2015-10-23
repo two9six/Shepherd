@@ -3,12 +3,18 @@
 app.factory('dateTimeHelpers',
 	function () {
 
+		var getCurrentMonthName = function () {
+			var d = new Date();
+			return monthEnum.toString(d.getMonth());
+		}
+
 		var getCurrentMonth = function () {
 			var d = new Date();
-			return d.getMonth() + 1;
+			return d.getMonth();
 		}
 
 		return {
-			getCurrentMonth: getCurrentMonth
+			getCurrentMonth: getCurrentMonth,
+			getCurrentMonthName: getCurrentMonthName
 		};
 	})

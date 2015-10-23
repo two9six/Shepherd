@@ -25,6 +25,14 @@ app.factory('membersService', [
 					action: 'GetMonthlyCelebrants'
 				},
 				isArray: true
+			},
+
+			getNewlyBaptized: {
+				method: 'GET',
+				params: {
+					action: 'GetNewlyBaptized'
+				},
+				isArray: true
 			}
 
 		});

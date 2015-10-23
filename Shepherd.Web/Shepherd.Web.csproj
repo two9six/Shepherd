@@ -181,6 +181,8 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\appShellController.js" />
+    <Content Include="app\controllers\reportMonthlyCelebrantsController.js" />
+    <Content Include="app\controllers\reportsController.js" />
     <Content Include="app\controllers\memberController.js" />
     <Content Include="app\controllers\membersController.js" />
     <Content Include="app\controllers\dashboardController.js" />
@@ -188,9 +190,12 @@
     <Content Include="app\controllers\usersController.js" />
     <Content Include="app\controls\adapt-strap\adapt-strap.js" />
     <Content Include="app\controls\adapt-strap\adapt-strap.tpl.js" />
+    <Content Include="app\directives\iboxTools.js" />
     <Content Include="app\directives\metisMenu.js" />
-    <Content Include="app\directives\monthly-celebrants.js" />
+    <Content Include="app\directives\newlyBaptizedPanel.js" />
+    <Content Include="app\directives\monthlyCelebrantsPanel.js" />
     <Content Include="app\directives\themeDirectives.js" />
+    <Content Include="app\enums\monthEnum.js" />
     <Content Include="app\enums\genderEnum.js" />
     <Content Include="app\enums\maritalStatusEnum.js" />
     <Content Include="app\enums\memberStatusEnum.js" />
@@ -203,17 +208,20 @@
     <Content Include="app\partials\left-navigation.html" />
     <Content Include="app\partials\top-navigation.html" />
     <Content Include="app\services\membersService.js" />
-    <Content Include="app\services\memberService.js" />
+    <Content Include="app\templates\ibox_tools.html" />
     <Content Include="app\templates\member-add-modal.html" />
     <Content Include="app\templates\member-add-success-modal.html" />
     <Content Include="app\templates\member-details-popover.html" />
     <Content Include="app\templates\members\members-add.html" />
     <Content Include="app\templates\members\members-detail.html" />
     <Content Include="app\templates\members\members-index.html" />
-    <Content Include="app\templates\monthly-celebrants.html" />
+    <Content Include="app\templates\newly-baptized-panel.html" />
+    <Content Include="app\templates\monthly-celebrants-panel.html" />
     <Content Include="app\views\dashboard.html" />
     <Content Include="app\views\file-upload.html" />
     <Content Include="app\views\member.html" />
+    <Content Include="app\views\report-monthly-celebrants.html" />
+    <Content Include="app\views\reports.html" />
     <Content Include="app\views\users.html" />
     <Content Include="app\views\members.html" />
     <Content Include="content\adapt-strap.css" />
@@ -357,10 +365,6 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="app\controllers\home\homeController.js" />
-    <Content Include="app\controllers\members\membersAddController.js" />
-    <Content Include="app\controllers\members\membersDetailController.js" />
-    <Content Include="app\controllers\members\membersIndexController.js" />
     <Content Include="Scripts\App\Tests\MemberServiceTests.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

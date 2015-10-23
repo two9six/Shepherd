@@ -1891,11 +1891,20 @@ svg {
 .mp-sm {
 	height: 100px; 
 	width: 100px;
+	border: solid 1px gray;
 }
 
-/*********** Monthly Celebrators ***********/
+/*********** Monthly Celebrators Dashboard Panel ***********/
 
-.monthly-celebrators div.celebrator-item {
+.monthly-celebrators-panel div.celebrator-item {
+	display: inline-block; 
+	width: 200px;
+}
+
+
+/*********** Newly Baptized Dashboard Panel ***********/
+
+.newly-baptized-panel div.newly-baptized-item {
 	display: inline-block; 
 	width: 200px;
 }

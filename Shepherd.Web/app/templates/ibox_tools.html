@@ -1,0 +1,9 @@
+﻿<div class="ibox-tools dropdown">
+	<a ng-click="showhide()" class="showHide" tooltip-html-unsafe="Expand" tooltip-placement="auto" tooltip-append-to-body="true"> <i class="fa fa-chevron-up"></i></a>
+	<a ng-click="maximize()" ng-show="maximizeable === 'true'"> <i class="fa fa-desktop"></i></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" tooltip-html-unsafe="Options" tooltip-placement="auto" tooltip-append-to-body="true">
+		<i class="fa fa-wrench"></i>
+	</a>
+	<ul class="dropdown-menu dropdown-user" id="menu-items" />
+	<a ng-click="closebox()" ng-if="showClose()"><i class="fa fa-times"></i></a>
+</div>

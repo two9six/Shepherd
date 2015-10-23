@@ -10,30 +10,50 @@ app.controller('dashboardController', [
 	, membersService
 	, dateTimeHelpers) {
 
-		$scope.monthlyCelebrants = [];
+		$scope.monthlyCelebrantsData = [];
+		$scope.newlyBaptizedData = [];
 
-		loadMonthlyCelebrants();
+		loadPanels();
 
 		/////////////////////////////
 		////// Local Functions //////
 		/////////////////////////////
 
+		function loadPanels() {
+			loadMonthlyCelebrants();
+			//loadNewlyBaptized();
+		}
+
 		function loadMonthlyCelebrants() {
 			membersService
 				.getMonthlyCelebrants({
-					month: dateTimeHelpers.getCurrentMonth()
+					month: dateTimeHelpers.getCurrentMonth() + 1
 				})
 				.$promise.then(function (data) {
-					$scope.monthlyCelebrants = data;
+					$scope.monthlyCelebrantsData = data;
 
-					renderMonthlyCelebrants();
+					$timeout(function () {
+						$scope.$broadcast('renderMonthlyCelebrants');
+					}, 1000);
+
+					loadNewlyBaptized();
 				});
 		}
 
-		function renderMonthlyCelebrants() {
-			$timeout(function () {
-				$scope.$broadcast('renderMonthlyCelebrants');
-			}, 0);
+		function loadNewlyBaptized() {
+			var monthlyThreshold = 3; // TODO: Should be in web.config or settings table
+
+			membersService
+				.getNewlyBaptized({
+					monthThreshold: monthlyThreshold
+				})
+				.$promise.then(function (data) {
+					$scope.newlyBaptizedData = data;
+
+					$timeout(function () {
+						$scope.$broadcast('renderNewlyBaptized');
+					}, 1000);
+				});
 		}
 
 	})

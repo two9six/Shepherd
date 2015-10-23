@@ -34,7 +34,6 @@ namespace Shepherd.Services.Controllers
 				}
 				else
 				{
-
 					return NotFound();
 				}
 			}

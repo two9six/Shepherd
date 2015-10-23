@@ -39,7 +39,7 @@ namespace Shepherd.Domain.Models.Reporting
 					_.DateBaptized,
 					_.Person.Gender
 				})
-				.OrderByDescending(_ => _.DateBaptized.Day)
+				.OrderByDescending(_ => _.DateBaptized)
 				.ThenBy(_ => _.FirstName)
 				.ToList()
 				.ForEach(_ =>
