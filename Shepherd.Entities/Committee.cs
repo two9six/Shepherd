@@ -12,21 +12,19 @@ namespace Shepherd.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Designation
+    public partial class Committee
     {
-        public Designation()
+        public Committee()
         {
-            this.Members = new HashSet<Member>();
+            this.CommitteeMembers = new HashSet<CommitteeMember>();
         }
     
-        public byte Id { get; set; }
-        public byte DesignationTypeId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public byte SortOrder { get; set; }
-        public bool IsDefault { get; set; }
+        public string Description { get; set; }
+        public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
     
-        public virtual DesignationType DesignationType { get; set; }
-        public virtual ICollection<Member> Members { get; set; }
+        public virtual ICollection<CommitteeMember> CommitteeMembers { get; set; }
     }
 }

@@ -10,6 +10,10 @@ PRINT 'Load Designation'
 	UNION SELECT 4, 2, 'Secretary', 3, 0, 0
 	UNION SELECT 5, 2, 'Treasurer', 4, 0, 0
 	UNION SELECT 6, 2, 'Group Servant', 5, 0, 0
+	UNION SELECT 7, 2, 'Auditor', 6, 0, 0
+	UNION SELECT 8, 2, 'Trustee', 7, 0, 0
+	UNION SELECT 9, 2, 'Committee Head', 8, 0, 0
+	UNION SELECT 10, 2, 'KKTK Officer', 9, 0, 0
 )
 MERGE INTO [Designation]
 	  USING Designation_Cte AS src

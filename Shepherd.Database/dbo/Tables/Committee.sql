@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Committee]
+(
+	[Id] INT NOT NULL IDENTITY, 
+	[Name] VARCHAR(128) NOT NULL, 
+	[Description] VARCHAR(MAX) NULL,
+	[IsActive] BIT NOT NULL DEFAULT 1,
+	[IsDeleted] BIT NOT NULL DEFAULT 0,
+	CONSTRAINT [PK_Committee] PRIMARY KEY ([Id])
+)

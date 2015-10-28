@@ -20,6 +20,8 @@ namespace Shepherd.Data.Contracts.Infrastructure
 
 		IPersonRepository PersonRepository { get; set; }
 
+		ICommitteeRepository CommitteeRepository { get; set; }
+
 		int Save();
 	}
 }

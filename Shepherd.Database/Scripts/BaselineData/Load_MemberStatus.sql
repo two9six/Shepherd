@@ -5,9 +5,12 @@ PRINT 'Load Member Status'
 ;WITH MemberStatus_Cte (Id, Name, IsDefault, IsDeleted) AS 
 (
 		  SELECT  1, 'Active', 1, 0
-	UNION SELECT  2, 'In-Active', 0, 0
-	UNION SELECT  3, 'Suspended', 0, 0
-	UNION SELECT  4, 'Excommunicated', 0, 0
+	UNION SELECT  2, 'Active (Other Locale)', 0, 0
+	UNION SELECT  3, 'Active (Abroad)', 0, 0
+	UNION SELECT  4, 'In-Active', 0, 0
+	UNION SELECT  5, 'Suspended', 0, 0
+	UNION SELECT  6, 'Excommunicated', 0, 0
+	UNION SELECT  7, 'Deceased', 0, 0
 )
 MERGE INTO [MemberStatus]
 	  USING MemberStatus_Cte AS src

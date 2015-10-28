@@ -1,0 +1,31 @@
+﻿<div>
+	<div class="row wrapper border-bottom white-bg page-heading">
+		<div class="col-lg-10">
+			<h2>Manage Committees</h2>
+		</div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight clear">
+		<section class=" row col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<a class="btn btn-primary" ng-click='addCommittee("lg")'>
+						<i class="glyphicon glyphicon-plus-sign icon-large"></i> Add Committee
+					</a>
+				</div>
+				<div class="ibox-content data-grid">
+					<ad-table-lite table-name="committeesTable"
+								   column-definition="committeesTableColumnDefinition"
+								   local-data-source="committees"
+								   enable-column-search="true"
+								   page-sizes="[10, 15, 20]"
+								   page-size="10"
+								   table-max-height="600px"
+								   pagination-btn-group-classes="pagination pagination-sm"
+								   table-classes="table table-striped table-bordered committees-table"
+								   items-not-found-message="Committees Not Found">
+					</ad-table-lite>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>

@@ -14,6 +14,11 @@ namespace Shepherd.Entities
     
     public partial class Member
     {
+        public Member()
+        {
+            this.CommitteeMembers = new HashSet<CommitteeMember>();
+        }
+    
         public int Id { get; set; }
         public int PersonId { get; set; }
         public string ChurchId { get; set; }
@@ -33,8 +38,9 @@ namespace Shepherd.Entities
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
     
-        public virtual Designation Designation { get; set; }
         public virtual MemberStatus MemberStatu { get; set; }
         public virtual Person Person { get; set; }
+        public virtual Designation Designation { get; set; }
+        public virtual ICollection<CommitteeMember> CommitteeMembers { get; set; }
     }
 }

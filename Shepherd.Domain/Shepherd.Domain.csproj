@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Infrastructure\ICurrentDate.cs" />
+    <Compile Include="Contracts\Models\ICommittee.cs" />
+    <Compile Include="Contracts\Models\ICommitteeMember.cs" />
     <Compile Include="Contracts\Models\IGathering.cs" />
     <Compile Include="Contracts\Models\IGatheringSchedule.cs" />
     <Compile Include="Contracts\Models\IMember.cs" />
@@ -54,17 +56,23 @@
     <Compile Include="Contracts\Models\IMembersIndex.cs" />
     <Compile Include="Contracts\Models\IOfficer.cs" />
     <Compile Include="Contracts\Models\IWorker.cs" />
+    <Compile Include="Contracts\Models\Reporting\IMonthlyCelebrants.cs" />
+    <Compile Include="Extensions\CommitteeTransformExtensions.cs" />
     <Compile Include="Extensions\MemberTransformExtensions.cs" />
     <Compile Include="Helpers\DataValidatorHelper.cs" />
     <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Infrastructure\CurrentDate.cs" />
     <Compile Include="Infrastructure\DomainContainerBuilderComposition.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\CommitteeIndex.cs" />
+    <Compile Include="Models\Committee.cs" />
+    <Compile Include="Models\CommitteeMember.cs" />
     <Compile Include="Models\ContactInformation.cs" />
     <Compile Include="Models\Gathering.cs" />
     <Compile Include="Models\GatheringSchedule.cs" />
     <Compile Include="Models\Reporting\NewlyBaptizedBrethren.cs" />
     <Compile Include="Models\Reporting\MonthlyCelebrants.cs" />
+    <Compile Include="Models\Reporting\OfficersList.cs" />
     <Compile Include="Models\Worker.cs" />
     <Compile Include="Models\MembersDetail.cs" />
     <Compile Include="Models\MembersIndex.cs" />

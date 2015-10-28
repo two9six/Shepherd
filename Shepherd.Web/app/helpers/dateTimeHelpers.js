@@ -1,7 +1,8 @@
 ﻿//TODO: write unit tests
 'use strict';
-app.factory('dateTimeHelpers',
-	function () {
+app.factory('dateTimeHelpers', [
+	'$filter'
+	, function ($filter) {
 
 		var getCurrentMonthName = function () {
 			var d = new Date();
@@ -13,8 +14,14 @@ app.factory('dateTimeHelpers',
 			return d.getMonth();
 		}
 
+		var getReportDateStamp = function () {
+			var d = new Date();
+			return $filter('date')(d, 'yyyy_MM_dd');
+		}
+
 		return {
 			getCurrentMonth: getCurrentMonth,
-			getCurrentMonthName: getCurrentMonthName
+			getCurrentMonthName: getCurrentMonthName,
+			getReportDateStamp: getReportDateStamp
 		};
-	})
+	}]);

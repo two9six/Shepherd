@@ -137,6 +137,24 @@ namespace Shepherd.Data.Infrastructure
 			}
 		}
 
+		private ICommitteeRepository committeeRepository;
+		public ICommitteeRepository CommitteeRepository
+		{
+			get
+			{
+				if (committeeRepository == null)
+				{
+					committeeRepository = new CommitteeRepository();
+					committeeRepository.Context = this.Context;
+				}
+				return committeeRepository;
+			}
+			set
+			{
+				committeeRepository = value;
+			}
+		}
+
 		public int Save()
 		{
 			// TODO: Provide exception handling

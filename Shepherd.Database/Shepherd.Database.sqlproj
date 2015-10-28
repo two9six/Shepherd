@@ -74,6 +74,9 @@
     <None Include="Scripts\BaselineData\Load_MemberStatus.sql" />
     <None Include="Scripts\BaselineData\Load_DesignationType.sql" />
     <Build Include="dbo\Tables\GatheringSchedule.sql" />
+    <Build Include="dbo\Tables\Committee.sql" />
+    <Build Include="dbo\Tables\CommitteeMember.sql" />
+    <None Include="Scripts\BaselineData\Load_Committee.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />

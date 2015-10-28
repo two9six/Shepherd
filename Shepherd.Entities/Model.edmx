@@ -5,6 +5,27 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ShepherdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Committee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommitteeMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommitteeId" Type="int" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="IsCommitteeHead" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
         <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,6 +33,7 @@
           <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DesignationTypeId" Type="tinyint" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="SortOrder" Type="tinyint" Nullable="false" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -103,6 +125,30 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CommitteeMember_Committee">
+          <End Role="Committee" Type="Self.Committee" Multiplicity="1" />
+          <End Role="CommitteeMember" Type="Self.CommitteeMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Committee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommitteeMember">
+              <PropertyRef Name="CommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommitteeMember_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="CommitteeMember" Type="Self.CommitteeMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommitteeMember">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Designation_DesignationType">
           <End Role="DesignationType" Type="Self.DesignationType" Multiplicity="1" />
           <End Role="Designation" Type="Self.Designation" Multiplicity="*" />
@@ -164,6 +210,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ShepherdModelStoreContainer">
+          <EntitySet Name="Committee" EntityType="Self.Committee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommitteeMember" EntityType="Self.CommitteeMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DesignationType" EntityType="Self.DesignationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GatheringSchedule" EntityType="Self.GatheringSchedule" Schema="dbo" store:Type="Tables" />
@@ -171,6 +219,14 @@
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberStatus" EntityType="Self.MemberStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CommitteeMember_Committee" Association="Self.FK_CommitteeMember_Committee">
+            <End Role="Committee" EntitySet="Committee" />
+            <End Role="CommitteeMember" EntitySet="CommitteeMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommitteeMember_Member" Association="Self.FK_CommitteeMember_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CommitteeMember" EntitySet="CommitteeMember" />
+          </AssociationSet>
           <AssociationSet Name="FK_Designation_DesignationType" Association="Self.FK_Designation_DesignationType">
             <End Role="DesignationType" EntitySet="DesignationType" />
             <End Role="Designation" EntitySet="Designation" />
@@ -197,25 +253,16 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ShepherdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ShepherdContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Designations" EntityType="ShepherdModel.Designation" />
           <EntitySet Name="GatheringTypes" EntityType="ShepherdModel.GatheringType" />
           <EntitySet Name="MemberStatuses" EntityType="ShepherdModel.MemberStatus" />
           <EntitySet Name="Persons" EntityType="ShepherdModel.Person" />
           <EntitySet Name="DesignationTypes" EntityType="ShepherdModel.DesignationType" />
-          <AssociationSet Name="FK_Designation_DesignationType" Association="ShepherdModel.FK_Designation_DesignationType">
-            <End Role="DesignationType" EntitySet="DesignationTypes" />
-            <End Role="Designation" EntitySet="Designations" />
-          </AssociationSet>
           <EntitySet Name="GatheringSchedules" EntityType="ShepherdModel.GatheringSchedule" />
           <AssociationSet Name="FK_GatheringSchedule_GatheringType" Association="ShepherdModel.FK_GatheringSchedule_GatheringType">
             <End Role="GatheringType" EntitySet="GatheringTypes" />
             <End Role="GatheringSchedule" EntitySet="GatheringSchedules" />
           </AssociationSet>
           <EntitySet Name="Members" EntityType="ShepherdModel.Member" />
-          <AssociationSet Name="FK_Member_Designation" Association="ShepherdModel.FK_Member_Designation">
-            <End Role="Designation" EntitySet="Designations" />
-            <End Role="Member" EntitySet="Members" />
-          </AssociationSet>
           <AssociationSet Name="FK_Member_MemberStatus" Association="ShepherdModel.FK_Member_MemberStatus">
             <End Role="MemberStatus" EntitySet="MemberStatuses" />
             <End Role="Member" EntitySet="Members" />
@@ -224,19 +271,26 @@
             <End Role="Person" EntitySet="Persons" />
             <End Role="Member" EntitySet="Members" />
           </AssociationSet>
+          <EntitySet Name="Designations" EntityType="ShepherdModel.Designation" />
+          <AssociationSet Name="FK_Designation_DesignationType" Association="ShepherdModel.FK_Designation_DesignationType">
+            <End Role="DesignationType" EntitySet="DesignationTypes" />
+            <End Role="Designation" EntitySet="Designations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Designation" Association="ShepherdModel.FK_Member_Designation">
+            <End Role="Designation" EntitySet="Designations" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <EntitySet Name="Committees" EntityType="ShepherdModel.Committee" />
+          <EntitySet Name="CommitteeMembers" EntityType="ShepherdModel.CommitteeMember" />
+          <AssociationSet Name="FK_CommitteeMember_Committee" Association="ShepherdModel.FK_CommitteeMember_Committee">
+            <End Role="Committee" EntitySet="Committees" />
+            <End Role="CommitteeMember" EntitySet="CommitteeMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommitteeMember_Member" Association="ShepherdModel.FK_CommitteeMember_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="CommitteeMember" EntitySet="CommitteeMembers" />
+          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="Designation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="DesignationTypeId" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="DesignationType" Relationship="ShepherdModel.FK_Designation_DesignationType" FromRole="Designation" ToRole="DesignationType" />
-          <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Designation" ToRole="Member" />
-        </EntityType>
         <EntityType Name="GatheringType">
           <Key>
             <PropertyRef Name="Id" />
@@ -291,18 +345,6 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Designations" Relationship="ShepherdModel.FK_Designation_DesignationType" FromRole="DesignationType" ToRole="Designation" />
         </EntityType>
-        <Association Name="FK_Designation_DesignationType">
-          <End Type="ShepherdModel.DesignationType" Role="DesignationType" Multiplicity="1" />
-          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DesignationType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Designation">
-              <PropertyRef Name="DesignationTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="GatheringSchedule">
           <Key>
             <PropertyRef Name="Id" />
@@ -353,22 +395,11 @@
           <Property Name="DateModified" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Designation" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Member" ToRole="Designation" />
           <NavigationProperty Name="MemberStatu" Relationship="ShepherdModel.FK_Member_MemberStatus" FromRole="Member" ToRole="MemberStatus" />
           <NavigationProperty Name="Person" Relationship="ShepherdModel.FK_Member_Person" FromRole="Member" ToRole="Person" />
+          <NavigationProperty Name="Designation" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Member" ToRole="Designation" />
+          <NavigationProperty Name="CommitteeMembers" Relationship="ShepherdModel.FK_CommitteeMember_Member" FromRole="Member" ToRole="CommitteeMember" />
         </EntityType>
-        <Association Name="FK_Member_Designation">
-          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="1" />
-          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Designation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Member">
-              <PropertyRef Name="DesignationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Member_MemberStatus">
           <End Type="ShepherdModel.MemberStatus" Role="MemberStatus" Multiplicity="1" />
           <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
@@ -393,23 +424,97 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesignationTypeId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Byte" Nullable="false" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DesignationType" Relationship="ShepherdModel.FK_Designation_DesignationType" FromRole="Designation" ToRole="DesignationType" />
+          <NavigationProperty Name="Members" Relationship="ShepherdModel.FK_Member_Designation" FromRole="Designation" ToRole="Member" />
+        </EntityType>
+        <Association Name="FK_Designation_DesignationType">
+          <End Type="ShepherdModel.DesignationType" Role="DesignationType" Multiplicity="1" />
+          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DesignationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Designation">
+              <PropertyRef Name="DesignationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Designation">
+          <End Type="ShepherdModel.Designation" Role="Designation" Multiplicity="1" />
+          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Committee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CommitteeMembers" Relationship="ShepherdModel.FK_CommitteeMember_Committee" FromRole="Committee" ToRole="CommitteeMember" />
+        </EntityType>
+        <EntityType Name="CommitteeMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommitteeId" Type="Int32" Nullable="false" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="IsCommitteeHead" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Committee" Relationship="ShepherdModel.FK_CommitteeMember_Committee" FromRole="CommitteeMember" ToRole="Committee" />
+          <NavigationProperty Name="Member" Relationship="ShepherdModel.FK_CommitteeMember_Member" FromRole="CommitteeMember" ToRole="Member" />
+        </EntityType>
+        <Association Name="FK_CommitteeMember_Committee">
+          <End Type="ShepherdModel.Committee" Role="Committee" Multiplicity="1" />
+          <End Type="ShepherdModel.CommitteeMember" Role="CommitteeMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Committee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommitteeMember">
+              <PropertyRef Name="CommitteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommitteeMember_Member">
+          <End Type="ShepherdModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="ShepherdModel.CommitteeMember" Role="CommitteeMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommitteeMember">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShepherdModelStoreContainer" CdmEntityContainer="ShepherdContext">
-          <EntitySetMapping Name="Designations">
-            <EntityTypeMapping TypeName="ShepherdModel.Designation">
-              <MappingFragment StoreEntitySet="Designation">
-                <ScalarProperty Name="DesignationTypeId" ColumnName="DesignationTypeId" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GatheringTypes">
             <EntityTypeMapping TypeName="ShepherdModel.GatheringType">
               <MappingFragment StoreEntitySet="GatheringType">
@@ -500,6 +605,41 @@
                 <ScalarProperty Name="LocaleChurchId" ColumnName="LocaleChurchId" />
                 <ScalarProperty Name="ChurchId" ColumnName="ChurchId" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Designations">
+            <EntityTypeMapping TypeName="ShepherdModel.Designation">
+              <MappingFragment StoreEntitySet="Designation">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DesignationTypeId" ColumnName="DesignationTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Committees">
+            <EntityTypeMapping TypeName="ShepherdModel.Committee">
+              <MappingFragment StoreEntitySet="Committee">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommitteeMembers">
+            <EntityTypeMapping TypeName="ShepherdModel.CommitteeMember">
+              <MappingFragment StoreEntitySet="CommitteeMember">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsCommitteeHead" ColumnName="IsCommitteeHead" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="CommitteeId" ColumnName="CommitteeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

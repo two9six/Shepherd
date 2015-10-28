@@ -60,6 +60,7 @@
     <Compile Include="Contracts\Repository\IMemberStatusRepository.cs" />
     <Compile Include="Contracts\Repository\IDesignationTypeRepository.cs" />
     <Compile Include="Contracts\Repository\IGatheringTypeRepository.cs" />
+    <Compile Include="Contracts\Repository\ICommitteeRepository.cs" />
     <Compile Include="Infrastructure\DataContainerBuilderComposition.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Contracts\Repository\IPersonRepository.cs" />
     <Compile Include="Repository\DesignationRepository.cs" />
     <Compile Include="Repository\DesignationTypeRepository.cs" />
+    <Compile Include="Repository\CommitteeRepository.cs" />
     <Compile Include="Repository\MemberStatusRepository.cs" />
     <Compile Include="Repository\GatheringTypeRepository.cs" />
     <Compile Include="Repository\MemberRepository.cs" />

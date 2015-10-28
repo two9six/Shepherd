@@ -1,42 +1,42 @@
-﻿using Shepherd.Data.Contracts.Infrastructure;
+﻿using Shepherd.Core.Enums;
+using Shepherd.Data.Contracts.Infrastructure;
 using Shepherd.Data.Infrastructure;
-using Shepherd.Domain.Contracts.Models.Reporting;
-using Shepherd.Domain.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Shepherd.Domain.Models.Reporting
 {
-	public sealed class MonthlyCelebrants : IMonthlyCelebrants
+	public sealed class OfficersList
 	{
-		public int Month { get; set; }
-
-		public List<IMonthlyCelebrator> Celebrators { get; set; }
+		public List<OfficersListItem> Officers { get; set; }
 
 		private readonly IUnitOfWork unitOfWork;
 
-		public MonthlyCelebrants()
+		public OfficersList()
 			: this(UnitOfWork.Instance)
 		{
 		}
 
-		public MonthlyCelebrants(IUnitOfWork unitOfWork)
+		public OfficersList(IUnitOfWork unitOfWork)
 		{
 			this.unitOfWork = unitOfWork;
-			this.Celebrators = new List<IMonthlyCelebrator>();
+			this.Officers = new List<OfficersListItem>();
 		}
 
 		public void Load()
 		{
 			unitOfWork.MemberRepository
-				.FindBy(_ => _.DateBaptized.Month == this.Month 
-					&& _.DateBaptized.Year < DateTime.Now.Year
+				.FindBy(_ => _.Designation.DesignationType.Id == (byte)DesignationTypes.Officer
+					&& _.MemberStatusId == (byte)MemberStatuses.Active
 					&& !_.IsDeleted)
-				.Select(_ => new {
+				.Select(_ => new
+				{
 					_.Id,
- 					_.Person.FirstName,
+					_.Person.FirstName,
 					_.Person.LastName,
+					_.DesignationId,
+					_.Designation.SortOrder,
 					_.DateBaptized,
 					_.Person.Gender,
 					_.LandLine,
@@ -45,33 +45,33 @@ namespace Shepherd.Domain.Models.Reporting
 					_.Person.AddressLine2,
 					_.Person.City
 				})
-				.OrderBy(_ => _.DateBaptized.Day)
+				.OrderBy(_ => _.SortOrder)
 				.ThenBy(_ => _.FirstName)
 				.ToList()
 				.ForEach(_ =>
 				{
-					var celebrator = new MonthlyCelebrator()
+					var officer = new OfficersListItem()
 					{
 						Id = _.Id,
 						Name = string.Format("{0} {1}", _.FirstName, _.LastName),
+						Designation = (Designations)_.DesignationId,
 						DateBaptized = _.DateBaptized,
-						Age = DateTimeHelpers.ComputeAgeCelebrant(_.DateBaptized),
 						Gender = _.Gender,
 						Landline = _.LandLine,
 						MobileNumber = _.MobileNumber,
 						Address = string.Format("{0} {1} {2}", _.AddressLine1, _.AddressLine2, _.City)
 					};
-					this.Celebrators.Add(celebrator);
+					this.Officers.Add(officer);
 				});
 		}
 	}
 
-	public sealed class MonthlyCelebrator : IMonthlyCelebrator
+	public sealed class OfficersListItem
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
+		public Designations Designation { get; set; }
 		public DateTime DateBaptized { get; set; }
-		public int Age { get; set; }
 		public string Gender { get; set; }
 		public string Landline { get; set; }
 		public string MobileNumber { get; set; }

@@ -1,0 +1,48 @@
+﻿<div>
+	<div class="row wrapper border-bottom white-bg page-heading">
+		<div class="col-lg-10">
+			<h2>Reports - Officers List</h2>
+			<button type="button" ng-click='exportData()' class="btn btn-primary btn-xs left h2" tooltip-placement="bottom" tooltip-html-unsafe="Export report to CSV file" tooltip-append-to-body="true">Export</button>
+			<a ui-sref="reports">
+				<button type="button" class="btn btn-primary btn-xs left h2" tooltip-placement="bottom" tooltip-html-unsafe="Return to Report List" tooltip-append-to-body="true">Report List</button>
+			</a>
+		</div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight clear">
+		<section class=" row col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<div id="report-contents">
+						<table class="table table-condensed table-striped table-with-leg-room vertical-align-middle fa-border">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Designation</th>
+									<th>Date Baptized</th>
+									<th>Landline</th>
+									<th>Mobile Number</th>
+									<th>Address</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="o in officers">
+									<td>{{ formatHelpers.formatNameWithPrefix(o.name, o.gender) }}</td>
+									<td>{{ designationEnum.toString(o.designation) }}</td>
+									<td>{{ formatHelpers.formatDate(o.dateBaptized) }}</td>
+									<td>{{ o.landline }}</td>
+									<td>{{ o.mobileNumber }}</td>
+									<td>{{ o.address }}</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th colspan="6">{{ officers.length }} record(s) found</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>

@@ -25,12 +25,14 @@ namespace Shepherd.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Designation> Designations { get; set; }
         public virtual DbSet<GatheringType> GatheringTypes { get; set; }
         public virtual DbSet<MemberStatus> MemberStatuses { get; set; }
         public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<DesignationType> DesignationTypes { get; set; }
         public virtual DbSet<GatheringSchedule> GatheringSchedules { get; set; }
         public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<Designation> Designations { get; set; }
+        public virtual DbSet<Committee> Committees { get; set; }
+        public virtual DbSet<CommitteeMember> CommitteeMembers { get; set; }
     }
 }

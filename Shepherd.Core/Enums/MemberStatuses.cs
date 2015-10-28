@@ -3,8 +3,11 @@
 	public enum MemberStatuses : byte
 	{
 		Active = 1,
-		InActive = 2,
-		Suspended = 3,
-		Excommunicated = 4
+		ActiveOtherLocale = 2,
+		ActiveAbroad = 3,
+		InActive = 4,
+		Suspended = 5,
+		Excommunicated = 6,
+		Deceased = 7
 	}
 }
