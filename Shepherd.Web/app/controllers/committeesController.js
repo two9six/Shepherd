@@ -50,7 +50,7 @@ app.controller('committeesController', [
             	columnHeaderTemplate: '<span>Committee Head(s)</span>',
             	displayProperty: 'committeeHeads',
             	columnSearchProperty: 'committeeHeads',
-            	width: '3em',
+            	width: '4em',
             	visible: true
             },
             {
@@ -72,6 +72,11 @@ app.controller('committeesController', [
 				.$promise.then(function (data) {
 					$scope.committees = data.committees;
 
+					$scope.committees.forEach(function (c) {
+						c.committeeHeads = getCommitteeHeads(c);
+						c.totalMembers = (c.members == undefined ? 0 : c.members.length);
+					});
+
 					$timeout(function () {
 						if ($scope.committees.length > 0) {
 							selectCommittee($scope.committees[0]);
@@ -80,11 +85,27 @@ app.controller('committeesController', [
 				});
 		}
 
+		function getCommitteeHeads(committee) {
+			var committeeHeads = '';
+
+			_.each(committee.members, function (m) {
+				if (m.isCommitteeHead) {
+					committeeHeads += (committeeHeads.length > 0 ? ', ' : '') 
+						+ formatHelpers.formatNameWithPrefix(m.member.firstName + ' ' + m.member.lastName, m.member.gender);
+				}
+			});
+
+			if (committeeHeads == '')
+				committeeHeads = 'No committee head assigned.';
+
+			return committeeHeads;
+		}
+
 		function setRowClickBehavior() {
 			$('.committees-table > tbody').on('click', 'tr', function () {
-				var tableRow = $(this).find('td')[0];
+				var tableRow = $(this).find('input.committee-id')[0];
 				if (tableRow) {
-					var id = Number($.trim($(tableRow).find('.committee-id').val()));
+					var id = parseInt($.trim(tableRow.value));
 					var item = _.find($scope.committees, {
 						'id': id
 					});
@@ -97,10 +118,6 @@ app.controller('committeesController', [
 
 		function selectCommittee (committee) {
 			$('.committees-table tr').attr('style', '');
-			//$('.committees-table input.committee-id[value="' + committee.id + '"]').filter(function () {
-			//	return ($.trim($(this).text()) == committee.id);
-			//}).closest('tr').css("background-color", "#fdfd96");
-
 			$('.committees-table input.committee-id').filter(function () {
 				return ($.trim($(this).val()) == committee.id);
 			}).closest('tr').css("background-color", "#fdfd96");

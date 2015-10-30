@@ -9,44 +9,91 @@ namespace Shepherd.Domain.Extensions
 	{
 		public static void LoadFromEntity(this IMember member, Entities.Member memberEntity)
 		{
-			if (memberEntity != null)
-			{
-				member.Id = memberEntity.Id;
-				member.ChurchId = memberEntity.ChurchId;
-				member.LocaleChurchId = memberEntity.LocaleChurchId;
-				member.FirstName = memberEntity.Person.FirstName;
-				member.LastName = memberEntity.Person.LastName;
-				member.MiddleName = memberEntity.Person.MiddleName;
-				member.NameExtension = memberEntity.Person.NameExtension;
-				member.BirthDate = memberEntity.Person.BirthDate;
-				member.PlaceOfBirth = memberEntity.Person.PlaceOfBirth;
-				member.Gender = memberEntity.Person.Gender;
-				member.Citizenship = memberEntity.Person.Citizenship;
-				member.Address = new Address()
-				{
-					AddressLine1 = memberEntity.Person.AddressLine1,
-					AddressLine2 = memberEntity.Person.AddressLine2,
-					City = memberEntity.Person.City,
-					StateProvince = memberEntity.Person.StateProvince,
-					Country = memberEntity.Person.Country
-				};
-				member.DateBaptized = memberEntity.DateBaptized;
-				member.Baptizer = memberEntity.Baptizer;
-				member.MaritalStatus = (MaritalStatuses)memberEntity.MaritalStatusId;
-				member.SpouseName = memberEntity.SpouseName;
-				member.ContactInformation = new ContactInformation
-				{
-					LandLine = memberEntity.LandLine,
-					MobileNumber = memberEntity.MobileNumber,
-					Email = memberEntity.Email
-				};
-				member.MemberStatus = (MemberStatuses)memberEntity.MemberStatusId;
-				member.Designation = (Designations)memberEntity.DesignationId;
-				member.CreatedBy = memberEntity.CreatedBy;
-				member.DateCreated = memberEntity.DateCreated;
-				member.ModifiedBy = memberEntity.ModifiedBy;
-				member.DateModified = memberEntity.DateModified;
-			}
+			MemberTransformExtensions.LoadMemberDomain(member, memberEntity);
+			//if (memberEntity != null)
+			//{
+			//	member.Id = memberEntity.Id;
+			//	member.ChurchId = memberEntity.ChurchId;
+			//	member.LocaleChurchId = memberEntity.LocaleChurchId;
+			//	member.FirstName = memberEntity.Person.FirstName;
+			//	member.LastName = memberEntity.Person.LastName;
+			//	member.MiddleName = memberEntity.Person.MiddleName;
+			//	member.NameExtension = memberEntity.Person.NameExtension;
+			//	member.BirthDate = memberEntity.Person.BirthDate;
+			//	member.PlaceOfBirth = memberEntity.Person.PlaceOfBirth;
+			//	member.Gender = memberEntity.Person.Gender;
+			//	member.Citizenship = memberEntity.Person.Citizenship;
+			//	member.Address = new Address()
+			//	{
+			//		AddressLine1 = memberEntity.Person.AddressLine1,
+			//		AddressLine2 = memberEntity.Person.AddressLine2,
+			//		City = memberEntity.Person.City,
+			//		StateProvince = memberEntity.Person.StateProvince,
+			//		Country = memberEntity.Person.Country
+			//	};
+			//	member.DateBaptized = memberEntity.DateBaptized;
+			//	member.Baptizer = memberEntity.Baptizer;
+			//	member.MaritalStatus = (MaritalStatuses)memberEntity.MaritalStatusId;
+			//	member.SpouseName = memberEntity.SpouseName;
+			//	member.ContactInformation = new ContactInformation
+			//	{
+			//		LandLine = memberEntity.LandLine,
+			//		MobileNumber = memberEntity.MobileNumber,
+			//		Email = memberEntity.Email
+			//	};
+			//	member.MemberStatus = (MemberStatuses)memberEntity.MemberStatusId;
+			//	member.Designation = (Designations)memberEntity.DesignationId;
+			//	member.CreatedBy = memberEntity.CreatedBy;
+			//	member.DateCreated = memberEntity.DateCreated;
+			//	member.ModifiedBy = memberEntity.ModifiedBy;
+			//	member.DateModified = memberEntity.DateModified;
+			//}
+		}
+
+		public static Member ToDomain(this Entities.Member memberEntity)
+		{
+			var member = new Member();
+			MemberTransformExtensions.LoadMemberDomain(member, memberEntity);
+			return member;
+
+			//if (memberEntity != null)
+			//{
+			//	member.Id = memberEntity.Id;
+			//	member.ChurchId = memberEntity.ChurchId;
+			//	member.LocaleChurchId = memberEntity.LocaleChurchId;
+			//	member.FirstName = memberEntity.Person.FirstName;
+			//	member.LastName = memberEntity.Person.LastName;
+			//	member.MiddleName = memberEntity.Person.MiddleName;
+			//	member.NameExtension = memberEntity.Person.NameExtension;
+			//	member.BirthDate = memberEntity.Person.BirthDate;
+			//	member.PlaceOfBirth = memberEntity.Person.PlaceOfBirth;
+			//	member.Gender = memberEntity.Person.Gender;
+			//	member.Citizenship = memberEntity.Person.Citizenship;
+			//	member.Address = new Address()
+			//	{
+			//		AddressLine1 = memberEntity.Person.AddressLine1,
+			//		AddressLine2 = memberEntity.Person.AddressLine2,
+			//		City = memberEntity.Person.City,
+			//		StateProvince = memberEntity.Person.StateProvince,
+			//		Country = memberEntity.Person.Country
+			//	};
+			//	member.DateBaptized = memberEntity.DateBaptized;
+			//	member.Baptizer = memberEntity.Baptizer;
+			//	member.MaritalStatus = (MaritalStatuses)memberEntity.MaritalStatusId;
+			//	member.SpouseName = memberEntity.SpouseName;
+			//	member.ContactInformation = new ContactInformation
+			//	{
+			//		LandLine = memberEntity.LandLine,
+			//		MobileNumber = memberEntity.MobileNumber,
+			//		Email = memberEntity.Email
+			//	};
+			//	member.MemberStatus = (MemberStatuses)memberEntity.MemberStatusId;
+			//	member.Designation = (Designations)memberEntity.DesignationId;
+			//	member.CreatedBy = memberEntity.CreatedBy;
+			//	member.DateCreated = memberEntity.DateCreated;
+			//	member.ModifiedBy = memberEntity.ModifiedBy;
+			//	member.DateModified = memberEntity.DateModified;
+			//}			
 		}
 
 		public static Entities.Member ToEntity(this IMember member)
@@ -97,6 +144,48 @@ namespace Shepherd.Domain.Extensions
 			}
 
 			return memberEntity;
+		}
+
+		private static void LoadMemberDomain(IMember member, Entities.Member memberEntity)
+		{
+			if (memberEntity != null)
+			{
+				member.Id = memberEntity.Id;
+				member.ChurchId = memberEntity.ChurchId;
+				member.LocaleChurchId = memberEntity.LocaleChurchId;
+				member.FirstName = memberEntity.Person.FirstName;
+				member.LastName = memberEntity.Person.LastName;
+				member.MiddleName = memberEntity.Person.MiddleName;
+				member.NameExtension = memberEntity.Person.NameExtension;
+				member.BirthDate = memberEntity.Person.BirthDate;
+				member.PlaceOfBirth = memberEntity.Person.PlaceOfBirth;
+				member.Gender = memberEntity.Person.Gender;
+				member.Citizenship = memberEntity.Person.Citizenship;
+				member.Address = new Address()
+				{
+					AddressLine1 = memberEntity.Person.AddressLine1,
+					AddressLine2 = memberEntity.Person.AddressLine2,
+					City = memberEntity.Person.City,
+					StateProvince = memberEntity.Person.StateProvince,
+					Country = memberEntity.Person.Country
+				};
+				member.DateBaptized = memberEntity.DateBaptized;
+				member.Baptizer = memberEntity.Baptizer;
+				member.MaritalStatus = (MaritalStatuses)memberEntity.MaritalStatusId;
+				member.SpouseName = memberEntity.SpouseName;
+				member.ContactInformation = new ContactInformation
+				{
+					LandLine = memberEntity.LandLine,
+					MobileNumber = memberEntity.MobileNumber,
+					Email = memberEntity.Email
+				};
+				member.MemberStatus = (MemberStatuses)memberEntity.MemberStatusId;
+				member.Designation = (Designations)memberEntity.DesignationId;
+				member.CreatedBy = memberEntity.CreatedBy;
+				member.DateCreated = memberEntity.DateCreated;
+				member.ModifiedBy = memberEntity.ModifiedBy;
+				member.DateModified = memberEntity.DateModified;
+			}
 		}
 	}
 }

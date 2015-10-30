@@ -26,7 +26,7 @@ namespace Shepherd.Domain.Models
 		public void Load()
 		{
 			unitOfWork.CommitteeRepository
-				.GetAll()
+				.GetAllWithCommitteeMember()
 				.OrderByDescending(_ => _.Name)
 				.ToList()
 				.ForEach(_ =>

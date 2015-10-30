@@ -138,8 +138,7 @@ app.controller('membersController', [
 					$scope.members = data.members;
 
 					$scope.members.forEach(function (m) {
-						// TODO: Soon, we will need to refactor this and put this concatenation logic on a separate helper
-						m.name = m.lastName + ', ' + m.firstName + ' ' + (m.nameExtension == null ? '' : m.nameExtension);
+						m.name = formatHelpers.formatNameDefault(m.lastName, m.firstName, m.nameExtension);
 					});
 
 					$timeout(function () {

@@ -25,9 +25,14 @@ app.factory('formatHelpers', [
 			return (gender == 'M' ? 'Bro. ' : 'Sis. ') + name
 		}
 
+		var formatNameDefault = function (lastName, firstName, nameExtension) {
+			return lastName + ', ' + firstName + ' ' + (nameExtension == null || nameExtension == undefined ? '' : nameExtension);
+		}
+
 		return {
 			formatShortDate: formatShortDate,
 			formatDate: formatDate,
-			formatNameWithPrefix: formatNameWithPrefix
+			formatNameWithPrefix: formatNameWithPrefix,
+			formatNameDefault: formatNameDefault
 		};
 	}])

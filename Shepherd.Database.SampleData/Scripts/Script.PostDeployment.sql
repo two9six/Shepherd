@@ -12,3 +12,4 @@ Post-Deployment Script Template
 
 :r .\UnitData\Insert_Person.SQL
 :r .\UnitData\Insert_Member.SQL
+:r .\UnitData\Insert_CommitteeMember.SQL

@@ -15,8 +15,8 @@ PRINT 'Insert Member'
 	UNION SELECT 9,		9,  'GUA00009', '9',  DATEADD(DAY,  -8, DATEADD(MONTH,  0,  DATEADD(YEAR,  -9,  GETDATE()))),	'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 5, GETDATE(), 1, 0
 	UNION SELECT 10,	10, 'GUA00010', '10', DATEADD(DAY,  -9, DATEADD(MONTH,  0,  DATEADD(YEAR, -10,  GETDATE()))),	'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 6, GETDATE(), 1, 0
 	UNION SELECT 11,	11, 'GUA00011', '11', DATEADD(DAY, -10, DATEADD(MONTH,  0,  DATEADD(YEAR,  -6,  GETDATE()))),	'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 6, GETDATE(), 1, 0
-	UNION SELECT 12,	12, 'GUA00012', '12', DATEADD(MONTH, -3,  DATEADD(YEAR,  -6,  GETDATE())),						'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 6, GETDATE(), 1, 0
-	UNION SELECT 13,	13, 'GUA00013', '13', DATEADD(MONTH, -4,  DATEADD(YEAR,  -7,  GETDATE())),						'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 6, GETDATE(), 1, 0
+	UNION SELECT 12,	12, 'GUA00012', '12', DATEADD(MONTH, -3,  DATEADD(YEAR,  -6,  GETDATE())),						'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 9, GETDATE(), 1, 0
+	UNION SELECT 13,	13, 'GUA00013', '13', DATEADD(MONTH, -4,  DATEADD(YEAR,  -7,  GETDATE())),						'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 9, GETDATE(), 1, 0
 	UNION SELECT 14,	14, 'GUA00014', '14', DATEADD(MONTH, -4,  DATEADD(YEAR,  -7,  GETDATE())),						'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 1, GETDATE(), 1, 0
 	UNION SELECT 15,	15, 'GUA00015', '15', DATEADD(MONTH, -5,  DATEADD(YEAR,  -8,  GETDATE())),						'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 1, GETDATE(), 1, 0
 	UNION SELECT 16,	16, 'GUA00016', '16', DATEADD(MONTH, -5,  DATEADD(YEAR,  -8,  GETDATE())),						'Test Baptizer',	1, null,			'8811114', '09175201114', null,					1, 1, GETDATE(), 1, 0

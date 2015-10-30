@@ -32,6 +32,8 @@ namespace Shepherd.Domain.Models
 		public Committee(IUnitOfWork unitOfWork)
 		{
 			this.unitOfWork = unitOfWork;
+
+			this.Members = new List<ICommitteeMember>();
 		}
 
 		public void Load()

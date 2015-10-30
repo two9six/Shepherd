@@ -68,4 +68,7 @@
   <ItemGroup>
     <None Include="Shepherd.Database.SampleData.Local.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\UnitData\Insert_CommitteeMember.sql" />
+  </ItemGroup>
 </Project>
