@@ -206,6 +206,7 @@
     <Content Include="app\helpers\dateTimeHelpers.js" />
     <Content Include="app\helpers\fileSaver.js" />
     <Content Include="app\helpers\formatHelpers.js" />
+    <Content Include="app\modals\committeeHeadSelectionModal.js" />
     <Content Include="app\modals\memberAddModal.js" />
     <Content Include="app\modals\memberAddSuccessModal.js" />
     <Content Include="app\partials\left-navigation.html" />
@@ -214,6 +215,7 @@
     <Content Include="app\services\committeesService.js" />
     <Content Include="app\services\reportsService.js" />
     <Content Include="app\services\membersService.js" />
+    <Content Include="app\templates\committee-head-selection.html" />
     <Content Include="app\templates\ibox_tools.html" />
     <Content Include="app\templates\member-add-modal.html" />
     <Content Include="app\templates\member-add-success-modal.html" />
