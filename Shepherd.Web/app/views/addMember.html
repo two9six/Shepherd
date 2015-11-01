@@ -53,15 +53,19 @@
         <div class="form-group">
 
             <label class="col-md-2 control-label" for="BirthDate">Birth date</label>
-
             <div class="col-md-10">
+                <div id="birthdayCalendar" calendar-control calendar-control-start="customBirthDate"></div>
+            </div>
+
+
+            <!--<div class="col-md-10">
                 <input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
                        ng-model="vm.birthDate" is-open="dtStatus.birthdayOpened"
                        ng-required="true" close-text="Close" />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="openBirthday()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
-            </div>
+            </div>-->
 
         </div>
         <div class="form-group">

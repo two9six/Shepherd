@@ -25,6 +25,12 @@ app.controller('addMemberController', [
 	        startingDay: 1
 	    };
 
+	    $scope.customBirthDate = {
+	        year: '2015',
+	        month: '10',
+            day: '24'
+	    }
+
 	    $scope.vm = {
 	        firstName: "",
 	        middleName: "",
@@ -105,6 +111,10 @@ app.controller('addMemberController', [
 	            $scope.firstNameError = true;
 	        }
 
+            
+	        $scope.vm.birthDate = (new Date($scope.customBirthDate.year, $scope.customBirthDate.month-1, $scope.customBirthDate.day)).toString();
+
+
 	        var memberStatusValue = $scope.vm.memberStatusKeyValue.key;
 	        var genderValue = $scope.vm.genderKeyValue.key;
 	        var maritalStatusValue = $scope.vm.maritalStatusKeyValue.key;
@@ -112,29 +122,26 @@ app.controller('addMemberController', [
 
 
 	        console.log(memberStatusValue);
-	        //$scope.vm.statusId = "1";
-	        //$scope.vm.memberTypeId = "1";
-	        //$scope.vm.churchDesignationId = "1";
-	        $scope.vm.createdBy = "1";
-	        //$scope.vm.type = "25";
-	        //$scope.vm.status = "1";
 
+	        $scope.vm.createdBy = "1";
 	        $scope.vm.designation = designationValue;
 	        $scope.vm.memberStatus = memberStatusValue;
 	        $scope.vm.gender = genderValue;
 	        $scope.vm.maritalStatus = maritalStatusValue;
 
 	        console.log($scope.vm);
+	        console.log($scope.customBirthDate);
 
-	        membersService.createMember($scope.vm).$promise
-                .then(function (response) {
-                    console.log(response);
-                    //$modalInstance.dismiss('saved');
-                    //$scope.success("lg");
 
-                }, function (response) {
-                    console.log(response);
-                });
+	        //membersService.createMember($scope.vm).$promise
+            //    .then(function (response) {
+            //        console.log(response);
+            //        //$modalInstance.dismiss('saved');
+            //        //$scope.success("lg");
+
+            //    }, function (response) {
+            //        console.log(response);
+            //    });
 
 	    }
 
