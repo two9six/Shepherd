@@ -138,7 +138,7 @@ namespace Shepherd.Domain.Extensions
                         DateModified = member.DateModified,
                         IsDeleted = false,
                         ModifiedBy = member.ModifiedBy,
-                        NameExtension = String.Empty
+                        NameExtension = member.NameExtension
 					}					
 				};
 			}

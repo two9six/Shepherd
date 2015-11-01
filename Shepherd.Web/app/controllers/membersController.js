@@ -5,12 +5,14 @@ app.controller('membersController', [
 	, '$timeout'
 	, 'membersService'
 	, 'formatHelpers'
+    , '$location'
 	, (function (
 	  $modal
 	, $scope
 	, $timeout
 	, membersService
-	, formatHelpers) {
+	, formatHelpers
+    , $location) {
 		$scope.formatHelpers = formatHelpers;
 		$scope.designationEnum = designationEnum;
 		$scope.memberStatusEnum = memberStatusEnum;
@@ -38,25 +40,27 @@ app.controller('membersController', [
 
 		$scope.addMember = function (size) {
 
-			var modalInstance = $modal.open({
-				templateUrl: '/app/templates/member-add-modal.html',
-				controller: 'memberAddModal',
-				size: size, // defaults if none provided http://angular-ui.github.io/bootstrap/
-				animation: true,
-				backdrop: 'static',
-				windowClass: 'members-modal-window',
-				resolve: {
-				}
-			});
 
-			modalInstance.result.then(
-				function (result) {
-					//refresh the page
-				},
-				function () {
+		    $location.path('/addMember');
+			//var modalInstance = $modal.open({
+			//	templateUrl: '/app/templates/member-add-modal.html',
+			//	controller: 'memberAddModal',
+			//	size: size, // defaults if none provided http://angular-ui.github.io/bootstrap/
+			//	animation: true,
+			//	backdrop: 'static',
+			//	windowClass: 'members-modal-window',
+			//	resolve: {
+			//	}
+			//});
 
-				}
-			);
+			//modalInstance.result.then(
+			//	function (result) {
+			//		//refresh the page
+			//	},
+			//	function () {
+
+			//	}
+			//);
 		};
 
 		$scope.membersTableColumnDefinition = [

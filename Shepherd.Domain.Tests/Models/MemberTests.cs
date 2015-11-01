@@ -25,7 +25,7 @@ namespace Shepherd.Domain.Tests.Models
 
 			// Assert
 			Assert.IsNotNull(member.Address);
-			Assert.IsNotNull(member.Baptizer);
+			//Assert.IsNotNull(member.Baptizer);
 			Assert.IsNotNull(member.ContactInformation);
 			Assert.AreNotEqual(System.DateTime.MinValue, member.DateCreated);
 		}

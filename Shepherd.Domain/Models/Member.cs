@@ -103,6 +103,8 @@ namespace Shepherd.Domain.Models
             var entityMember = this.ToEntity();
             entityMember.DateCreated = DateTime.Now;
             entityMember.Person.DateCreated = DateTime.Now;
+            //entityMember.MemberStatusId = 1;
+
 
 			var createdMember = unitOfWork.MemberRepository.Add(entityMember);
 

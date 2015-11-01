@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\controllers\addMemberController.js" />
     <Content Include="app\controllers\appShellController.js" />
     <Content Include="app\controllers\committeesController.js" />
     <Content Include="app\controllers\reportOfficersListController.js" />
@@ -225,6 +226,7 @@
     <Content Include="app\templates\members\members-index.html" />
     <Content Include="app\templates\newly-baptized-panel.html" />
     <Content Include="app\templates\monthly-celebrants-panel.html" />
+    <Content Include="app\views\addMember.html" />
     <Content Include="app\views\dashboard.html" />
     <Content Include="app\views\file-upload.html" />
     <Content Include="app\views\member.html" />
