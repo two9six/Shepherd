@@ -193,6 +193,7 @@
     <Content Include="app\controllers\usersController.js" />
     <Content Include="app\controls\adapt-strap\adapt-strap.js" />
     <Content Include="app\controls\adapt-strap\adapt-strap.tpl.js" />
+    <Content Include="app\directives\calendarControl.js" />
     <Content Include="app\directives\iboxTools.js" />
     <Content Include="app\directives\metisMenu.js" />
     <Content Include="app\directives\newlyBaptizedPanel.js" />
@@ -216,6 +217,7 @@
     <Content Include="app\services\committeesService.js" />
     <Content Include="app\services\reportsService.js" />
     <Content Include="app\services\membersService.js" />
+    <Content Include="app\templates\calendar-control.html" />
     <Content Include="app\templates\committee-head-selection.html" />
     <Content Include="app\templates\ibox_tools.html" />
     <Content Include="app\templates\member-add-modal.html" />
