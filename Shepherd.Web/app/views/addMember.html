@@ -5,305 +5,298 @@
 		</div>
 	</div>
 	<div class="wrapper wrapper-content animated fadeInRight">
+		<form class="form-horizontal" role="form">
+			<div class="col-lg-12 col-md-8">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>General Information</h5>
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content clear">
+						<div class="container-fluid">
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="FirstName">Name</label>
+								<div class="col-md-10">
+									<input class="form-control"
+										   id=" firstname"
+										   placeholder="First Name"
+										   name="FirstName"
+										   type="text"
+										   value=""
+										   ng-required="true"
+										   ng-minlength="1"
+										   ng-maxlength="100"
+										   ng-model="vm.firstName" />
 
-		<div class="col-lg-12 col-md-8 col-sm-12">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title">
-					<h5>General Information</h5>
-					<div ibox-tools></div>
-				</div>
-				<div class="ibox-content clear">
-					<div class="container-fluid">
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="FirstName">First Name</label>
-							<div class="col-md-10">
-								<input class="form-control"
-									   id=" firstname"
-									   placeholder="First Name"
-									   name="FirstName"
-									   type="text"
-									   value=""
-									   ng-required="true"
-									   ng-minlength="1"
-									   ng-maxlength="100"
-									   ng-model="vm.firstName" />
-							</div>
-							<div ng-show="firstNameError">
-								Invalid length
-							</div>
-						</div>
+									<input class="form-control"
+										   id="MiddleName"
+										   placeholder="Middle Name"
+										   name="MiddleName"
+										   type="text"
+										   value=""
+										   ng-model="vm.middleName"
+										   ng-maxlength="100" />
 
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="MiddleName">Middle Name</label>
-							<div class="col-md-10">
-								<input class="form-control"
-									   id="MiddleName"
-									   placeholder="Middle Name"
-									   name="MiddleName"
-									   type="text"
-									   value=""
-									   ng-model="vm.middleName"
-									   ng-maxlength="100" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="NameExtension">Name Extension</label>
-							<div class="col-md-10">
-								<input type="text"
-									   class="form-control"
-									   id="NameExtension"
-									   placeholder="Name Extension"
-									   name="NameExtension"
-									   value=""
-									   ng-model="vm.nameExtension" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="LastName">Last Name</label>
-							<div class="col-md-10">
-								<input class="form-control"
-									   id="LastName"
-									   name="LastName"
-									   type="text"
-									   placeholder="Last Name"
-									   value=""
-									   ng-required="true"
-									   ng-minlength="1"
-									   ng-maxlength="100"
-									   ng-model="vm.lastName" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="BirthDate">Birth date</label>
-							<div class="col-md-10">
-								<div id="birthdayCalendar" calendar-control calendar-control-start="customBirthDate"></div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="PlaceOfBirth">Place Of Birth</label>
-							<div class="col-md-10">
-								<input class="form-control"
-									   id="PlaceOfBirth"
-									   placeholder="Place of birth"
-									   name="PlaceOfBirth"
-									   type="text"
-									   value=""
-									   ng-model="vm.placeOfBirth"
-									   ng-maxlength="100" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="gender">Gender</label>
-							<div class="col-md-10">
-								<div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
-									<select name="gender"
-											class="form-control"
-											ng-init="vm.genderKeyValue = genderOptions[0]"
-											ng-model="vm.genderKeyValue"
-											ng-options="g.value for g in genderOptions"
-											title="--Select Gender-"></select><br>
+									<input class="form-control"
+										   id="LastName"
+										   name="LastName"
+										   type="text"
+										   placeholder="Last Name"
+										   value=""
+										   ng-required="true"
+										   ng-minlength="1"
+										   ng-maxlength="100"
+										   ng-model="vm.lastName" />
 								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="Citizenship">Citizenship</label>
-							<div class="col-md-10">
-								<input class="form-control" id="Citizenship"
-									   name="Citizenship" type="text" placeholder="Citizenship"
-									   value="" ng-maxlength="50"
-									   ng-model="vm.citizenship" />
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="maritalStatus">Marital Status:</label>
-							<div class="col-md-10">
-								<div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
-									<select name="maritalStatus"
-											class="form-control"
-											ng-init="vm.maritalStatusKeyValue = maritalStatusOptions[0]"
-											ng-model="vm.maritalStatusKeyValue"
-											ng-options="m.value for m in maritalStatusOptions"
-											title="--Select Marital Status-"></select><br>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="NameExtension">Name Extension</label>
+								<div class="col-md-10">
+									<input type="text"
+										   class="form-control"
+										   id="NameExtension"
+										   placeholder="Name Extension"
+										   name="NameExtension"
+										   value=""
+										   ng-model="vm.nameExtension" />
 								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="SpouseName">Spouse Name</label>
-							<div class="col-md-10">
-								<input class="form-control" id="SpouseName" placeholder="Spouse name"
-									   name="SpouseName" type="text" value=""
-									   ng-model="vm.spouseName" ng-maxlength="200" />
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="BirthDate">Birth date</label>
+								<div class="col-md-10">
+									<div id="birthdayCalendar" calendar-control calendar-control-start="customBirthDate"></div>
+								</div>
 							</div>
-						</div>
 
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="PlaceOfBirth">Place Of Birth</label>
+								<div class="col-md-10">
+									<input class="form-control"
+										   id="PlaceOfBirth"
+										   placeholder="Place of birth"
+										   name="PlaceOfBirth"
+										   type="text"
+										   value=""
+										   ng-model="vm.placeOfBirth"
+										   ng-maxlength="100" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="gender">Gender</label>
+								<div class="col-md-10">
+									<div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
+										<select name="gender"
+												class="form-control"
+												ng-init="vm.genderKeyValue = genderOptions[0]"
+												ng-model="vm.genderKeyValue"
+												ng-options="g.value for g in genderOptions"
+												title="--Select Gender-"></select><br>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="Citizenship">Citizenship</label>
+								<div class="col-md-10">
+									<input class="form-control" id="Citizenship"
+										   name="Citizenship" type="text" placeholder="Citizenship"
+										   value="" ng-maxlength="50"
+										   ng-model="vm.citizenship" />
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="maritalStatus">Marital Status:</label>
+								<div class="col-md-10">
+									<div class="btn-group dropdown" dropdown style="max-width: 150px; min-width: 50px;">
+										<select name="maritalStatus"
+												class="form-control"
+												ng-init="vm.maritalStatusKeyValue = maritalStatusOptions[0]"
+												ng-model="vm.maritalStatusKeyValue"
+												ng-options="m.value for m in maritalStatusOptions"
+												title="--Select Marital Status-"></select><br>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="SpouseName">Spouse Name</label>
+								<div class="col-md-10">
+									<input class="form-control" id="SpouseName" placeholder="Spouse name"
+										   name="SpouseName" type="text" value=""
+										   ng-model="vm.spouseName" ng-maxlength="200" />
+								</div>
+							</div>
+
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
 			<div class="col-lg-12 col-md-8 col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-title">
-						<h5>Contact Details</h5>
+						<h5>Church Membership Details</h5>
 						<div ibox-tools></div>
 					</div>
 					<div class="ibox-content clear">
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="churchId">ChurchId</label>
-							<div class="col-md-10">
-								<input type="text" class="form-control"
-									   id="churchId" placeholder="church id" name="churchId"
-									   ng-required="true" ng-model="vm.churchId" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="baptizer">Baptizer</label>
-							<div class="col-md-10">
-								<input type="text" class="form-control"
-									   id="baptizer" placeholder="baptizer" name="baptizer"
-									   ng-required="true" ng-model="vm.baptizer" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="DateBaptized">Date baptized</label>
-							<div class="col-md-10">
-								<input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
-									   ng-model="vm.dateBaptized" is-open="dtStatus.dateBaptizedOpened"
-									   ng-required="true" close-text="Close" />
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-default" ng-click="openDateBaptized()"><i class="glyphicon glyphicon-calendar"></i></button>
-								</span>
-							</div>
-
-						</div>
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="memberStatus">Member Status:</label>
-							<div class="col-md-10">
-								<div class="btn-group dropdown" style="max-width: 150px; min-width: 50px;">
-									<select name="memberStatus"
-											class="form-control"
-											ng-init="vm.memberStatusKeyValue = memberStatusOptions[0]"
-											ng-model="vm.memberStatusKeyValue"
-											ng-options="ms.value for ms in memberStatusOptions"
-											title="Member Options"></select><br>
+						<div class="container-fluid">
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="churchId">ChurchId</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control"
+										   id="churchId" placeholder="church id" name="churchId"
+										   ng-required="true" ng-model="vm.churchId" />
 								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="designation">Designation:</label>
-							<div class="col-md-10">
-								<div class="btn-group dropdown" style="max-width: 150px; min-width: 50px;">
-									<select name="designation"
-											class="form-control"
-											ng-init="vm.designationKeyValue = designationOptions[0]"
-											ng-model="vm.designationKeyValue"
-											ng-options="d.value for d in designationOptions"
-											title="Designations"></select>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="baptizer">Baptizer</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control"
+										   id="baptizer" placeholder="baptizer" name="baptizer"
+										   ng-required="true" ng-model="vm.baptizer" />
 								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<label class="col-md-2 control-label" for="localeChurchId">Locale Church id</label>
-							<div class="col-md-10">
-								<input type="text" class="form-control"
-									   id="localeChurchId" placeholder="church id" name="churchId"
-									   ng-required="true" ng-model="vm.localeChurchId" />
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="DateBaptized">Date baptized</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" datepicker-popup="{{format}}" datepicker-options="dateOptions"
+										   ng-model="vm.dateBaptized" is-open="dtStatus.dateBaptizedOpened"
+										   ng-required="true" close-text="Close" />
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="openDateBaptized()"><i class="glyphicon glyphicon-calendar"></i></button>
+									</span>
+								</div>
+
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="memberStatus">Member Status:</label>
+								<div class="col-md-10">
+									<div class="btn-group dropdown" style="max-width: 150px; min-width: 50px;">
+										<select name="memberStatus"
+												class="form-control"
+												ng-init="vm.memberStatusKeyValue = memberStatusOptions[0]"
+												ng-model="vm.memberStatusKeyValue"
+												ng-options="ms.value for ms in memberStatusOptions"
+												title="Member Options"></select><br>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="designation">Designation:</label>
+								<div class="col-md-10">
+									<div class="btn-group dropdown" style="max-width: 150px; min-width: 50px;">
+										<select name="designation"
+												class="form-control"
+												ng-init="vm.designationKeyValue = designationOptions[0]"
+												ng-model="vm.designationKeyValue"
+												ng-options="d.value for d in designationOptions"
+												title="Designations"></select>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="localeChurchId">Locale Church id</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control"
+										   id="localeChurchId" placeholder="church id" name="churchId"
+										   ng-required="true" ng-model="vm.localeChurchId" />
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-		<div class="col-lg-12 col-md-8 col-sm-12">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title">
-					<h5>Church Information</h5>
-					<div ibox-tools></div>
-				</div>
-				<div class="ibox-content clear">
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="AddressLine1">Address Line 1</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="AddressLine1" value="" id="AddressLine1"
-								   placeholder="Address line 1"
-								   ng-model="vm.address.addressLine1" ng-maxlength="200" />
-						</div>
+			<div class="col-lg-12 col-md-8 col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>Contact Information</h5>
+						<div ibox-tools></div>
 					</div>
+					<div class="ibox-content clear">
+						<div class="container-fluid">
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="AddressLine1">Address Line 1</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="AddressLine1" value="" id="AddressLine1"
+										   placeholder="Address line 1"
+										   ng-model="vm.address.addressLine1" ng-maxlength="200" />
+								</div>
+							</div>
 
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="AddressLine2">Address Line 2</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="AddressLine2" value="" id="AddressLine2"
-								   placeholder="Address line 2"
-								   ng-model="vm.address.addressLine2" ng-maxlength="200" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="City">City</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="City" value="" id="City"
-								   ng-model="vm.address.city" ng-maxlength="100" />
-						</div>
-					</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="AddressLine2">Address Line 2</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="AddressLine2" value="" id="AddressLine2"
+										   placeholder="Address line 2"
+										   ng-model="vm.address.addressLine2" ng-maxlength="200" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="City">City</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="City" value="" id="City"
+										   ng-model="vm.address.city" ng-maxlength="100" />
+								</div>
+							</div>
 
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="StateProvince">StateProvince</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="StateProvince" value="" id="StateProvince"
-								   ng-model="vm.address.stateProvince" ng-maxlength="100" />
-						</div>
-					</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="StateProvince">StateProvince</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="StateProvince" value="" id="StateProvince"
+										   ng-model="vm.address.stateProvince" ng-maxlength="100" />
+								</div>
+							</div>
 
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="Country">Country</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="Country" value="" id="Country"
-								   ng-model="vm.address.country" ng-maxlength="100" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="LandLine">Landline</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="LandLine" value="" id="LandLine"
-								   placeholder="Landline"
-								   ng-model="vm.contactInformation.landLine" ng-maxlength="7"
-								   ng-minlength="7" />
-						</div>
-					</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="Country">Country</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="Country" value="" id="Country"
+										   ng-model="vm.address.country" ng-maxlength="100" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="LandLine">Landline</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="LandLine" value="" id="LandLine"
+										   placeholder="Landline"
+										   ng-model="vm.contactInformation.landLine" ng-maxlength="7"
+										   ng-minlength="7" />
+								</div>
+							</div>
 
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="Email">Email</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="Email" value="" id="Email"
-								   ng-model="vm.contactInformation.email" ng-pattern="" ng-maxlength="500" />
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="Email">Email</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="Email" value="" id="Email"
+										   ng-model="vm.contactInformation.email" ng-pattern="" ng-maxlength="500" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="MobileNumber">Mobile Number</label>
+								<div class="col-md-10">
+									<input class="form-control" type="text" name="MobileNumber" value="" id="MobileNumber"
+										   ng-model="vm.contactInformation.mobileNumber" />
+								</div>
+							</div>
+
 						</div>
 					</div>
-
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="MobileNumber">Mobile Number</label>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="MobileNumber" value="" id="MobileNumber"
-								   ng-model="vm.contactInformation.mobileNumber" />
-						</div>
-					</div>
-
 				</div>
 			</div>
-		</div>
-	</div>
+
+		</form>
+</div>
 </div>
 
 
