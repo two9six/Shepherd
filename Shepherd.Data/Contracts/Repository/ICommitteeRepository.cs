@@ -7,5 +7,7 @@ namespace Shepherd.Data.Contracts.Repository
 	public interface ICommitteeRepository : IRepositoryBase<Committee>
 	{
 		IEnumerable<Committee> GetAllWithCommitteeMember();
+
+		IEnumerable<Member> GetNonMembers(int committeeId);
 	}
 }

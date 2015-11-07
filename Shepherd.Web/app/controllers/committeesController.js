@@ -14,56 +14,46 @@ app.controller('committeesController', [
 
 	$scope.formatHelpers = formatHelpers;
 	$scope.committees = [];
-	$scope.selectedCommittee = {};
-	$scope.loadCommittees = loadCommittees();
+	$scope.selectedCommittee = undefined;
 	$scope.vm = {
 		memberDetailsPopoverTemplate: 'app/templates/member-details-popover.html'
 	};
 
-	////////////////////
-	////// Events //////
-	////////////////////
+	//////////////////////////////////
+	////// Edit Committee Heads //////
+	//////////////////////////////////
 
 	$scope.addCommittee = function (size) {
 
 	}
 
-	$scope.toggleAddCommitteeHeadModal = function (item, size) {
+	$scope.toggleAddCommitteeHeadModal = function (size) {
 		var modalInstance = $modal.open({
 			templateUrl: 'app/templates/committee-head-selection.html',
 			controller: 'committeeHeadSelectionModal',
 			size: size, // defaults if none provided http://angular-ui.github.io/bootstrap/
 			resolve: {
 				committee: function () {
-					return item;
+					return $scope.selectedCommittee;
 				}
 			}
 		});
 
 		modalInstance.result.then(
 			function (result) {
-				//var selectedCustomerId = item.customerId;
-				//var selectedEndYear = result.selectedEndYear.key;
-				//var selectedEndQuarter = result.selectedEndQuarter.key;
-				//var selectedStartYear = result.selectedStartYear.key;
-				//var selectedStartQuarter = result.selectedStartQuarter.key;
-				//var customerPeriodToSave = {
-				//	customerId: selectedCustomerId,
-				//	endYear: selectedEndYear,
-				//	endQuarter: selectedEndQuarter,
-				//	startYear: selectedStartYear,
-				//	startQuarter: selectedStartQuarter
-				//};
+				var selectedMember = result.selectedMember;
 
-				//customerService.saveCustomerActivePeriod(
-				//		customerPeriodToSave
-				//	)
-				//	.$promise.then(function (data) {
-				//		var selCustomer = _.findWhere($scope.customers, {
-				//			'customerId': item.customerId
-				//		});
-				//		selCustomer.customerActivePeriods.push(customerPeriodToSave);
-				//	});
+				committeesService
+					.addCommitteeMember({
+						committeeId: $scope.selectedCommittee.id,
+						memberId: selectedMember.key,
+						isCommitteeHead: true
+					})
+					.$promise.then(function (response) {
+						$timeout(function () {
+							$scope.loadCommittees();
+						}, 500);	
+					});
 			},
 			function () {
 				//$log.info('Modal dismissed at: ' + new Date());
@@ -71,7 +61,44 @@ app.controller('committeesController', [
 	}
 
 	$scope.removeCommitteeHead = function (committeeHead) {
+		if (committeeHead != undefined) {
+			committeesService
+				.deleteCommitteeMember({
+					id: committeeHead.id
+				})
+				.$promise.then(function (response) {
+					$timeout(function () {
+						$scope.loadCommittees();
+					}, 500);
+				});
+		}
+	}
 
+	////////////////////////////
+	////// Committee List //////
+	////////////////////////////
+
+	$scope.loadCommittees = function () {
+		$scope.committees.length = 0;
+		committeesService
+			.getCommittees()
+			.$promise.then(function (data) {
+				$scope.committees = data.committees;		 
+				$scope.committees.forEach(function (c) {
+					c.committeeHeads = _.filter(c.members, { 'isCommitteeHead': true });
+					c.totalMembers = (c.members == undefined ? 0 : c.members.length);
+				});
+
+				if ($scope.selectedCommittee == undefined) {
+					$scope.selectedCommittee = $scope.committees[0];
+				}
+
+				$timeout(function () {
+					if ($scope.committees.length > 0) {
+						selectCommittee($scope.selectedCommittee);
+					}
+				}, 250);
+			});
 	}
 
 	$scope.$on('adTableLite:pageChanged', function (t) {
@@ -95,7 +122,7 @@ app.controller('committeesController', [
 		},
 		{
 			columnHeaderTemplate: '<span>Committee Head(s)</span>',
-			template: '<button type="button" class="btn right btn-xs btn-primary" ng-click="toggleAddCommitteeHeadModal(item)">Add Committee Head</button> <div ng-repeat="ch in item.committeeHeads">{{ formatHelpers.formatNameWithPrefix(ch.member.firstName + " " + ch.member.lastName, ch.member.gender) }} <a class="fa-times fa fa-1x" ng-click="removeCommitteeHead(ch)" tooltip-html-unsafe="Remove as committee head" tooltip-append-to-body="true"></a></div>',
+			template: '<div ng-repeat="ch in item.committeeHeads">{{ formatHelpers.formatNameWithPrefix(ch.member.firstName + " " + ch.member.lastName, ch.member.gender) }} <a class="fa-times fa fa-1x" ng-click="removeCommitteeHead(ch)" tooltip-html-unsafe="Remove as committee head" tooltip-append-to-body="true"></a></div>',
 			columnSearchProperty: 'committeeHeads',
 			width: '4em',
 			visible: true
@@ -108,29 +135,6 @@ app.controller('committeesController', [
 			visible: true
 		}
 	];
-
-	/////////////////////////////
-	////// Local Functions //////
-	/////////////////////////////
-
-	function loadCommittees() {
-		committeesService
-			.getCommittees()
-			.$promise.then(function (data) {
-				$scope.committees = data.committees;
-
-				$scope.committees.forEach(function (c) {
-					c.committeeHeads = _.filter(c.members, { 'isCommitteeHead': true });
-					c.totalMembers = (c.members == undefined ? 0 : c.members.length);
-				});
-
-				$timeout(function () {
-					if ($scope.committees.length > 0) {
-						selectCommittee($scope.committees[0]);
-					}
-				}, 250);
-			});
-	}
 
 	function setRowClickBehavior() {
 		$('.committees-table > tbody').on('click', 'tr', function () {
@@ -160,4 +164,5 @@ app.controller('committeesController', [
 		$scope.selectedCommittee = {};
 	}
 
+	$scope.loadCommittees();
 }]);

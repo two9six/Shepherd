@@ -23,6 +23,8 @@ namespace Shepherd.Domain.Extensions
 						var committeemember = new CommitteeMember()
 						{
 							Id = _.Id,
+							CommitteeId = committeeEntity.Id,
+							MemberId = _.MemberId,
 							IsCommitteeHead = _.IsCommitteeHead,
 							Member = _.Member.ToDomain()
 						};

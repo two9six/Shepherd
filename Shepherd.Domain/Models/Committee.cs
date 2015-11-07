@@ -4,6 +4,7 @@ using Shepherd.Data.Infrastructure;
 using Shepherd.Domain.Contracts.Models;
 using Shepherd.Domain.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Shepherd.Domain.Models
 {
@@ -53,6 +54,13 @@ namespace Shepherd.Domain.Models
 		public void Update()
 		{
 			throw new System.NotImplementedException();
+		}
+
+		public List<Member> GetNonMembers()
+		{
+			var nonMembersList = unitOfWork.CommitteeRepository.GetNonMembers(this.Id).ToDomain();
+
+			return nonMembersList.ToList();
 		}
 	}
 }

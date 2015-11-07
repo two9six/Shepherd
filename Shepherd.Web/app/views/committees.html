@@ -8,9 +8,9 @@
 		<section class=" row col-sm-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<a class="btn btn-primary" ng-click='addCommittee("lg")'>
-						<i class="glyphicon glyphicon-plus-sign icon-large"></i> Add Committee
-					</a>
+					<button type="button" ng-click='addCommittee("lg")' class="btn btn-primary btn-xs" tooltip-html-unsafe="Add new committee" tooltip-placement="bottom" tooltip-append-to-body="true">Add Committee</button> 
+					<button type="button" ng-click='toggleAddCommitteeHeadModal()' ng-disabled="selectedCommittee == undefined" class="btn btn-primary btn-xs" tooltip-html-unsafe="Add committee head for {{ selectedCommittee.name }} committee" tooltip-placement="bottom" tooltip-append-to-body="true">Add Committee Head</button> 
+					<button type="button" ng-click='loadCommittees()' class="btn btn-primary btn-xs" tooltip-html-unsafe="Refresh committees" tooltip-placement="bottom" tooltip-append-to-body="true">Refresh List</button> 
 				</div>
 				<div class="ibox-content data-grid">
 					<ad-table-lite table-name="committeesTable"

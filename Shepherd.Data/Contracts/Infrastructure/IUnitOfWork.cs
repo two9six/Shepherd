@@ -22,6 +22,8 @@ namespace Shepherd.Data.Contracts.Infrastructure
 
 		ICommitteeRepository CommitteeRepository { get; set; }
 
+		ICommitteeMemberRepository CommitteeMemberRepository { get; set; }
+
 		int Save();
 	}
 }

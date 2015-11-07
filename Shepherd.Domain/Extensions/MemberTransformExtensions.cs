@@ -1,7 +1,8 @@
 ﻿using Shepherd.Core.Enums;
 using Shepherd.Domain.Contracts.Models;
 using Shepherd.Domain.Models;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Shepherd.Domain.Extensions
 {
@@ -10,44 +11,6 @@ namespace Shepherd.Domain.Extensions
 		public static void LoadFromEntity(this IMember member, Entities.Member memberEntity)
 		{
 			MemberTransformExtensions.LoadMemberDomain(member, memberEntity);
-			//if (memberEntity != null)
-			//{
-			//	member.Id = memberEntity.Id;
-			//	member.ChurchId = memberEntity.ChurchId;
-			//	member.LocaleChurchId = memberEntity.LocaleChurchId;
-			//	member.FirstName = memberEntity.Person.FirstName;
-			//	member.LastName = memberEntity.Person.LastName;
-			//	member.MiddleName = memberEntity.Person.MiddleName;
-			//	member.NameExtension = memberEntity.Person.NameExtension;
-			//	member.BirthDate = memberEntity.Person.BirthDate;
-			//	member.PlaceOfBirth = memberEntity.Person.PlaceOfBirth;
-			//	member.Gender = memberEntity.Person.Gender;
-			//	member.Citizenship = memberEntity.Person.Citizenship;
-			//	member.Address = new Address()
-			//	{
-			//		AddressLine1 = memberEntity.Person.AddressLine1,
-			//		AddressLine2 = memberEntity.Person.AddressLine2,
-			//		City = memberEntity.Person.City,
-			//		StateProvince = memberEntity.Person.StateProvince,
-			//		Country = memberEntity.Person.Country
-			//	};
-			//	member.DateBaptized = memberEntity.DateBaptized;
-			//	member.Baptizer = memberEntity.Baptizer;
-			//	member.MaritalStatus = (MaritalStatuses)memberEntity.MaritalStatusId;
-			//	member.SpouseName = memberEntity.SpouseName;
-			//	member.ContactInformation = new ContactInformation
-			//	{
-			//		LandLine = memberEntity.LandLine,
-			//		MobileNumber = memberEntity.MobileNumber,
-			//		Email = memberEntity.Email
-			//	};
-			//	member.MemberStatus = (MemberStatuses)memberEntity.MemberStatusId;
-			//	member.Designation = (Designations)memberEntity.DesignationId;
-			//	member.CreatedBy = memberEntity.CreatedBy;
-			//	member.DateCreated = memberEntity.DateCreated;
-			//	member.ModifiedBy = memberEntity.ModifiedBy;
-			//	member.DateModified = memberEntity.DateModified;
-			//}
 		}
 
 		public static Member ToDomain(this Entities.Member memberEntity)
@@ -55,45 +18,11 @@ namespace Shepherd.Domain.Extensions
 			var member = new Member();
 			MemberTransformExtensions.LoadMemberDomain(member, memberEntity);
 			return member;
+		}
 
-			//if (memberEntity != null)
-			//{
-			//	member.Id = memberEntity.Id;
-			//	member.ChurchId = memberEntity.ChurchId;
-			//	member.LocaleChurchId = memberEntity.LocaleChurchId;
-			//	member.FirstName = memberEntity.Person.FirstName;
-			//	member.LastName = memberEntity.Person.LastName;
-			//	member.MiddleName = memberEntity.Person.MiddleName;
-			//	member.NameExtension = memberEntity.Person.NameExtension;
-			//	member.BirthDate = memberEntity.Person.BirthDate;
-			//	member.PlaceOfBirth = memberEntity.Person.PlaceOfBirth;
-			//	member.Gender = memberEntity.Person.Gender;
-			//	member.Citizenship = memberEntity.Person.Citizenship;
-			//	member.Address = new Address()
-			//	{
-			//		AddressLine1 = memberEntity.Person.AddressLine1,
-			//		AddressLine2 = memberEntity.Person.AddressLine2,
-			//		City = memberEntity.Person.City,
-			//		StateProvince = memberEntity.Person.StateProvince,
-			//		Country = memberEntity.Person.Country
-			//	};
-			//	member.DateBaptized = memberEntity.DateBaptized;
-			//	member.Baptizer = memberEntity.Baptizer;
-			//	member.MaritalStatus = (MaritalStatuses)memberEntity.MaritalStatusId;
-			//	member.SpouseName = memberEntity.SpouseName;
-			//	member.ContactInformation = new ContactInformation
-			//	{
-			//		LandLine = memberEntity.LandLine,
-			//		MobileNumber = memberEntity.MobileNumber,
-			//		Email = memberEntity.Email
-			//	};
-			//	member.MemberStatus = (MemberStatuses)memberEntity.MemberStatusId;
-			//	member.Designation = (Designations)memberEntity.DesignationId;
-			//	member.CreatedBy = memberEntity.CreatedBy;
-			//	member.DateCreated = memberEntity.DateCreated;
-			//	member.ModifiedBy = memberEntity.ModifiedBy;
-			//	member.DateModified = memberEntity.DateModified;
-			//}			
+		public static IEnumerable<Member> ToDomain(this IEnumerable<Entities.Member> memberEntities)
+		{
+			return memberEntities.ToList().Select(_ => _.ToDomain());
 		}
 
 		public static Entities.Member ToEntity(this IMember member)

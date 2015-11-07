@@ -2,6 +2,7 @@
 {
 	public enum Designations : byte
 	{
+		None = 0,
 		Member = 1,
 		Deacon = 2,
 		Deaconess = 3,

@@ -199,6 +199,7 @@
     <Content Include="app\directives\newlyBaptizedPanel.js" />
     <Content Include="app\directives\monthlyCelebrantsPanel.js" />
     <Content Include="app\directives\themeDirectives.js" />
+    <Content Include="app\enums\designationTypeEnum.js" />
     <Content Include="app\enums\monthEnum.js" />
     <Content Include="app\enums\genderEnum.js" />
     <Content Include="app\enums\maritalStatusEnum.js" />
@@ -213,6 +214,7 @@
     <Content Include="app\modals\memberAddSuccessModal.js" />
     <Content Include="app\partials\left-navigation.html" />
     <Content Include="app\partials\top-navigation.html" />
+    <Content Include="app\services\referencesService.js" />
     <Content Include="app\services\dataExportService.js" />
     <Content Include="app\services\committeesService.js" />
     <Content Include="app\services\reportsService.js" />

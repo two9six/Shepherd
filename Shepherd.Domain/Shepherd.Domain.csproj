@@ -68,6 +68,7 @@
     <Compile Include="Models\Committee.cs" />
     <Compile Include="Models\CommitteeMember.cs" />
     <Compile Include="Models\ContactInformation.cs" />
+    <Compile Include="Models\DesignationList.cs" />
     <Compile Include="Models\Gathering.cs" />
     <Compile Include="Models\GatheringSchedule.cs" />
     <Compile Include="Models\Reporting\NewlyBaptizedBrethren.cs" />

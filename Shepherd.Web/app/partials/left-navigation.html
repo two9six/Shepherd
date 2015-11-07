@@ -5,25 +5,25 @@
 		<ul class="nav" id="side-menu" data-metis-menu>
 			<li ng-class="{ active: isActive('/dashboard')}">
 				<a ui-sref="dashboard">
-					<i class="fa fa-lg fa-desktop"></i>
+					<i class="fa fa-lg fa-desktop" tooltip-html-unsafe="Dashboard" tooltip-placement="right" tooltip-append-to-body="true"></i>
 					<span class="nav-label">Dashboard</span>
 				</a>
 			</li>
 			<li ng-class="{ active: isActive('/members')}">
 				<a ui-sref="members">
-					<i class="fa fa-lg fa-users"></i>
+					<i class="fa fa-lg fa-users" tooltip-html-unsafe="Members Master List" tooltip-placement="right" tooltip-append-to-body="true"></i>
 					<span class="nav-label">Members List</span>
 				</a>
 			</li>
 			<li ng-class="{ active: isActive('/committees')}">
 				<a ui-sref="committees">
-					<i class="fa fa-lg fa-share-alt"></i>
+					<i class="fa fa-lg fa-share-alt" tooltip-html-unsafe="Committees" tooltip-placement="right" tooltip-append-to-body="true"></i>
 					<span class="nav-label">Committees</span>
 				</a>
 			</li>
 			<li ng-class="{ active: isActive('/reporst')}">
 				<a ui-sref="reports">
-					<i class="fa fa-lg fa-line-chart"></i>
+					<i class="fa fa-lg fa-line-chart" tooltip-html-unsafe="Reports" tooltip-placement="right" tooltip-append-to-body="true"></i>
 					<span class="nav-label">Reports</span>
 				</a>
 			</li>

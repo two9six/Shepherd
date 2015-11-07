@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Infrastructure\IRepositoryBase.cs" />
     <Compile Include="Contracts\Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Contracts\Repository\ICommitteeMemberRepository.cs" />
     <Compile Include="Contracts\Repository\IMemberStatusRepository.cs" />
     <Compile Include="Contracts\Repository\IDesignationTypeRepository.cs" />
     <Compile Include="Contracts\Repository\IGatheringTypeRepository.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Contracts\Repository\IDesignationRepository.cs" />
     <Compile Include="Contracts\Repository\IMemberRepository.cs" />
     <Compile Include="Contracts\Repository\IPersonRepository.cs" />
+    <Compile Include="Repository\CommitteeMemberRepository.cs" />
     <Compile Include="Repository\DesignationRepository.cs" />
     <Compile Include="Repository\DesignationTypeRepository.cs" />
     <Compile Include="Repository\CommitteeRepository.cs" />

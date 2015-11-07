@@ -2,6 +2,7 @@
 {
 	public enum MemberStatuses : byte
 	{
+		None = 0,
 		Active = 1,
 		ActiveOtherLocale = 2,
 		ActiveAbroad = 3,

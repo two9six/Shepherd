@@ -19,38 +19,37 @@ namespace Shepherd.Services.Controllers
 			});
 		}
 
-		//[HttpGet]
-		//public IHttpActionResult Get(int id)
-		//{
-		//	return GetActionResult(delegate() { 
-                
-		//		var membersDetail = new MembersDetail()
-		//		{
-		//			Id = id
-		//		};
-		//		membersDetail.Load();
-		//		return membersDetail.Member;
-		//	});
-		//}
+		[HttpGet]
+		public IHttpActionResult GetNonMembers(int id)
+		{
+			return GetActionResult(delegate()
+			{
+				var committee = new Committee()
+				{
+					Id = id
+				};
+				return committee.GetNonMembers();
+			});
+		}
 
-		//[HttpPost]
-		//public IHttpActionResult Post([FromBody]Member member)
-		//{
-		//	return GetActionResult(delegate()
-		//	{
-		//		member.Insert();
-		//		return member;
-		//	});
-		//}
+		[HttpPost]
+		public IHttpActionResult AddCommitteeMember([FromBody]CommitteeMember committeeMember)
+		{
+			return GetActionResult(delegate()
+			{
+				committeeMember.Insert();
+				return committeeMember;
+			});
+		}
 
-		//[HttpPut]
-		//public IHttpActionResult Put([FromBody]Member member)
-		//{
-		//	return GetActionResult(delegate() {
-		//		member.Update();
-		//		return member;
-		//	});
-		//}
-
+		[HttpPost]
+		public IHttpActionResult DeleteCommitteeMember([FromBody]CommitteeMember committeeMember)
+		{
+			return GetActionResult(delegate()
+			{
+				committeeMember.Delete();
+				return committeeMember;
+			});
+		}
 	}
 }

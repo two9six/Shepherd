@@ -12,7 +12,28 @@ app.factory('committeesService', [
 					action: ''
 				},
 				isArray: false
-			}
+			},
+			getNonMembers: {
+				method: 'GET',
+				params: {
+					action: 'GetNonMembers'
+				},
+				isArray: true
+			},
+			addCommitteeMember: {
+				method: 'POST',
+				params: {
+					action: 'AddCommitteeMember'
+				},
+				isArray: false
+			},
+			deleteCommitteeMember: {
+				method: 'POST',
+				params: {
+					action: 'DeleteCommitteeMember'
+				},
+				isArray: false
+			},
 		});
 	}
 ]);

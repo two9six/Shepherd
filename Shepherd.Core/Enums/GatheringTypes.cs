@@ -2,6 +2,7 @@
 {
 	public enum GatheringTypes : byte
 	{
+		None = 0,
 		PrayerMeeting = 1,
 		WorshipService = 2,
 		Thanksgiving = 3,

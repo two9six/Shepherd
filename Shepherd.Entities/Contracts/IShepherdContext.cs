@@ -6,6 +6,8 @@ namespace Shepherd.Entities.Contracts
 {
 	public interface IShepherdContext : IDisposable
 	{
+		DbSet<Committee> Committees { get; set; }
+		DbSet<CommitteeMember> CommitteeMembers { get; set; }
 		DbSet<Designation> Designations { get; set; }
 		DbSet<DesignationType> DesignationTypes { get; set; }
 		DbSet<GatheringType> GatheringTypes { get; set; }
