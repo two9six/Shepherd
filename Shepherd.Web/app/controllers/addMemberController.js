@@ -139,8 +139,6 @@ app.controller('addMemberController', [
 		$scope.vm.gender = genderValue;
 		$scope.vm.maritalStatus = maritalStatusValue;
 
-
-
 		membersService.createMember($scope.vm).$promise
 		    .then(function (response) {
 		        console.log(response);
