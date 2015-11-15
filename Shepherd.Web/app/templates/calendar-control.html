@@ -1,6 +1,18 @@
 ﻿<div>
-    Year: <input type="text" name="year" ng-model="calendarControlStart.year" />
-    Month: <input type="text" name="month" ng-model="calendarControlStart.month" />
+    <!--Year: <input type="text" name="year" ng-model="calendarControlStart.year" />-->
+    Year: <select name="year"
+                  ng-init="calendarControlStart.year = yearValues[0]"
+                  ng-model="calendarControlStart.year"
+                  ng-options="v for v in yearValues"></select>
+
+    <!--Month: <input type="text" name="month" ng-model="calendarControlStart.month" />-->
+
+    <select name="month"
+            class="form-control"
+            ng-init="calendarControlStart.month = monthValues[0]"
+            ng-model="calendarControlStart.month"
+            ng-options="m.value for m in monthValues"></select><br>
+
     Day: <input type="text" name="day" ng-model="calendarControlStart.day" />
     
 </div>

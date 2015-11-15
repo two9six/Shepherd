@@ -27,9 +27,12 @@ app.controller('addMemberController', [
 	};
 
 	$scope.customBirthDate = {
-		year: '2015',
-		month: '10',
-		day: '24'
+		year: '',
+		month: {
+		    key: '',
+            value: ''
+		},
+		day: ''
 	}
 
 	$scope.vm = {
@@ -112,9 +115,7 @@ app.controller('addMemberController', [
 			$scope.firstNameError = true;
 		}
 
-
-		$scope.vm.birthDate = (new Date($scope.customBirthDate.year, $scope.customBirthDate.month - 1, $scope.customBirthDate.day)).toString();
-
+		$scope.vm.birthDate = (new Date($scope.customBirthDate.year, $scope.customBirthDate.month.key, $scope.customBirthDate.day)).toString();
 
 		var memberStatusValue = $scope.vm.memberStatusKeyValue.key;
 		var genderValue = $scope.vm.genderKeyValue.key;
@@ -122,16 +123,12 @@ app.controller('addMemberController', [
 		var designationValue = $scope.vm.designationKeyValue.key;
 
 
-		console.log(memberStatusValue);
-
 		$scope.vm.createdBy = "1";
 		$scope.vm.designation = designationValue;
 		$scope.vm.memberStatus = memberStatusValue;
 		$scope.vm.gender = genderValue;
 		$scope.vm.maritalStatus = maritalStatusValue;
 
-		console.log($scope.vm);
-		console.log($scope.customBirthDate);
 
 
 		//membersService.createMember($scope.vm).$promise
@@ -149,33 +146,11 @@ app.controller('addMemberController', [
 
 	$scope.success = function () {
 		console.log("success!");
-		//var modalInstance = $modal.open({
-		//    templateUrl: '/app/templates/member-add-success-modal.html',
-		//    controller: 'memberAddSuccessModal',
-		//    size: size, // defaults if none provided http://angular-ui.github.io/bootstrap/
-		//    animation: true,
-		//    backdrop: 'static',
-		//    windowClass: 'members-modal-window',
-		//    resolve: {
-		//        member: function () {
-		//            return $scope.vm;
-		//        }
-		//    }
-		//});
 
-		//modalInstance.result.then(
-		//	function (result) {
-		//	    //refresh the page
-		//	},
-		//	function () {
-
-		//	}
-		//);
 	};
 
 
 	$scope.cancel = function () {
-		//$modalInstance.dismiss('cancel');
 	};
 
 }]);
