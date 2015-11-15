@@ -16,7 +16,7 @@ app.directive('calendarControl', ['enumHelpers', function (enumHelpers) {
         link: function ($scope, element, attributes) {
 
             
-            console.log($scope.calendarControlStart);
+            //console.log($scope.calendarControlStart);
 
         },
         controller: function ($scope, $element) {

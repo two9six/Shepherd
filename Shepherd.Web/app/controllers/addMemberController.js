@@ -35,6 +35,15 @@ app.controller('addMemberController', [
 		day: ''
 	}
 
+	$scope.customDatebaptized = {
+	    year: '',
+	    month: {
+	        key: '',
+	        value: ''
+	    },
+	    day: ''
+	}
+
 	$scope.vm = {
 		firstName: "",
 		middleName: "",
@@ -64,12 +73,7 @@ app.controller('addMemberController', [
 		baptizer: "",
 		maritalStatus: "",
 		maritalStatusKeyValue: "",
-		//statusId: "",
-		//memberTypeId: "",
-		//churchDesignationId: "",
 		createdBy: "",
-		//type: "",
-		//status: "",
 		designation: "",
 		memberStatus: "",
 		memberStatusKeyValue: "",
@@ -83,17 +87,16 @@ app.controller('addMemberController', [
 
 	$scope.firstNameError = false;
 
-	$scope.openBirthday = function () {
-		$timeout(function () {
-			$scope.dtStatus.birthdayOpened = true;
-		});
-	}
-	$scope.openDateBaptized = function () {
-		//console.log($scope.dtStatus.dateBaptizedOpened);
-		$timeout(function () {
-			$scope.dtStatus.dateBaptizedOpened = true;
-		});
-	}
+	//$scope.openBirthday = function () {
+	//	$timeout(function () {
+	//		$scope.dtStatus.birthdayOpened = true;
+	//	});
+	//}
+	//$scope.openDateBaptized = function () {
+	//	$timeout(function () {
+	//		$scope.dtStatus.dateBaptizedOpened = true;
+	//	});
+	//}
 
 
 	$scope.isSaveButtonDisabled = function () {
@@ -109,13 +112,20 @@ app.controller('addMemberController', [
 
 	$scope.save = function () {
 
+	    console.log("saving..");
+
 		var firstNameLength = $scope.vm.firstName.length;
 
 		if (firstNameLength < 1 || firstNameLength > 100) {
 			$scope.firstNameError = true;
 		}
 
-		$scope.vm.birthDate = (new Date($scope.customBirthDate.year, $scope.customBirthDate.month.key, $scope.customBirthDate.day)).toString();
+
+		$scope.vm.birthDate = (new Date($scope.customBirthDate.year, $scope.customBirthDate.month.key, $scope.customBirthDate.day));
+		$scope.vm.dateBaptized = (new Date($scope.customDateBaptized.year, $scope.customDateBaptized.month.key, $scope.customDateBaptized.day));
+
+		console.log($scope.vm.birthDate);
+		console.log($scope.vm.dateBaptized);
 
 		var memberStatusValue = $scope.vm.memberStatusKeyValue.key;
 		var genderValue = $scope.vm.genderKeyValue.key;
@@ -131,15 +141,13 @@ app.controller('addMemberController', [
 
 
 
-		//membersService.createMember($scope.vm).$promise
-		//    .then(function (response) {
-		//        console.log(response);
-		//        //$modalInstance.dismiss('saved');
-		//        //$scope.success("lg");
+		membersService.createMember($scope.vm).$promise
+		    .then(function (response) {
+		        console.log(response);
 
-		//    }, function (response) {
-		//        console.log(response);
-		//    });
+		    }, function (response) {
+		        console.log(response);
+		    });
 
 	}
 
