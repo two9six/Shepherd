@@ -4,11 +4,13 @@ app.controller('addMemberController', [
 	, '$timeout'
 	, 'membersService'
 	, 'enumHelpers'
+    , '$state'
 , function (
 	  $scope
 	, $timeout
 	, membersService
-	, enumHelpers) {
+	, enumHelpers
+    , $state) {
 
 	$scope.addMemberValidationMessage = '';
 	$scope.memberStatusOptions = enumHelpers.convertEnumToKeyValueArray(memberStatusEnum);
@@ -141,7 +143,8 @@ app.controller('addMemberController', [
 
 		membersService.createMember($scope.vm).$promise
 		    .then(function (response) {
-		        console.log(response);
+
+		        $scope.success($scope.vm.firstName + ' ' + $scope.vm.lastName);
 
 		    }, function (response) {
 		        console.log(response);
@@ -150,8 +153,11 @@ app.controller('addMemberController', [
 	}
 
 
-	$scope.success = function () {
-		console.log("success!");
+	$scope.success = function (memberName) {
+
+	    $state.go("addMemberSuccess", { name: memberName });
+
+	    //$location.path('/addMember');
 
 	};
 

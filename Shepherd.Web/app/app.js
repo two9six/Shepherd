@@ -64,6 +64,11 @@ app = angular.module('Shepherd'
                 templateUrl: "/app/views/add-member.html",
                 controller: "addMemberController"
             })
+            .state('addMemberSuccess', {
+                url: "/addMemberSuccess/:name",
+                templateUrl: "/app/views/add-member-success.html",
+                controller: "addMemberSuccessController"
+            })
             .state('/', {
             	url: "/dashboard",
             	templateUrl: "/app/views/dashboard.html",
